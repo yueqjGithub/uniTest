@@ -10,7 +10,7 @@
 	export default {
 		data() {
 			return {
-				href: 'https://uniapp.dcloud.io/component/README?id=uniui'
+				href: 'https://uniapp.dcloud.ioss/component/README?id=uniui'
 			}
 		},
 		methods: {
