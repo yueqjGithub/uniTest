@@ -1,0 +1,24 @@
+{
+  "name": "myapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yueqjGithub/uniTest.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yueqjGithub/uniTest/issues"
+  },
+  "homepage": "https://github.com/yueqjGithub/uniTest#readme",
+  "dependencies": {
+    "axios-miniprogram-adapter": "^0.3.2",
+    "flyio": "^0.6.14"
+  }
+}

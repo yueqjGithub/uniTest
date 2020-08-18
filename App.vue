@@ -1,10 +1,16 @@
 <script>
+import urls from './service/urls.js'
 export default {
 	onLaunch: function() {
 		console.log('App Launch1');
 	},
 	onShow: function() {
-		console.log('App Show');
+		// this.$post(urls.test).then(res => {
+		// 	console.log(res)
+		// }, err => {
+		// 	console.log('请求出错')
+		// 	console.log(err)
+		// })
 	},
 	onHide: function() {
 		console.log('App Hide');
