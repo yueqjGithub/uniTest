@@ -1,6 +1,7 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/about/about"
   ],
   "subPackages": [],
   "window": {
@@ -8,6 +9,21 @@
     "navigationBarTitleText": "uni-app",
     "navigationBarBackgroundColor": "#007AFF",
     "backgroundColor": "#FFFFFF"
+  },
+  "tabBar": {
+    "color": "#aaaaaa",
+    "selectedColor": "#00BE87",
+    "fontSize": "44px",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/about/about",
+        "text": "关于"
+      }
+    ]
   },
   "permission": {},
   "usingComponents": {}

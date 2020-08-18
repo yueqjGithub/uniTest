@@ -4,7 +4,7 @@
 		<text class="intro">详见：{{isLogin}}</text>
 		<view class='iconfont icon-xuanze text-primary'></view>
 		<uni-link :href="href" :text="href"></uni-link>
-		<button type="default" @click="setLogin('试试')">变更</button>
+		<button type="default" @click="toAbout">变更</button>
 	</view>
 </template>
 
@@ -22,7 +22,12 @@
 		mounted () {
 		},
 		methods: {
-			...mapMutations(['setLogin'])
+			...mapMutations(['setLogin']),
+			toAbout () {
+				uni.navigateTo({
+					url: '../about/about'
+				})
+			}
 		}
 	}
 </script>
