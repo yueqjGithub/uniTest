@@ -13,14 +13,17 @@
 
   "tabBar": {
     "color": "#aaaaaa",
-    "selectedColor": "#00BE87",
-		"fontSize": "10px",
+    "selectedColor": "#00BE88",
     "list": [{
       "pagePath": "pages/index/index",
-      "text": "首页"
+      "text": "首页",
+			"iconPath": "static/images/Home-line.png",
+			"selectedIconPath":"static/images/Home-fill.png"
     }, {
       "pagePath": "pages/about/about",
-      "text": "关于"
+      "text": "关于",
+			"iconPath": "static/images/Money-line.png",
+			"selectedIconPath":"static/images/Money-fill.png"
     }]
   },
   "globalStyle": {

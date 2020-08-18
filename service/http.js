@@ -13,7 +13,8 @@ fly.interceptors.request.use(request => {
 		request.headers = {
 		  'content-type': 'application/json',
 		  'X-Tag': 'flyio',
-		  'access_token': wx.getStorageSync('access_token')
+		  'access_token': wx.getStorageSync('access_token'),
+			'refresh_token': wx.getStorageSync('refresh_token')
 		};
 		fly.unlock();//解锁请求
 	} else {
@@ -26,6 +27,18 @@ fly.interceptors.response.use(response => {
 	const status = response.status
 	if (status >= 200 && status < 300) {
 		return response.data
+	}
+}, err => {
+	const status = err.status || ''
+	if (status === 401) {
+		uni.showToast({
+			title: '登录过期',
+			duration: 3000,
+			icon: 'none'
+		})
+		throw new Error('登录过期')
+	} else {
+		throw new Error('请求出错')
 	}
 })
 
@@ -40,7 +53,7 @@ const httpPost = (url, data) => {
 const httpGet = (url, params) => {
 	return fly.request({
 		url: url,
-		method: 'post',
+		method: 'get',
 		params
 	})
 }

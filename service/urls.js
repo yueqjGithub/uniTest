@@ -1,6 +1,8 @@
 const urls = {
-	baseUrl: 'https://www.fastmock.site/mock/c4a9191b46d02bfc455e710d4f53419e/api/',
-	test: '/gameDateManage/realtimeData/getHourList'
+	test:'home',
+	baseUrl: 'https://shopapi.apiself.com',
+	init: '/v1/api/public/init', // 初始化
+	queryIndex: '/v1/api/index/index' // 首页
 }
 
 export default urls
