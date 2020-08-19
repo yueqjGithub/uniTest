@@ -6,7 +6,8 @@ import { httpPost, httpGet } from 'service/http.js'
 import './common.scss'
 import en from './lang/en.js'
 import zh from './lang/zh.js'
-
+import uView from "uview-ui";
+Vue.use(uView);
 Vue.use(VueI18n) 
 
 const i18n = new VueI18n({  

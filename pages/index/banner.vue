@@ -1,10 +1,6 @@
 <template>
 	<view class="banner-container pa-row-md">
-		<swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" class="my-swiper" :circular="true" :indicator-color="'#000000'" indicator-active-color="#ffffff" >
-			<swiper-item v-for="k in list" :key="k.id" class="my-swiper-item">
-				<image :src="k.image" mode="" class="item-image"></image>
-			</swiper-item>
-		</swiper>
+		<u-swiper :list="list" class="my-swiper"></u-swiper>
 	</view>
 </template>
 
@@ -38,19 +34,7 @@
 			width: 95%;
 			height: 100%;
 			margin: 0 auto;
-			border-radius: 17.36rpx;
-			overflow: hidden;
 			position: relative;
-			box-shadow: 0 7px 7px -5px rgba(0,0,0,0.7);
-			.my-swiper-item{
-				width: 100%;
-				height: 100%;
-				.item-image{
-					width: 100%;
-					height: 100% ;
-					border-radius: 17.36rpx;
-				}
-			}
 		}
 	}
 </style>

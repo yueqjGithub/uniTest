@@ -22,5 +22,8 @@
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#23AF8C",
 		"backgroundColor": "#FFFFFF"
+	},
+	"easycom": {
+			"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
 	}
 }
