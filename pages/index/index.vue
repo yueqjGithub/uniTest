@@ -62,7 +62,7 @@
 			left: 0;
 			width: 100vw;
 			height: 319.44rpx;
-			background: linear-gradient(45deg,rgba(25,200,130,1),rgba(35,175,140,1));
+			background: linear-gradient(45deg,#19C882,#23AF8C);
 			.status_null{
 				width: 100%;
 				height: var(--status-bar-height);
