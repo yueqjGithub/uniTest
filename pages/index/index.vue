@@ -42,6 +42,9 @@
 <style lang="scss" scoped>
 	.container {
 		.status_bar{
+			position: fixed;
+			top: 0;
+			left: 0;
 			width: 100vw;
 			height: 319.44rpx;
 			background: linear-gradient(45deg,rgba(25,200,130,1),rgba(35,175,140,1));

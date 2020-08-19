@@ -28,8 +28,8 @@
 					{
 						name: 'store',
 						path: 'pages/store/store',
-						yIcon: '../../static/images/shop-fill.png',
-						nIcon: '../../static/images/shop-line.png'
+						yIcon: '../../static/images/car-fill.png',
+						nIcon: '../../static/images/car-line.png'
 					},
 					{
 						name: 'coin',
