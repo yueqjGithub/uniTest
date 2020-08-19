@@ -1,12 +1,16 @@
 <template>
 	<view class="container">
 		<view class="status_bar">
-			<!----------status占位---------->
+			<!--status占位-->
 			<view class="status_null"></view>
 			<!-- navbar -->
 			<status-bar></status-bar>
+			<!--弧形占位-->
+			<view class="circle-bottom"></view>
+			<!-- banner -->
+			<banner :list="bannerList"></banner>
 		</view>
-		<!--tabbar -->
+		<!-- tabbar-->
 		<cus-tabbar></cus-tabbar>
 	</view>
 </template>
@@ -14,26 +18,37 @@
 <script>
 	import cusTabbar from '../../components/cus-tabbar/cusTabbar.vue'
 	import statusBar from './statusBar.vue'
-	import { mapState, mapMutations } from 'vuex'
+	import banner from './banner.vue'
+	import urls from '@/service/urls.js'
+	import { mapState } from 'vuex'
 	export default {
 		name: 'index',
 		components: {
 			cusTabbar,
-			statusBar
+			statusBar,
+			banner
 		},
 		data() {
 			return {
+				bannerList: []
 			}
 		},
 		computed: {
-			 ...mapState(['isLogin', 'lang'])  
+			 ...mapState(['lang'])  
+		},
+		created () {
+			this.queryIndex()
 		},
 		mounted () {
 		},
 		methods: {
-			...mapMutations(['setLogin']),
-			test () {
-				this.$store.dispatch('setLang', 'en-US')
+			queryIndex () {
+				const vm = this
+				vm.$get(urls.queryIndex, {}).then(res => {
+					vm.bannerList = [...res.data.banner]
+				}, err => {
+					console.log(err)
+				})
 			}
 		}
 	}
@@ -51,6 +66,15 @@
 			.status_null{
 				width: 100%;
 				height: var(--status-bar-height);
+			}
+			.circle-bottom{
+				width: 100%;
+				height: 10%;
+				background: #ffffff;
+				position: absolute;
+				bottom: 0;
+				border-top-left-radius: 50vw 5vh;
+				border-top-right-radius: 50vw 5vh;
 			}
 		}
 	}

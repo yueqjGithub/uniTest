@@ -1,7 +1,9 @@
 <template>
-	<view class="flex-row flex-ali-center flex-jst-start pa-md status-container">
+	<view class="flex-row flex-ali-center flex-jst-start pa-row-md status-container">
 		<cus-switch class="flex-1"></cus-switch>
-		<view class="flex-2 text-center">中</view>
+		<view class="flex-2 text-center logo-container">
+			<image src="~@/static/images/logo.png" mode="" class="logo-image"></image>
+		</view>
 		<view class="flex-1"></view>
 	</view>
 </template>
@@ -21,6 +23,11 @@
 
 <style lang="scss" scoped>
 	.status-container{
-		
+		.logo-container{
+			.logo-image{
+				width: 217.36rpx;
+				height: 59.72rpx;
+			}
+		}
 	}
 </style>
