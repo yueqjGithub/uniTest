@@ -1,5 +1,38 @@
 @import './static/iconfont.css';
 
+:root{
+	font-family: 'yahei';
+}
+
 .text-primary{
 	color: $uni-color-primary;
 }
+.text-grey{
+	color: #A9A9A9;
+}
+.text-center{text-align: center;}
+
+.bg-white{
+	background: #FFFFFF;
+}
+
+// --------flex公共类
+.flex-row{display: flex; flex-direction: row;}
+.flex-column{display: flex; flex-direction: column;}
+.flex-jst-start{justify-content: flex-start;}
+.flex-jst-end{justify-content: flex-end;}
+.flex-jst-center{justify-content: center;}
+.flex-jst-ard{justify-content: space-around;}
+.flex-jst-btw{justify-content: space-between;}
+.flex-ali-start{align-items: flex-start;}
+.flex-ali-center{align-items: center;}
+.flex-ali-end{align-items: flex-end;}
+.flex-ali-base{align-items: baseline;}
+.flex-wrap{flex-wrap: wrap;}
+.flex-nowrap{flex-wrap: nowrap;}
+.flex-1{flex: 1;}
+.flex-2{flex: 2;}
+.flex-3{flex: 3;}
+
+// --------------公共padding margin-------------
+.pa-md{padding: 27.77rpx;}

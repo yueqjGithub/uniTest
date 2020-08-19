@@ -1,7 +1,9 @@
 export default {
 	tab: {
-		home: 'home',
-		about: 'about'
+		index: 'باش بەت',
+		store: 'بازار',
+		coin: 'پۇل تېپىش',
+		mine: 'مىنىڭ',
 	},
 	index: {
 		invite: 'Invite',

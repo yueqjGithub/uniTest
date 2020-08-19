@@ -1,23 +1,32 @@
 <template>
 	<view class="container">
-		<view class="intro text-primary">本项目已包含uni ui组件，无需import和注册，可直接使用。在代码区键入字母u，即可通过代码助手列出所有可用组件。光标置于组件名称处按F1，即可查看组件文档。</view>
-		<text class="intro">{{$t('index.game')}}：{{isLogin}}</text>
-		<view class='iconfont icon-xuanze text-primary'></view>
-		<uni-link :href="href" :text="href"></uni-link>
-		<button type="default" @click="test">变更</button>
+		<view class="status_bar">
+			<!----------status占位---------->
+			<view class="status_null"></view>
+			<!-- navbar -->
+			<status-bar></status-bar>
+		</view>
+		<!--tabbar -->
+		<cus-tabbar></cus-tabbar>
 	</view>
 </template>
 
 <script>
+	import cusTabbar from '../../components/cus-tabbar/cusTabbar.vue'
+	import statusBar from './statusBar.vue'
 	import { mapState, mapMutations } from 'vuex'
 	export default {
+		name: 'index',
+		components: {
+			cusTabbar,
+			statusBar
+		},
 		data() {
 			return {
-				href: 'https://uniapp.dcloud.ioss/component/README?id=uniui'
 			}
 		},
 		computed: {
-			 ...mapState(['isLogin'])  
+			 ...mapState(['isLogin', 'lang'])  
 		},
 		mounted () {
 		},
@@ -25,11 +34,6 @@
 			...mapMutations(['setLogin']),
 			test () {
 				this.$store.dispatch('setLang', 'en-US')
-			},
-			toAbout () {
-				uni.navigateTo({
-					url: '../about/about'
-				})
 			}
 		}
 	}
@@ -37,8 +41,14 @@
 
 <style lang="scss" scoped>
 	.container {
-		padding: 20px;
-		font-size: 14px;
-		line-height: 24px;
+		.status_bar{
+			width: 100vw;
+			height: 319.44rpx;
+			background: linear-gradient(45deg,rgba(25,200,130,1),rgba(35,175,140,1));
+			.status_null{
+				width: 100%;
+				height: var(--status-bar-height);
+			}
+		}
 	}
 </style>

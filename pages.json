@@ -1,35 +1,26 @@
 {
-  "pages": [{
-    "path": "pages/index/index",
-    "style": {
-      "navigationBarTitleText": "uni-ui基础项目"
-    }
-  }, {
-    "path": "pages/about/about",
-    "style": {
-      "navigationBarTitleText": "关于"
-    }
-  }],
-
-  "tabBar": {
-    "color": "#aaaaaa",
-    "selectedColor": "#00BE88",
-    "list": [{
-      "pagePath": "pages/index/index",
-      "text": "首页",
-			"iconPath": "static/images/Home-line.png",
-			"selectedIconPath":"static/images/Home-fill.png"
-    }, {
-      "pagePath": "pages/about/about",
-      "text": "关于",
-			"iconPath": "static/images/Money-line.png",
-			"selectedIconPath":"static/images/Money-fill.png"
-    }]
-  },
-  "globalStyle": {
-    "navigationBarTextStyle": "white",
-    "navigationBarTitleText": "uni-app",
-    "navigationBarBackgroundColor": "#007AFF",
-    "backgroundColor": "#FFFFFF"
-  }
+	"pages": [{
+		"path": "pages/index/index",
+		"style": {
+			"navigationBarTitleText": "首页",
+			"navigationStyle": "custom"
+		}
+	}, {
+		"path": "pages/store/store",
+		"style": {
+			"navigationBarTitleText": "商城"
+		}
+	}, {
+		"path": "pages/coin/coin",
+		"style": {}
+	}, {
+		"path": "pages/mine/mine",
+		"style": {}
+	}],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#23AF8C",
+		"backgroundColor": "#FFFFFF"
+	}
 }
