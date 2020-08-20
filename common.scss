@@ -11,12 +11,17 @@
 	color: #A9A9A9;
 }
 .text-center{text-align: center;}
-
+.text-left{text-align: left;}
+.text-right{text-align: right;}
 .bg-white{
 	background: #FFFFFF;
 }
 .bg-grey{
 	background: #f3f3f3;
+}
+
+.font-sm{
+	font-size: 12px;
 }
 
 // --------flex公共类
