@@ -3,7 +3,8 @@
 		"path": "pages/index/index",
 		"style": {
 			"navigationBarTitleText": "首页",
-			"navigationStyle": "custom"
+			"navigationStyle": "custom",
+			"backgroundColor":"#F3F3F3"
 		}
 	}, {
 		"path": "pages/store/store",
@@ -21,7 +22,7 @@
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#23AF8C",
-		"backgroundColor": "#FFFFFF"
+		"backgroundColor": "#F3F3F3"
 	},
 	"easycom": {
 			"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"

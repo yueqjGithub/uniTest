@@ -1,5 +1,5 @@
 <template>
-	<view class="container">
+	<view class="container bg-grey">
 		<view class="status_bar">
 			<!--status占位-->
 			<view class="status_null"></view>
@@ -10,7 +10,24 @@
 			<!-- banner -->
 			<banner :list="bannerList"></banner>
 		</view>
+		<!-- fixed元素补位 -->
+		<view class="fix-add"></view>
+		<!-- menulist -->
+		<view class="menu-list bg-white pa-row-md flex-row flex-wrap flex-jst-btw flex-ali-start">
+			<view class="menu-item-container flex-row flex-jst-center flex-ali-start" v-for="(k, index) in applyList" :key="index">
+				<Item :item="k"></Item>
+			</view>
+		</view>
+		<!-- 消息栏 -->
+		<notice></notice>
+		<!-- 广告图 -->
+		<view class="pa-row-md">
+			<image :src="adv" mode="" class="adv-img"></image>
+		</view>
+		<!-- 推荐商品 -->
+		<recommended :info='recommendedGoods' v-if="recommendedGoods"></recommended>
 		<!-- tabbar-->
+		<view class='tab-add'></view>
 		<cus-tabbar></cus-tabbar>
 	</view>
 </template>
@@ -19,33 +36,46 @@
 	import cusTabbar from '../../components/cus-tabbar/cusTabbar.vue'
 	import statusBar from './statusBar.vue'
 	import banner from './banner.vue'
+	import Item from './menuItem.vue'
+	import notice from './notice.vue'
+	import recommended from './recommended.vue'
 	import urls from '@/service/urls.js'
-	import { mapState } from 'vuex'
+	import {
+		mapState
+	} from 'vuex'
 	export default {
 		name: 'index',
 		components: {
 			cusTabbar,
 			statusBar,
-			banner
+			banner,
+			Item,
+			notice,
+			recommended
 		},
 		data() {
 			return {
-				bannerList: []
+				bannerList: [],
+				applyList: [],
+				recommendedGoods: '', // 推荐商品
+				adv: '' // 通知栏下的广告图片
 			}
 		},
 		computed: {
-			 ...mapState(['lang'])  
+			...mapState(['lang'])
 		},
-		created () {
+		created() {
 			this.queryIndex()
 		},
-		mounted () {
-		},
+		mounted() {},
 		methods: {
-			queryIndex () {
+			queryIndex() {
 				const vm = this
 				vm.$get(urls.queryIndex, {}).then(res => {
 					vm.bannerList = [...res.data.banner]
+					vm.applyList = [...res.data.apply]
+					vm.adv = res.data.adv
+					vm.recommendedGoods = res.data.shop.recommended_goods
 				}, err => {
 					console.log(err)
 				})
@@ -56,18 +86,20 @@
 
 <style lang="scss" scoped>
 	.container {
-		.status_bar{
+		.status_bar {
 			position: fixed;
 			top: 0;
 			left: 0;
 			width: 100vw;
 			height: 319.44rpx;
-			background: linear-gradient(45deg,#19C882,#23AF8C);
-			.status_null{
+			background: linear-gradient(45deg, #19C882, #23AF8C);
+			z-index: 10;
+			.status_null {
 				width: 100%;
-				height: var(--status-bar-height);
+				height: 44px;
 			}
-			.circle-bottom{
+
+			.circle-bottom {
 				width: 100%;
 				height: 10%;
 				background: #ffffff;
@@ -76,6 +108,30 @@
 				border-top-left-radius: 50vw 5vh;
 				border-top-right-radius: 50vw 5vh;
 			}
+		}
+
+		.fix-add {
+			height: 472.21rpx;
+			width: 100vw;
+			background: #FFFFFF;
+		}
+
+		.menu-list {
+			// margin-top: 319.44rpx;
+			padding-top: 10px;
+			.menu-item-container{
+				width: 33%;
+				margin-bottom: 38.88rpx;
+			}
+		}
+		.adv-img{
+			width: 100%;
+			height: 138.88rpx;
+			border-radius: 13.88rpx;
+		}
+		.tab-add{
+			height: 56px;
+			width: 100%;
 		}
 	}
 </style>

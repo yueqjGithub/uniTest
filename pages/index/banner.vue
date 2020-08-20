@@ -28,7 +28,7 @@
 		bottom: 0;
 		height: 277.77rpx;
 		z-index: 2;
-		transform: translate(0, 40%);
+		transform: translate(0, 55%);
 		box-sizing: border-box;
 		.my-swiper{
 			width: 95%;

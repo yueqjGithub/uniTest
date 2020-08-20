@@ -13,8 +13,8 @@ fly.interceptors.request.use(request => {
 		request.headers = {
 		  'content-type': 'application/json',
 		  'X-Tag': 'flyio',
-		  'access_token': wx.getStorageSync('access_token'),
-			'refresh_token': wx.getStorageSync('refresh_token')
+		  'access-token': wx.getStorageSync('access_token'),
+			'refresh-token': wx.getStorageSync('refresh_token')
 		};
 		fly.unlock();//解锁请求
 	} else {
