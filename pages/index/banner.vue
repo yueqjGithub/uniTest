@@ -1,6 +1,6 @@
 <template>
 	<view class="banner-container pa-row-md">
-		<u-swiper :list="list" class="my-swiper"></u-swiper>
+		<u-swiper :list="list" class="my-swiper" :image-mode="'scaleToFill'"></u-swiper>
 	</view>
 </template>
 

@@ -4,3 +4,7 @@ export const changeLang = (state, payload) => { // 通过dispatch setLang，触�
 	Vue._i18n.locale = payload
 	state.lang = payload
 }
+
+export const changeInitStatus = (state) => {
+	state.initSuc = true
+}

@@ -10,6 +10,7 @@
 				secret: this.initSecret
 			}
 			this.$get(urls.init, obj).then(res => {
+				this.$store.commit('changeInitStatus')
 				wx.setStorageSync('access_token', res.data.access_token)
 				wx.setStorageSync('refresh_token', res.data.refresh_token)
 			}, err => {

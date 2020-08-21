@@ -26,8 +26,10 @@
 		</view>
 		<!-- 推荐商品 -->
 		<recommended :info='recommendedGoods' v-if="recommendedGoods"></recommended>
+		<!-- 最新商品 -->
+		<news :info="newsList" v-if="newsList"></news>
 		<!-- tabbar-->
-		<view class='tab-add'></view>
+		<view class='tab-add'></view> 
 		<cus-tabbar></cus-tabbar>
 	</view>
 </template>
@@ -38,7 +40,8 @@
 	import banner from './banner.vue'
 	import Item from './menuItem.vue'
 	import notice from './notice.vue'
-	import recommended from './recommended.vue'
+	import recommended from '@/cusComponents/recommended.vue'
+	import news from '@/cusComponents/news.vue'
 	import urls from '@/service/urls.js'
 	import {
 		mapState
@@ -51,21 +54,30 @@
 			banner,
 			Item,
 			notice,
-			recommended
+			recommended,
+			news
 		},
 		data() {
 			return {
 				bannerList: [],
 				applyList: [],
 				recommendedGoods: '', // 推荐商品
+				newsList: '', // 最新商品
 				adv: '' // 通知栏下的广告图片
 			}
 		},
 		computed: {
-			...mapState(['lang'])
+			...mapState(['lang', 'initSuc'])
 		},
-		created() {
-			this.queryIndex()
+		watch: {
+			initSuc: {
+				immediate: false,
+				handler: function (val) {
+					if (val === true) {
+						this.queryIndex()
+					}
+				}
+			}
 		},
 		mounted() {},
 		methods: {
@@ -76,6 +88,7 @@
 					vm.applyList = [...res.data.apply]
 					vm.adv = res.data.adv
 					vm.recommendedGoods = res.data.shop.recommended_goods
+					vm.newsList = res.data.shop.new_arrivals
 				}, err => {
 					console.log(err)
 				})
@@ -87,7 +100,8 @@
 <style lang="scss" scoped>
 	.container {
 		.status_bar {
-			position: fixed;
+			// position: fixed;
+			position: relative;
 			top: 0;
 			left: 0;
 			width: 100vw;
@@ -111,7 +125,7 @@
 		}
 
 		.fix-add {
-			height: 472.21rpx;
+			height: 152.77rpx;
 			width: 100vw;
 			background: #FFFFFF;
 		}

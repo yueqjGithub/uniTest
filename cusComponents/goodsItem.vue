@@ -34,7 +34,7 @@
 <style lang="scss" scoped>
 	.goods-container{
 		border-radius: 13.88rpx;
-		box-shadow: 0px 2px 7px -7px rgba(0,0,0,0.3);
+		box-shadow: 0px 3px 7px -3px rgba(0,0,0,0.3);
 		width: 312.5rpx;
 		box-sizing: border-box;
 		height: 451.38rpx;

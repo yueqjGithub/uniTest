@@ -20,7 +20,7 @@
 
 <script>
 	import { mapState } from 'vuex'
-	import goodsItem from './goodsItem.vue'
+	import goodsItem from '@/cusComponents/goodsItem.vue'
 	export default {
 		name: 'recommended',
 		components: {
