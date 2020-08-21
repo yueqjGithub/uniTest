@@ -2,7 +2,7 @@
 	<view class="notice-container pa-md">
 		<u-top-tips ref="uTips"></u-top-tips>
 		<view class="notice-module bg-white flex-ali-center" :class="rowClass">
-			<u-icon name="volume-up-fill" size="50" class="text-primary" :class="iconClass"></u-icon>
+			<u-icon name="tianchongxing-22" size="50" class="text-primary" :class="iconClass" custom-prefix="iconfont"></u-icon>
 			<u-notice-bar
 				:class="noticeWordControl"
 				mode="vertical"

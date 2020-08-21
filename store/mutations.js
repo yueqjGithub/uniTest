@@ -5,6 +5,6 @@ export const changeLang = (state, payload) => { // 通过dispatch setLang，触�
 	state.lang = payload
 }
 
-export const changeInitStatus = (state) => {
-	state.initSuc = true
+export const changeInitStatus = (state, payload) => {
+	state.initSuc = payload
 }

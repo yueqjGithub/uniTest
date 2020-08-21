@@ -5,13 +5,19 @@
 			<view class="status_null"></view>
 			<!-- navbar -->
 			<status-bar></status-bar>
-			<!--弧形占位-->
-			<view class="circle-bottom"></view>
-			<!-- banner -->
-			<banner :list="bannerList"></banner>
 		</view>
-		<!-- fixed元素补位 -->
-		<view class="fix-add"></view>
+		<view class="cus-head">
+			<!-- fixed元素补位 -->
+			<view class="fix-add"></view>
+			<!--弧形占位-->
+			<view class="banner-container">
+				<view class="circle-bottom"></view>
+				<!-- banner -->
+				<banner :list="bannerList"></banner>
+			</view>
+		</view>
+		<!-- fixed元素补位-弥补absolute轮播 -->
+		<view class="fix-add-swiper"></view>
 		<!-- menulist -->
 		<view class="menu-list bg-white pa-row-md flex-row flex-wrap flex-jst-btw flex-ali-start">
 			<view class="menu-item-container flex-row flex-jst-center flex-ali-start" v-for="(k, index) in applyList" :key="index">
@@ -71,9 +77,9 @@
 		},
 		watch: {
 			initSuc: {
-				immediate: false,
+				immediate: true,
 				handler: function (val) {
-					if (val === true) {
+					if (val === 'true') {
 						this.queryIndex()
 					}
 				}
@@ -101,35 +107,47 @@
 	.container {
 		.status_bar {
 			// position: fixed;
-			position: relative;
+			position: fixed;
 			top: 0;
 			left: 0;
 			width: 100vw;
-			height: 319.44rpx;
+			height: 175rpx;
 			background: linear-gradient(45deg, #19C882, #23AF8C);
 			z-index: 10;
 			.status_null {
 				width: 100%;
 				height: 44px;
 			}
-
-			.circle-bottom {
+		}
+		.cus-head{
+			width: 100%;
+			background: linear-gradient(135deg, #19C882, #23AF8C);
+			position: relative;
+			.fix-add {
+				height: 175rpx;
+				width: 100vw;
+				background: #A9A9A9;
+			}
+			.banner-container{
+				height: 277.77rpx;
 				width: 100%;
-				height: 10%;
-				background: #ffffff;
-				position: absolute;
-				bottom: 0;
-				border-top-left-radius: 50vw 5vh;
-				border-top-right-radius: 50vw 5vh;
+				position: relative;
+				.circle-bottom {
+					width: 100%;
+					height: 10%;
+					background: #ffffff;
+					position: absolute;
+					bottom: 0;
+					border-top-left-radius: 50vw 5vh;
+					border-top-right-radius: 50vw 5vh;
+				}
 			}
 		}
-
-		.fix-add {
-			height: 152.77rpx;
-			width: 100vw;
+		.fix-add-swiper{
+			width: 100%;
+			height: 55.55rpx;
 			background: #FFFFFF;
 		}
-
 		.menu-list {
 			// margin-top: 319.44rpx;
 			padding-top: 10px;

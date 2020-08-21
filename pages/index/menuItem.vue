@@ -1,7 +1,7 @@
 <template>
 	<view class="menu-item flex-column flex-ali-center flex-jst-start">
 		<view class="menu-icon flex-row flex-jst-center flex-ali-center" :style="{background: bg, boxShadow: boxShadow}">
-			<u-icon :name="iconName" color="#ffffff" size="60"></u-icon>
+			<u-icon :name="iconName" color="#ffffff" size="60" custom-prefix="iconfont"></u-icon>
 		</view>
 		<text class="menu-name">{{menuName}}</text>
 	</view>
@@ -26,7 +26,7 @@
 				return `linear-gradient(-55deg,${this.item.apply_start_background},${this.item.apply_end_background})`
 			},
 			iconName() {
-				return `iconfont ${this.item.apply_iconfont}`
+				return `${this.item.apply_iconfont.split('icon-')[1]}`
 			},
 			boxShadow () {
 				return `0px 2px 5px 1px ${this.item.apply_end_background}`

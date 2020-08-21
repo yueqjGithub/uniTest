@@ -1,5 +1,5 @@
 {
-    "name" : "myapp",
+    "name" : "开发",
     "appid" : "__UNI__716CB5E",
     "description" : "",
     "versionName" : "1.0.0",
@@ -42,10 +42,11 @@
     },
     "quickapp" : {},
     "mp-weixin" : {
-        "appid" : "wx268dc3610c6cc580",
+        "appid" : "wxe926b133fe7ad0b3",
         "setting" : {
             "urlCheck" : true,
-            "es6" : false
+            "es6" : false,
+            "minified" : true
         },
         "permission" : {}
     }
