@@ -1,10 +1,12 @@
 import urls from '@/service/urls.js'
+import { httpPost } from '@/service/http.js'
+
 
 export const setLang = (context, payload) => { // 变更语言
 	context.commit('changeLang', payload)
 }
 
-export const loginHandler = (context) => {
+export const loginHandler = (context) => { // 微信方登录获取userINFO
 	uni.login({
 	  provider: 'weixin',
 	  success: function (loginRes) {
@@ -21,25 +23,37 @@ export const loginHandler = (context) => {
 	});
 }
 
-export const getLoginToken = (context, user) => {
-	// code	string	[必填]	 微信返回的
-	// pic	string	[必填]	 头像
-	// nickName	string	[必填]	 昵称
-	// sex	string	[必填]	 性别:男 女
-	// inviter	string	[必填]	 邀请人编号
-	// province	string	[选填]	 ʡ
-	// city	string	[选填]	 市
-	// area	string	[选填]	 区
-	// console.log(user)
+export const getLoginToken = (context, user) => { // 自定义登录
+	const genderMap = [
+		{ key: 0, value: '未知' },
+		{ key: 1, value: '男' },
+		{ key: 2, value: '女' }
+	]
 	const obj = {
 		code: user.code,
 		pic: user.avatarUrl,
 		nickName: user.nickName,
-		sex: user.gender,
+		sex: genderMap.find(item => item.key === user.gender).value,
 		inviter: '',
 		province: user.province,
 		city: user.city,
 		area: ''
 	}
-	console.log(obj)
+	httpPost(urls.login, obj).then(res => {
+		if (res.success) {
+			wx.setStorageSync('token', res.data.token)
+		} else {
+			uni.showToast({
+				title: res.message,
+				duration: 3000,
+				icon: 'none'
+			})
+		}
+	}, err => {
+		uni.showToast({
+			title: err.message,
+			duration: 3000,
+			icon: 'none'
+		})
+	})
 }

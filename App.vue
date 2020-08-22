@@ -14,8 +14,6 @@
 				this.$store.commit('changeInitStatus', 'true')
 				wx.setStorageSync('access_token', res.data.access_token)
 				wx.setStorageSync('refresh_token', res.data.refresh_token)
-			}, err => {
-				console.log(err)
 			})
 		},
 		onShow: function() {
