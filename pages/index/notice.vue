@@ -28,7 +28,8 @@
 		name: 'notice',
 		data() {
 			return {
-				list: []
+				list: [],
+				timeout: ''
 			}
 		},
 		computed: {
@@ -56,12 +57,15 @@
 		mounted() {
 			this.queryList()
 		},
+		beforeDestroy () {
+			clearTimeout(this.timeout)
+		},
 		methods: {
 			queryList() {
 				const vm = this
 				vm.$get(urls.queryNotice, {}).then(res => {
 					vm.list = [...res.data]
-					setTimeout(() => {
+					vm.timeout = setTimeout(() => {
 						vm.queryList()
 					}, vm.queryTime)
 				}, err => {

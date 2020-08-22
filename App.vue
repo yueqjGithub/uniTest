@@ -19,7 +19,7 @@
 			})
 		},
 		onShow: function() {
-		
+			// this.$store.dispatch('loginHandler')
 		},
 		onHide: function() {
 			console.log('App Hide');

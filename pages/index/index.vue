@@ -126,7 +126,7 @@
 			.fix-add {
 				height: 175rpx;
 				width: 100vw;
-				background: #A9A9A9;
+				background: #f3f3f3;
 			}
 			.banner-container{
 				height: 277.77rpx;
@@ -160,10 +160,6 @@
 			width: 100%;
 			height: 138.88rpx;
 			border-radius: 13.88rpx;
-		}
-		.tab-add{
-			height: 56px;
-			width: 100%;
 		}
 	}
 </style>

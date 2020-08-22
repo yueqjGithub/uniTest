@@ -5,8 +5,9 @@ export default {
 		coin: '推广',
 		mine: '我的'
 	},
-	index: {
-		invite: '邀请',
-		game: '游戏'
+	store: {
+		type: '分类',
+		discount: '优惠',
+		suggestion: '推荐'
 	}
 }

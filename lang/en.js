@@ -5,8 +5,9 @@ export default {
 		coin: 'پۇل تېپىش',
 		mine: 'مىنىڭ',
 	},
-	index: {
-		invite: 'Invite',
-		game: 'Game'
+	store: {
+		type: 'تۈرلەر',
+		discount: 'ئېتىبار',
+		suggestion: 'تەۋسىيە'
 	}
 }

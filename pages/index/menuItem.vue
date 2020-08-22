@@ -1,7 +1,7 @@
 <template>
 	<view class="menu-item flex-column flex-ali-center flex-jst-start">
 		<view class="menu-icon flex-row flex-jst-center flex-ali-center" :style="{background: bg, boxShadow: boxShadow}">
-			<u-icon :name="iconName" color="#ffffff" size="60" custom-prefix="iconfont"></u-icon>
+			<u-icon :name="iconName" color="#ffffff" size="50" custom-prefix="iconfont"></u-icon>
 		</view>
 		<text class="menu-name">{{menuName}}</text>
 	</view>
@@ -54,6 +54,7 @@
 		}
 		.menu-name{
 			margin-top: 6px;
+			font-size: 12px;
 		}
 	}
 </style>
