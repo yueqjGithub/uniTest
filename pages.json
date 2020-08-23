@@ -4,14 +4,14 @@
 		"style": {
 			"navigationBarTitleText": "首页",
 			"navigationStyle": "custom",
-			"backgroundColor":"#F3F3F3"
+			"backgroundColor": "#F3F3F3"
 		}
 	}, {
 		"path": "pages/store/store",
 		"style": {
 			"navigationBarTitleText": "商城",
 			"navigationStyle": "custom",
-			"backgroundColor":"#F3F3F3"
+			"backgroundColor": "#F3F3F3"
 		}
 	}, {
 		"path": "pages/coin/coin",
@@ -19,6 +19,12 @@
 	}, {
 		"path": "pages/mine/mine",
 		"style": {}
+	}, {
+		"path": "pages/shoplist/shoplist",
+		"style": {
+			"navigationBarTitleText": "商品分类",
+			"backgroundColor": "#23AF8C"
+		}
 	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
@@ -27,6 +33,6 @@
 		"backgroundColor": "#F3F3F3"
 	},
 	"easycom": {
-			"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
 	}
 }

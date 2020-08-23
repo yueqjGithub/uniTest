@@ -60,7 +60,6 @@
 			queryStore () {
 				const vm = this
 				vm.$get(urls.queryStore, {}).then(res => {
-					console.log(res)
 					this.bannerList = res.data.banner
 					vm.recommendedGoods = res.data.shop.recommended_goods
 					vm.newsList = res.data.shop.new_arrivals

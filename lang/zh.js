@@ -9,5 +9,8 @@ export default {
 		type: '分类',
 		discount: '优惠',
 		suggestion: '推荐'
+	},
+	shopList: {
+		titName: '商品分类'
 	}
 }

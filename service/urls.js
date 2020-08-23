@@ -9,7 +9,9 @@ const urls = {
 	queryIndex: '/v1/api/index/index', // 首页
 	queryNotice: '/v1/api/index/notify', // 首页消息
 	// store
-	queryStore: '/v1/api/shop/index' // 商城首页
+	queryStore: '/v1/api/shop/index', // 商城首页
+	queryCate: '/v1/api/shop/cate', // 商品分类
+	queryStoreList: '/v1/api/shop/list' // 商品列表
 }
 
 export default urls

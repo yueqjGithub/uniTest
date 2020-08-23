@@ -10,7 +10,7 @@ fly.config.timeout = 10000
 fly.interceptors.request.use(request => {
     //给所有请求添加自定义header
 	if (urls.md5List.includes(request.url)) { // 加密传输
-		const result = generatorHandler(JSON.stringify(request.data))
+		const result = generatorHandler(JSON.stringify(request.body))
 		request.headers.token = result[0]
 		request.body = {
 			data: result[1]

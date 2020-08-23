@@ -9,5 +9,8 @@ export default {
 		type: 'تۈرلەر',
 		discount: 'ئېتىبار',
 		suggestion: 'تەۋسىيە'
+	},
+	shopList: {
+		titName: 'گىرىم بويۇملىرى'
 	}
 }

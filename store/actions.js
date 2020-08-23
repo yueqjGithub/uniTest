@@ -31,8 +31,8 @@ export const getLoginToken = (context, user) => { // 自定义登录
 	]
 	const obj = {
 		code: user.code,
-		pic: user.avatarUrl,
-		nickName: user.nickName,
+		profile_photo: user.avatarUrl,
+		nickname: user.nickName,
 		sex: genderMap.find(item => item.key === user.gender).value,
 		inviter: '',
 		province: user.province,
