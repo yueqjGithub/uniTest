@@ -17,6 +17,10 @@ export default {
 		fare: '运费',
 		noFare: '免邮运费',
 		inventory: '库存',
-		detail: '产品详细'
+		detail: '产品详细',
+		kf: '客服',
+		collect: '收藏',
+		deCollect: '已收藏',
+		shopCar: '购物车'
 	}
 }

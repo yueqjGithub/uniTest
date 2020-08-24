@@ -6,6 +6,12 @@
 .text-primary{
 	color: $uni-color-primary;
 }
+.text-cus-warning{
+	color: $cus-color-warning;
+}
+.text-cus-error{
+	color: $cus-color-error;
+}
 .text-white{color: #FFFFFF;}
 .text-grey{
 	color: #A9A9A9;
@@ -82,5 +88,15 @@
 .notice-reverse{
 	.u-swiper-item{
 		justify-content: flex-end !important;
+	}
+}
+// ----无样式Button
+.plain-btn{
+	background: transparent !important;
+	&::after{
+		border: none;
+	}
+	&::before{
+		border: none;
 	}
 }

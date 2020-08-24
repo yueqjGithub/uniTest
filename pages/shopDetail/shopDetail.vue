@@ -41,8 +41,27 @@
 		</view>
 		<!-- tabbar-->
 		<view class='tab-add'></view> 
-		<view class="detail-tab">
-			<button type="default" open-type="openSetting">222</button>
+		<view class="detail-tab flex-row flex-jst-btw flex-ali-center pa-md">
+			<view class="tab-left flex-row flex-jst-btw flex-ali-center">
+				<view class="left-item flex-column flex-jst-btw flex-ali-center">
+					<button type="default" class="plain-btn" open-type="contact">
+						<u-icon name="kefuzhongxin" size="50" class="text-primary" custom-prefix="iconfont"></u-icon>						
+					</button>
+					<text class="left-name">{{$t('shopDetai.kf')}}</text>
+				</view>
+				<view class="left-item flex-column flex-jst-btw flex-ali-center">
+					<button type="default" class="plain-btn" @click="setCollect">
+						<u-icon :name="goods.collect ? 'weibiaoti--31' : 'weibiaoti--34'" size="50" class="text-cus-warning" custom-prefix="iconfont"></u-icon>						
+					</button>
+					<text class="left-name">{{goods.collect ? $t('shopDetai.deCollect') : $t('shopDetai.collect')}}</text>
+				</view>
+				<view class="left-item flex-column flex-jst-btw flex-ali-center">
+					<button type="default" class="plain-btn">
+						<u-icon name="weibiaoti--68" size="50" class="text-cus-error" custom-prefix="iconfont"></u-icon>						
+					</button>
+					<text class="left-name">{{$t('shopDetai.shopCar')}}</text>
+				</view>
+			</view>
 		</view>
 	</view>
 </template>
@@ -100,6 +119,22 @@
 						}
 					})
 				})
+			},
+			// 设置搜藏
+			async setCollect () {
+				const vm = this
+				const token = await wx.getStorageSync('token')
+				if (token) {
+					const obj = {
+						token: token,
+						shop_number: vm.goods.shop_number
+					}
+					vm.$post(urls.changeCollect, obj).then(res => {
+						console.log(res)
+					})
+				} else { // 未登录
+					
+				}
 			}
 		}
 	}
@@ -179,11 +214,24 @@
 			height: 56px;
 		}
 		.detail-tab{
+			box-sizing: border-box;
 			height: 56px;
 			position: fixed;
 			width: 100%;
 			bottom: 0;
 			background: #FFFFFF;
+			.tab-left{
+				.left-item{
+					.plain-btn{
+						height: 32px;
+						line-height: 32px;
+					}
+					.left-name{
+						color: #AAAAAA;
+						font-size: 12px;
+					}
+				}
+			}
 		}
 	}
 </style>

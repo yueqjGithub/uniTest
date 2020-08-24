@@ -17,6 +17,10 @@ export default {
 		fare: 'كىرا ھەققى',
 		noFare: 'كىرا ھەقسىز',
 		inventory: 'مال سانى',
-		detail: 'مال تەپسىلاتى'
+		detail: 'مال تەپسىلاتى',
+		kf: 'مۇلازىمەتچى',
+		collect: 'ساقلاش',
+		deCollect: 'ساقلاندى',
+		shopCar: 'مال ھارۋا'
 	}
 }
