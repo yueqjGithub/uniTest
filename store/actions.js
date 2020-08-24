@@ -17,9 +17,15 @@ export const loginHandler = (context) => { // 微信方登录获取userINFO
 	      success: function (infoRes) {
 	        const user = infoRes.userInfo;
 					context.dispatch('getLoginToken', {code: code, ...user})
-	      }
+	      },
+				fail:function(value){
+					console.log(value)
+				}
 	    });
-	  }
+	  },
+		fail:function(value){
+			console.log(value)
+		}
 	});
 }
 

@@ -1,7 +1,7 @@
 <template>
 	<scroll-view scroll-y class="cus-scroll-content" @scrolltolower="loadMore">
 		<view class="shops-container flex-row flex-wrap flex-jst-btw flex-ali-start" v-if="list.length > 0">
-			<goodsItem v-for="k in list" :goods="k" class="goods-item"></goodsItem>
+			<goodsItem v-for="(k, index) in list" :goods="k" class="goods-item" :key="index"></goodsItem>
 			<view v-if="loading" class="loading-bar flex-row flex-jst-center flex-ali-center">
 				<u-loadmore :status="status" bg-color="bg-color" color="#AAAAAA" :load-text="loadText" icon-type="flower"/>
 			</view>

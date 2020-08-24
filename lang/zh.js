@@ -12,5 +12,11 @@ export default {
 	},
 	shopList: {
 		titName: '商品分类'
+	},
+	shopDetai: {
+		fare: '运费',
+		noFare: '免邮运费',
+		inventory: '库存',
+		detail: '产品详细'
 	}
 }

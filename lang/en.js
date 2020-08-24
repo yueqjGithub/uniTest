@@ -12,5 +12,11 @@ export default {
 	},
 	shopList: {
 		titName: 'گىرىم بويۇملىرى'
+	},
+	shopDetai: {
+		fare: 'كىرا ھەققى',
+		noFare: 'كىرا ھەقسىز',
+		inventory: 'مال سانى',
+		detail: 'مال تەپسىلاتى'
 	}
 }

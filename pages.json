@@ -25,6 +25,12 @@
 			"navigationBarTitleText": "商品分类",
 			"backgroundColor": "#23AF8C"
 		}
+	}, {
+		"path": "pages/shopDetail/shopDetail",
+		"style": {
+			"navigationBarTitleText": "商品详情", 
+			"backgroundColor": "#23AF8C"
+		}
 	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

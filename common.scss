@@ -24,6 +24,8 @@
 	font-size: 12px;
 }
 
+.full-width{width: 100%;}
+
 // --------flex公共类
 .flex-row{display: flex; flex-direction: row;}
 .flex-row-reverse{display: flex; flex-direction: row-reverse;}
@@ -47,9 +49,16 @@
 // --------------公共padding margin-------------
 .pa-sm{padding: 5.55rpx;}
 .pa-md{padding: 27.77rpx;}
+.ma-md{margin: 27.77rpx;}
 .pa-row-md{padding: 0 27.77rpx;}
+.pa-col-md{padding: 27.77rpx 0;}
+.ma-row-md{margin: 0 27.77rpx;}
+.ma-col-md{margin: 27.77rpx 0;}
 .pa-lg{
 	padding: 28px;
+}
+.ma-top-5{
+	margin-top: 5px;
 }
 
 .tab-add{

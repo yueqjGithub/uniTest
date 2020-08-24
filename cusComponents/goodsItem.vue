@@ -1,5 +1,5 @@
 <template>
-	<view class="goods-container bg-white flex-column flex-jst-start flex-ali-center">
+	<view class="goods-container bg-white flex-column flex-jst-start flex-ali-center" @click="openDetail">
 		<image :src="goods.cover_image" mode="" class="goods-image"></image>
 		<view class='flex-column flex-jst-btw goods-btm flex-2' :class="wordFlex">
 			<text class="font-sm goods-tit" :class='cusAlign'>{{goodsName}}</text>
@@ -26,6 +26,13 @@
 			},
 			cusAlign () {
 				return this.lang === 'zh-CN' ? 'text-left' : 'text-right'
+			}
+		},
+		methods: {
+			openDetail () {
+				uni.navigateTo({
+					url: `/pages/shopDetail/shopDetail?number=${this.goods.shop_number}`
+				})
 			}
 		}
 	}
