@@ -48,6 +48,9 @@ export const getLoginToken = (context, user) => { // 自定义登录
 	httpPost(urls.login, obj).then(res => {
 		if (res.success) {
 			wx.setStorageSync('token', res.data.token)
+			uni.navigateBack({
+				delta: 1
+			})
 		} else {
 			uni.showToast({
 				title: res.message,

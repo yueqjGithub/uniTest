@@ -48,6 +48,10 @@
             "es6" : false,
             "minified" : true
         },
-        "permission" : {}
+        "permission" : {
+            "scope.userLocation" : {
+                "desc" : "方便用户直接设置收货地址"
+            }
+        }
     }
 }

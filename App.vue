@@ -20,7 +20,6 @@
 			// this.$store.dispatch('loginHandler')
 		},
 		onHide: function() {
-			console.log('App Hide');
 		},
 		computed: {
 			...mapState(['initKey', 'initSecret'])

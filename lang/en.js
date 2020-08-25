@@ -1,4 +1,7 @@
 export default {
+	basic: {
+		login: 'كىرىش'
+	},
 	tab: {
 		index: 'باش بەت',
 		store: 'بازار',
@@ -21,6 +24,7 @@ export default {
 		kf: 'مۇلازىمەتچى',
 		collect: 'ساقلاش',
 		deCollect: 'ساقلاندى',
-		shopCar: 'مال ھارۋا'
+		shopCar: 'مال ھارۋا',
+		buy: 'سېتىۋالاي'
 	}
 }

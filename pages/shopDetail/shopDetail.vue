@@ -42,7 +42,8 @@
 		<!-- tabbar-->
 		<view class='tab-add'></view> 
 		<view class="detail-tab flex-row flex-jst-btw flex-ali-center pa-md">
-			<view class="tab-left flex-row flex-jst-btw flex-ali-center">
+			<!-- tab栏左侧 -->
+			<view class="tab-left flex-1 flex-row flex-jst-btw flex-ali-center">
 				<view class="left-item flex-column flex-jst-btw flex-ali-center">
 					<button type="default" class="plain-btn" open-type="contact">
 						<u-icon name="kefuzhongxin" size="50" class="text-primary" custom-prefix="iconfont"></u-icon>						
@@ -51,16 +52,21 @@
 				</view>
 				<view class="left-item flex-column flex-jst-btw flex-ali-center">
 					<button type="default" class="plain-btn" @click="setCollect">
-						<u-icon :name="goods.collect ? 'weibiaoti--31' : 'weibiaoti--34'" size="50" class="text-cus-warning" custom-prefix="iconfont"></u-icon>						
+						<u-icon :name="goods.collect ? 'tianchongxing-31' : 'weibiaoti--34'" size="50" class="text-cus-warning" custom-prefix="iconfont"></u-icon>						
 					</button>
 					<text class="left-name">{{goods.collect ? $t('shopDetai.deCollect') : $t('shopDetai.collect')}}</text>
 				</view>
-				<view class="left-item flex-column flex-jst-btw flex-ali-center">
+				<view class="left-item flex-column flex-jst-btw flex-ali-center" @click="addToCar(goods)">
 					<button type="default" class="plain-btn">
-						<u-icon name="weibiaoti--68" size="50" class="text-cus-error" custom-prefix="iconfont"></u-icon>						
+						<u-badge type="error" :count="carLength" size="mini" :absolute="true" :offset="[0, 0]"></u-badge>
+						<u-icon :name="alreadyAdd ? 'cart' : 'weibiaoti--68'" size="50" class="text-cus-error" custom-prefix="iconfont"></u-icon>						
 					</button>
 					<text class="left-name">{{$t('shopDetai.shopCar')}}</text>
 				</view>
+			</view>
+			<!-- tab栏右侧 -->
+			<view class="flex-1 flex-row pa-row-md flex-jst-end flex-ali-center">
+				<button type="default" class="buy-btn" @touchend="toMakeOrder">{{$t('shopDetai.buy')}}</button>
 			</view>
 		</view>
 	</view>
@@ -80,16 +86,24 @@
 			return {
 				shopNumber: '',
 				bannerList: [],
-				goods: ''
+				goods: '',
+				carList: []
 			}
 		},
 		computed: {
 			...mapState(['lang']),
 			langFlex() {
 				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'
+			},
+			carLength () {
+				return this.carList.length
+			},
+			alreadyAdd () {
+				return this.carList.includes(this.goods)
 			}
 		},
 		mounted() {
+			this.carList = uni.getStorageSync('carList') || []
 			this.shopNumber = getCurrentPages()[getCurrentPages().length - 1].options.number
 			this.queryDetail()
 		},
@@ -124,16 +138,59 @@
 			async setCollect () {
 				const vm = this
 				const token = await wx.getStorageSync('token')
+				const obj = {
+					shop_number: vm.goods.shop_number
+				}
 				if (token) {
-					const obj = {
-						token: token,
-						shop_number: vm.goods.shop_number
-					}
+					obj.token = token,
 					vm.$post(urls.changeCollect, obj).then(res => {
-						console.log(res)
+						if (res.success) {
+							vm.goods.collect = !vm.goods.collect
+						}
+						
 					})
 				} else { // 未登录
-					
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+				}
+			},
+			// 添加进购物车
+			addToCar (target) {
+				const vm = this
+				const num = vm.carList.indexOf(target)
+				if (num === -1) {
+					vm.carList.push(target)
+				} else {
+					vm.carList.splice(num, 1)
+				}
+				uni.setStorageSync('carList', vm.carList)
+			},
+			// 创建订单
+			async toMakeOrder () {
+				const vm = this
+				const token = await uni.getStorageSync('token')
+				if (token) {
+					const params = {
+						activity_price: vm.goods.activity_price,
+						commodity_price: vm.goods.commodity_price,
+						cover_image: vm.goods.cover_image,
+						fare: vm.goods.fare,
+						inventory: vm.goods.inventory,
+						shop_name: vm.goods.shop_name,
+						shop_name_cn: vm.goods.shop_name_cn,
+						shop_number: vm.goods.shop_number
+					}
+					this.$u.route({
+						url: '/pages/makeOrder/makeOrder',
+						params: {
+							goods: JSON.stringify(params)
+						}
+					})
+				} else {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
 				}
 			}
 		}
@@ -231,6 +288,15 @@
 						font-size: 12px;
 					}
 				}
+			}
+			.buy-btn{
+				width: 83%;
+				height: 40px;
+				line-height: 40px;
+				margin: 0;
+				color: #FFFFFF;
+				background: linear-gradient(90deg,rgba(36,175,126,1),rgba(36,225,150,1));
+				border-radius: 41.66rpx;
 			}
 		}
 	}

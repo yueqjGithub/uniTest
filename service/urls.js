@@ -13,7 +13,9 @@ const urls = {
 	queryCate: '/v1/api/shop/cate', // 商品分类
 	queryStoreList: '/v1/api/shop/list', // 商品列表
 	queryShopDetail: '/v1/api/shop/details', // 商城详情2
-	changeCollect: '/v1/api/shop/collect' // 收藏，取消收藏2
+	changeCollect: '/v1/api/shop/collect', // 收藏，取消收藏2
+	// order
+	getAddressList: '/v1/api/shop/pretreatment' // 获取收货地址列表
 }
 
 export default urls

@@ -28,7 +28,18 @@
 	}, {
 		"path": "pages/shopDetail/shopDetail",
 		"style": {
-			"navigationBarTitleText": "商品详情", 
+			"navigationBarTitleText": "商品详情",
+			"backgroundColor": "#23AF8C"
+		}
+	}, {
+		"path": "pages/login/login",
+		"style": {
+			"navigationBarTitleText": ""
+		}
+	}, {
+		"path": "pages/makeOrder/makeOrder",
+		"style": {
+			"navigationBarTitleText": "创建订单",
 			"backgroundColor": "#23AF8C"
 		}
 	}],

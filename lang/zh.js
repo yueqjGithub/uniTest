@@ -1,4 +1,7 @@
 export default {
+	basic: {
+		login: '登录'
+	},
 	tab: {
 		index: '首页',
 		store: '商城',
@@ -21,6 +24,7 @@ export default {
 		kf: '客服',
 		collect: '收藏',
 		deCollect: '已收藏',
-		shopCar: '购物车'
+		shopCar: '购物车',
+		buy: '购买'
 	}
 }

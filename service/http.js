@@ -41,8 +41,10 @@ fly.interceptors.response.use(response => {
 		if (urls.md5List.includes(response.request.url)) {
 			// 后端返回200，执行解密
 			if (response.data.success) {
-				const result = getDataHandler(response.data.data)
-				response.data.data = JSON.parse(result)
+				if (response.data.data) {
+					const result = getDataHandler(response.data.data)
+					response.data.data = JSON.parse(result)
+				}
 				return response.data
 			} else {
 				return response.data
