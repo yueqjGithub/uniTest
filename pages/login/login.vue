@@ -1,6 +1,6 @@
 <template>
 	<view class="login-container flex-row flex-jst-center flex-ali-center">
-		<u-button type="primary" @click="login">{{$t('basic.login')}}</u-button>
+		<u-button type="primary" open-type="getUserInfo" @getuserinfo="login()">{{$t('basic.login')}}</u-button>
 	</view>
 </template>
 
