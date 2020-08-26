@@ -123,7 +123,6 @@
 					obj.token = token
 				}
 				vm.$post(urls.queryShopDetail, obj).then(res => {
-					console.log(res)
 					const pageName = vm.lang === 'zh-CN' ? res.data.shop_name_cn : res.data.shop_name
 					// 设置店名
 					uni.setNavigationBarTitle({
@@ -160,7 +159,7 @@
 					})
 				}
 			},
-			// 添加进购物车
+			// 添加进购物车1
 			addToCar (target) {
 				const vm = this
 				const num = vm.carList.indexOf(target)

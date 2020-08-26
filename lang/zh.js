@@ -32,7 +32,8 @@ export default {
 		chooseBalance: '使用余额',
 		myBalance: '我的余额',
 		price: '总金额',
-		compltate: '完成'
+		compltate: '完成',
+		payFail: '支付未成功'
 	},
 	address: { // 地址管理
 		pageName: '地址管理',
@@ -45,5 +46,8 @@ export default {
 	myOrder: {
 		pageName: '我的订单',
 		orderNumber: '订单号'
+	},
+	myCollect: {
+		pageName: '我的收藏'
 	}
 }

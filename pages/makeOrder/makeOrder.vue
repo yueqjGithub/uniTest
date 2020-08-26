@@ -43,7 +43,7 @@
 				</view>
 				<!-- 按钮 -->
 				<view class="full-width flex-row flex-jst-center flex-ali-center pa-lg">
-					<button type="default" class="my-btn-primary text-white" @click="creaeComplate">{{$t('makeOrder.compltate')}}</button>
+					<button type="default" class="my-btn-primary text-white" @click="createComplate">{{$t('makeOrder.compltate')}}</button>
 				</view>
 			</view>
 		</view>
@@ -127,7 +127,7 @@
 					}
 				})
 			},
-			async creaeComplate () {
+			async createComplate () {
 				const vm = this
 				if (!vm.addressList[0]) {
 					uni.showToast({
@@ -147,12 +147,42 @@
 				vm.loading = true
 				vm.$post(urls.createOrder, obj).then(res => {
 					if (res.success) {
-						uni.showToast({
-							icon: 'success'
-						})
-						uni.navigateTo({
-							url: `/pages/myOrder/myOrder?type=1&id=0`
-						})
+						if (res.data.err_code_des === '') {
+							uni.requestPayment({ // 调用支付
+							    provider: 'wxpay',
+							    timeStamp: res.data.timeStamp,
+							    nonceStr: res.data.nonceStr,
+							    package: res.data.package,
+							    signType: 'MD5',
+							    paySign: res.data.paySign,
+							    success: function (res) {
+										uni.requestSubscribeMessage({ // 订阅消息
+										  tmplIds: ['En-7bas-r4mg27-294HfVqTfAAWUw1ZFEYnkVBshK64'],
+										  success (res) {
+												uni.redirectTo({
+													url: '/pages/myOrder/myOrder'
+												})
+											},
+											fail () {
+												uni.redirectTo({
+													url: '/pages/myOrder/myOrder'
+												})
+											}
+										})
+							    },
+							    fail: function (err) {
+										uni.showToast({
+											icon: 'none',
+											title: vm._i18n.messages[vm.lang].makeOrder.payFail
+										})
+							    }
+							});
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: vm._i18n.messages[vm.lang].makeOrder.payFail
+							})
+						}
 					} else {
 						uni.showToast({
 							icon: 'none',

@@ -32,7 +32,8 @@ export default {
 		chooseBalance: 'قالدۇقتىن تۆلەش',
 		myBalance: 'قالدۇق پۇل',
 		price: 'جەمئىي پۇل:',
-		compltate: 'تامام'
+		compltate: 'تامام',
+		payFail: 'چىقىم قىلىش مۇۋەپپەقىيەتلىك بولماسلىق '
 	},
 	address: { // 地址管理
 		pageName: 'ئادېرس باشقۇرۇش',
@@ -45,5 +46,8 @@ export default {
 	myOrder: {
 		pageName: 'مال سېتىۋېلىش زاكاسلىرى',
 		orderNumber: 'زاكاس نۇمۇرى:'
+	},
+	myCollect: {
+		pageName: 'ساقلانمام'
 	}
 }

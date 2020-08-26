@@ -1,7 +1,7 @@
 <template>
-	<scroll-view scroll-y class="cus-scroll-content" @scrolltolower="loadMore">
+	<scroll-view scroll-y class="cus-scroll-content bg-grey" @scrolltolower="loadMore">
 		<view class="shops-container flex-column flex-jst-start flex-ali-center" v-if="list.length > 0">
-			<order-item v-for="(k, index) in list" :order="k" class="order-item full-width" :key="index"></order-item>
+			<collect-item v-for="(k, index) in list" :collect="k" class="collect-item full-width" :key="index" @delSuccess="delSuccess"></collect-item>
 			<view v-if="loading" class="loading-bar flex-row flex-jst-center flex-ali-center">
 				<u-loadmore :status="status" bg-color="bg-color" color="#AAAAAA" :load-text="loadText" icon-type="flower"/>
 			</view>
@@ -14,13 +14,16 @@
 
 <script>
 	import urls from '@/service/urls.js'
-	import orderItem from './orderItem.vue'
+	import collectItem from './collectItem.vue'
+	import {
+		mapState
+	} from 'vuex'
 	export default {
-		props: ['type'],
+		name: 'collectList',
 		components: {
-			orderItem
+			collectItem
 		},
-		data () {
+		data() {
 			return {
 				page: 1,
 				pageSize: 10,
@@ -35,10 +38,34 @@
 				}
 			}
 		},
+		computed: {
+			...mapState(['lang']),
+			langType() {
+				return this.lang === 'zh-CN' ? 'name_cn' : 'name'
+			}
+		},
+		watch: {
+			lang: {
+				immediate: true,
+				handler: function(val) {
+					uni.setNavigationBarTitle({
+						title: this._i18n.messages[val].myCollect.pageName
+					});
+				}
+			}
+		},
 		mounted () {
 			this.queryIndex()
 		},
 		methods: {
+			delSuccess (target) { // 删除成功
+				const vm = this
+				const shop = vm.list.find(item => item.shop_number === target)
+				const num = vm.list.indexOf(shop)
+				if (num !== -1) {
+					vm.list.splice(num, 1)
+				}
+			},
 			async queryIndex () { // 请求首页
 				const vm = this
 				vm.final = false
@@ -48,11 +75,11 @@
 				const obj = {
 					pagenum: vm.page,
 					pagesize: vm.pageSize,
-					type: vm.type,
 					token: token
 				}
 				vm.loading = true
-				vm.$post(urls.queryOrderList, obj).then(res => {
+				vm.$post(urls.queryCollectList, obj).then(res => {
+					console.log(res)
 					const len = res.data.data.length
 					if (len === vm.pageSize) { // 首次请求数量填满一页
 						vm.list = [...vm.list, ...res.data.data]
@@ -75,10 +102,9 @@
 					const obj = {
 						pagenum: vm.page,
 						pagesize: vm.pageSize,
-						type: vm.type,
 						token: token
 					}
-					vm.$post(urls.queryOrderList, obj).then(res => {
+					vm.$post(urls.queryCollectList, obj).then(res => {
 						const len = res.data.data.length
 						if (len === vm.pageSize) { // 首次请求数量填满一页
 							vm.list = [...vm.list, ...res.data.data]
@@ -102,7 +128,7 @@
 <style lang="scss" scoped>
 	.cus-scroll-content{
 		width: 100%;
-		height: calc(100vh - 44px);
+		height: 100vh;
 		box-sizing: border-box;
 	}
 	.shops-container{
@@ -110,7 +136,7 @@
 		.loading-bar{
 			width: 100%;
 		}
-		.order-item{
+		.collect-item{
 			margin-bottom: 10px;
 		}
 	}

@@ -3,7 +3,7 @@
 		<view class="order-top pa-col-md flex-jst-btw flex-ali-center" :class="langFlex">
 			<image :src="order.cover_image" mode="" class="order-image"></image>
 			<view class="order-cont flex-2 pa-row-md flex-column flex-jst-btw flex-ali-start">
-				<text class="shop-name full-width" :class="langFlex">{{shopName}}</text>
+				<text class="shop-name full-width text-12" :class="langFlex">{{shopName}}</text>
 				<text class="shop-price full-width text-grey-1" :class="langFlex">
 					{{order.shop_num}} x {{order.price}}
 				</text>
