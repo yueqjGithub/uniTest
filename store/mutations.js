@@ -8,3 +8,7 @@ export const changeLang = (state, payload) => { // 通过dispatch setLang，触�
 export const changeInitStatus = (state, payload) => {
 	state.initSuc = payload
 }
+
+export const setCurAddress = (state, payload) => { // 设置当前编辑状态的收货地址
+	state.curAddress = payload
+}

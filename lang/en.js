@@ -26,5 +26,24 @@ export default {
 		deCollect: 'ساقلاندى',
 		shopCar: 'مال ھارۋا',
 		buy: 'سېتىۋالاي'
+	},
+	makeOrder: {
+		addressTips: 'مال تاپشۇرۋېلىش ئادېرسىنى قوشۇڭ',
+		chooseBalance: 'قالدۇقتىن تۆلەش',
+		myBalance: 'قالدۇق پۇل',
+		price: 'جەمئىي پۇل:',
+		compltate: 'تامام'
+	},
+	address: { // 地址管理
+		pageName: 'ئادېرس باشقۇرۇش',
+		formTips: 'مال تاپشۇرۋېلىش ئۇچۇرىنى تولدۇرۇڭ',
+		addressTips: 'تەپسىلى ئادېرسىڭىزنى كىرگۈزۈڭ',
+		nameTips: 'ئالاقىلاشقۇچى ئىسىمىنى كىرگۈزۈڭ',
+		phoneTips: 'ئالاقىلشىش تېلېفۇن نۇمۇرىنى كىرگۈزۈڭ',
+		btn: 'يوللاش'
+	},
+	myOrder: {
+		pageName: 'مال سېتىۋېلىش زاكاسلىرى',
+		orderNumber: 'زاكاس نۇمۇرى:'
 	}
 }

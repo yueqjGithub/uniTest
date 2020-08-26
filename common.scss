@@ -12,10 +12,20 @@
 .text-cus-error{
 	color: $cus-color-error;
 }
-.text-white{color: #FFFFFF;}
+.text-white{color: #FFFFFF !important;}
 .text-grey{
 	color: #A9A9A9;
 }
+.text-grey-1{
+	color: #aaaaaa;
+}
+.text-12{
+	font-size: 12px;
+}
+.text-14{font-size: 14px;}
+.text-16{font-size: 16px;}
+.text-18{font-size: 18px;}
+.text-bold{font-weight: bold;}
 .text-center{text-align: center;}
 .text-left{text-align: left;}
 .text-right{text-align: right;}
@@ -51,6 +61,7 @@
 .flex-1{flex: 1;}
 .flex-2{flex: 2;}
 .flex-3{flex: 3;}
+.flex-4{flex: 4;}
 
 // --------------公共padding margin-------------
 .pa-sm{padding: 5.55rpx;}
@@ -59,6 +70,7 @@
 .pa-row-md{padding: 0 27.77rpx;}
 .pa-col-md{padding: 27.77rpx 0;}
 .ma-row-md{margin: 0 27.77rpx;}
+.ma-row-sm{margin: 0 15rpx;}
 .ma-col-md{margin: 27.77rpx 0;}
 .pa-lg{
 	padding: 28px;
@@ -98,5 +110,34 @@
 	}
 	&::before{
 		border: none;
+	}
+}
+
+// ------input修正----
+.my-input{
+	.u-input{
+		border-color: #dcdfe6;
+		text-align: left;
+		height: 60px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 0 20px !important;
+		border-radius: 35px !important;
+	}
+}
+.my-btn-primary{ // 绿色渐变按钮
+	width: 83%;
+	height: 40px;
+	line-height: 40px;
+	margin: 0;
+	color: #FFFFFF;
+	background: linear-gradient(90deg,rgba(36,175,126,1),rgba(36,225,150,1));
+	border-radius: 41.66rpx;
+}
+.my-text-right{
+	text-align: right !important;
+	input,p,span{
+		text-align: right !important;
 	}
 }

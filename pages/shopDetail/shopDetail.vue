@@ -8,9 +8,9 @@
 					<view class="full-width flex-jst-start flex-ali-center" :class="langFlex">
 						<text class="text-primary a-price">
 							<text class="price-symbol">￥</text>
-							{{goods.activity_price}}
+							{{Number(goods.activity_price) === 0 ? goods.commodity_price : goods.activity_price}}
 						</text>
-						<text class="c-price">
+						<text class="c-price" v-show="Number(goods.activity_price) !== 0">
 							<text class="price-symbol">￥</text>
 							{{goods.commodity_price}}
 						</text>
@@ -28,7 +28,7 @@
 		<!-- 库存显示 -->
 		<view class="flex-jst-btw flex-ali-center pa-md ma-md detail-fare" :class="langFlex">
 			<text class="fare-name">{{$t('shopDetai.inventory')}}</text>
-			<text class="fare-num">{{goods.inventory}}</text>
+			<text class="fare-num">{{goods.inventory || 0}}</text>
 		</view>
 		<!-- 产品详细 -->
 		<view class="pa-md ma-md goods-introduction">
@@ -86,7 +86,12 @@
 			return {
 				shopNumber: '',
 				bannerList: [],
-				goods: '',
+				goods: {
+					shop_name: '',
+					shop_name_cn: '',
+					activity_price: '0',
+					commodity_price: '0'
+				},
 				carList: []
 			}
 		},
@@ -102,7 +107,7 @@
 				return this.carList.includes(this.goods)
 			}
 		},
-		mounted() {
+		onShow() {
 			this.carList = uni.getStorageSync('carList') || []
 			this.shopNumber = getCurrentPages()[getCurrentPages().length - 1].options.number
 			this.queryDetail()

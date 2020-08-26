@@ -37,20 +37,29 @@ fly.interceptors.request.use(request => {
 fly.interceptors.response.use(response => {
 	const status = response.status
 	if (status >= 200 && status < 300) {
-		// 解密操作
-		if (urls.md5List.includes(response.request.url)) {
-			// 后端返回200，执行解密
-			if (response.data.success) {
-				if (response.data.data) {
-					const result = getDataHandler(response.data.data)
-					response.data.data = JSON.parse(result)
+		if (response.data.code === 300) {
+			uni.navigateTo({
+				url: '/pages/login/login',
+				fail(reason) {
+					console.log(reason)
 				}
-				return response.data
-			} else {
-				return response.data
+			})
+		} else {
+			// 解密操作
+			if (urls.md5List.includes(response.request.url)) {
+				// 后端返回200，执行解密
+				if (response.data.success) {
+					if (response.data.data) {
+						const result = getDataHandler(response.data.data)
+						response.data.data = JSON.parse(result)
+					}
+					return response.data
+				} else {
+					return response.data
+				}
 			}
+			return response.data
 		}
-		return response.data
 	}
 }, err => {
 	const status = err.status || ''

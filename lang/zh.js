@@ -26,5 +26,24 @@ export default {
 		deCollect: '已收藏',
 		shopCar: '购物车',
 		buy: '购买'
+	},
+	makeOrder: {
+		addressTips: '请选择您的收货地址',
+		chooseBalance: '使用余额',
+		myBalance: '我的余额',
+		price: '总金额',
+		compltate: '完成'
+	},
+	address: { // 地址管理
+		pageName: '地址管理',
+		formTips: '请填写收货信息',
+		addressTips: '请输入您的详细地址',
+		nameTips: '请输入联系人姓名',
+		phoneTips: '请输入联系电话',
+		btn: '提交'
+	},
+	myOrder: {
+		pageName: '我的订单',
+		orderNumber: '订单号'
 	}
 }
