@@ -2,7 +2,7 @@ const urls = {
 	authList: [], // 需要身份认证的接口
 	md5List: ['/v1/api/public/login', '/v1/api/shop/details', '/v1/api/shop/collect', '/v1/api/shop/buy',
 	'/v1/api/shop/pretreatment', '/v1/api/shippingaddress/edit', '/v1/api/shop/orderlist', '/v1/api/user/shopcollect',
-	'/v1/api/user/info', '/v1/api/vip/opening'
+	'/v1/api/user/info', '/v1/api/vip/opening', '/v1/api/shop/delivery'
 	], // 需要加密的接口2
 	baseUrl: 'https://shopapi.apiself.com',
 	// basic
@@ -18,6 +18,7 @@ const urls = {
 	queryShopDetail: '/v1/api/shop/details', // 商城详情2
 	changeCollect: '/v1/api/shop/collect', // 收藏，取消收藏2
 	queryCollectList: '/v1/api/user/shopcollect', // 收藏列表2
+	logistics: '/v1/api/shop/delivery', // 物流信息2
 	// order
 	createOrder: '/v1/api/shop/buy', // 订单创建2
 	editAddress: '/v1/api/shippingaddress/edit', // 编辑添加收货地址2

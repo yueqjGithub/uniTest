@@ -12,3 +12,7 @@ export const changeInitStatus = (state, payload) => {
 export const setCurAddress = (state, payload) => { // 设置当前编辑状态的收货地址
 	state.curAddress = payload
 }
+
+export const setCurOrderNum = (state, palyload) => { // 设置当前查看物流的订单号
+	state.curOrderNumber = payload
+}

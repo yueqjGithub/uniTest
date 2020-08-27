@@ -59,5 +59,9 @@ export default {
 		agreement: 'ئىشلەتكۈچىلار كېلىشىمى',
 		service: 'مۇلازىمەتچى',
 		support: 'ياردەم مەركىزى'
+	},
+	logistics: {
+		pageName: 'يوللانما تەپسىلاتى',
+		call:'ئالاقىلشىمەن'
 	}
 }

@@ -59,5 +59,9 @@ export default {
 		agreement: '用户协议',
 		service: '客服',
 		support: '帮助中心'
+	},
+	logistics: {
+		pageName: '物流信息',
+		call: '联系物流'
 	}
 }
