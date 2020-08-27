@@ -33,7 +33,7 @@
 			}
 		},
 		computed: {
-			...mapState(['lang']),
+			...mapState(['lang', 'initSuc']),
 			rowClass() {
 				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'
 			},
@@ -54,8 +54,15 @@
 				return this.list.length * 5000
 			}
 		},
-		mounted() {
-			this.queryList()
+		watch: {
+			initSuc: {
+				immediate: true,
+				handler: function (val) {
+					if (val === 'true') {
+						this.queryList()
+					}
+				}
+			}
 		},
 		beforeDestroy () {
 			clearTimeout(this.timeout)

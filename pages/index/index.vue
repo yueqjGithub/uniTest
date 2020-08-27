@@ -25,7 +25,7 @@
 			</view>
 		</view>
 		<!-- 消息栏 -->
-		<notice></notice>
+		<notice v-if="showNotice"></notice>
 		<!-- 广告图 -->
 		<view class="pa-row-md">
 			<image :src="adv" mode="" class="adv-img"></image>
@@ -65,6 +65,7 @@
 		},
 		data() {
 			return {
+				showNotice: false,
 				bannerList: [],
 				applyList: [],
 				recommendedGoods: '', // 推荐商品
@@ -74,6 +75,12 @@
 		},
 		computed: {
 			...mapState(['lang', 'initSuc'])
+		},
+		onShow () {
+			this.showNotice = true
+		},
+		onHide () {
+			this.showNotice = false
 		},
 		watch: {
 			initSuc: {

@@ -49,5 +49,15 @@ export default {
 	},
 	myCollect: {
 		pageName: 'ساقلانمام'
+	},
+	vip: {
+		chooseTip: 'ئالىي ئەزا تۈرىنى تاللاڭ',
+		buy: 'سېتىۋالىمەن',
+		cheap: 'ئەرزان',
+		safe: 'بىخەتەر',
+		reliable: 'ئىشەنچلىك',
+		agreement: 'ئىشلەتكۈچىلار كېلىشىمى',
+		service: 'مۇلازىمەتچى',
+		support: 'ياردەم مەركىزى'
 	}
 }

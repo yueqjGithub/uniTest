@@ -1,5 +1,5 @@
 <template>
-	<view class="order-item pa-md">
+	<view class="order-item pa-md" @click="toDetail">
 		<view class="order-top pa-col-md flex-jst-btw flex-ali-center" :class="langFlex">
 			<image :src="collect.cover_image" mode="" class="order-image"></image>
 			<view class="order-cont flex-2 pa-row-md flex-column flex-jst-start flex-ali-start">
@@ -32,6 +32,11 @@
 			}
 		},
 		methods: {
+			toDetail () {
+				uni.navigateTo({
+					url: `/pages/shopDetail/shopDetail?number=${this.collect.shop_number}`
+				})
+			},
 			async delCollect () {
 				const vm = this
 				const token = uni.getStorageSync('token')
@@ -63,9 +68,7 @@
 		background-color: #FFFFFF;
 		box-shadow:0px 10px 30px 0px rgba(152,152,152,0.15);
 		border-radius:13.88rpx;
-		height: 312.5rpx;
 		.order-top{
-			border-bottom: 1px solid #CCCCCC;
 			.order-image{
 				width: 173.61rpx;
 				height: 173.61rpx;

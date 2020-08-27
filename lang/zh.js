@@ -49,5 +49,15 @@ export default {
 	},
 	myCollect: {
 		pageName: '我的收藏'
+	},
+	vip: {
+		chooseTip: '请选择VIP类型',
+		buy: '购买',
+		cheap: '便宜',
+		safe: '安全',
+		reliable: '可靠',
+		agreement: '用户协议',
+		service: '客服',
+		support: '帮助中心'
 	}
 }

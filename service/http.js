@@ -2,6 +2,10 @@ import urls from './urls.js'
 import { generatorHandler, getDataHandler } from '@/utils/key.js'
 const Fly = require("flyio/dist/npm/wx")
 const fly = new Fly()
+import Store from '@/store/index.js'
+
+
+
 
 
 fly.config.baseURL = urls.baseUrl
@@ -65,10 +69,17 @@ fly.interceptors.response.use(response => {
 	const status = err.status || ''
 	if (status === 401) {
 		uni.showToast({
-			title: '登录过期',
+			title: 'jwt_express',
 			duration: 3000,
 			icon: 'none'
 		})
+		initFunc()
+	} else if (status === 404) {
+		uni.showToast({
+			title: 'jwt_express',
+			icon: 'none'
+		})
+		initFunc()
 	} else {
 		uni.showToast({
 			title: '请求出错',
@@ -77,6 +88,18 @@ fly.interceptors.response.use(response => {
 		})
 	}
 })
+
+const initFunc = async () => {
+	const obj = {
+		key: Store.state.initKey,
+		secret: Store.state.initSecret
+	}
+	const res = await fly.request(urls.init,obj, {
+		method: 'get'
+	})
+	uni.setStorageSync('access_token', res.data.access_token)
+	uni.setStorageSync('refresh_token', res.data.refresh_token)
+}
 
 const httpPost = (url, data) => {
 	return fly.request(url, data, {

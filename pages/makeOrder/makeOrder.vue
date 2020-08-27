@@ -155,15 +155,16 @@
 							    package: res.data.package,
 							    signType: 'MD5',
 							    paySign: res.data.paySign,
-							    success: function (res) {
+							    success: function (result) {
+										console.log('支付成功:', result)
 										uni.requestSubscribeMessage({ // 订阅消息
 										  tmplIds: ['En-7bas-r4mg27-294HfVqTfAAWUw1ZFEYnkVBshK64'],
-										  success (res) {
+										  success (result) {
 												uni.redirectTo({
 													url: '/pages/myOrder/myOrder'
 												})
 											},
-											fail () {
+											fail (err) {
 												uni.redirectTo({
 													url: '/pages/myOrder/myOrder'
 												})
