@@ -13,6 +13,9 @@
 	color: $cus-color-error;
 }
 .text-white{color: #FFFFFF !important;}
+.text-light-grey{
+	color: #FFFFFF;
+}
 .text-grey{
 	color: #A9A9A9;
 }
@@ -75,6 +78,7 @@
 .ma-row-md{margin: 0 27.77rpx;}
 .ma-row-sm{margin: 0 15rpx;}
 .ma-col-md{margin: 27.77rpx 0;}
+.ma-col-sm{margin: 15rpx 0;}
 .pa-lg{
 	padding: 28px;
 }

@@ -50,6 +50,11 @@ export default {
 	myCollect: {
 		pageName: '我的收藏'
 	},
+	mine: {
+		collect: '收藏',
+		earnings: '收益',
+		balance: '余额'
+	},
 	vip: {
 		chooseTip: '请选择VIP类型',
 		buy: '购买',

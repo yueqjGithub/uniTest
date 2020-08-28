@@ -50,6 +50,11 @@ export default {
 	myCollect: {
 		pageName: 'ساقلانمام'
 	},
+	mine: {
+		collect: 'ساقلانما',
+		earnings: 'جۇغلانما',
+		balance: 'قالدۇق'
+	},
 	vip: {
 		chooseTip: 'ئالىي ئەزا تۈرىنى تاللاڭ',
 		buy: 'سېتىۋالىمەن',

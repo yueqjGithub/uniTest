@@ -1,5 +1,5 @@
 <template>
-	<view class="order-item pa-md">
+	<view class="order-item pa-md" @click="toDetail">
 		<view class="order-top pa-col-md flex-jst-btw flex-ali-center" :class="langFlex">
 			<image :src="order.cover_image" mode="" class="order-image"></image>
 			<view class="order-cont flex-2 pa-row-md flex-column flex-jst-btw flex-ali-start">
@@ -56,6 +56,14 @@
 					color = '#00AFFF'
 				}
 				return color
+			}
+		},
+		methods:{
+			toDetail () {
+				this.$store.commit('setCurOrderNum', this.order.order_number)
+				uni.navigateTo({
+					url: '/pages/logistics/logistics'
+				})
 			}
 		}
 	}
