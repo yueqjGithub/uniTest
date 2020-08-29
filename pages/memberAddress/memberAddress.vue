@@ -84,14 +84,35 @@
 		},
 		onReady() {
 			this.$refs.myForm.setRules(this.rules);
-			if (this.curAddress) {
-				this.address_number = this.curAddress.address_number
-				this.form.address = this.curAddress.address,
-				this.form.addressee = this.curAddress.addressee, // 姓名
-				this.form.mobile = this.curAddress.mobile
-			}
+			this.queryInfo()
 		},
 		methods: {
+			async queryInfo () {
+				const vm = this
+				const token = await uni.getStorageSync('token')
+				const obj = {
+					token: token
+				}
+				uni.showLoading({
+				    title: ''
+				});
+				vm.$post(urls.getAddressList, obj).then(res => {
+					if (res.success) {
+						if (res.data.address) {
+							this.address_number = res.data.address_number
+							this.form.address = res.data.address
+							this.form.addressee = res.data.addressee // 姓名
+							this.form.mobile = res.data.mobile
+						}
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: res.message
+						})
+					}
+					uni.hideLoading()
+				})
+			},
 			async subAddress () {
 				const vm = this
 				const token = await uni.getStorageSync('token')

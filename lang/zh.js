@@ -53,7 +53,23 @@ export default {
 	mine: {
 		collect: '收藏',
 		earnings: '收益',
-		balance: '余额'
+		balance: '余额',
+		become: '开通会员',
+		becomeTips: '您还不是高级会员',
+		all: '全部',
+		waitSure: '待收货',
+		already: '已完成',
+		noPay: '待支付',
+		shopCar: '购物车',
+		order: '订单',
+		address: '地址管理',
+		ticket: '优惠券',
+		earing: '推广',
+		earingPost: '推广海报',
+		feedback: '意见反馈',
+		service: '客服',
+		support: '帮助中心',
+		about: '关于我们'
 	},
 	vip: {
 		chooseTip: '请选择VIP类型',

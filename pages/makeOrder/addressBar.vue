@@ -31,7 +31,6 @@
 		},
 		methods: {
 			toEditAddress () {
-				this.$store.commit('setCurAddress', this.address) // 提交当前从服务器获取的已有收货地址到vuex存放，用以在编辑页面进行获取
 				uni.navigateTo({
 					url: '/pages/memberAddress/memberAddress'
 				})

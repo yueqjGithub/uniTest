@@ -66,3 +66,12 @@ export const getLoginToken = (context, user) => { // 自定义登录
 		})
 	})
 }
+
+export const checkLogin = async (context) => {
+	const token = await uni.getStorageSync('token')
+	if (token && token !== '') {
+		return token
+	} else {
+		return false
+	}
+}

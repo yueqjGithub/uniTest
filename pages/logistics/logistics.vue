@@ -88,7 +88,7 @@
 			callDelivery () {
 				const vm = this
 				uni.makePhoneCall({
-				    phoneNumber: vm.info.mobile //仅为示例
+				    phoneNumber: vm.info.mobile
 				});
 			}
 		}

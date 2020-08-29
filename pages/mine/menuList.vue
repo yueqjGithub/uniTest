@@ -1,17 +1,31 @@
 <template>
-	<view></view>
+	<view class="full-width">
+		<u-grid :col="3" :border="false">
+			<u-grid-item v-for="k in showList" :key="k.id" @click="toPage(k)">
+				<u-icon :name="k.icon" custom-prefix="iconfont" :size="50" :style="{color: k.color}"></u-icon>
+				<view class="text-12 text-grey">{{lang === 'zh-CN' ? k.name_cn : k.name}}</view>
+			</u-grid-item>
+		</u-grid>
+	</view>
 </template>
 
 <script>
+	import { mapState } from 'vuex'
 	export default {
 		name: 'menuList',
+		props: {
+			list: {
+				default: function () {
+					return []
+				}
+			}
+		},
 		data() {
 			return {
-				showList: [],
 				menuList: [{
 					id: 'A1598610570',
 					color: '#FF5A96',
-					path: '',
+					path: '/pages/store/store',
 					icon: 'tianchongxing-66',
 					name_cn: '商城',
 					name: 'بازار'
@@ -44,6 +58,20 @@
 					name_cn: '电话费',
 					name: "تېلېفۇن ھەققى"
 				}]
+			}
+		},
+		computed: {
+			...mapState(['lang']),
+			showList () {
+				const vm = this
+				return vm.menuList.filter(item => vm.list.includes(item.id))
+			}
+		},
+		methods: {
+			toPage (target) {
+				uni.navigateTo({
+					url: target.path
+				})
 			}
 		}
 	}

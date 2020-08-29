@@ -53,7 +53,23 @@ export default {
 	mine: {
 		collect: 'ساقلانما',
 		earnings: 'جۇغلانما',
-		balance: 'قالدۇق'
+		balance: 'قالدۇق',
+		become: 'ھازىرلا ئاچاي',
+		becomeTips: 'سىز تېخى ئالىي ئەزا ئەمەسكەنسىز',
+		all: 'بارلىق زاكاس',
+		waitSure: 'تاپشۇرۋالمىغان',
+		already: "تاماملاندى",
+		noPay: 'پۇل تۆلىمىگەن',
+		shopCar: 'مال ھارۋا',
+		order: 'بارلىق زاكاس',
+		address: 'ئادېرس باشقۇرۇش',
+		ticket: 'ئېتىبار بېلەت',
+		earing: 'پۇل تېپىش',
+		earingPost: 'تەشۋىقات قىلىش',
+		feedback: 'تەكلىپ پىكىر',
+		service: 'مۇلازىمەتچى',
+		support: 'ياردەم مەركىزى',
+		about: 'بىز ھەققىدە'
 	},
 	vip: {
 		chooseTip: 'ئالىي ئەزا تۈرىنى تاللاڭ',

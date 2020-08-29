@@ -29,7 +29,21 @@
 				</view>
 			</view>
 			<!-- VIP -->
+			<view class="buy-vip flex-row flex-jst-btw flex-ali-center pa-md" v-if="!person.is_vip">
+				<button type="default" class="become-vip" @click="toVip">{{$t('mine.become')}}</button>
+				<text class="text-12 become-tip">{{$t('mine.becomeTips')}}</text>
+			</view>
 		</view>
+		<!-- body -->
+		<view class="order-bar pa-md">
+			<order-tab></order-tab>
+		</view>
+		<view class="list-bar pa-sm" v-if="person.apply">
+			<menu-list :list="person.apply"></menu-list>
+		</view>
+		<list-one></list-one>
+		<list-two></list-two>
+		<list-three></list-three>
 		<!-- 底部 -->
 		<view class="tab-add"></view>
 		<cus-tabbar></cus-tabbar>
@@ -39,10 +53,21 @@
 <script>
 	import cusTabbar from '../../components/cus-tabbar/cusTabbar.vue'
 	import urls from '@/service/urls.js'
+	import { mapActions } from 'vuex'
+	import orderTab from './orderTabItem.vue'
+	import menuList from './menuList.vue'
+	import listOne from './listOne.vue'
+	import listTwo from './listTwo.vue'
+	import listThree from './listThree.vue'
 	export default {
 		name: 'mine',
 		components: {
-			cusTabbar
+			cusTabbar,
+			orderTab,
+			menuList,
+			listOne,
+			listTwo,
+			listThree
 		},
 		data() {
 			return {
@@ -59,6 +84,19 @@
 			this.queryMine()
 		},
 		methods: {
+			...mapActions(['checkLogin']),
+			async toVip () {
+				const result = await this.checkLogin()
+				if (result) {
+					uni.reLaunch({
+						url: '/pages/buyVip/buyVip'
+					})
+				} else {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+				}
+			},
 			async queryMine () {
 				const vm = this
 				const token = await uni.getStorageSync('token')
@@ -108,6 +146,41 @@
 		background: linear-gradient(80deg, #19C882, #23AF8C);
 		border-bottom-left-radius: 50vw 3vh;
 		border-bottom-right-radius: 50vw 3vh;
+		.buy-vip{
+			width: 90%;
+			box-sizing: border-box;
+			background: #FFFFFF;
+			border-radius: 27.77rpx;
+			margin-bottom: -20px;
+			.become-vip{
+				background: linear-gradient(90deg, #F5E1BE, #DCB46E);
+				border-radius: 34.72rpx;
+				color: #643200;
+				font-size: 14px;
+				margin: 0;
+			}
+			.become-tip{
+				color: #643200;
+			}
+		}
+	}
+	.order-bar{
+		box-sizing: border-box;
+		width: 90%;
+		box-sizing: border-box;
+		margin: 35px auto 15px auto;
+		box-shadow: 0px 10px 35px 0px rgba(170, 170, 170, 0.1);
+		border-radius: 20.83rpx;
+		background: #FFFFFF;
+	}
+	.list-bar{
+		box-sizing: border-box;
+		width: 90%;
+		box-sizing: border-box;
+		margin: 15px auto;
+		box-shadow: 0px 10px 35px 0px rgba(170, 170, 170, 0.1);
+		border-radius: 20.83rpx;
+		background: #FFFFFF;
 	}
 }
 </style>
