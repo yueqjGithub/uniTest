@@ -6,7 +6,19 @@
 			<!-- navbar -->
 		</view>
 		<!-- 头部 -->
-		<view class="head-bar"></view>
+		<view class="head-bar flex-column flex-jst-start flex-ali-center">
+			<u-avatar :src="person.profile_photo" size="large"></u-avatar>
+			<view class="full-width ma-col-sm flex-row flex-jst-center">
+				<text class="text-white text-bold text-14" v-if="isLogin">{{person.nickname}}</text>
+				<button type="default" class="plain-btn text-white text-14" v-else open-type="getUserInfo" @getuserinfo="login()">{{$t('basic.login')}}</button>
+			</view>
+			<view class="user-id text-light-grey ma-col-sm" v-if="isLogin">ID:{{person.user_number}}</view>
+			<!-- VIP -->
+			<view class="buy-vip flex-row flex-jst-btw flex-ali-center pa-md" v-if="!person.is_vip">
+				<button type="default" class="become-vip" @click="toVip">{{$t('mine.become')}}</button>
+				<text class="text-12 become-tip">{{$t('mine.becomeTips')}}</text>
+			</view>
+		</view>
 		<!-- body -->
 		<view class="text-14 text-grey-1 text-center ma-md">{{$t('vip.chooseTip')}}</view>
 		<view class="full-width">
@@ -32,7 +44,7 @@
 			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex">
 				<view class="flex-jst-start flex-ali-center" :class="langFlex">
 					<u-icon name="renwuzhongxin-huodepinglun" custom-prefix="iconfont" size="40" class="text-gold"></u-icon>
-					<text>{{$t('vip.agreement')}}</text>
+					<text class="ma-row-sm text-12">{{$t('vip.agreement')}}</text>
 				</view>
 				<button type="default" class="plain-btn">
 					<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon"></u-icon>
@@ -41,7 +53,7 @@
 			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex">
 				<view class="flex-jst-start flex-ali-center" :class="langFlex">
 					<u-icon name="kefuzhongxin" custom-prefix="iconfont" size="40" class="text-gold"></u-icon>
-					<text>{{$t('vip.service')}}</text>
+					<text class="ma-row-sm text-12">{{$t('vip.service')}}</text>
 				</view>
 				<button type="default" class="plain-btn" open-type="contact">
 					<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon"></u-icon>
@@ -50,7 +62,7 @@
 			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex">
 				<view class="flex-jst-start flex-ali-center" :class="langFlex">
 					<u-icon name="bangzhu" custom-prefix="iconfont" size="40" class="text-gold"></u-icon>
-					<text>{{$t('vip.support')}}</text>
+					<text class="ma-row-sm text-12">{{$t('vip.support')}}</text>
 				</view>
 				<button type="default" class="plain-btn">
 					<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon"></u-icon>
@@ -76,7 +88,13 @@
 		},
 		data() {
 			return {
-				isLogin: false
+				isLogin: false,
+				person: {
+					collect: 0,
+					earnings: 0,
+					balance: 0,
+					is_vip: false
+				}
 			}
 		},
 		computed: {
@@ -89,8 +107,24 @@
 			}
 		},
 		onShow () {
+			this.queryMine()
 		},
 		methods: {
+			toVip () {
+			},
+			async queryMine () {
+				const vm = this
+				const token = await uni.getStorageSync('token')
+				if (token) {
+					this.isLogin = true
+					const obj = {
+						token: token
+					}
+					vm.$post(urls.queryMineInfo, obj).then(res => {
+						this.person = res.data
+					})
+				}
+			},
 			async openPay (number) {
 				const vm = this
 				const token = await uni.getStorageSync('token')
@@ -121,9 +155,9 @@
 	}
 	.status_bar {
 		// position: fixed;
-		position: fixed;
-		top: 0;
-		left: 0;
+		// position: fixed;
+		// top: 0;
+		// left: 0;
 		width: 100vw;
 		height: 175rpx;
 		background: linear-gradient(80deg, #282C32, #14181E);
@@ -134,12 +168,30 @@
 		}
 	}
 	.head-bar{
-		margin-top: 175rpx;
+		// margin-top: 175rpx;
 		width: 100%;
-		height: 382.63rpx;
+		// height: 452.08rpx;
+		overflow: hidden;
 		background: linear-gradient(80deg, #282C32, #14181E);
-		border-bottom-left-radius: 50vw 4vh;
-		border-bottom-right-radius: 50vw 4vh;
+		border-bottom-left-radius: 50vw 3vh;
+		border-bottom-right-radius: 50vw 3vh;
+		.buy-vip{
+			width: 90%;
+			height: 132.77rpx;
+			margin-top: 10px;
+			background: linear-gradient(90deg, #F5E1BE, #DCB46E);
+			border-radius: 27.77rpx;
+			.become-vip{
+				background: linear-gradient(90deg, #DCB46E, #DCB46E);
+				border-radius: 34.72rpx;
+				color: #643200;
+				font-size: 14px;
+				margin: 0;
+			}
+			.become-tip{
+				color: #643200;
+			}
+		}
 	}
 	.vip-introduce{
 		width: 75%;
