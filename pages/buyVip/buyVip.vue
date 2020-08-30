@@ -133,6 +133,7 @@
 						token: token,
 						vip_group_number: number
 					}
+					debugger
 					vm.$post(urls.becomeVip, obj).then(res => {
 						console.log(res)
 					})

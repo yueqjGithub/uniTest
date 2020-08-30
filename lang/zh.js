@@ -1,6 +1,7 @@
 export default {
 	basic: {
-		login: '登录'
+		login: '登录',
+		cancel: '取消'
 	},
 	tab: {
 		index: '首页',
@@ -84,5 +85,13 @@ export default {
 	logistics: {
 		pageName: '物流信息',
 		call: '联系物流'
+	},
+	mobileCharge: {
+		pageName: '话费充值中心',
+		numberTips: '请输入您的电话号码',
+		queryBalance:'查询余额',
+		numberErrTips: '请输入正确的电话号码',
+		balanceTit: '您的话费余额',
+		charge: '充值'
 	}
 }

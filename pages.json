@@ -77,6 +77,12 @@
 				"navigationBarTitleText": "物流信息",
 				"backgroundColor": "#23AF8C"
 			}
+		}, {
+			"path": "pages/mobileCharge/mobileCharge",
+			"style": {
+				"navigationBarTitleText": "话费充值中心",
+				"backgroundColor": "#23AF8C"
+			}
 		}
 	],
 	"globalStyle": {
@@ -97,7 +103,7 @@
 			},
 			{
 				"name": "devlope",
-				"path": "pages/myOrder/myOrder",
+				"path": "pages/mobileCharge/mobileCharge",
 				"query": ""
 			}
 		]

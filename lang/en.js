@@ -1,6 +1,7 @@
 export default {
 	basic: {
-		login: 'كىرىش'
+		login: 'كىرىش',
+		cancel: 'بولدىلا'
 	},
 	tab: {
 		index: 'باش بەت',
@@ -84,5 +85,13 @@ export default {
 	logistics: {
 		pageName: 'يوللانما تەپسىلاتى',
 		call:'ئالاقىلشىمەن'
+	},
+	mobileCharge: {
+		pageName: 'پۇل قاچىلاش مەركىزى',
+		numberTips: 'تېلېفۇن نۇمۇرىنى كىرگۈزۈڭ',
+		queryBalance: 'قالدۇق تەكشۈرۈش',
+		numberErrTips: 'تېلېفون نومۇرى خاتالىقى ',
+		balanceTit: 'نۆۋەتتىكى قالدۇق پۇلىڭىز',
+		charge: 'پۇل قاچىلاي'
 	}
 }
