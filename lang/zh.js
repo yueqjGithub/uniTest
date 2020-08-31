@@ -94,6 +94,8 @@ export default {
 		queryBalance:'查询余额',
 		numberErrTips: '请输入正确的电话号码',
 		balanceTit: '您的话费余额',
-		charge: '充值'
+		charge: '充值',
+		chooseTips: '请选择充值面额',
+		chargeValue: '充值金额'
 	}
 }

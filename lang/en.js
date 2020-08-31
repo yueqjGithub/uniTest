@@ -94,6 +94,8 @@ export default {
 		queryBalance: 'قالدۇق تەكشۈرۈش',
 		numberErrTips: 'تېلېفون نومۇرى خاتالىقى ',
 		balanceTit: 'نۆۋەتتىكى قالدۇق پۇلىڭىز',
-		charge: 'پۇل قاچىلاي'
+		charge: 'پۇل قاچىلاي',
+		chooseTip: 'پۇل قاچىلاش سوممىسىنى تاللاڭ ',
+		chargeValue: 'قىممەت تولۇقلاش سوممىسى '
 	}
 }
