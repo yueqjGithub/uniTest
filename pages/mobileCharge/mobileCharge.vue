@@ -8,7 +8,13 @@
 		</view>
 		<!-- body -->
 		<view class="content-container pa-md flex-column flex-jst-start flex-ali-center">
-			<button type="default" class="search-btn text-primary" @click='queryBalance'>{{$t('mobileCharge.queryBalance')}}</button>
+			<button type="default" class="search-btn text-primary" @click='queryBalance(1)'>{{$t('mobileCharge.queryBalance')}}</button>
+			<view class="face-list flex-row flex-wrap flex-jst-start flex-ali-start full-width">
+				<view class="face-item flex-row flex-jst-center flex-ali-center" v-for="k in priceList" :key="k.id">
+					<text class="text-12 text-bold">￥</text>
+					<text class="text-24 text-bold">{{k.face_value}}</text>
+				</view>
+			</view>
 		</view>
 		<!-- 弹出层话费查询 -->
 		<u-popup mode="center" v-model="showBalance" width="88%" border-radius="20.83" :mask-close-able="false">
@@ -36,7 +42,10 @@
 			return {
 				phone: '',
 				account_balance: '',
-				showBalance: false
+				showBalance: false, // 是否显示余额
+				priceAll: '',
+				curId: '', // 当前选择的面额id
+				provider: 'china_mobile' // 运营商标识
 			}
 		},
 		computed: {
@@ -46,6 +55,13 @@
 			},
 			numberTip () {
 				return this._i18n.messages[this.lang].mobileCharge.numberTips
+			},
+			priceList () {
+				let result = []
+				if (this.priceAll !== '') {
+					result = this.priceAll[this.provider]
+				}
+				return result
 			}
 		},
 		watch: {
@@ -56,11 +72,33 @@
 						title: this._i18n.messages[val].mobileCharge.pageName
 					});
 				}
+			},
+			phone (val) {
+				if (this.$u.test.mobile(val)) {
+					this.queryBalance(2)
+				}
 			}
+		},
+		onShow() {
+			this.queryPrice()
 		},
 		methods: {
 			...mapActions(['checkLogin']),
-			async queryBalance () {
+			async queryPrice () {
+				const vm = this
+				const token = await uni.getStorageSync('token')
+				if (token) {
+					const obj = {
+						token: token
+					}
+					vm.$post(urls.queryPriceList, obj).then(res => {
+						if (res.success) {
+							vm.priceAll = res.data
+						}
+					})
+				}
+			},
+			async queryBalance (type) {
 				const vm = this
 				const token = await vm.checkLogin()
 				if (token) {
@@ -73,9 +111,12 @@
 							title: ''
 						})
 						vm.$post(urls.searchPhoneInfo, obj).then(res => {
+							console.log(res)
 							if (res.success) {
 								vm.account_balance = res.data.account_balance
-								vm.showBalance = true
+								if (type === 1) {
+									vm.showBalance = true
+								}
 							} else {
 								uni.showToast({
 									icon: 'none',
@@ -85,15 +126,19 @@
 							uni.hideLoading()
 						})
 					} else {
-						uni.showToast({
-							icon: 'none',
-							title: vm._i18n.messages[vm.lang].mobileCharge.numberErrTips
-						})
+						if (type === 1) {
+							uni.showToast({
+								icon: 'none',
+								title: vm._i18n.messages[vm.lang].mobileCharge.numberErrTips
+							})
+						}
 					}
 				} else {
-					uni.navigateTo({
-						url: '/pages/login/login'
-					})
+					if (type === 1) {
+						uni.navigateTo({
+							url: '/pages/login/login'
+						})
+					}
 				}
 			},
 		}
@@ -144,6 +189,16 @@
 			margin: 0 auto 7px auto;
 			border-radius: 38.19rpx;
 			color: $uni-color-primary;
+		}
+		.face-list{
+			.face-item{
+				width: 30%;
+				height: calc((90vw - 55.4rpx) * 0.27);
+				margin: 0 1.6% 5px 1.6%;
+				box-sizing: border-box;
+				border: 1px solid #D0D0D0;
+				border-radius: 13.88rpx;
+			}
 		}
 	}
 }

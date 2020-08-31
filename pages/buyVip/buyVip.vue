@@ -14,9 +14,9 @@
 			</view>
 			<view class="user-id text-light-grey ma-col-sm" v-if="isLogin">ID:{{person.user_number}}</view>
 			<!-- VIP -->
-			<view class="buy-vip flex-row flex-jst-btw flex-ali-center pa-md" v-if="!person.is_vip">
-				<button type="default" class="become-vip" @click="toVip">{{$t('mine.become')}}</button>
-				<text class="text-12 become-tip">{{$t('mine.becomeTips')}}</text>
+			<view class="buy-vip flex-row flex-jst-btw flex-ali-center pa-md">
+				<button type="default" class="become-vip" @click="toVip">{{person.is_vip ? $t('mine.extended') : $t('mine.become')}}</button>
+				<text class="text-12 become-tip">{{person.is_vip ? $t('mine.alreadyTips') : $t('mine.becomeTips')}}</text>
 			</view>
 		</view>
 		<!-- body -->
@@ -121,6 +121,7 @@
 						token: token
 					}
 					vm.$post(urls.queryMineInfo, obj).then(res => {
+						console.log(res)
 						this.person = res.data
 					})
 				}
@@ -133,9 +134,42 @@
 						token: token,
 						vip_group_number: number
 					}
-					debugger
+					uni.showLoading({
+						title: ''
+					})
 					vm.$post(urls.becomeVip, obj).then(res => {
-						console.log(res)
+						uni.hideLoading()
+						if (res.success) {
+							if (res.data.order_number.err_code_des === '' || !res.data.order_number.err_code_des) {
+								uni.requestPayment({ // 调用支付
+								    provider: 'wxpay',
+								    timeStamp: res.data.order_number.timeStamp,
+								    nonceStr: res.data.order_number.nonceStr,
+								    package: res.data.order_number.package,
+								    signType: 'MD5',
+								    paySign: res.data.order_number.paySign,
+								    success: function (result) {
+											vm.queryMine()
+								    },
+								    fail: function (err) {
+											uni.showToast({
+												icon: 'none',
+												title: vm._i18n.messages[vm.lang].makeOrder.payFail
+											})
+								    }
+								});
+							} else {
+								uni.showToast({
+									icon: 'none',
+									title: vm._i18n.messages[vm.lang].makeOrder.payFail
+								})
+							}
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: res.message
+							})
+						}
 					})
 				} else {
 					uni.navigateTo({

@@ -2,7 +2,7 @@ const urls = {
 	authList: [], // 需要身份认证的接口
 	md5List: ['/v1/api/public/login', '/v1/api/shop/details', '/v1/api/shop/collect', '/v1/api/shop/buy',
 	'/v1/api/shop/pretreatment', '/v1/api/shippingaddress/edit', '/v1/api/shop/orderlist', '/v1/api/user/shopcollect',
-	'/v1/api/user/info', '/v1/api/vip/opening', '/v1/api/shop/delivery', '/v1/api/cecharge/attribution'
+	'/v1/api/user/info', '/v1/api/vip/opening', '/v1/api/shop/delivery', '/v1/api/cecharge/attribution', '/v1/api/telephone/denomination'
 	], // 需要加密的接口2
 	baseUrl: 'https://shopapi.apiself.com',
 	// basic
@@ -30,6 +30,7 @@ const urls = {
 	// 会员
 	becomeVip: '/v1/api/vip/opening', // 开通会员2
 	queryVipList: '/v1/api/vip/list', // 获取会员类型列表
+	queryPriceList: '/v1/api/telephone/denomination', // 查询充值面额列表2
 	searchPhoneInfo: '/v1/api/cecharge/attribution' // 查询？2
 }
 

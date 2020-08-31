@@ -156,7 +156,6 @@
 							    signType: 'MD5',
 							    paySign: res.data.paySign,
 							    success: function (result) {
-										console.log('支付成功:', result)
 										uni.requestSubscribeMessage({ // 订阅消息
 										  tmplIds: ['En-7bas-r4mg27-294HfVqTfAAWUw1ZFEYnkVBshK64'],
 										  success (result) {

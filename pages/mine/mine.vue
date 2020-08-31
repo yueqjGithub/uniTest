@@ -29,9 +29,9 @@
 				</view>
 			</view>
 			<!-- VIP -->
-			<view class="buy-vip flex-row flex-jst-btw flex-ali-center pa-md" v-if="!person.is_vip">
-				<button type="default" class="become-vip" @click="toVip">{{$t('mine.become')}}</button>
-				<text class="text-12 become-tip">{{$t('mine.becomeTips')}}</text>
+			<view class="buy-vip flex-row flex-jst-btw flex-ali-center pa-md">
+				<button type="default" class="become-vip" @click="toVip">{{person.is_vip ? $t('mine.extended') : $t('mine.become')}}</button>
+				<text class="text-12 become-tip">{{person.is_vip ? $t('mine.alreadyTips') : $t('mine.becomeTips')}}</text>
 			</view>
 		</view>
 		<!-- body -->
