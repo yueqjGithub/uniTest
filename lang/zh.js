@@ -96,6 +96,11 @@ export default {
 		balanceTit: '您的话费余额',
 		charge: '充值',
 		chooseTips: '请选择充值面额',
-		chargeValue: '充值金额'
+		chargeValue: '充值金额',
+		chargePhone: '充值号码',
+		normalPrice: '总支付金额',
+		vipPrice: '会员价格',
+		advertising: '观看广告降价',
+		promote: '推广降价'
 	}
 }

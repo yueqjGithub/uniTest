@@ -1,5 +1,5 @@
 <template>
-	<view class="menu-item flex-column flex-ali-center flex-jst-start">
+	<view class="menu-item flex-column flex-ali-center flex-jst-start" @click="toPage(item)">
 		<view class="menu-icon flex-row flex-jst-center flex-ali-center" :style="{background: bg, boxShadow: boxShadow}">
 			<u-icon :name="iconName" color="#ffffff" size="50" custom-prefix="iconfont"></u-icon>
 		</view>
@@ -40,6 +40,13 @@
 				}
 				return result
 			}	
+		},
+		methods: {
+			toPage (path) {
+				uni.navigateTo({
+					url: path.apply_path
+				})
+			}
 		}
 	}
 </script>
