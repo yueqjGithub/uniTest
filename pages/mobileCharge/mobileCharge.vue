@@ -22,6 +22,36 @@
 			<!-- 充值按钮 -->
 			<button type="default" class="charge-btn" @click="openCharge">{{$t('mobileCharge.charge')}}</button>
 		</view>
+		<!-- 链接列表 -->
+		<view class="vip-feedback pa-col-sm ma-col-md">
+			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex">
+				<view class="flex-jst-start flex-ali-center" :class="langFlex">
+					<u-icon name="weibiaoti--46" custom-prefix="iconfont" size="40" class="text-primary"></u-icon>
+					<text class="ma-row-sm text-12">{{$t('mobileCharge.vipGuide')}}</text>
+				</view>
+				<button type="default" class="plain-btn" @click="toPage('/pages/buyVip/buyVip')">
+					<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
+				</button>
+			</view>
+			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex">
+				<view class="flex-jst-start flex-ali-center" :class="langFlex">
+					<u-icon name="weibiaoti--50" custom-prefix="iconfont" size="40" class="text-primary"></u-icon>
+					<text class="ma-row-sm text-12">{{$t('mobileCharge.promoteGuide')}}</text>
+				</view>
+				<button type="default" class="plain-btn" @click="toPage('/pages/coin/coin')">
+					<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
+				</button>
+			</view>
+			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex">
+				<view class="flex-jst-start flex-ali-center" :class="langFlex">
+					<u-icon name="bangzhu" custom-prefix="iconfont" size="40" class="text-primary"></u-icon>
+					<text class="ma-row-sm text-12">{{$t('mobileCharge.helpCenter')}}</text>
+				</view>
+				<button type="default" class="plain-btn" @click="toAuthPage('/pages/buyVip/buyVip')">
+					<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
+				</button>
+			</view>
+		</view>
 		<!-- 弹出层话费查询 -->
 		<u-popup mode="center" v-model="showBalance" width="88%" border-radius="20.83" :mask-close-able="false">
 			<view class="pa-md flex-column flex-jst-start flex-ali-center balance-container full-width">
@@ -84,6 +114,12 @@
 		},
 		computed: {
 			...mapState(['lang']),
+			langFlex () {
+				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'
+			},
+			transIcon () {
+				return this.lang === 'zh-CN' ? 'tran-icon' : ''
+			},
 			inputClass() {
 				return this.lang === 'zh-CN' ? '' : ' my-text-right'
 			},
@@ -120,6 +156,11 @@
 		},
 		methods: {
 			...mapActions(['checkLogin']),
+			toPage (path) {
+				uni.navigateTo({
+					url: path
+				})
+			},
 			chooseCur(target) {
 				this.currentFace = target
 			},
@@ -278,7 +319,24 @@
 				}
 			}
 		}
-
+		.vip-feedback{
+			width: 90%;
+			margin: 18px auto 20px auto;
+			background: #FFFFFF;
+			border-radius: 13.88rpx;
+			.fb-item{
+				&:not(:last-child){
+					border-bottom: 1px solid #f3f3f3;
+				}
+				button{
+					margin: 0;
+					padding: 0;
+				}
+				.tran-icon{
+					transform: rotate(180deg);
+				}
+			}
+		}
 		.content-container {
 			box-sizing: border-box;
 			width: 90%;

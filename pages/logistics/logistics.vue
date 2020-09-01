@@ -74,7 +74,6 @@
 					order_number: vm.curOrderNumber
 				}
 				vm.$post(urls.logistics, obj).then(res => {
-					console.log(res)
 					if (res.success) {
 						vm.info = res.data
 					} else {

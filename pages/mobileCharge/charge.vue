@@ -40,7 +40,7 @@
 					<u-switch v-model="balance" active-color="#00BE88"></u-switch>
 				</view>
 			</view>
-			<!-- 重置按钮 -->
+			<!-- 充值按钮 -->
 			<view class="width-80 ma-col-md flex-row flex-jst-center">
 				<button type="default" class="my-btn-primary text-white text-14" @click="doCharge">{{$t('mobileCharge.charge')}}</button>
 			</view>

@@ -60,6 +60,7 @@
 		},
 		methods:{
 			toDetail () {
+				console.log(this.order)
 				this.$store.commit('setCurOrderNum', this.order.order_number)
 				uni.navigateTo({
 					url: '/pages/logistics/logistics'

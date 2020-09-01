@@ -13,6 +13,6 @@ export const setCurAddress = (state, payload) => { // 设置当前编辑状态�
 	state.curAddress = payload
 }
 
-export const setCurOrderNum = (state, palyload) => { // 设置当前查看物流的订单号
+export const setCurOrderNum = (state, payload) => { // 设置当前查看物流的订单号
 	state.curOrderNumber = payload
 }

@@ -101,6 +101,9 @@ export default {
 		normalPrice: '总支付金额',
 		vipPrice: '会员价格',
 		advertising: '观看广告降价',
-		promote: '推广降价'
+		promote: '推广降价',
+		vipGuide: '开通会员优惠更多',
+		promoteGuide: '推广赚钱创造价值',
+		helpCenter: '帮助中心'
 	}
 }
