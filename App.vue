@@ -18,7 +18,10 @@
 		},
 		onShow: function(config) {
 			console.log(config)
-			// this.$store.dispatch('loginHandler')
+			const inviter = config.query.inviter || null
+			if (inviter) {
+				this.$store.commit('setInviter', inviter) // 如果进入时有inviter,提交至全局进行存放表示被邀请进入
+			}
 		},
 		onHide: function() {
 		},

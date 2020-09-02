@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<button type="default" open-type="share">分享</button>
+		<button type="default" @click="myShare">分享</button>
 		<cus-tabbar></cus-tabbar>
 	</view>
 </template>
@@ -18,7 +18,9 @@
 			}
 		},
 		methods: {
-			
+			myShare () {
+
+			}
 		}
 	}
 </script>

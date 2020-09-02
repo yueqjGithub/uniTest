@@ -1,4 +1,5 @@
 export default {
+	inviter: null,
 	initSuc: false,
 	lang: 'zh-CN',
 	initKey: 'e80a239fde8c8feb',

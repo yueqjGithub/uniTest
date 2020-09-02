@@ -40,12 +40,13 @@ export const getLoginToken = (context, user) => { // 自定义登录
 		profile_photo: user.avatarUrl,
 		nickname: user.nickName,
 		sex: genderMap.find(item => item.key === user.gender).value,
-		inviter: '',
+		inviter: context.state.inviter ? context.state.inviter : '',
 		province: user.province,
 		city: user.city,
 		area: ''
 	}
 	httpPost(urls.login, obj).then(res => {
+		console.log(res)
 		if (res.success) {
 			wx.setStorageSync('token', res.data.token)
 			uni.navigateBack({
