@@ -16,7 +16,8 @@
 				wx.setStorageSync('refresh_token', res.data.refresh_token)
 			})
 		},
-		onShow: function() {
+		onShow: function(config) {
+			console.log(config)
 			// this.$store.dispatch('loginHandler')
 		},
 		onHide: function() {
