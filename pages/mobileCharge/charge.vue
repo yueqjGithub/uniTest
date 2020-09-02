@@ -124,9 +124,9 @@
 					token: token,
 					id: vm.target.id,
 					mobile: vm.phone,
-					adv: vm.adv,
-					sharing_preferences: vm.sharing_preferences,
-					balance: vm.balance
+					adv: vm.adv ? 'true' : 'false',
+					sharing_preferences: vm.sharing_preferences ? 'true' : 'false',
+					balance: vm.balance ? 'true' : 'false'
 				}
 				uni.showLoading({
 					title: ''
@@ -142,9 +142,12 @@
 					    paySign: res.paySign,
 					    success: function (result) {
 								uni.hideLoading()
-								uni.showToast({
-									icon: 'success',
-									title: ''
+								uni.requestSubscribeMessage({ // 订阅消息
+								  tmplIds: ['9UTQnyosblyWEn16aJ5GT9DbjClzWU6yljBWXncAPIk'],
+								  success (result) {
+									},
+									fail (err) {
+									}
 								})
 					    },
 					    fail: function (err) {
