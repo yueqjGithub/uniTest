@@ -1,5 +1,13 @@
 <template>
-	<view class="calendar-contaienr"></view>
+	<view class="calendar-contaienr">
+		<view class="title-show flex-row flex-jst-center flex-ali-center">
+			<button type="default" @click="reduceMonth">-</button>
+			<text>{{year}}</text>
+			<text>{{month}}</text>
+			<text>{{date}}</text>
+			<button type="default" @click="addMonth">+</button>
+		</view>
+	</view>
 </template>
 
 <script>
@@ -13,13 +21,13 @@
 				week: '',
 				now: '',
 				weekList: [
+					{ week: 7, name_cn: '周日' },
 					{ week: 1, name_cn: '周一' },
 					{ week: 2, name_cn: '周二' },
 					{ week: 3, name_cn: '周三' },
 					{ week: 4, name_cn: '周四' },
 					{ week: 5, name_cn: '周五' },
-					{ week: 6, name_cn: '周六' },
-					{ week: 7, name_cn: '周日' },
+					{ week: 6, name_cn: '周六' }
 				]
 			}
 		},
@@ -36,6 +44,7 @@
 		},
 		computed: {
 			monthList () { // 每月天数
+				const vm = this
 				const list = [
 					{ month: 1, days: 31 },
 					{ month: 2, days: 28 },
@@ -57,12 +66,22 @@
 			},
 			daysList () { // 要显示在页面上的日期列
 				const vm = this
-				const len = vm.monthList.find(item => item.month === vm.month) // 获得对应月份总天数
 				let result = []
-				for (let k in len) {
-					const dayInfo = {
+				if (vm.month) {
+					const len = vm.monthList.find(item => item.month === vm.month).days // 获得对应月份总天数
+					const arr = [1,2,3]
+					for (let k=1;k<=len;k++) {
+						const dayInfo = {
+							year: vm.year,
+							month: vm.month,
+							date: k,
+							week: new Date(`${vm.year}/${vm.month}/${k}`).getDay()
+						}
+						result.push(dayInfo)
 					}
 				}
+				console.log(result)
+				return result
 			}
 		},
 		methods: {
@@ -78,6 +97,22 @@
 			setToday () {
 				const vm = this
 				vm.now = new Date()
+			},
+			reduceMonth () { // 月份前推
+				if (this.month !== 1) {
+					this.month--
+				} else {
+					this.month = 12
+					this.year--
+				}
+			},
+			addMonth () {
+				if (this.month !== 12) {
+					this.month++
+				} else {
+					this.month = 1
+					this.year++
+				}
 			}
 		}
 	}
