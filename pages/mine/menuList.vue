@@ -53,7 +53,7 @@
 				},{
 					id: 'A1597042954',
 					color: '#3498DB',
-					path: '/pages/mobileCharge/mobileCharge',
+					path: '/pages/commonOrder/commonOrder?type=phone',
 					icon: 'shouji',
 					name_cn: '电话费',
 					name: "تېلېفۇن ھەققى"

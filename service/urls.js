@@ -3,7 +3,7 @@ const urls = {
 	md5List: ['/v1/api/public/login', '/v1/api/shop/details', '/v1/api/shop/collect', '/v1/api/shop/buy',
 	'/v1/api/shop/pretreatment', '/v1/api/shippingaddress/edit', '/v1/api/shop/orderlist', '/v1/api/user/shopcollect',
 	'/v1/api/user/info', '/v1/api/vip/opening', '/v1/api/shop/delivery', '/v1/api/cecharge/attribution', '/v1/api/telephone/denomination',
-	'/v1/api/cecharge/balance', '/v1/api/telephone/commit'
+	'/v1/api/cecharge/balance', '/v1/api/telephone/commit', '/v1/api/telephone/order'
 	], // 需要加密的接口2
 	baseUrl: 'https://shopapi.apiself.com',
 	// basic
@@ -34,7 +34,10 @@ const urls = {
 	queryPriceList: '/v1/api/telephone/denomination', // 查询充值面额列表2
 	searchPhoneInfo: '/v1/api/cecharge/attribution', // 查询归属地？2
 	queryPhoneBalance: '/v1/api/cecharge/balance', // 查询话费余额2
-	chargeMobile: '/v1/api/telephone/commit' // 话费充值2
+	chargeMobile: '/v1/api/telephone/commit', // 话费充值2
+	// 订单公共也
+	phoneOrderType: '/v1/api/telephone/ordercate', // 获取话费充值订单类型
+	phoneOrderList: '/v1/api/telephone/order' // 话费订单列表2
 }
 
 export default urls

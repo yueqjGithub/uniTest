@@ -1,14 +1,15 @@
 <template>
-	<view class="order-item pa-md" @click="toDetail">
+	<view class="order-item pa-md">
 		<view class="order-top pa-col-md flex-jst-btw flex-ali-center" :class="langFlex">
-			<image :src="order.cover_image" mode="" class="order-image"></image>
+			<u-icon name="shouji" custom-prefix="iconfont" class="order-image flex-row flex-jst-center flex-ali-center"></u-icon>
 			<view class="order-cont flex-2 pa-row-md flex-column flex-jst-btw flex-ali-start">
-				<text class="shop-name full-width text-12" :class="langFlex">{{shopName}}</text>
+				<text class="shop-name full-width text-12 text-bold" :class="langFlex">{{$t('commonOrder.phoneMoneyCharge')}}</text>
 				<text class="shop-price full-width text-grey-1" :class="langFlex">
-					{{order.shop_num}} x {{order.price}}
+					{{ispName}}
 				</text>
+				<text class="text-14 text-grey-1">{{order.mobile}}</text>
 				<view class="order-time flex-jst-btw full-width flex-ali-base" :class="langFlex">
-					<text class="total-price text-16 text-bold text-primary">￥{{order.total}}</text>
+					<text class="total-price text-16 text-bold text-primary">￥{{order.order_total}}</text>
 					<text class="time-show text-grey-1 text-12">{{order.createtime}}</text>
 				</view>
 			</view>
@@ -27,7 +28,7 @@
 <script>
 	import { mapState } from 'vuex'
 	export default {
-		name: 'orderItem',
+		name: 'phoneItem',
 		props: ['order'],
 		data () {
 			return {}
@@ -37,8 +38,8 @@
 			langFlex () {
 				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'
 			},
-			shopName () {
-				return this.lang === 'zh-CN' ? this.order.shop_name_cn : this.order.shop_name
+			ispName () {
+				return this.lang === 'zh-CN' ? this.order.isp : this.order.isp
 			},
 			statusName () {
 				return this.lang === 'zh-CN' ? this.order.status.name_cn : this.order.status.name
@@ -46,10 +47,10 @@
 			statusColor () {
 				let color = '#00AFFF'
 				switch (this.order.status_type) {
-					case 4:
+					case 3:
 					color = '#00BE87'
 					break
-					case 5:
+					case 4:
 					color = '#FF4B4B'
 					break
 					default:
@@ -57,6 +58,8 @@
 				}
 				return color
 			}
+		},
+		mounted() {
 		},
 		methods:{
 			toDetail () {
@@ -81,7 +84,9 @@
 				width: 173.61rpx;
 				height: 173.61rpx;
 				border-radius: 13.88rpx;
-				background: #aaaaaa;
+				background: linear-gradient(-55deg, #0F96FF, #4BDCFF);
+				color: #FFFFFF;
+				font-size: 150rpx;
 			}
 			.order-cont{
 				height: 173.61rpx;

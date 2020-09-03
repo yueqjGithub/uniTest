@@ -142,7 +142,7 @@
 					    paySign: res.paySign,
 					    success: function (result) {
 								uni.hideLoading()
-								uni.requestSubscribeMessage({ // 订阅消息
+								uni.requestSubscribeMessage({ // 订阅消息 
 								  tmplIds: ['9UTQnyosblyWEn16aJ5GT9DbjClzWU6yljBWXncAPIk'],
 								  success (result) {
 									},

@@ -105,5 +105,9 @@ export default {
 		vipGuide: '开通会员优惠更多',
 		promoteGuide: '推广赚钱创造价值',
 		helpCenter: '帮助中心'
+	},
+	commonOrder: {
+		phonePage: '充值订单',
+		phoneMoneyCharge: '话费充值'
 	}
 }
