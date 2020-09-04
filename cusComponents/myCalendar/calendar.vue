@@ -41,28 +41,28 @@
 	export default {
 		name: 'calendar',
 		props: {
-			formatValue: {
+			formatValue: { // 获取最终值的format格式
 				type: String,
 				default: 'YYYY-MM-DD'
 			},
-			name: {
+			name: { // 标题名字
 				default: '日期选择'
 			},
-			btnText: {
+			btnText: { // 确认按钮文字
 				default: '确认'
 			},
-			weekNames: {
+			weekNames: { // 周末到周六的每一天的名称
 				type: Array,
 				default: function () {
 					return []
 				}
 			},
-			startDate: {
+			startDate: { // 可选时间范围
 				default: function () {
 					return dayjs().format('YYYY/MM/DD')
 				}
 			},
-			endDate: {
+			endDate: { // 可选时间范围结束
 				default: function () {
 					return dayjs().add(30,'day').format('YYYY/MM/DD')
 				}
@@ -175,7 +175,7 @@
 				}
 				return result
 			},
-			setToday () {
+			setToday () { // init设置当前日
 				const vm = this
 				vm.now = new Date()
 				vm.choose = {
@@ -194,7 +194,7 @@
 					this.year--
 				}
 			},
-			addMonth () {
+			addMonth () { // 月份后推
 				if (this.month !== 12) {
 					this.month++
 				} else {
