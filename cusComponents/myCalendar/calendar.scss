@@ -1,5 +1,55 @@
 .calendar-contaienr{
-	width: 100vw;
-	min-height: 50vh;
+	width: 100%;
+	min-height: 80vh;
 	background: #FFFFFF;
+	padding: 15px 15px 0 15px;
+	position: relative;
+	.btn-container{
+		margin: auto;
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		transform: translate(-50%, -100%);
+	}
+	.title-show{
+		box-sizing: border-box;
+		padding: 3px;
+		border-top: 1px solid #CCCCCC;
+		border-bottom: 1px solid #CCCCCC;
+		.plain-btn{
+			margin: 0;
+			.trans-icon{
+				transform: rotate(180deg);
+			}
+		}
+	}
+	.days-show{
+		.day-item{
+			width: calc(100% / 7);
+			box-sizing: border-box;
+			padding: 5px;
+		}
+		.self-day{
+			// background: green;
+			.days-container{
+				padding: 10px;
+				box-sizing: border-box;
+				width: 100%;
+				border-radius: 10.41rpx;
+				color: #aaaaaa;
+				&.is-btw{
+					border: 1px solid #cfcfcf;
+					color: #000000;
+					&.choosed{
+						color: #ffffff;
+						background: $uni-color-primary;
+						border-color: $uni-color-primary;
+					}
+				}
+			}
+		}
+		.out-month{
+			// background: grey;
+		}
+	}
 }

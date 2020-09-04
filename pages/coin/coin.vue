@@ -2,6 +2,9 @@
 	<view class="bg-grey">
 		<u-popup v-model="show" mode="bottom" :closeable="false">
 			<cus-calendar
+				:name="calendarName"
+				:weekNames="weekList"
+				:btnText="btnText"
 			></cus-calendar>
 		</u-popup>
 		<cus-tabbar></cus-tabbar>
@@ -19,7 +22,18 @@
 		},
 		data() {
 			return {
-				show: true
+				show: true,
+				weekList: [
+					'ي',
+					'د',
+					'س',
+					'چ',
+					'پ',
+					'ج',
+					'ش'
+				],
+				calendarName: 'ۋاقىت تاللاڭ',
+				btnText: 'تاقاش'
 			}
 		},
 		methods: {
