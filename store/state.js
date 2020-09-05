@@ -1,4 +1,5 @@
 export default {
+	mapKey: 'e8467800c0cc839c2b4c6b935c41f285',
 	inviter: null,
 	initSuc: false,
 	lang: 'zh-CN',

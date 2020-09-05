@@ -50,7 +50,7 @@
         },
         "permission" : {
             "scope.userLocation" : {
-                "desc" : "方便用户直接设置收货地址"
+                "desc" : "用于快捷设置出行起始位置"
             }
         }
     }

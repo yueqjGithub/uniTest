@@ -1,7 +1,9 @@
 export default {
 	basic: {
 		login: 'كىرىش',
-		cancel: 'بولدىلا'
+		ok: 'ئېتىراپ قىلىش',
+		cancel: 'بولدىلا',
+		tip: 'ئەسكەرتىش'
 	},
 	tab: {
 		index: 'باش بەت',
@@ -109,5 +111,11 @@ export default {
 	commonOrder: {
 		phonePage: 'تېلىفۇن ھەققى زاكاسلىرى',
 		phoneMoneyCharge: 'سۆزلىشىش ھەققىگە پۇل قاچىلاش '
+	},
+	train: {
+		pageName: 'پويىز بېلىتى',
+		addressTit: 'شەھەر تاللاڭ',
+		locationTips: ' ئېچىپ ئورنى ھوقۇق بېرىش ، تېخىمۇ تېز ھازىرقى ئورنى',
+		stationTit: 'بارلىق شەھەرلەر'
 	}
 }

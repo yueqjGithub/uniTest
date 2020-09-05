@@ -369,7 +369,7 @@
 			.face-list {
 				.face-item {
 					width: 30%;
-					height: calc((90vw - 55.4rpx) * 0.27);
+					height: 80px;
 					margin: 0 1.6% 5px 1.6%;
 					box-sizing: border-box;
 					border: 1px solid #D0D0D0;

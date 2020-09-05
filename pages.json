@@ -91,6 +91,16 @@
 			}
 		}
 	],
+	"subPackages": [{
+		"root": "trainTicket",
+		"pages": [{
+			"path": "index/index",
+			"style": {
+				"navigationStyle": "custom",
+				"backgroundColor": "#F3F3F3"
+			}
+		}]
+	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "uni-app",
@@ -109,7 +119,7 @@
 			},
 			{
 				"name": "devlope",
-				"path": "pages/mobileCharge/mobileCharge",
+				"path": "trainTicket/index/index",
 				"query": ""
 			}
 		]

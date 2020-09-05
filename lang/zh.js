@@ -1,7 +1,9 @@
 export default {
 	basic: {
 		login: '登录',
-		cancel: '取消'
+		ok: '确认',
+		cancel: '取消',
+		tip: '提示'
 	},
 	tab: {
 		index: '首页',
@@ -109,5 +111,11 @@ export default {
 	commonOrder: {
 		phonePage: '充值订单',
 		phoneMoneyCharge: '话费充值'
+	},
+	train: {
+		pageName: '火车票',
+		addressTit: '选择城市',
+		locationTips: '打开位置授权，可更快获得当前位置',
+		stationTit: '所有城市'
 	}
 }
