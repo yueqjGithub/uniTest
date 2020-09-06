@@ -3,8 +3,16 @@ export default {
 		login: '登录',
 		ok: '确认',
 		cancel: '取消',
+		search: '查询',
 		tip: '提示',
-		chooseTip: '请选择'
+		chooseTip: '请选择',
+		monday: '周一',
+		tuesday: '周二',
+		wednesday: '周三',
+		thursday: '周四',
+		friday: '周五',
+		saturday: '周六',
+		sunday: '周日'
 	},
 	tab: {
 		index: '首页',
@@ -117,6 +125,12 @@ export default {
 		pageName: '火车票',
 		addressTit: '选择城市',
 		locationTips: '打开位置授权，可更快获得当前位置',
-		stationTit: '所有城市'
+		stationTit: '所有城市',
+		startStation: '出发站',
+		endStation: '目的站',
+		timeChooseTit: '选择时间',
+		affordable: '实惠',
+		safe: '安全',
+		credit: '信用'
 	}
 }

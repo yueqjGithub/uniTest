@@ -18,7 +18,7 @@
 		<add-list @chooseHandler="setChoose" :choose="current"></add-list>
 		<view class="full-width flex-row flex-jst-center flex-ali-center">
 			<view class="width-80 flex-row flex-jst-center pa-col-md">
-				<button type="default" class="my-btn-primary text-white text-14">{{$t('basic.ok')}}</button>
+				<button type="default" class="my-btn-primary text-white text-14" @click="subStation">{{$t('basic.ok')}}</button>
 			</view>
 		</view>
 	</view>
@@ -71,6 +71,13 @@
 			this.checkSysLocation()
 		},
 		methods: {
+			subStation () { // 向父组件传递站点
+				const obj = {
+					station: this.current,
+					status: this.target
+				}
+				this.$emit('setStation', obj)
+			},
 			setChoose (city) { // 设置当前选择城市
 				this.current = city
 			},

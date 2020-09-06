@@ -35,7 +35,7 @@
 .text-left{text-align: left;}
 .text-right{text-align: right;}
 .bg-white{
-	background: #FFFFFF;
+	background: #FFFFFF !important;
 }
 .bg-grey{
 	background: #f3f3f3;
@@ -45,7 +45,7 @@
 	font-size: 12px;
 }
 
-.full-width{width: 100%;}
+.full-width{width: 100% !important;}
 .width-90{width: 90%;}
 .width-80{width: 80%;}
 .full-height{height: 100%;}

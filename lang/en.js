@@ -3,8 +3,16 @@ export default {
 		login: 'كىرىش',
 		ok: 'ئېتىراپ قىلىش',
 		cancel: 'بولدىلا',
+		search: 'تەكشۈرەيمەن',
 		tip: 'ئەسكەرتىش',
-		chooseTip: 'تاللاڭ'
+		chooseTip: 'تاللاڭ',
+		monday: 'د',
+		tuesday: 'س',
+		wednesday: 'چ',
+		thursday: 'پ',
+		friday: 'ج',
+		saturday: 'ش',
+		sunday: 'ي'
 	},
 	tab: {
 		index: 'باش بەت',
@@ -117,6 +125,12 @@ export default {
 		pageName: 'پويىز بېلىتى',
 		addressTit: 'شەھەر تاللاڭ',
 		locationTips: ' ئېچىپ ئورنى ھوقۇق بېرىش ، تېخىمۇ تېز ھازىرقى ئورنى',
-		stationTit: 'بارلىق شەھەرلەر'
+		stationTit: 'بارلىق شەھەرلەر',
+		startStation: 'باش بېكەت',
+		endStation: 'مەنزىل',
+		timeChooseTit: 'ۋاقىت تاللاڭ',
+		affordable: 'ئەرزان',
+		safe: 'بىخەتەر',
+		credit: 'ئىشەنچلىك'
 	}
 }
