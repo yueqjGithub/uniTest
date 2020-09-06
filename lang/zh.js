@@ -3,7 +3,8 @@ export default {
 		login: '登录',
 		ok: '确认',
 		cancel: '取消',
-		tip: '提示'
+		tip: '提示',
+		chooseTip: '请选择'
 	},
 	tab: {
 		index: '首页',

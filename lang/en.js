@@ -3,7 +3,8 @@ export default {
 		login: 'كىرىش',
 		ok: 'ئېتىراپ قىلىش',
 		cancel: 'بولدىلا',
-		tip: 'ئەسكەرتىش'
+		tip: 'ئەسكەرتىش',
+		chooseTip: 'تاللاڭ'
 	},
 	tab: {
 		index: 'باش بەت',
