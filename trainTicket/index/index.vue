@@ -76,7 +76,7 @@
 					<u-icon name="bangzhu" custom-prefix="iconfont" size="40" class="text-primary"></u-icon>
 					<text class="ma-row-sm text-12">{{$t('mobileCharge.helpCenter')}}</text>
 				</view>
-				<button type="default" class="plain-btn" @click="toAuthPage('/pages/buyVip/buyVip')">
+				<button type="default" class="plain-btn">
 					<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
 				</button>
 			</view>
@@ -160,6 +160,11 @@
 			this.trainDate = dayjs().format('YYYY-MM-DD') // 初始化出行日期
 		},
 		methods: {
+			toPage (path) {
+				uni.navigateTo({
+					url: path
+				})
+			},
 			setStation(result) { // 设置站点
 				const status = result.status
 				if (status === 0) {
