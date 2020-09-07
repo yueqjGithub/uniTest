@@ -23,27 +23,45 @@
 						<text class="text-12 text-white">{{$t('train.calendar')}}</text>
 					</view>
 				</view>
-				<scroll-view scroll-x class="flex-1 date-list date-scroll">
-					<view class="flex-row flex-nowrap flex-jst-start flex-ali-center" :style="{width: `300vw`}">
-						<view class="date-item pa-md-2 border-box" v-for="(item, idx) in dateList" :key="idx">
-							<view class="date-module full-width full-height">{{idx}}</view>
-						</view>
-					</view>
-				</scroll-view>
+				<view class="scroll-container">
+					<scroll-view :scroll-x="true" class="flex-row date-list date-scroll flex-nowrap" :enable-flex="true" :scroll-into-view="intoindex">
+							<view v-for="(item, idx) in dateList" :key="idx" :id="`item${idx}`">
+								<view class="date-item pa-md-2 border-box">
+									<view class="date-module full-width full-height flex-column flex-jst-center flex-ali-center text-white" :class="idx === curDate ? 'cur-date' :''" @click="changeDate(idx)">
+										<text class="text-16">{{item.month}}-{{item.date}}</text>
+										<text class="text-12">{{weekList[item.week]}}</text>
+									</view>
+								</view>
+							</view>
+					</scroll-view>
+				</view>
 			</view>
 		</view>
 		<!-- body -->
+		<!-- LOADING -->
+		<u-popup v-model="showLoading" mode="center" :closeable="false" class="trans-popup" width="258.33" height="258.33">
+			<view class="loading-container flex-row flex-jst-center flex-ali-center">
+				<view class="loading-bar flex-row flex-jst-center flex-ali-center">
+					<image src="../../static/images/Kolay-logo.png" mode="aspectFit"></image>
+				</view>
+			</view>
+		</u-popup>
 	</view>
 </template>
 
 <script>
 	import dayjs from 'dayjs'
 	import { mapState } from 'vuex'
+	import urls from '@/service/urls.js'
 	export default {
 		name: 'trapList',
 		data () {
 			return {
-				dateList: []
+				intoindex: '',
+				showLoading: false,
+				dateList: [], // 时间列
+				curDate: 0, // 当前选择时间的index
+				searchType: 0 // 0-火车，1-飞机
 			}
 		},
 		computed: {
@@ -65,6 +83,9 @@
 					result.push(vm._i18n.messages[vm.lang].basic[item])
 				})
 				return result
+			},
+			queryUrl () {
+				return this.searchType === 0 ? urls.queryTrainList : urls.queryAirList
 			}
 		},
 		onShow () {
@@ -76,16 +97,20 @@
 					delta: 1
 				})
 			},
+			changeDate (idx) {
+				const vm = this
+				vm.curDate = idx
+			},
 			makeDaysList () {
 				const vm = this
-				const start = vm.trapSetting.date
+				const start = dayjs()
 				const list = [{
 					year: dayjs(start).year(),
 					month: dayjs(start).month() + 1,
 					date: dayjs(start).date(),
 					week: dayjs(start).day()
 				}]
-				for (let i = 1; i < 15; i++) {
+				for (let i = 1; i < 30; i++) {
 					const date = dayjs(start).add(i, 'day')
 					list.push({
 						year: dayjs(date).year(),
@@ -95,12 +120,50 @@
 					})
 				}
 				this.dateList = [...list]
+				this.curDate = dayjs(vm.trapSetting.date).diff(start, 'day') + 1
+				this.intoindex = `item${this.curDate}`
+				this.searchInfo()
+			},
+			searchInfo () {
+				const vm = this
+				let obj = {}
+				const date = vm.dateList[vm.curDate]
+				if (vm.searchType === 0) {
+					obj = {
+						originating_station: vm.trapSetting.start.name_cn,
+						terminus: vm.trapSetting.end.name_cn,
+						date: dayjs(`${date.year}-${date.month}-${date.date}`).format('YYYY-MM-DD')
+					}
+				} else {
+					obj = {
+						originating_station: vm.trapSetting.start.code,
+						terminus: vm.trapSetting.end.code,
+						date: dayjs(`${date.year}-${date.month}-${date.date}`).format('YYYY-MM-DD')
+					}
+				}
+				console.log(obj)
 			}
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
+	.loading-container{
+		width: 258.33rpx;
+		height: 258.33rpx;
+		.loading-bar{
+			width: 200.55rpx;
+			height: 200.55rpx;
+			border-radius: 50%;
+			background: #ffffff;
+			box-shadow: 0px 0px 5px 0px rgba(0, 190, 136, 0.5);
+			animation: shine 1.2s infinite;
+			image{
+				width: 80%;
+				max-height: 200rpx;
+			}
+		}
+	}
 	.page{
 		width: 100%;
 		min-height: 100vh;
@@ -109,6 +172,7 @@
 		}
 		.train-head {
 			// height: 479.16rpx;
+			padding-bottom: 69.44rpx;
 			background: linear-gradient(45deg, #19C882, #23AF8C);
 			.status-bar {
 				width: 100%;
@@ -129,15 +193,33 @@
 					border: 1px solid #FFFFFF;
 				}
 			}
-			.date-scroll{
-				box-shadow: 11px 0 10px -10px rgba(0,0,0,0.2) inset;
+			.scroll-container{
 				width: calc(100% - 20vw);
+				box-shadow: 11px 0 10px -10px rgba(0,0,0,0.2) inset;
 				height: 20vw;
-				.date-module{
-					background: rgba(255,255,255,0.7);
-					border-radius: 5px;
+				.date-scroll{
+					height: 20vw;
+					white-space: nowrap;
+					.date-item{
+						display: inline-block;
+					}
+					.date-module{
+						background: rgba(255,255,255,0.4);
+						border-radius: 5px;
+						&.cur-date{
+							background: #ffffff;
+							color: $uni-color-primary !important;
+						}
+					}
 				}
 			}
+			
 		}
+	}
+	@keyframes shine {
+		0% {box-shadow: 0px 0px 8px 0px rgba(0, 190, 136, 0.5);}
+		25% {box-shadow: 0px 0px 8px 4px rgba(0, 190, 136, 0.5);}
+		50% {box-shadow: 0px 0px 8px 8px rgba(0, 190, 136, 0.5);}
+		100% {box-shadow: 0px 0px 8px 4px rgba(0, 190, 136, 0.5);}
 	}
 </style>
