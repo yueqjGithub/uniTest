@@ -20,3 +20,7 @@ export const setCurAddress = (state, payload) => { // 设置当前编辑状态�
 export const setCurOrderNum = (state, payload) => { // 设置当前查看物流的订单号
 	state.curOrderNumber = payload
 }
+
+export const setCurrentTrapOptions = (state, payload) => {
+	state.trapSetting = payload
+}

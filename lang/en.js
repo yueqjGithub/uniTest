@@ -131,6 +131,10 @@ export default {
 		timeChooseTit: 'ۋاقىت تاللاڭ',
 		affordable: 'ئەرزان',
 		safe: 'بىخەتەر',
-		credit: 'ئىشەنچلىك'
+		credit: 'ئىشەنچلىك',
+		noStart: ' تاللاش چىقىش بېكىتى',
+		noEnd: ' تاللاش مەقسىتى پونكىتى',
+		noTime: 'تاللاش سەپەرگە چىقىش ۋاقتى',
+		calendar: 'كالىندار'
 	}
 }

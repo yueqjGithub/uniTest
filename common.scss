@@ -71,10 +71,19 @@
 .flex-3{flex: 3;}
 .flex-4{flex: 4;}
 .self-end{align-self: flex-end;}
-
+// ---------------float
+.fl{float: left;}
+.clear::after{
+		content: '';
+		width: 0;
+		height: 0;
+		visibility: hidden;
+		clear: both;
+	}
 // --------------公共padding margin-------------
 .pa-sm{padding: 5.55rpx;}
 .pa-md{padding: 27.77rpx;}
+.pa-md-2{padding: 20rpx;}
 .ma-md{margin: 27.77rpx;}
 .pa-row-md{padding: 0 27.77rpx;}
 .pa-col-md{padding: 27.77rpx 0;}
@@ -89,6 +98,7 @@
 .ma-top-5{
 	margin-top: 5px;
 }
+.ma-rt-5{margin-right: 5px;}
 
 .tab-add{
 	height: 56px;

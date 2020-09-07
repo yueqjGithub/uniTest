@@ -31,7 +31,7 @@
 			</view>
 			<!-- 查询按钮 -->
 			<view class="full-width search-btn flex-row flex-jst-center flex-ali-center">
-				<button type="default" class="my-btn-primary text-white ma-col-md full-width">
+				<button type="default" class="my-btn-primary text-white ma-col-md full-width" @click="setTrapOptions">
 					<text class="text-bold text-14">{{$t('basic.search')}}</text>
 				</button>
 			</view>
@@ -163,6 +163,37 @@
 			toPage (path) {
 				uni.navigateTo({
 					url: path
+				})
+			},
+			setTrapOptions () { // 提交各项参数到vuex，在trapList页面使用参数进行查询
+				const vm = this
+				if (vm.startAds === '') {
+					uni.showToast({
+						icon: 'none',
+						title: vm._i18n.messages[vm.lang].train.noStart
+					})
+					return false
+				} else if (vm.endAds === '') {
+					uni.showToast({
+						icon: 'none',
+						title: vm._i18n.messages[vm.lang].train.noEnd
+					})
+					return false
+				} else if (vm.trainDate === '') {
+					uni.showToast({
+						icon: 'none',
+						title: vm._i18n.messages[vm.lang].train.noTime
+					})
+					return false
+				}
+				const result = {
+					start: vm.startAds,
+					end: vm.endAds,
+					date: vm.trainDate
+				}
+				vm.$store.commit('setCurrentTrapOptions', result)
+				uni.navigateTo({
+					url: '/trainTicket/trapList/trapList'
 				})
 			},
 			setStation(result) { // 设置站点

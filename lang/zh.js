@@ -131,6 +131,10 @@ export default {
 		timeChooseTit: '选择时间',
 		affordable: '实惠',
 		safe: '安全',
-		credit: '信用'
+		credit: '信用',
+		noStart: '请选择出发站',
+		noEnd: '请选择目的站',
+		noTime: '请选择出行时间',
+		calendar: '日历'
 	}
 }
