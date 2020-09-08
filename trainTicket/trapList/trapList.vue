@@ -1,5 +1,5 @@
 <template>
-	<view class="page">
+	<view class="page bg-grey">
 		<view class="train-head">
 			<!--status占位-->
 			<view class="status-bar flex-column flex-jst-end flex-ali-center">
@@ -35,6 +35,12 @@
 							</view>
 					</scroll-view>
 				</view>
+			</view>
+			<!-- tab栏 -->
+			<view class="full-width bg-white trap-tab flex-row flex-jst-center flex-ali-center">
+				<button type="default" :class="searchType === 0 ? 'trap-btn-primary' : 'trap-plain-btn'" class="text-14" @click="changeSearchType(0)">{{$t('train.pageName')}}</button>
+				<view class="ma-row-md"></view>
+				<button type="default" :class="searchType === 1 ? 'trap-btn-primary' : 'trap-plain-btn'" class="text-14" @click="changeSearchType(1)">{{$t('air.pageName')}}</button>
 			</view>
 		</view>
 		<!-- body -->
@@ -97,11 +103,14 @@
 					delta: 1
 				})
 			},
-			changeDate (idx) {
+			changeSearchType (type) { // 变更查询类型
+				this.searchType = type
+			},
+			changeDate (idx) { // 改变当前所选日期的idx
 				const vm = this
 				vm.curDate = idx
 			},
-			makeDaysList () {
+			makeDaysList () { // init
 				const vm = this
 				const start = dayjs()
 				const list = [{
@@ -121,11 +130,13 @@
 				}
 				this.dateList = [...list]
 				this.curDate = dayjs(vm.trapSetting.date).diff(start, 'day') + 1
-				this.intoindex = `item${this.curDate}`
-				this.searchInfo()
+				this.intoindex = `item${this.curDate}` // 设置滚动到
+				this.searchType =  getCurrentPages()[getCurrentPages().length - 1].options.searchType || 0 // 设置是飞机票还是火车票查询
+				// this.searchInfo()
 			},
-			searchInfo () {
+			async searchInfo () { // 查询
 				const vm = this
+				const token = await uni.getStorageSync('token')
 				let obj = {}
 				const date = vm.dateList[vm.curDate]
 				if (vm.searchType === 0) {
@@ -141,13 +152,40 @@
 						date: dayjs(`${date.year}-${date.month}-${date.date}`).format('YYYY-MM-DD')
 					}
 				}
-				console.log(obj)
+				obj.token = token
+				vm.showLoading = true
+				vm.$post(vm.queryUrl, obj).then(res => {
+					console.log(res)
+					vm.showLoading = false
+				}, err => {
+					vm.showLoading = false
+				})
 			}
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
+	.trap-btn-primary{
+		line-height: 1;
+		margin: 0;
+		padding: 22.22rpx 34.72rpx;
+		color: #FFFFFF;
+		background: linear-gradient(90deg,rgba(36,175,126,1),rgba(36,225,150,1));
+		border-radius: 41.66rpx;
+	}
+	.trap-plain-btn{
+		background: transparent !important;
+		margin: 0;
+		line-height: 1;
+		padding: 22.22rpx 34.72rpx;
+		&::after{
+			border: none;
+		}
+		&::before{
+			border: none;
+		}
+	}
 	.loading-container{
 		width: 258.33rpx;
 		height: 258.33rpx;
@@ -172,7 +210,7 @@
 		}
 		.train-head {
 			// height: 479.16rpx;
-			padding-bottom: 69.44rpx;
+			// padding-bottom: 69.44rpx;
 			background: linear-gradient(45deg, #19C882, #23AF8C);
 			.status-bar {
 				width: 100%;
@@ -180,6 +218,10 @@
 				position: relative;
 				box-sizing: border-box;
 				padding-bottom: 4px;
+			}
+			.trap-tab{
+				height: 140rpx;
+				border-radius: 30px 30px 0 0;
 			}
 		}
 		.date-container{

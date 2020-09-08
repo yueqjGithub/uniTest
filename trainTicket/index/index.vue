@@ -101,7 +101,7 @@
 	import {
 		mapState
 	} from 'vuex'
-	import addressBar from './addressBar.vue'
+	import addressBar from '@/cusComponents/myAddressBar/addressBar.vue'
 	import urls from '@/service/urls.js'
 	import dayjs from 'dayjs'
 	export default {

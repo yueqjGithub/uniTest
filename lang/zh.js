@@ -136,5 +136,8 @@ export default {
 		noEnd: '请选择目的站',
 		noTime: '请选择出行时间',
 		calendar: '日历'
+	},
+	air: {
+		pageName: '飞机票'
 	}
 }
