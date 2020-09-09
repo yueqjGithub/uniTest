@@ -12,7 +12,9 @@ export default {
 		thursday: '周四',
 		friday: '周五',
 		saturday: '周六',
-		sunday: '周日'
+		sunday: '周日',
+		hour: '时',
+		minute: '分'
 	},
 	tab: {
 		index: '首页',
@@ -135,7 +137,8 @@ export default {
 		noStart: '请选择出发站',
 		noEnd: '请选择目的站',
 		noTime: '请选择出行时间',
-		calendar: '日历'
+		calendar: '日历',
+		searchPlaceholder: '请输入地点'
 	},
 	air: {
 		pageName: '飞机票'

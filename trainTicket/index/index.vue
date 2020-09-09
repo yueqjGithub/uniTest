@@ -99,7 +99,8 @@
 	import cusTabbar from '../../components/cus-tabbar/cusTabbar.vue'
 	import cusCalendar from '@/cusComponents/myCalendar/calendar.vue'
 	import {
-		mapState
+		mapState,
+		mapActions
 	} from 'vuex'
 	import addressBar from '@/cusComponents/myAddressBar/addressBar.vue'
 	import urls from '@/service/urls.js'
@@ -160,12 +161,13 @@
 			this.trainDate = dayjs().format('YYYY-MM-DD') // 初始化出行日期
 		},
 		methods: {
+			...mapActions(['checkLogin']),
 			toPage (path) {
 				uni.navigateTo({
 					url: path
 				})
 			},
-			setTrapOptions () { // 提交各项参数到vuex，在trapList页面使用参数进行查询
+			async setTrapOptions () { // 提交各项参数到vuex，在trapList页面使用参数进行查询
 				const vm = this
 				if (vm.startAds === '') {
 					uni.showToast({
@@ -191,10 +193,17 @@
 					end: vm.endAds,
 					date: vm.trainDate
 				}
-				vm.$store.commit('setCurrentTrapOptions', result)
-				uni.navigateTo({
-					url: '/trainTicket/trapList/trapList'
-				})
+				const token = await vm.checkLogin()
+				if (token) {
+					vm.$store.commit('setCurrentTrapOptions', result)
+					uni.navigateTo({
+						url: '/trainTicket/trapList/trapList'
+					})
+				} else {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+				}
 			},
 			setStation(result) { // 设置站点
 				const status = result.status

@@ -44,6 +44,11 @@
 			</view>
 		</view>
 		<!-- body -->
+		<scroll-view :scroll-y="true" class="pa-md border-box list-container">
+			<view class="ticket-item full-width" v-for="(item, idx) in resultList" :key="idx">
+				<train-item v-if="searchType === 0" :train="item"></train-item>
+			</view>
+		</scroll-view>
 		<!-- LOADING -->
 		<u-popup v-model="showLoading" mode="center" :closeable="false" class="trans-popup" width="258.33" height="258.33">
 			<view class="loading-container flex-row flex-jst-center flex-ali-center">
@@ -57,17 +62,22 @@
 
 <script>
 	import dayjs from 'dayjs'
-	import { mapState } from 'vuex'
+	import { mapState, mapActions } from 'vuex'
 	import urls from '@/service/urls.js'
+	import trainItem from './trainItem.vue'
 	export default {
 		name: 'trapList',
+		components: {
+			trainItem
+		},
 		data () {
 			return {
 				intoindex: '',
 				showLoading: false,
 				dateList: [], // 时间列
 				curDate: 0, // 当前选择时间的index
-				searchType: 0 // 0-火车，1-飞机
+				searchType: 0, // 0-火车，1-飞机
+				resultList: []
 			}
 		},
 		computed: {
@@ -98,17 +108,24 @@
 			this.makeDaysList()
 		},
 		methods: {
+			...mapActions(['checkLogin']),
 			goBack () {
 				uni.navigateBack({
 					delta: 1
 				})
 			},
 			changeSearchType (type) { // 变更查询类型
-				this.searchType = type
+				if (this.searchType !== type) {
+					this.searchType = type
+					this.searchInfo()
+				}
 			},
 			changeDate (idx) { // 改变当前所选日期的idx
 				const vm = this
-				vm.curDate = idx
+				if (vm.curDate !== idx) {
+					vm.curDate = idx
+					vm.searchInfo()
+				}
 			},
 			makeDaysList () { // init
 				const vm = this
@@ -132,34 +149,47 @@
 				this.curDate = dayjs(vm.trapSetting.date).diff(start, 'day') + 1
 				this.intoindex = `item${this.curDate}` // 设置滚动到
 				this.searchType =  getCurrentPages()[getCurrentPages().length - 1].options.searchType || 0 // 设置是飞机票还是火车票查询
-				// this.searchInfo()
+				this.searchInfo()
 			},
 			async searchInfo () { // 查询
 				const vm = this
-				const token = await uni.getStorageSync('token')
-				let obj = {}
-				const date = vm.dateList[vm.curDate]
-				if (vm.searchType === 0) {
-					obj = {
-						originating_station: vm.trapSetting.start.name_cn,
-						terminus: vm.trapSetting.end.name_cn,
-						date: dayjs(`${date.year}-${date.month}-${date.date}`).format('YYYY-MM-DD')
+				const token = await vm.checkLogin()
+				if (token) {
+					let obj = {}
+					const date = vm.dateList[vm.curDate]
+					if (vm.searchType === 0) {
+						obj = {
+							originating_station: vm.trapSetting.start.name_cn,
+							terminus: vm.trapSetting.end.name_cn,
+							date: dayjs(`${date.year}-${date.month}-${date.date}`).format('YYYY-MM-DD')
+						}
+					} else {
+						obj = {
+							originating_station: vm.trapSetting.start.code,
+							terminus: vm.trapSetting.end.code,
+							date: dayjs(`${date.year}-${date.month}-${date.date}`).format('YYYY-MM-DD')
+						}
 					}
+					obj.token = token
+					vm.showLoading = true
+					vm.$post(vm.queryUrl, obj).then(res => {
+						if (res.success) {
+							vm.resultList = [...res.data]
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: res.message
+							})
+						}
+						vm.showLoading = false
+					}, err => {
+						vm.showLoading = false
+					})
 				} else {
-					obj = {
-						originating_station: vm.trapSetting.start.code,
-						terminus: vm.trapSetting.end.code,
-						date: dayjs(`${date.year}-${date.month}-${date.date}`).format('YYYY-MM-DD')
-					}
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
 				}
-				obj.token = token
-				vm.showLoading = true
-				vm.$post(vm.queryUrl, obj).then(res => {
-					console.log(res)
-					vm.showLoading = false
-				}, err => {
-					vm.showLoading = false
-				})
 			}
 		}
 	}
@@ -205,6 +235,9 @@
 	.page{
 		width: 100%;
 		min-height: 100vh;
+		.ticket-item{
+			margin-bottom: 7px;
+		}
 		.trans-icon-y{
 			transform: rotateY(180deg);
 		}
@@ -223,6 +256,9 @@
 				height: 140rpx;
 				border-radius: 30px 30px 0 0;
 			}
+		}
+		.list-container{
+			height: calc(100vh - 315rpx);
 		}
 		.date-container{
 			.date-item{

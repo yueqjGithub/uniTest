@@ -12,7 +12,9 @@ export default {
 		thursday: 'پ',
 		friday: 'ج',
 		saturday: 'ش',
-		sunday: 'ي'
+		sunday: 'ي',
+		hour: 'سائەت',
+		minute: 'مىنۇت'
 	},
 	tab: {
 		index: 'باش بەت',
@@ -135,7 +137,8 @@ export default {
 		noStart: ' تاللاش چىقىش بېكىتى',
 		noEnd: ' تاللاش مەقسىتى پونكىتى',
 		noTime: 'تاللاش سەپەرگە چىقىش ۋاقتى',
-		calendar: 'كالىندار'
+		calendar: 'كالىندار',
+		searchPlaceholder: 'كىرگۈزۈڭ ئورنى'
 	},
 	air: {
 		pageName: 'ئايروپىلان بېلىتى'

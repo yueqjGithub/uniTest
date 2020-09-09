@@ -28,7 +28,7 @@
 	import { mapState } from 'vuex'
 	export default {
 		name: 'orderShow',
-		props: ['choose'],
+		props: ['choose', 'search'],
 		components: {
 		},
 		data () {
@@ -49,6 +49,14 @@
 		},
 		computed: {
 			...mapState(['lang'])
+		},
+		watch: {
+			search (val) {
+				this.search_key = val
+				this.page = 1
+				this.list = []
+				this.queryIndex()
+			}
 		},
 		mounted () {
 			this.queryIndex()

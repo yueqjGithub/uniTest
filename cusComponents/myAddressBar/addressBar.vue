@@ -5,6 +5,13 @@
 		 :confirm-text="$t('basic.ok')" :cancel-text="$t('basic.cancel')"></u-modal>
 		 <!-- 标题 -->
 		<view class="text-center ads-tit text-16">{{titName}}</view>
+		<!-- 搜索 -->
+		<view class="search-container flex-jst-btw flex-ali-center flex-row">
+			<u-field :class="lang === 'zh-CN' ? '' : 'my-text-right'" :border-bottom="false" @input="changeSearch"
+			:placeholder="$t('train.searchPlaceholder')" :label-width="1"
+			 type="text"></u-field>
+			 <u-icon custom-prefix="iconfont" name="weibiaoti--4" class="text-grey" size="35"></u-icon>
+		</view>
 		<!-- 地址显示 -->
 		<view class="show-bar flex-row flex-jst-btw flex-ali-center pa-col-md">
 			<view class="flex-row flex-jst-start flex-ali-center text-primary">
@@ -15,7 +22,7 @@
 		</view>
 		<!-- 地址列表 -->
 		<view :class="langFlex" class="full-width text-12 text-grey ma-col-md">{{$t('train.stationTit')}}</view>
-		<add-list @chooseHandler="setChoose" :choose="current"></add-list>
+		<add-list @chooseHandler="setChoose" :choose="current" :search="search_key"></add-list>
 		<view class="full-width flex-row flex-jst-center flex-ali-center">
 			<view class="width-80 flex-row flex-jst-center pa-col-md">
 				<button type="default" class="my-btn-primary text-white text-14" @click="subStation">{{$t('basic.ok')}}</button>
@@ -71,6 +78,12 @@
 			this.checkSysLocation()
 		},
 		methods: {
+			changeSearch (val) {
+				const vm = this
+				vm.$u.debounce(() => {
+					vm.search_key = val
+				}, 500)
+			},
 			subStation () { // 向父组件传递站点
 				const obj = {
 					station: this.current,
@@ -133,6 +146,15 @@
 	.ads-container {
 		width: 100%;
 		padding: 10px 10px 0 10px;
+		.search-container{
+			width: 90%;
+			margin: 10px auto;
+			background: #f3f3f3;
+			height: 48px;
+			border-radius: 24px;
+			padding: 5px 24px;
+			box-sizing: border-box;
+		}
 		.show-bar{
 			border-top: 1px solid #CCCCCC;
 			border-bottom: 1px solid #CCCCCC;
