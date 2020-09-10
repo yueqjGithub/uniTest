@@ -140,7 +140,10 @@ export default {
 		calendar: 'كالىندار',
 		searchPlaceholder: 'كىرگۈزۈڭ ئورنى',
 		many: 'بار',
-		no: 'يوق'
+		no: 'يوق',
+		trapInfo: 'پويىز بېلىتى ئۇچۇرى',
+		chooseSeat: 'بېلەت تاللاش تۈرى',
+		choose: 'تاللاش'
 	},
 	air: {
 		pageName: 'ئايروپىلان بېلىتى'

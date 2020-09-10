@@ -110,6 +110,12 @@
 				"navigationStyle": "custom",
 				"backgroundColor": "#F3F3F3"
 			}
+		},{
+			"path": "seats/seats", // 座位选择
+			"style": {
+				"navigationBarTitleText": "车票信息",
+				"backgroundColor": "#23AF8C"
+			}
 		}]
 	}],
 	"globalStyle": {

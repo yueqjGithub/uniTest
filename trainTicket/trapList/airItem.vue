@@ -1,5 +1,5 @@
 <template>
-	<view class="train-item full-width border-box" @click="toChooseSeat">
+	<view class="train-item full-width border-box">
 		<!-- top -->
 		<view class="full-width flex-jst-btw flex-ali-start" :class="langFlex">
 			<view class="ads flex-column flex-jst-start flex-ali-end flex-3">
@@ -48,23 +48,11 @@
 </template>
 
 <script>
-	import { mapState, mapMutations } from 'vuex'
+	import { mapState } from 'vuex'
 	import dayjs from 'dayjs'
 	export default {
 		name: 'trainItem',
-		props: {
-			train: {
-				type: Object,
-				default: () => {
-					return {}
-				}
-			},
-			date: {
-				default: () => {
-					return {}
-				}
-			}
-		},
+		props: ['train'],
 		data () {
 			return {}
 		},
@@ -84,20 +72,7 @@
 				return result
 			}
 		},
-		methods: {
-			...mapMutations(['setCurTrap']),
-			toChooseSeat () {
-				const vm = this
-				const obj = {
-					date: vm.date,
-					trap: vm.train
-				}
-				this.setCurTrap(obj)
-				uni.navigateTo({
-					url: '/trainTicket/seats/seats'
-				})
-			}
-		}
+		methods: {}
 	}
 </script>
 
@@ -110,7 +85,7 @@
 		.my-gap{
 			width: 100%;
 			height: 1px;
-			background: #dddddd;
+			background: #CCCCCC;
 		}
 		.ads{
 			.trap-num{

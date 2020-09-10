@@ -136,7 +136,7 @@
 	.cus-scroll-content{
 		height: 50vh;
 		.address-item{
-			border-bottom: 1px solid #CCCCCC;
+			border-bottom: 1px solid #dddddd;
 		}
 	}
 </style>

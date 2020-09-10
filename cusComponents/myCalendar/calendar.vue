@@ -3,7 +3,7 @@
 		<view class="calendar-name text-18 text-center">{{name}}</view>
 		<view class="title-show flex-row flex-jst-btw flex-ali-center ma-col-md">
 			<button type="default" class="plain-btn" @click="reduceMonth">
-				<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="34" class="text-light-grey"></u-icon>
+				<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="34" class="text-grey-1"></u-icon>
 			</button>
 			<view class="text-18 text-bold text-primary">
 				<text>{{year}}</text>
@@ -11,7 +11,7 @@
 				<text>{{month > 9 ? month : `0${month}`}}</text>
 			</view>
 			<button type="default" class="plain-btn" @click="addMonth">
-				<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="34" class="text-light-grey trans-icon"></u-icon>
+				<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="34" class="text-grey-1 trans-icon"></u-icon>
 			</button>
 		</view>
 		<view class="week-show flex-row flex-nowrap flex-jst-btw flex-ali-center">

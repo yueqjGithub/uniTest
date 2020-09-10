@@ -46,7 +46,8 @@
 		<!-- body -->
 		<scroll-view :scroll-y="true" class="pa-md border-box list-container">
 			<view class="ticket-item full-width" v-for="(item, idx) in resultList" :key="idx">
-				<train-item v-if="searchType === 0" :train="item"></train-item>
+				<train-item v-if="searchType === 0" :train="item" :date="dateList[curDate]"></train-item>
+				<train-item v-if="searchType === 1" :train="item" :date="dateList[curDate]"></train-item>
 			</view>
 		</scroll-view>
 		<!-- LOADING -->
@@ -65,10 +66,12 @@
 	import { mapState, mapActions } from 'vuex'
 	import urls from '@/service/urls.js'
 	import trainItem from './trainItem.vue'
+	import airItem from './airItem.vue'
 	export default {
 		name: 'trapList',
 		components: {
-			trainItem
+			trainItem,
+			airItem
 		},
 		data () {
 			return {

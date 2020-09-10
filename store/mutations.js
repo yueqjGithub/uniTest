@@ -24,3 +24,7 @@ export const setCurOrderNum = (state, payload) => { // 设置当前查看物流�
 export const setCurrentTrapOptions = (state, payload) => {
 	state.trapSetting = payload
 }
+
+export const setCurTrap = (state, payload) => { // 设置当前选座的车次
+	state.curTrap = payload
+}

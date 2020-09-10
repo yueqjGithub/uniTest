@@ -140,7 +140,10 @@ export default {
 		calendar: '日历',
 		searchPlaceholder: '请输入地点',
 		many: '有',
-		no: '无'
+		no: '无',
+		trapInfo: '车票信息',
+		chooseSeat: '请选择票务类型',
+		choose: '选择'
 	},
 	air: {
 		pageName: '飞机票'
