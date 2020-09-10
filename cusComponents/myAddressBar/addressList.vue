@@ -28,7 +28,7 @@
 	import { mapState } from 'vuex'
 	export default {
 		name: 'orderShow',
-		props: ['choose', 'search'],
+		props: ['choose', 'search', 'type'],
 		components: {
 		},
 		data () {
@@ -48,7 +48,10 @@
 			}
 		},
 		computed: {
-			...mapState(['lang'])
+			...mapState(['lang']),
+			requestUrl () {
+				return this.type === 1 ? urls.queryAirStation : urls.queryTrainStop
+			}
 		},
 		watch: {
 			search (val) {
@@ -79,14 +82,14 @@
 					lang: vm.lang === 'zh-CN' ? 0 : 1
 				}
 				vm.loading = true
-				vm.$post(urls.queryTrainStop, obj).then(res => {
-					console.log(res)
-					const len = res.data.data.length
+				vm.$post(vm.requestUrl, obj).then(res => {
+					const len = vm.type === 1 ? res.data.length : res.data.data.length
+					const dataList = vm.type === 1 ? res.data : res.data.data
 					if (len === vm.pageSize) { // 首次请求数量填满一页
-						vm.list = [...vm.list, ...res.data.data]
+						vm.list = [...vm.list, ...dataList]
 						vm.page++
 					} else if (len > 0 && len < vm.pageSize) { // 有数据，但不足一页
-						vm.list = [...vm.list, ...res.data.data]
+						vm.list = [...vm.list, ...dataList]
 						vm.final = true
 						vm.status = 'nomore'
 					} else {
@@ -107,14 +110,15 @@
 						search_key: vm.search_key,
 						lang: vm.lang === 'zh-CN' ? 0 : 1
 					}
-					vm.$post(urls.queryTrainStop, obj).then(res => {
-						const len = res.data.data.length
+					vm.$post(vm.requestUrl, obj).then(res => {
+						const len = vm.type === 1 ? res.data.length : res.data.data.length
+						const dataList = vm.type === 1 ? res.data : res.data.data
 						if (len === vm.pageSize) { // 首次请求数量填满一页
-							vm.list = [...vm.list, ...res.data.data]
+							vm.list = [...vm.list, ...dataList]
 							vm.page++
 							vm.loading = false
 						} else if (len > 0 && len < vm.pageSize) { // 有数据，但不足一页
-							vm.list = [...vm.list, ...res.data.data]
+							vm.list = [...vm.list, ...dataList]
 							vm.final = true
 							vm.status = 'nomore'
 						} else {

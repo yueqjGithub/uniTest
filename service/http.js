@@ -41,7 +41,7 @@ fly.interceptors.request.use(request => {
 fly.interceptors.response.use(response => {
 	const status = response.status
 	if (status >= 200 && status < 300) {
-		if (response.data.code === 300) {
+		if (response.data.code === 40024 || response.data.code === 40023) {
 			uni.navigateTo({
 				url: '/pages/login/login',
 				fail(reason) {

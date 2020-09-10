@@ -22,7 +22,7 @@
 		</view>
 		<!-- 地址列表 -->
 		<view :class="langFlex" class="full-width text-12 text-grey ma-col-md">{{$t('train.stationTit')}}</view>
-		<add-list @chooseHandler="setChoose" :choose="current" :search="search_key"></add-list>
+		<add-list @chooseHandler="setChoose" :choose="current" :search="search_key" :type="type"></add-list>
 		<view class="full-width flex-row flex-jst-center flex-ali-center">
 			<view class="width-80 flex-row flex-jst-center pa-col-md">
 				<button type="default" class="my-btn-primary text-white text-14" @click="subStation">{{$t('basic.ok')}}</button>
@@ -43,7 +43,7 @@
 		components: {
 			addList
 		},
-		props: ['target'], // 根据target决定是更新起始位置还是结束位置
+		props: ['target', 'type'], // 根据target决定是更新起始位置还是结束位置
 		data() {
 			return {
 				show: false,

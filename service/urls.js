@@ -4,7 +4,7 @@ const urls = {
 	'/v1/api/shop/pretreatment', '/v1/api/shippingaddress/edit', '/v1/api/shop/orderlist', '/v1/api/user/shopcollect',
 	'/v1/api/user/info', '/v1/api/vip/opening', '/v1/api/shop/delivery', '/v1/api/cecharge/attribution', '/v1/api/telephone/denomination',
 	'/v1/api/cecharge/balance', '/v1/api/telephone/commit', '/v1/api/telephone/order',
-	'/v1/api/train/station', '/v1/api/train/find', '/v1/api/ticket/find'
+	'/v1/api/train/station', '/v1/api/train/find', '/v1/api/ticket/find', '/v1/api/ticket/station'
 	], // 需要加密的接口2
 	baseUrl: 'https://shopapi.apiself.com',
 	// basic
@@ -41,6 +41,7 @@ const urls = {
 	queryTrainList: '/v1/api/train/find', // 火车票查询2
 	// 机票
 	queryAirList: '/v1/api/ticket/find', // 航班查询2
+	queryAirStation: '/v1/api/ticket/station', // 航站查询2
 	// 订单公共页
 	phoneOrderType: '/v1/api/telephone/ordercate', // 获取话费充值订单类型
 	phoneOrderList: '/v1/api/telephone/order' // 话费订单列表2

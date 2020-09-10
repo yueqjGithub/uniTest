@@ -18,7 +18,7 @@
 					<text class="text-14 flex-1" :class="lang==='zh-CN' ? 'text-left' : 'text-right'">
 						{{lang==="zh-CN"?train.start_station_name_cn:train.start_station_name}}
 					</text>
-					<view class="flex-1">{{trapTime}}</view>
+					<view class="flex-1 text-center text-grey">{{trapTime}}</view>
 					<text class="text-14 flex-1" :class="lang==='zh-CN' ? 'text-right' : 'text-left'">
 						{{lang==="zh-CN"?train.end_station_name_cn:train.end_station_name}}
 					</text>
@@ -33,6 +33,17 @@
 		</view>
 		<!-- gap -->
 		<view class="ma-col-md my-gap"></view>
+		<!-- bottom -->
+		<view class="seat-container full-width">
+			<scroll-view scroll-x="true" class="seat-list">
+				<view class="seat-item pa-sm ma-row-sm text-12 flex-column flex-jst-center flex-ali-center" v-for="(item, idx) in train.seats" :key="idx">
+					<view v-if="item.inventory > 0 && item.inventory <= 10" class="text-primary text-center">{{item.inventory}}</view>
+					<view v-if="item.inventory > 10" class="text-center">{{$t('train.many')}}</view>
+					<view v-if="item.inventory === 0" class="text-center">{{$t('train.no')}}</view>
+					<view class="text-grey text-center">{{lang==="zh-CN"?item.seatName.name_cn:item.seatName.name}}</view>
+				</view>
+			</scroll-view>
+		</view>
 	</view>
 </template>
 
@@ -52,8 +63,13 @@
 			},
 			trapTime () {
 				const vm = this
-				const str = `HH${vm._i18n[vm.lang].messages.basic.hour}mm${vm._i18n[vm.lang].messages.basic.minute}`
-				return dayjs(vm.train.run_time).format(str)
+				// const str = `HH${vm._i18n[vm.lang].messages.basic.hour}mm${vm._i18n[vm.lang].messages.basic.minute}`
+				// return dayjs(vm.train.run_time).format(str)
+				const arr = vm.train.run_time.split(':')
+				const hour = vm._i18n.messages[vm.lang].basic.hour
+				const min = vm._i18n.messages[vm.lang].basic.minute
+				const result = vm.lang === 'zh-CN' ? `${arr[0]}${hour}${arr[1]}${min}` : `${min}${arr[1]}${hour}${arr[0]}`
+				return result
 			}
 		},
 		methods: {}
@@ -89,6 +105,15 @@
 						left: 2px;
 						transform: rotate(45deg);
 					}
+				}
+			}
+		}
+		.seat-container{
+			.seat-list{
+				white-space: nowrap;
+				.seat-item{
+					display: inline-block;
+					box-sizing: border-box;
 				}
 			}
 		}

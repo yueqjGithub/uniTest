@@ -138,7 +138,9 @@ export default {
 		noEnd: '请选择目的站',
 		noTime: '请选择出行时间',
 		calendar: '日历',
-		searchPlaceholder: '请输入地点'
+		searchPlaceholder: '请输入地点',
+		many: '有',
+		no: '无'
 	},
 	air: {
 		pageName: '飞机票'

@@ -149,6 +149,7 @@
 				this.curDate = dayjs(vm.trapSetting.date).diff(start, 'day') + 1
 				this.intoindex = `item${this.curDate}` // 设置滚动到
 				this.searchType =  getCurrentPages()[getCurrentPages().length - 1].options.searchType || 0 // 设置是飞机票还是火车票查询
+				this.searchType = Number(this.searchType)
 				this.searchInfo()
 			},
 			async searchInfo () { // 查询
@@ -258,7 +259,7 @@
 			}
 		}
 		.list-container{
-			height: calc(100vh - 315rpx);
+			height: calc(91vh - 360rpx);
 		}
 		.date-container{
 			.date-item{

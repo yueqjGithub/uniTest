@@ -138,7 +138,9 @@ export default {
 		noEnd: ' تاللاش مەقسىتى پونكىتى',
 		noTime: 'تاللاش سەپەرگە چىقىش ۋاقتى',
 		calendar: 'كالىندار',
-		searchPlaceholder: 'كىرگۈزۈڭ ئورنى'
+		searchPlaceholder: 'كىرگۈزۈڭ ئورنى',
+		many: 'بار',
+		no: 'يوق'
 	},
 	air: {
 		pageName: 'ئايروپىلان بېلىتى'
