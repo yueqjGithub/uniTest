@@ -143,7 +143,8 @@ export default {
 		no: 'يوق',
 		trapInfo: 'پويىز بېلىتى ئۇچۇرى',
 		chooseSeat: 'بېلەت تاللاش تۈرى',
-		choose: 'تاللاش'
+		choose: 'تاللاش',
+		ticketPageName: 'بېلەت ئۇچۇرى'
 	},
 	air: {
 		pageName: 'ئايروپىلان بېلىتى'

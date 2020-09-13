@@ -39,10 +39,15 @@
 			<view v-for="(item, idx) in curTrap.trap.seats" :key="idx" class="seat-item pa-col-md flex-jst-btw flex-ali-center"
 			 :class="langFlex">
 				<text class="flex-1 text-14" :class="lang==='zh-CN'?'text-left':'text-right'">{{lang==='zh-CN'?item.seatName.name_cn:item.seatName.name}}</text>
-				<text class="flex-1 text-14 text-center" :class="item.inventory === 0 ? 'text-cus-error':'text-grey'">{{item.inventory === 0 ? $t('train.no'):$t('train.many')}}</text>
+				<!-- <text class="flex-1 text-14 text-center" :class="item.inventory === 0 ? 'text-cus-error':'text-grey'">{{item.inventory === 0 ? $t('train.no'):$t('train.many')}}</text> -->
+				<view class="flex-1 text-14 text-center">
+					<view v-if="item.inventory > 0 && item.inventory <= 50" class="text-primary text-center">{{item.inventory}}</view>
+					<view v-if="item.inventory > 50" class="text-center text-grey">{{$t('train.many')}}</view> 
+					<view v-if="item.inventory === 0" class="text-center text-cus-error">{{$t('train.no')}}</view>
+				</view>
 				<text class="flex-1 text-16 text-bold text-primary text-center">￥{{item.price}}</text>
 				<view class="flex-1 flex-row" :class="lang!=='zh-CN'?'flex-jst-start':'flex-jst-end'">
-					<button type="default" class="btn-cus btn-could text-white text-12" v-if="item.inventory !== 0">{{$t('train.choose')}}</button>
+					<button type="default" class="btn-cus btn-could text-white text-12" v-if="item.inventory !== 0" @click="toPage(item)">{{$t('train.choose')}}</button>
 					<button type="default" class="btn-cus btn-not text-grey text-12" v-else :disabled="true">{{$t('train.choose')}}</button>
 				</view>
 			</view>
@@ -52,7 +57,8 @@
 
 <script>
 	import {
-		mapState
+		mapState,
+		mapMutations
 	} from 'vuex'
 	export default {
 		name: 'seats',
@@ -89,10 +95,10 @@
 			},
 		},
 		onShow() {
-			console.log(this.curTrap)
 			this.setPageName()
 		},
 		methods: {
+			...mapMutations(['setCurSeat']),
 			setPageName() {
 				const vm = this
 				if (vm.lang !== 'zh-CN') {
@@ -100,6 +106,12 @@
 						title: vm._i18n.messages[vm.lang].train.trapInfo
 					})
 				}
+			},
+			toPage (seat) {
+				this.setCurSeat(seat)
+				uni.navigateTo({
+					url: '/trainTicket/trainBuy/trainBuy'
+				})
 			}
 		}
 	}

@@ -142,8 +142,9 @@ export default {
 		many: '有',
 		no: '无',
 		trapInfo: '车票信息',
-		chooseSeat: '请选择票务类型',
-		choose: '选择'
+		chooseSeat: '请选择座位类型',
+		choose: '选择',
+		ticketPageName: '票证信息'
 	},
 	air: {
 		pageName: '飞机票'

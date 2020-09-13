@@ -8,5 +8,6 @@ export default {
 	curAddress: '', // 当前处于编辑状态的收货地址
 	curOrderNumber: '', // 当前查看物流信息的订单号
 	trapSetting: '', // 查询火车票或机票时的参数存放
-	curTrap: '' // 当前选择的班次信息
+	curTrap: '', // 当前选择的班次信息
+	curSeat: '' // 当前选择的座位
 }

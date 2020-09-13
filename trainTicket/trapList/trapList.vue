@@ -47,7 +47,7 @@
 		<scroll-view :scroll-y="true" class="pa-md border-box list-container">
 			<view class="ticket-item full-width" v-for="(item, idx) in resultList" :key="idx">
 				<train-item v-if="searchType === 0" :train="item" :date="dateList[curDate]"></train-item>
-				<train-item v-if="searchType === 1" :train="item" :date="dateList[curDate]"></train-item>
+				<air-item v-if="searchType === 1" :train="item" :date="dateList[curDate]"></air-item>
 			</view>
 		</scroll-view>
 		<!-- LOADING -->
@@ -119,8 +119,15 @@
 			},
 			changeSearchType (type) { // 变更查询类型
 				if (this.searchType !== type) {
-					this.searchType = type
-					this.searchInfo()
+					if (type === 0) {
+						uni.reLaunch({
+							url: '/trainTicket/index/index'
+						})
+					} else {
+						uni.reLaunch({
+							url: '/trainTicket/airIndex/airIndex'
+						})
+					}
 				}
 			},
 			changeDate (idx) { // 改变当前所选日期的idx

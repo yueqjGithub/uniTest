@@ -4,17 +4,19 @@
 		<view class="full-width flex-jst-btw flex-ali-start" :class="langFlex">
 			<view class="ads flex-column flex-jst-start flex-ali-end flex-3">
 				<!-- ads第一排 -->
-				<view class="full-width flex-row flex-jst-btw flex-ali-end">
-					<text class="text-18 text-bold flex-1" :class="lang==='zh-CN' ? 'text-left' : 'text-right'">{{train.start_time}}</text>
-					<view class="flex-1 text-14 text-primary trap-num text-center pa-col-sm border-box">
-						<view class="cus-icon" :class="lang==='zh-CN' ? 'throw-right' : 'throw-left'"></view>
-						<text>{{train.train_num}}</text>
+				<view class="full-width flex-jst-btw flex-ali-end" :class="langFlex">
+					<text class="text-16 text-bold flex-1" :class="lang==='zh-CN' ? 'text-left' : 'text-right'">{{train.start_time}}</text>
+					<view class="flex-1 text-14 text-primary trap-num text-center pa-col-sm border-box flex-row flex-jst-center">
+						<view class="throw-container width-80">
+							<view class="cus-icon" :class="lang==='zh-CN' ? 'throw-right' : 'throw-left'"></view>
+							<text>{{train.train_num}}</text>
+						</view>
 					</view>
-					<text class="text-18 text-bold flex-1" :class="lang==='zh-CN' ? 'text-right' : 'text-left'">{{train.end_time}}</text>
+					<text class="text-16 text-bold flex-1" :class="lang==='zh-CN' ? 'text-right' : 'text-left'">{{endTime}}</text>
 					<!-- <text class="text-14">{{lang === 'zh-CN' ? train.start_station_name_cn : train.start_station_name}}</text> -->
 				</view>
 				<!-- ads第二排 -->
-				<view class="full-width flex-row flex-jst-btw flex-ali-center ma-top-5">
+				<view class="full-width flex-jst-btw flex-ali-center ma-top-5" :class="langFlex">
 					<text class="text-14 flex-1" :class="lang==='zh-CN' ? 'text-left' : 'text-right'">
 						{{lang==="zh-CN"?train.start_station_name_cn:train.start_station_name}}
 					</text>
@@ -37,8 +39,8 @@
 		<view class="seat-container full-width">
 			<scroll-view scroll-x="true" class="seat-list">
 				<view class="seat-item pa-sm ma-row-sm text-12 flex-column flex-jst-center flex-ali-center" v-for="(item, idx) in train.seats" :key="idx">
-					<view v-if="item.inventory > 0 && item.inventory <= 10" class="text-primary text-center">{{item.inventory}}</view>
-					<view v-if="item.inventory > 10" class="text-center">{{$t('train.many')}}</view>
+					<view v-if="item.inventory > 0 && item.inventory <= 50" class="text-primary text-center">{{item.inventory}}</view>
+					<view v-if="item.inventory > 50" class="text-center">{{$t('train.many')}}</view>
 					<view v-if="item.inventory === 0" class="text-center">{{$t('train.no')}}</view>
 					<view class="text-grey text-center">{{lang==="zh-CN"?item.seatName.name_cn:item.seatName.name}}</view>
 				</view>
@@ -82,10 +84,22 @@
 				const min = vm._i18n.messages[vm.lang].basic.minute
 				const result = vm.lang === 'zh-CN' ? `${arr[0]}${hour}${arr[1]}${min}` : `${min}${arr[1]}${hour}${arr[0]}`
 				return result
+			},
+			endTime () {
+				const vm = this
+				const diff = vm.runTimeToMinute(vm.train.start_time, vm.train.run_time)
+				const through = diff > 0 ? `(+${diff})` : ''
+				
+				return `${vm.train.end_time}${through}`
 			}
 		},
 		methods: {
 			...mapMutations(['setCurTrap']),
+			runTimeToMinute (start, run) {
+				const arr1 = start.split(':')
+				const arr2 = run.split(':')
+				return parseInt((Number(arr1[0]) + Number(arr2[0])) / 24)
+			},
 			toChooseSeat () {
 				const vm = this
 				const obj = {
@@ -114,21 +128,23 @@
 		}
 		.ads{
 			.trap-num{
-				position: relative;
-				border-bottom: 2px solid $uni-color-primary;
-				.cus-icon{
-					width: 2px;
-					height: 8px;
-					background: $uni-color-primary;
-					position: absolute;
-					bottom: -2px;
-					&.throw-right{
-						right: 2px;
-						transform: rotate(-45deg);
-					}
-					&.throw-left{
-						left: 2px;
-						transform: rotate(45deg);
+				.throw-container{
+					position: relative;
+					border-bottom: 2px solid $uni-color-primary;
+					.cus-icon{
+						width: 2px;
+						height: 8px;
+						background: $uni-color-primary;
+						position: absolute;
+						bottom: -2px;
+						&.throw-right{
+							right: 2px;
+							transform: rotate(-45deg);
+						}
+						&.throw-left{
+							left: 2px;
+							transform: rotate(45deg);
+						}
 					}
 				}
 			}

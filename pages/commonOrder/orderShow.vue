@@ -101,5 +101,8 @@
 	}
 </script>
 
-<style>
+<style lang="scss" scoped>
+	.order-item + .order-item {
+		margin-top: 6px;
+	}
 </style>
