@@ -3,8 +3,8 @@ const urls = {
 	md5List: ['/v1/api/public/login', '/v1/api/shop/details', '/v1/api/shop/collect', '/v1/api/shop/buy',
 	'/v1/api/shop/pretreatment', '/v1/api/shippingaddress/edit', '/v1/api/shop/orderlist', '/v1/api/user/shopcollect',
 	'/v1/api/user/info', '/v1/api/vip/opening', '/v1/api/shop/delivery', '/v1/api/cecharge/attribution', '/v1/api/telephone/denomination',
-	'/v1/api/cecharge/balance', '/v1/api/telephone/commit', '/v1/api/telephone/order',
-	'/v1/api/train/station', '/v1/api/train/find', '/v1/api/ticket/find', '/v1/api/ticket/station'
+	'/v1/api/cecharge/balance', '/v1/api/telephone/commit', '/v1/api/telephone/order', '/v1/api/public/delpis',
+	'/v1/api/train/station', '/v1/api/train/find', '/v1/api/ticket/find', '/v1/api/ticket/station', '/v1/api/public/gitpis', '/v1/api/public/pis'
 	], // 需要加密的接口2
 	baseUrl: 'https://shopapi.apiself.com',
 	// basic
@@ -42,6 +42,11 @@ const urls = {
 	// 机票
 	queryAirList: '/v1/api/ticket/find', // 航班查询2
 	queryAirStation: '/v1/api/ticket/station', // 航站查询2
+	// 联系人模块
+	queryContact: '/v1/api/public/gitpis', // 获取乘客2
+	uploadIdcard: '/v1/api/upload/image', // 身份证上传识别
+	saveContact: '/v1/api/public/pis', // 保存联系人2
+	delContact: '/v1/api/public/delpis', // 删除联系人2
 	// 订单公共页
 	phoneOrderType: '/v1/api/telephone/ordercate', // 获取话费充值订单类型
 	phoneOrderList: '/v1/api/telephone/order' // 话费订单列表2

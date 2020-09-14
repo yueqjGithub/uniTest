@@ -33,24 +33,32 @@
 				</view>
 			</view>
 			<!-- 价格显示 -->
-			<view class="ticket-price pa-row-lg border-box flex-column flex-jst-center flex-ali-center">
+			<view class="ticket-price pa-row-lg ma-col-md border-box flex-column flex-jst-center flex-ali-center">
 				<text class="text-24 text-primary text-bold">￥{{curSeat.price}}</text>
 				<text class="text-grey-1 text-14 pa-col-sm">{{lang === 'zh-CN' ? curSeat.seatName.name_cn : curSeat.seatName.name}}</text>
 			</view>
 			<!-- 乘车人 -->
-			<view class="ticket-person pa-md border-box"></view>
+			<view class="ticket-person pa-lg border-box">
+				<my-contact v-if="showPassenger"></my-contact>
+			</view>
 		</view>
 	</view>
 </template>
 
 <script>
 	import {
-		mapState
+		mapState 
 	} from 'vuex'
+	import myContact from '../../cusComponents/contact/contact.vue'
 	export default {
 		name: 'trainBuy',
+		components: {
+			myContact
+		},
 		data() {
-			return {}
+			return {
+				showPassenger: false
+			}
 		},
 		computed: {
 			...mapState(['lang', 'curSeat', 'curTrap']),
@@ -74,12 +82,25 @@
 				const vm = this
 				const diff = vm.runTimeToMinute(vm.curTrap.trap.start_time, vm.curTrap.trap.run_time)
 				const through = diff > 0 ? `(+${diff})` : ''
-				
 				return `${vm.curTrap.trap.end_time}${through}`
+			},
+			trapTime () {
+				const vm = this
+				// const str = `HH${vm._i18n[vm.lang].messages.basic.hour}mm${vm._i18n[vm.lang].messages.basic.minute}`
+				// return dayjs(vm.train.run_time).format(str)
+				const arr = vm.curTrap.trap.run_time.split(':')
+				const hour = vm._i18n.messages[vm.lang].basic.hour
+				const min = vm._i18n.messages[vm.lang].basic.minute
+				const result = vm.lang === 'zh-CN' ? `${arr[0]}${hour}${arr[1]}${min}` : `${min}${arr[1]}${hour}${arr[0]}`
+				return result
 			}
 		},
 		onShow() {
 			this.setPageName()
+			this.showPassenger = true
+		},
+		onHide () {
+			this.showPassenger = false
 		},
 		methods: {
 			runTimeToMinute (start, run) {
@@ -156,7 +177,9 @@
 				}
 			}
 			.ticket-price{
-				border-bottom: 1px dashed #D0D0D0;
+			}
+			.ticket-person{
+				border-top: 1px dashed #D0D0D0;
 			}
 		}
 	}

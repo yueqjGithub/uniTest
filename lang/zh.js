@@ -148,5 +148,16 @@ export default {
 	},
 	air: {
 		pageName: '飞机票'
+	},
+	contact: { // 联系人模块
+		titTip: '旅客信息',
+		idCardTips: '请上传身份证正面照',
+		uploadFail: '上传失败，请选择手动输入',
+		cardNumberTips: '请输入身份证号',
+		nameTips: '请输入姓名',
+		birthTips: '请输入生日',
+		expireTip: '请输入身份证有效日期',
+		tip1: '因旅客身份信息输入错误,概不负责',
+		tip2: '儿童票是指2岁到12岁的儿童,不含12岁儿童,婴儿票是指2个月至2岁的儿童。'
 	}
 }

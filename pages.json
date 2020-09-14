@@ -122,6 +122,12 @@
 				"navigationBarTitleText": "票证信息",
 				"backgroundColor": "#23AF8C"
 			}
+		},{
+			"path": "passenger/passenger", // 乘客信息
+			"style": {
+				"navigationBarTitleText": "旅客信息",
+				"backgroundColor": "#23AF8C"
+			}
 		}]
 	}],
 	"globalStyle": {
@@ -142,7 +148,7 @@
 			},
 			{
 				"name": "devlope",
-				"path": "trainTicket/airIndex/airIndex",
+				"path": "trainTicket/passenger/passenger",
 				"query": ""
 			}
 		]
