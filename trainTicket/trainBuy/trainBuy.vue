@@ -263,9 +263,8 @@
 					// 开启定时
 					vm.skTimeout = setTimeout(() => {
 						if (!vm.commitSuccess) { // 没有收到返回
-							console.log('socket未接收到消息')
 							uni.closeSocket({
-								code: 1001,
+								code: 3001,
 								reason: '未接收到服务器返回超时关闭'
 							}) // 超时，关闭socket
 						}
@@ -287,12 +286,13 @@
 				vm.btnLoading = false
 				clearTimeout(vm.skTimeout) // 收到消息，清除定时器
 				uni.closeSocket({
-					code: 1002,
+					code: 3002,
 					reason: '收到消息，正常关闭'
 				})
 			},
 			skCloase (msg) {
 				const vm = this
+				vm.skOpen = false
 				vm.btnLoading = false
 				vm.commitSuccess = false
 				clearTimeout(this.skTimeout) // 清除定时器
