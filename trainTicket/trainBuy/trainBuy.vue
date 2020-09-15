@@ -39,7 +39,22 @@
 			</view>
 			<!-- 乘车人 -->
 			<view class="ticket-person pa-lg border-box">
-				<my-contact v-if="showPassenger"></my-contact>
+				<my-contact v-if="showPassenger" :commitSymbol="passengerControl" @commit="getPis"></my-contact>
+			</view>
+		</view>
+		<!-- 联系人 -->
+		<view :class="langFlex" class="bg-white ticket-contact flex-jst-start flex-ali-center pa-md border-box" @click="toContact">
+			<u-icon custom-prefix="iconfont" name="weibiaoti--6" size="40" class="text-primary"></u-icon>
+			<text>{{contact.name}}</text>
+		</view>
+		<view :class="langFlex" class="bg-white ticket-contact flex-jst-start flex-ali-center pa-md border-box" @click="toContact">
+			<u-icon custom-prefix="iconfont" name="shouji1" size="40" class="text-primary"></u-icon>
+			<text>{{contact.mobile}}</text>
+		</view>
+		<!-- 提交按钮 -->
+		<view class="btn-container flex-row flex-jst-center flex-ali-center pa-md border-box full-width">
+			<view class="flex-row flex-jst-center flex-ali-center width-80">
+				<button type="default" class="my-btn-primary text-white text-14" @click="subOrder" :loading="btnLoading" :disabled="btnLoading">{{$t('basic.submit')}}</button>
 			</view>
 		</view>
 	</view>
@@ -47,9 +62,12 @@
 
 <script>
 	import {
-		mapState 
+		mapState,
+		mapActions
 	} from 'vuex'
+	import urls from '@/service/urls.js'
 	import myContact from '../../cusComponents/contact/contact.vue'
+	import dayjs from 'dayjs'
 	export default {
 		name: 'trainBuy',
 		components: {
@@ -57,17 +75,28 @@
 		},
 		data() {
 			return {
-				showPassenger: false
+				showPassenger: false,
+				passengerControl: true, // 点击提交时变更此值，控制contact组件提交乘客编号
+				btnLoading: false,
+				contact: {
+					mobile: '',
+					name: '',
+					pis_number: '' // 乘客编号
+				},
+				mySk: '',
+				skOpen: false,
+				commitSuccess: false, // 是否接收到socket成功返回
+				skTimeout: '' // open后开启定时，超时后关闭socket
 			}
 		},
 		computed: {
 			...mapState(['lang', 'curSeat', 'curTrap']),
-			langFlex () {
+			langFlex() {
 				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'
 			},
 			date() {
 				const date = this.curTrap.date
-				return `${date.year}-${date.month}-${date.date}`
+				return dayjs(`${date.year}-${date.month}-${date.date}`).format('YYYY-MM-DD')
 			},
 			week() {
 				const vm = this
@@ -78,13 +107,13 @@
 				})
 				return result[vm.curTrap.date.week]
 			},
-			endTime () {
+			endTime() {
 				const vm = this
-				const diff = vm.runTimeToMinute(vm.curTrap.trap.start_time, vm.curTrap.trap.run_time)
+				const diff = vm.curTrap.trap.takeDays
 				const through = diff > 0 ? `(+${diff})` : ''
 				return `${vm.curTrap.trap.end_time}${through}`
 			},
-			trapTime () {
+			trapTime() {
 				const vm = this
 				// const str = `HH${vm._i18n[vm.lang].messages.basic.hour}mm${vm._i18n[vm.lang].messages.basic.minute}`
 				// return dayjs(vm.train.run_time).format(str)
@@ -97,16 +126,22 @@
 		},
 		onShow() {
 			this.setPageName()
+			this.queryInfo()
 			this.showPassenger = true
 		},
-		onHide () {
+		onHide() {
 			this.showPassenger = false
+			this.skTimeout = ''
 		},
 		methods: {
-			runTimeToMinute (start, run) {
-				const arr1 = start.split(':')
-				const arr2 = run.split(':')
-				return parseInt((Number(arr1[0]) + Number(arr2[0])) / 24)
+			...mapActions(['checkLogin']),
+			getPis(target) {
+				this.contact.pis_number = target
+			},
+			toContact() {
+				uni.navigateTo({
+					url: '/pages/memberAddress/memberAddress'
+				})
 			},
 			setPageName() {
 				const vm = this
@@ -115,6 +150,153 @@
 						title: vm._i18n.messages[vm.lang].train.ticketPageName
 					})
 				}
+			},
+			async queryInfo() {
+				const vm = this
+				const token = await uni.getStorageSync('token')
+				const obj = {
+					token: token
+				}
+				uni.showLoading({
+					title: ''
+				});
+				vm.$post(urls.getAddressList, obj).then(res => {
+					if (res.success) {
+						if (res.data.address) {
+							this.contact.name = res.data.addressee // 姓名
+							this.contact.mobile = res.data.mobile
+						}
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: res.message
+						})
+					}
+					uni.hideLoading()
+				})
+			},
+			async subOrder() {
+				const vm = this
+				vm.passengerControl = !vm.passengerControl
+				const token = await vm.checkLogin()
+				if (token) {
+					const obj = {
+						token: token,
+						pis_number: vm.contact.pis_number,
+						mobile: vm.contact.mobile,
+						attention: vm.contact.name,
+						start_station_name: vm.curTrap.trap.start_station_name_cn,
+						end_station_name: vm.curTrap.trap.end_station_name_cn,
+						end_time: vm.curTrap.trap.end_time,
+						startdate: vm.date,
+						start_time: vm.curTrap.trap.start_time,
+						seatName: vm.curSeat.seatName.name_cn,
+						price: vm.curSeat.price,
+						takeDays: vm.curTrap.trap.takeDays,
+						run_time: vm.curTrap.trap.run_time,
+						train_num: vm.curTrap.trap.train_num,
+						trainType: vm.curTrap.trap.trainType,
+						endStation: vm.curTrap.trap.endStation,
+						startStation: vm.curTrap.trap.startStation
+					}
+					// 验证数据完整性
+					for (let k in obj) {
+						if (obj[k] === '') {
+							uni.showToast({
+								icon: 'none',
+								title: vm._i18n.message[vm.lang].train.buyTip
+							})
+							return false
+						}
+					}
+					// 执行提交
+					vm.btnLoading = true
+					vm.$post(urls.commitTrainOrder, obj).then(res => {
+						const socketInfo = {
+							token: token,
+							order_number: res.data.order_number
+						}
+						vm.createSocket(socketInfo)
+					}, err => {
+						vm.btnLoading = false
+						uni.showToast({
+							icon: 'none',
+							title: vm._i18n.message[vm.lang].train.makeOrderFail
+						})
+					})
+				} else {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+				}
+			},
+			async createSocket(order) {
+				const vm = this
+				const token = await vm.checkLogin()
+				uni.connectSocket({
+					url: urls.socket,
+					fail: function () { // socket打开失败
+						uni.showToast({
+							icon: 'none',
+							title: vm._i18n.message[vm.lang].train.makeOrderFail
+						})
+						vm.btnLoading = false
+					}
+				});
+				uni.onSocketOpen(function(res) {
+					vm.skOpen = true
+					vm.skSend(order)
+				});
+				uni.onSocketMessage(function (res) {
+				  vm.skOnMessage(res)
+				});
+				uni.onSocketClose(function (res) {
+				  vm.skCloase(res)
+				});
+			},
+			skSend(obj) {
+				const vm = this
+				if (vm.skOpen) {
+					uni.sendSocketMessage({
+						data: JSON.stringify(obj)
+					});
+					// 开启定时
+					vm.skTimeout = setTimeout(() => {
+						if (!vm.commitSuccess) { // 没有收到返回
+							console.log('socket未接收到消息')
+							uni.closeSocket({
+								code: 1001,
+								reason: '未接收到服务器返回超时关闭'
+							}) // 超时，关闭socket
+						}
+					}, 10000)
+				}
+			},
+			skOnMessage (msg) {
+				const vm = this
+				vm.commitSuccess = true
+				const response = JSON.parse(msg.data)
+				if (response.success) { // 后台返回成功
+					console.log('success')
+				} else { // 后台返回了，但未成功
+					uni.showToast({
+						icon: 'none',
+						title: vm._i18n.message[vm.lang].train.makeOrderFail
+					})
+				}
+				vm.btnLoading = false
+				clearTimeout(vm.skTimeout) // 收到消息，清除定时器
+				uni.closeSocket({
+					code: 1002,
+					reason: '收到消息，正常关闭'
+				})
+			},
+			skCloase (msg) {
+				const vm = this
+				vm.btnLoading = false
+				vm.commitSuccess = false
+				clearTimeout(this.skTimeout) // 清除定时器
+				uni.closeSocket()
 			}
 		}
 	}
@@ -125,7 +307,8 @@
 		width: 100vw;
 		min-height: 100vh;
 		position: relative;
-		.back{
+
+		.back {
 			width: 100%;
 			height: 300rpx;
 			background: linear-gradient(0deg, #19C882, #23AF8C);
@@ -136,11 +319,13 @@
 			left: 0;
 			z-index: 1;
 		}
-		.cus-gap{
+
+		.cus-gap {
 			width: 100%;
 			height: 5px;
 		}
-		.ticket-cont{
+
+		.ticket-cont {
 			position: relative;
 			z-index: 2;
 			width: 90%;
@@ -150,25 +335,30 @@
 			overflow: hidden;
 			background-image: url(../../static/images/ticket-bg.png);
 			background-size: 100% 100%;
-			.ticket-date{
+
+			.ticket-date {
 				background: #F3F3F3;
 			}
-			.ticket-ads{
-				.trap-num{
-					.throw-container{
+
+			.ticket-ads {
+				.trap-num {
+					.throw-container {
 						position: relative;
 						border-bottom: 2px solid $uni-color-primary;
-						.cus-icon{
+
+						.cus-icon {
 							width: 2px;
 							height: 8px;
 							background: $uni-color-primary;
 							position: absolute;
 							bottom: -2px;
-							&.throw-right{
+
+							&.throw-right {
 								right: 2px;
 								transform: rotate(-45deg);
 							}
-							&.throw-left{
+
+							&.throw-left {
 								left: 2px;
 								transform: rotate(45deg);
 							}
@@ -176,11 +366,25 @@
 					}
 				}
 			}
-			.ticket-price{
-			}
-			.ticket-person{
+
+			.ticket-price {}
+
+			.ticket-person {
 				border-top: 1px dashed #D0D0D0;
 			}
+		}
+
+		.ticket-contact {
+			width: 90%;
+			margin: 0 auto 10px auto;
+			box-shadow: 0 6.94rpx 6.94rpx -2px rgba(152, 152, 152, 0.15);
+			border-radius: 20.83rpx;
+		}
+
+		.btn-container {
+			position: fixed;
+			bottom: 0;
+			background: #FFFFFF;
 		}
 	}
 </style>

@@ -3,6 +3,7 @@ export default {
 		login: '登录',
 		ok: '确认',
 		cancel: '取消',
+		submit: '提交',
 		search: '查询',
 		tip: '提示',
 		chooseTip: '请选择',
@@ -144,7 +145,9 @@ export default {
 		trapInfo: '车票信息',
 		chooseSeat: '请选择座位类型',
 		choose: '选择',
-		ticketPageName: '票证信息'
+		ticketPageName: '票证信息',
+		buyTip: '请确认乘客信息和联系人',
+		makeOrderFail: '购买失败，请稍后再试'
 	},
 	air: {
 		pageName: '飞机票'

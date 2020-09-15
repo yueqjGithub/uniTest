@@ -29,7 +29,7 @@
 			<view class="price flex-1 flex-column">
 				<text class="full-width text-primary text-bold text-18" :class="lang==='zh-CN' ? 'text-right' : 'text-left'">
 					<text class="text-14">￥</text>
-					{{train.seats[0].price}}
+					{{train.seats[0].price || 0}}
 				</text>
 			</view>
 		</view>
@@ -87,19 +87,13 @@
 			},
 			endTime () {
 				const vm = this
-				const diff = vm.runTimeToMinute(vm.train.start_time, vm.train.run_time)
+				const diff = vm.train.takeDays
 				const through = diff > 0 ? `(+${diff})` : ''
-				
 				return `${vm.train.end_time}${through}`
 			}
 		},
 		methods: {
 			...mapMutations(['setCurTrap']),
-			runTimeToMinute (start, run) {
-				const arr1 = start.split(':')
-				const arr2 = run.split(':')
-				return parseInt((Number(arr1[0]) + Number(arr2[0])) / 24)
-			},
 			toChooseSeat () {
 				const vm = this
 				const obj = {

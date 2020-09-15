@@ -26,6 +26,7 @@
 	import urls from '@/service/urls.js'
 	export default {
 		name: 'contact',
+		props: ['commitSymbol'], // 变更即触发提交
 		data () {
 			return {
 				showNull: false,
@@ -40,6 +41,15 @@
 			...mapState(['lang']),
 			langFlex () {
 				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'
+			}
+		},
+		watch: {
+			commitSymbol: {
+				immediate: false,
+				deep: true,
+				handler: function (val) {
+					this.$emit('commit', this.form.pis_number)
+				}
 			}
 		},
 		mounted () {

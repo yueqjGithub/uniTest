@@ -3,6 +3,7 @@ export default {
 		login: 'كىرىش',
 		ok: 'ئېتىراپ قىلىش',
 		cancel: 'بولدىلا',
+		submit: 'كىيىنكى قەدەم',
 		search: 'تەكشۈرەيمەن',
 		tip: 'ئەسكەرتىش',
 		chooseTip: 'تاللاڭ',
@@ -144,7 +145,9 @@ export default {
 		trapInfo: 'پويىز بېلىتى ئۇچۇرى',
 		chooseSeat: 'بېلەت تاللاش تۈرى',
 		choose: 'تاللاش',
-		ticketPageName: 'بېلەت ئۇچۇرى'
+		ticketPageName: 'بېلەت ئۇچۇرى',
+		buyTip: 'يولۇچىلار ئۇچۇرىنى مۇقىملاشتۇرۇڭ ۋە',
+		makeOrderFail: 'سېتىۋېلىش مەغلۇپ بولدى ، سەل تۇرۇپ قايتا سىناڭ'
 	},
 	air: {
 		pageName: 'ئايروپىلان بېلىتى'
