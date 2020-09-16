@@ -1,8 +1,11 @@
 @import "./static/iconfont.css";
+@import "./static/font.css";
 :root{
 	font-family: 'yahei';
 }
-
+text,view{
+	font-family: 'cusFont','yahei';
+}
 .text-primary{
 	color: $uni-color-primary;
 }
