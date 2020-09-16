@@ -32,3 +32,7 @@ export const setCurTrap = (state, payload) => { // 设置当前选座的车次
 export const setCurSeat = (state, payload) => { // 设置当前选择的座位
 	state.curSeat = payload
 }
+
+export const setCurPassenger = (state, payload) => { // 设置当前乘客
+	state.curPassenger = payload
+}

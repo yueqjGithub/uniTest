@@ -132,7 +132,6 @@
 					title: ''
 				})
 				vm.$post(urls.chargeMobile, obj).then(res => {
-					console.log(res)
 					uni.requestPayment({ // 调用支付
 					    provider: 'wxpay',
 					    timeStamp: res.timeStamp,

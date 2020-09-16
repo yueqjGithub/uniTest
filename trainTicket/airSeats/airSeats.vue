@@ -9,12 +9,14 @@
 				<view class="full-width head-detail flex-column flex-jst-start flex-ali-end">
 					<!-- ads第一排 -->
 					<view class="full-width flex-row flex-jst-btw flex-ali-end">
-						<text class="text-18 text-bold flex-1" :class="lang==='zh-CN' ? 'text-left' : 'text-right'">{{curTrap.trap.start_time}}</text>
-						<view class="flex-1 text-14 text-primary trap-num text-center pa-col-sm border-box">
-							<view class="cus-icon" :class="lang==='zh-CN' ? 'throw-right' : 'throw-left'"></view>
-							<text>{{curTrap.trap.train_num}}</text>
+						<text class="text-18 text-bold flex-1" :class="lang==='zh-CN' ? 'text-left' : 'text-right'">{{startTime}}</text>
+						<view class="flex-1 text-14 text-primary trap-num text-center pa-col-sm border-box flex-row flex-jst-center">
+							<view class="throw-container width-80">
+								<view class="cus-icon" :class="lang==='zh-CN' ? 'throw-right' : 'throw-left'"></view>
+								<text>{{curTrap.trap.train_num}}</text>
+							</view>
 						</view>
-						<text class="text-18 text-bold flex-1" :class="lang==='zh-CN' ? 'text-right' : 'text-left'">{{curTrap.trap.end_time}}</text>
+						<text class="text-18 text-bold flex-1" :class="lang==='zh-CN' ? 'text-right' : 'text-left'">{{endTime}}</text>
 						<!-- <text class="text-14">{{lang === 'zh-CN' ? train.start_station_name_cn : train.start_station_name}}</text> -->
 					</view>
 					<!-- ads第二排 -->
@@ -22,7 +24,7 @@
 						<text class="text-14 flex-1" :class="lang==='zh-CN' ? 'text-left' : 'text-right'">
 							{{lang==="zh-CN"?curTrap.trap.start_station_name_cn:curTrap.trap.start_station_name}}
 						</text>
-						<view class="flex-1 text-center text-grey">{{trapTime}}</view>
+						<view class="flex-1"></view>
 						<text class="text-14 flex-1" :class="lang==='zh-CN' ? 'text-right' : 'text-left'">
 							{{lang==="zh-CN"?curTrap.trap.end_station_name_cn:curTrap.trap.end_station_name}}
 						</text>
@@ -33,17 +35,19 @@
 		<!-- 座位列表 -->
 		<view class="seats-bar border-box pa-md">
 			<view class="seats-tit text-center pa-md border-box">
-				<text class="text-14">{{$t('train.chooseSeat')}}</text>
+				<text class="text-14">{{$t('air.chooseSeat')}}</text>
 			</view>
 			<!-- 列表 -->
 			<view v-for="(item, idx) in curTrap.trap.seats" :key="idx" class="seat-item pa-col-md flex-jst-btw flex-ali-center"
 			 :class="langFlex">
-				<text class="flex-1 text-14" :class="lang==='zh-CN'?'text-left':'text-right'">{{lang==='zh-CN'?item.seatName.name_cn:item.seatName.name}}</text>
+				<text class="flex-1 text-14" :class="lang==='zh-CN'?'text-left':'text-right'">
+					{{lang==='zh-CN'?item.crewType.name_cn:item.crewType.name}}({{item.seatCode}})
+				</text>
 				<!-- <text class="flex-1 text-14 text-center" :class="item.inventory === 0 ? 'text-cus-error':'text-grey'">{{item.inventory === 0 ? $t('train.no'):$t('train.many')}}</text> -->
 				<view class="flex-1 text-14 text-center">
-					<view v-if="item.inventory > 0 && item.inventory <= 50" class="text-primary text-center">{{item.inventory}}</view>
-					<view v-if="item.inventory > 50" class="text-center text-grey">{{$t('train.many')}}</view> 
-					<view v-if="item.inventory === 0" class="text-center text-cus-error">{{$t('train.no')}}</view>
+					<view v-if="item.inventory !== 'A'" class="text-primary text-center">{{item.inventory}}</view>
+					<view v-if="item.inventory === 'A'" class="text-center text-grey">{{$t('train.many')}}</view> 
+					<view v-if="item.inventory === '0'" class="text-center text-cus-error">{{$t('train.no')}}</view>
 				</view>
 				<text class="flex-1 text-16 text-bold text-primary text-center">￥{{item.price}}</text>
 				<view class="flex-1 flex-row" :class="lang!=='zh-CN'?'flex-jst-start':'flex-jst-end'">
@@ -60,8 +64,9 @@
 		mapState,
 		mapMutations
 	} from 'vuex'
+	import dayjs from 'dayjs'
 	export default {
-		name: 'seats',
+		name: 'airSeats',
 		data() {
 			return {}
 		},
@@ -83,34 +88,48 @@
 				})
 				return result[vm.curTrap.date.week]
 			},
-			trapTime() {
-				const vm = this
-				// const str = `HH${vm._i18n[vm.lang].messages.basic.hour}mm${vm._i18n[vm.lang].messages.basic.minute}`
-				// return dayjs(vm.train.run_time).format(str)
-				const arr = vm.curTrap.trap.run_time.split(':')
-				const hour = vm._i18n.messages[vm.lang].basic.hour
-				const min = vm._i18n.messages[vm.lang].basic.minute
-				const result = vm.lang === 'zh-CN' ? `${arr[0]}${hour}${arr[1]}${min}` : `${min}${arr[1]}${hour}${arr[0]}`
-				return result
+			startTime () {
+				return this.curTrap.trap.start_time.split(' ')[1]
 			},
+			endTime () {
+				const vm = this
+				const diff = vm.runTimeToMinute(vm.curTrap.trap.start_time, vm.curTrap.trap.run_time)
+				const through = diff > 0 ? `(+${diff})` : ''
+				return `${vm.curTrap.trap.end_time.split(' ')[1]}${through}`
+			}
+			// trapTime() {
+			// 	const vm = this
+			// 	// const str = `HH${vm._i18n[vm.lang].messages.basic.hour}mm${vm._i18n[vm.lang].messages.basic.minute}`
+			// 	// return dayjs(vm.train.run_time).format(str)
+			// 	const arr = vm.curTrap.trap.run_time.split(':')
+			// 	const hour = vm._i18n.messages[vm.lang].basic.hour
+			// 	const min = vm._i18n.messages[vm.lang].basic.minute
+			// 	const result = vm.lang === 'zh-CN' ? `${arr[0]}${hour}${arr[1]}${min}` : `${min}${arr[1]}${hour}${arr[0]}`
+			// 	return result
+			// },
 		},
 		onShow() {
 			this.setPageName()
 		},
 		methods: {
 			...mapMutations(['setCurSeat']),
+			runTimeToMinute (start, run) {
+				const arr1 = dayjs(start).hour()
+				const arr2 = run.split(':')
+				return parseInt((Number(arr1) + Number(arr2[0])) / 24)
+			},
 			setPageName() {
 				const vm = this
 				if (vm.lang !== 'zh-CN') {
 					uni.setNavigationBarTitle({
-						title: vm._i18n.messages[vm.lang].train.trapInfo
+						title: vm._i18n.messages[vm.lang].air.trapInfo
 					})
 				}
 			},
 			toPage (seat) {
 				this.setCurSeat(seat)
 				uni.navigateTo({
-					url: '/trainTicket/trainBuy/trainBuy'
+					url: '/trainTicket/airBuy/airBuy'
 				})
 			}
 		}
@@ -167,24 +186,25 @@
 					padding-top: 28rpx;
 
 					.trap-num {
-						position: relative;
-						border-bottom: 2px solid $uni-color-primary;
-
-						.cus-icon {
-							width: 2px;
-							height: 8px;
-							background: $uni-color-primary;
-							position: absolute;
-							bottom: -2px;
-
-							&.throw-right {
-								right: 2px;
-								transform: rotate(-45deg);
-							}
-
-							&.throw-left {
-								left: 2px;
-								transform: rotate(45deg);
+						.throw-container{
+							position: relative;
+							border-bottom: 2px solid $uni-color-primary;
+							.cus-icon {
+								width: 2px;
+								height: 8px;
+								background: $uni-color-primary;
+								position: absolute;
+								bottom: -2px;
+							
+								&.throw-right {
+									right: 2px;
+									transform: rotate(-45deg);
+								}
+							
+								&.throw-left {
+									left: 2px;
+									transform: rotate(45deg);
+								}
 							}
 						}
 					}

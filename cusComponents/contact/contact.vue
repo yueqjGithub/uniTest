@@ -48,7 +48,7 @@
 				immediate: false,
 				deep: true,
 				handler: function (val) {
-					this.$emit('commit', this.form.pis_number)
+					this.$emit('commit', this.form)
 				}
 			}
 		},

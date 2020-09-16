@@ -147,10 +147,17 @@ export default {
 		choose: '选择',
 		ticketPageName: '票证信息',
 		buyTip: '请确认乘客信息和联系人',
-		makeOrderFail: '购买失败，请稍后再试'
+		makeOrderFail: '下单失败，请稍后再试',
+		// 订单占位页
+		orderPageName: '订单信息',
+		orderNum: '订单编号'
 	},
 	air: {
-		pageName: '飞机票'
+		pageName: '飞机票',
+		chooseSeat: '请选择仓位类型',
+		trapInfo: '机票信息',
+		fuelTax: '燃油费',
+		airportTax: '机建'
 	},
 	contact: { // 联系人模块
 		titTip: '旅客信息',

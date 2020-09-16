@@ -1,5 +1,5 @@
 <template>
-	<view class="train-item full-width border-box">
+	<view class="train-item full-width border-box" @click="toChooseSeat">
 		<!-- top -->
 		<view class="full-width flex-jst-btw flex-ali-start" :class="langFlex">
 			<view class="ads flex-column flex-jst-start flex-ali-end flex-3">
@@ -16,7 +16,7 @@
 					<!-- <text class="text-14">{{lang === 'zh-CN' ? train.start_station_name_cn : train.start_station_name}}</text> -->
 				</view>
 				<!-- ads第二排 -->
-				<view class="full-width flex-jst-btw flex-ali-center ma-top-5" :class="langFlex">
+				<view class="full-width flex-jst-btw flex-ali-start ma-top-5" :class="langFlex">
 					<text class="text-12 flex-1" :class="lang==='zh-CN' ? 'text-left' : 'text-right'">
 						{{lang==="zh-CN"?train.start_station_name_cn:train.start_station_name}}
 					</text>
@@ -37,18 +37,31 @@
 		<!-- <view class="ma-col-md my-gap"></view> -->
 		<!-- bottom -->
 		<view class="seat-container full-width text-grey text-12 ma-top-5" :class="langFlex">
-			<text>{{train.train_num}}/</text>
+			<text>{{train.train_num}}</text>
+			<text>/</text>
 			<text>{{train.plane_cn_name}}</text>
 		</view>
 	</view>
 </template>
 
 <script>
-	import { mapState } from 'vuex'
+	import { mapState, mapMutations } from 'vuex'
 	import dayjs from 'dayjs'
 	export default {
 		name: 'trainItem',
-		props: ['train'],
+		props: {
+			train: {
+				type: Object,
+				default: () => {
+					return {}
+				}
+			},
+			date: {
+				default: () => {
+					return {}
+				}
+			}
+		},
 		data () {
 			return {}
 		},
@@ -78,11 +91,23 @@
 			}
 		},
 		methods: {
+			...mapMutations(['setCurTrap']),
 			runTimeToMinute (start, run) {
 				const arr1 = dayjs(start).hour()
 				const arr2 = run.split(':')
 				return parseInt((Number(arr1) + Number(arr2[0])) / 24)
 			},
+			toChooseSeat () {
+				const vm = this
+				const obj = {
+					date: vm.date,
+					trap: vm.train
+				}
+				this.setCurTrap(obj)
+				uni.navigateTo({
+					url: '/trainTicket/airSeats/airSeats'
+				})
+			}
 		}
 	}
 </script>

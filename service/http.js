@@ -9,7 +9,7 @@ import Store from '@/store/index.js'
 
 
 fly.config.baseURL = urls.baseUrl
-fly.config.timeout = 10000
+fly.config.timeout = 20000
 //添加请求拦截器
 fly.interceptors.request.use(request => {
     //给所有请求添加自定义header

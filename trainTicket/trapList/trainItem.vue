@@ -16,7 +16,7 @@
 					<!-- <text class="text-14">{{lang === 'zh-CN' ? train.start_station_name_cn : train.start_station_name}}</text> -->
 				</view>
 				<!-- ads第二排 -->
-				<view class="full-width flex-jst-btw flex-ali-center ma-top-5" :class="langFlex">
+				<view class="full-width flex-jst-btw flex-ali-start ma-top-5" :class="langFlex">
 					<text class="text-14 flex-1" :class="lang==='zh-CN' ? 'text-left' : 'text-right'">
 						{{lang==="zh-CN"?train.start_station_name_cn:train.start_station_name}}
 					</text>

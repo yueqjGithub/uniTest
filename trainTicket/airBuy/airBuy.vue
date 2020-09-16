@@ -11,31 +11,39 @@
 			<view class="ticket-ads pa-lg border-box flex-column flex-jst-center">
 				<!-- ads第一排 -->
 				<view class="full-width flex-jst-btw flex-ali-end" :class="langFlex">
-					<text class="text-16 text-bold flex-1" :class="lang==='zh-CN' ? 'text-left' : 'text-right'">{{curTrap.trap.start_time}}</text>
+					<text class="text-16 text-bold flex-1" :class="lang==='zh-CN' ? 'text-left' : 'text-right'">{{startTime}}</text>
 					<view class="flex-1 text-14 text-primary trap-num text-center pa-col-sm border-box flex-row flex-jst-center">
 						<view class="throw-container width-80">
 							<view class="cus-icon" :class="lang==='zh-CN' ? 'throw-right' : 'throw-left'"></view>
-							<text>{{curTrap.trap.train_num}}</text>
+							<text>{{curTrap.trap.run_time}}</text>
 						</view>
 					</view>
 					<text class="text-16 text-bold flex-1" :class="lang==='zh-CN' ? 'text-right' : 'text-left'">{{endTime}}</text>
 					<!-- <text class="text-14">{{lang === 'zh-CN' ? train.start_station_name_cn : train.start_station_name}}</text> -->
 				</view>
 				<!-- ads第二排 -->
-				<view class="full-width flex-jst-btw flex-ali-center ma-top-5" :class="langFlex">
+				<view class="full-width flex-jst-btw flex-ali-start ma-top-5" :class="langFlex">
 					<text class="text-14 flex-1" :class="lang==='zh-CN' ? 'text-left' : 'text-right'">
 						{{lang==="zh-CN"?curTrap.trap.start_station_name_cn:curTrap.trap.start_station_name}}
 					</text>
-					<view class="flex-1 text-center text-grey">{{trapTime}}</view>
+					<view class="flex-1"></view>
 					<text class="text-14 flex-1" :class="lang==='zh-CN' ? 'text-right' : 'text-left'">
 						{{lang==="zh-CN"?curTrap.trap.end_station_name_cn:curTrap.trap.end_station_name}}
 					</text>
+				</view>
+				<!-- 第三排 -->
+				<view class="full-width flex-jst-center flex-ali-center" :class="langFlex">
+					<text class="text-grey-1 text-12">{{curTrap.trap.train_num}}</text>
+					<text class="text-grey-1 text-12 ma-row-sm">/</text>
+					<text class="text-grey-1 text-12">{{curTrap.trap.plane_cn_name}}</text>
 				</view>
 			</view>
 			<!-- 价格显示 -->
 			<view class="ticket-price pa-row-lg ma-col-md border-box flex-column flex-jst-center flex-ali-center">
 				<text class="text-24 text-primary text-bold">￥{{curSeat.price}}</text>
-				<text class="text-grey-1 text-14 pa-col-sm">{{lang === 'zh-CN' ? curSeat.seatName.name_cn : curSeat.seatName.name}}</text>
+				<text class="text-18 pa-col-sm text-bold">
+					{{priceDetail}}
+				</text>
 			</view>
 			<!-- 乘车人 -->
 			<view class="ticket-person pa-lg border-box">
@@ -69,7 +77,7 @@
 	import myContact from '../../cusComponents/contact/contact.vue'
 	import dayjs from 'dayjs'
 	export default {
-		name: 'trainBuy',
+		name: 'airBuy',
 		components: {
 			myContact
 		},
@@ -94,7 +102,7 @@
 			}
 		},
 		computed: {
-			...mapState(['lang', 'curSeat', 'curTrap']),
+			...mapState(['lang', 'curSeat', 'curTrap', 'trapSetting']),
 			langFlex() {
 				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'
 			},
@@ -111,21 +119,24 @@
 				})
 				return result[vm.curTrap.date.week]
 			},
-			endTime() {
-				const vm = this
-				const diff = vm.curTrap.trap.takeDays
-				const through = diff > 0 ? `(+${diff})` : ''
-				return `${vm.curTrap.trap.end_time}${through}`
+			startTime () {
+				return this.curTrap.trap.start_time.split(' ')[1]
 			},
-			trapTime() {
+			endTime () {
 				const vm = this
-				// const str = `HH${vm._i18n[vm.lang].messages.basic.hour}mm${vm._i18n[vm.lang].messages.basic.minute}`
-				// return dayjs(vm.train.run_time).format(str)
-				const arr = vm.curTrap.trap.run_time.split(':')
-				const hour = vm._i18n.messages[vm.lang].basic.hour
-				const min = vm._i18n.messages[vm.lang].basic.minute
-				const result = vm.lang === 'zh-CN' ? `${arr[0]}${hour}${arr[1]}${min}` : `${min}${arr[1]}${hour}${arr[0]}`
-				return result
+				const diff = vm.runTimeToMinute(vm.curTrap.trap.start_time, vm.curTrap.trap.run_time)
+				const through = diff > 0 ? `(+${diff})` : ''
+				return `${vm.curTrap.trap.end_time.split(' ')[1]}${through}`
+			},
+			priceDetail () { // 价格组成
+				const vm = this
+				const fuelTax = vm._i18n.messages[vm.lang].air.fuelTax
+				const airportTax = vm._i18n.messages[vm.lang].air.airportTax
+				const fuelPrice = vm.curSeat.fuelTax
+				const airportPrice = vm.curSeat.airportTax
+				const str = vm.lang === 'zh-CN' ? `${fuelTax}:￥${fuelPrice} ${airportTax}:￥${airportPrice}` :
+				`${airportPrice}￥:${airportTax} ${fuelTax}￥:${fuelTax}`
+				return str
 			}
 		},
 		onShow() {
@@ -135,10 +146,14 @@
 		},
 		onHide() {
 			this.showPassenger = false
-			this.skTimeout = ''
 		},
 		methods: {
 			...mapActions(['checkLogin']),
+			runTimeToMinute (start, run) {
+				const arr1 = dayjs(start).hour()
+				const arr2 = run.split(':')
+				return parseInt((Number(arr1) + Number(arr2[0])) / 24)
+			},
 			getPis (target) { // 乘客编号设置
 				Object.assign(this.passenger, target)
 			},
@@ -188,20 +203,18 @@
 						token: token,
 						pis_number: vm.passenger.pis_number,
 						mobile: vm.contact.mobile,
-						attention: vm.contact.name,
-						start_station_name: vm.curTrap.trap.start_station_name_cn,
-						end_station_name: vm.curTrap.trap.end_station_name_cn,
-						end_time: vm.curTrap.trap.end_time,
-						startdate: vm.date,
-						start_time: vm.curTrap.trap.start_time,
-						seatName: vm.curSeat.seatName.name_cn,
-						price: vm.curSeat.price,
-						takeDays: vm.curTrap.trap.takeDays,
-						run_time: vm.curTrap.trap.run_time,
+						policyId: vm.curSeat.policyId,
 						train_num: vm.curTrap.trap.train_num,
-						trainType: vm.curTrap.trap.trainType,
-						endStation: vm.curTrap.trap.endStation,
-						startStation: vm.curTrap.trap.startStation
+						start_time: vm.curTrap.trap.start_time,
+						end_time: vm.curTrap.trap.end_time,
+						originating_station: vm.trapSetting.start.code,
+						terminus: vm.trapSetting.end.code,
+						seatCode: vm.curSeat.seatCode,
+						attention: vm.contact.name,
+						price: vm.curSeat.price,
+						airportTax: vm.curSeat.airportTax,
+						fuelTax: vm.curSeat.fuelTax,
+						date: vm.date
 					}
 					// 验证数据完整性
 					for (let k in obj) {
@@ -215,12 +228,19 @@
 					}
 					// 执行提交
 					vm.btnLoading = true
-					vm.$post(urls.commitTrainOrder, obj).then(res => {
-						const socketInfo = {
-							token: token,
-							order_number: res.data.order_number
+					vm.$post(urls.commitAirOrder, obj).then(res => {
+						vm.btnLoading = false
+						if (res.data.result_code === 'SUCCESS') {
+							uni.showLoading({
+								title: ''
+							})
+							vm.toPay(res.data)
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: vm._i18n.messages[vm.lang].train.makeOrderFail
+							})
 						}
-						vm.createSocket(socketInfo)
 					}, err => {
 						vm.btnLoading = false
 						uni.showToast({
@@ -234,78 +254,38 @@
 					})
 				}
 			},
-			async createSocket(order) {
+			toPay (info) {
 				const vm = this
-				const token = await vm.checkLogin()
-				uni.connectSocket({
-					url: urls.socket,
-					fail: function () { // socket打开失败
+				uni.requestPayment({ // 调用支付
+					provider: 'wxpay',
+					timeStamp: info.timeStamp,
+					nonceStr: info.nonceStr,
+					package: info.package,
+					signType: 'MD5',
+					paySign: info.paySign,
+					success: function (result) {
+						uni.hideLoading()
+						uni.showToast({
+							icon: 'success',
+							title: ''
+						})
+						uni.requestSubscribeMessage({ // 订阅消息 
+						  tmplIds: ['9UTQnyosblyWEn16aJ5GT9DbjClzWU6yljBWXncAPIk'],
+						  success (result) {
+							},
+							fail (err) {
+							}
+						})
+					},
+					fail: function (err) {
+						console.log(err)
+						uni.hideLoading()
 						uni.showToast({
 							icon: 'none',
-							title: vm._i18n.messages[vm.lang].train.makeOrderFail
+							title: vm._i18n.messages[vm.lang].makeOrder.payFail
 						})
-						vm.btnLoading = false
 					}
-				});
-				uni.onSocketOpen(function(res) {
-					vm.skOpen = true
-					vm.skSend(order)
-				});
-				uni.onSocketMessage(function (res) {
-				  vm.skOnMessage(res)
-				});
-				uni.onSocketClose(function (res) {
-				  vm.skCloase(res)
-				});
-			},
-			skSend(obj) {
-				const vm = this
-				if (vm.skOpen) {
-					uni.sendSocketMessage({
-						data: JSON.stringify(obj)
-					});
-					// 开启定时
-					vm.skTimeout = setTimeout(() => {
-						if (!vm.commitSuccess) { // 没有收到返回
-							uni.closeSocket({
-								code: 3001,
-								reason: '未接收到服务器返回超时关闭'
-							}) // 超时，关闭socket
-						}
-					}, 10000)
-				}
-			},
-			skOnMessage (msg) {
-				const vm = this
-				vm.commitSuccess = true
-				const response = JSON.parse(msg.data)
-				if (response.success) { // 后台返回成功
-					// console.log(response)
-					vm.$store.commit('setCurPassenger', vm.passenger)
-					uni.navigateTo({
-						url: `/trainTicket/trainOrderInfo/trainOrderInfo?order=${response.data.order_number}`
-					})
-					// const newObj = JSON.parse(JSON.stringify(vm.cur))
-				} else { // 后台返回了，但未成功
-					uni.showToast({
-						icon: 'none',
-						title: vm._i18n.messages[vm.lang].train.makeOrderFail
-					})
-				}
-				vm.btnLoading = false
-				clearTimeout(vm.skTimeout) // 收到消息，清除定时器
-				uni.closeSocket({
-					code: 3002,
-					reason: '收到消息，正常关闭'
 				})
-			},
-			skCloase (msg) {
-				const vm = this
-				vm.skOpen = false
-				vm.btnLoading = false
-				vm.commitSuccess = false
-				clearTimeout(this.skTimeout) // 清除定时器
-				uni.closeSocket()
 			}
 		}
 	}
