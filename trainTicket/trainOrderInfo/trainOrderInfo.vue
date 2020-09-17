@@ -42,7 +42,27 @@
 				</view>
 			</view>
 		</view>
-		<button type="default" @click="openBuy">测试购买</button>
+		<!-- 乘客信息 -->
+		<view class="cont-item pa-md border-box pas-cont">
+			<view class="flex-jst-btw flex-ali-center pa-col-md" :class="langFlex">
+				<view class="pas-info flex-column flex-jst-center">
+					<text class="text-14" :class="rightClass">{{curPassenger.train_order_passenger.pis_full_name}}</text>
+					<text class="text-12 text-grey-1" :class="rightClass">{{curPassenger.train_order_passenger.pis_id_card}}</text>
+				</view>
+				<text class="pas-price text-18 text-primary text-bold">￥{{curPassenger.total}}</text>
+			</view>
+		</view>
+		<!-- 提交按钮 -->
+		<view class="btn-container flex-row flex-jst-btw flex-ali-center pa-md border-box full-width">
+			<!-- <view class="flex-row flex-jst-center flex-ali-center width-80">
+				<button type="default" class="my-btn-primary text-white text-14" @click="subOrder" :loading="btnLoading" :disabled="btnLoading">{{$t('basic.submit')}}</button>
+			</view> -->
+			<view class="price-show flex-column flex-jst-center flex-3">
+				<text class="text-18 text-primary text-bold" :class="rightClass">￥{{curPassenger.total}}</text>
+				<text class="text-12 text-grey-1" :class="rightClass">{{$t('makeOrder.price')}}</text>
+			</view>
+			<button type="default" class="my-btn-primary text-white" @click="openBuy">{{$t('makeOrder.pay')}}</button>
+		</view>
 	</view>
 </template>
 
@@ -61,6 +81,9 @@
 			...mapState(['lang', 'curSeat', 'curTrap', 'curPassenger']),
 			langFlex () {
 				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'
+			},
+			rightClass () {
+				return this.lang === 'zh-CN' ? 'text-left' : 'text-right'
 			},
 			weekList () {
 				const vm = this
@@ -121,7 +144,45 @@
 						token: token
 					}
 					vm.$post(urls.trainBuy, obj).then(res => {
-						console.log(res)
+						if (res.success) {
+							if (res.data.result_code === 'SUCCESS') {
+								let info = res.data
+								uni.requestPayment({ // 调用支付
+									provider: 'wxpay',
+									timeStamp: info.timeStamp,
+									nonceStr: info.nonceStr,
+									package: info.package,
+									signType: 'MD5',
+									paySign: info.paySign,
+									success: function (result) {
+										uni.hideLoading()
+										uni.showToast({
+											icon: 'success',
+											title: ''
+										})
+										uni.requestSubscribeMessage({ // 订阅消息 
+										  tmplIds: ['9UTQnyosblyWEn16aJ5GT9DbjClzWU6yljBWXncAPIk'],
+										  success (result) {
+											},
+											fail (err) {
+											}
+										})
+									},
+									fail: function (err) {
+										uni.hideLoading()
+										uni.showToast({
+											icon: 'none',
+											title: vm._i18n.messages[vm.lang].makeOrder.payFail
+										})
+									}
+								})
+							} else {
+								uni.showToast({
+									icon: 'none',
+									title: vm._i18n.messages[vm.lang].makeOrder.payFail
+								})
+							}
+						}
 					}, err => {
 						console.log(err)
 					})
@@ -190,6 +251,14 @@
 					}
 				}
 			}
+		}
+		.btn-container {
+			position: fixed;
+			bottom: 0;
+			background: #FFFFFF;
+				.my-btn-primary{
+					width: 30%;
+				}
 		}
 	}
 </style>

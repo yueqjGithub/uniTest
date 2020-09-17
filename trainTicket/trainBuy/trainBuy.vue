@@ -215,14 +215,18 @@
 					}
 					// 执行提交
 					vm.btnLoading = true
+					uni.showLoading({
+						title: ''
+					})
 					vm.$post(urls.commitTrainOrder, obj).then(res => {
-						console.log(res)
 						const socketInfo = {
 							token: token,
 							order_number: res.data.order_number
+							// order_number: 'UT202009150000000159'
 						}
 						vm.createSocket(socketInfo)
 					}, err => {
+						uni.hideLoading()
 						vm.btnLoading = false
 						uni.showToast({
 							icon: 'none',
@@ -256,6 +260,7 @@
 				  vm.skOnMessage(res)
 				});
 				uni.onSocketClose(function (res) {
+					uni.hideLoading()
 				  vm.skCloase(res)
 				});
 			},
@@ -280,9 +285,8 @@
 				const vm = this
 				vm.commitSuccess = true
 				const response = JSON.parse(msg.data)
-				if (response.success) { // 后台返回成功
-					console.log(response)
-					vm.$store.commit('setCurPassenger', vm.passenger)
+				if (response.success && response.data.train_order_passenger) { // 后台返回成功
+					vm.$store.commit('setCurPassenger', response.data)
 					uni.navigateTo({
 						url: `/trainTicket/trainOrderInfo/trainOrderInfo?order=${response.data.order_number}`
 					})
@@ -302,6 +306,12 @@
 			},
 			skCloase (msg) {
 				const vm = this
+				if (msg.code === 1006) {
+					uni.showToast({
+						icon: 'none',
+						title: vm._i18n.messages[vm.lang].train.makeOrderFail
+					})
+				}
 				vm.skOpen = false
 				vm.btnLoading = false
 				vm.commitSuccess = false

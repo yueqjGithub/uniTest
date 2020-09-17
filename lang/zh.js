@@ -43,6 +43,7 @@ export default {
 		buy: '购买'
 	},
 	makeOrder: {
+		pay: '支付',
 		addressTips: '请选择您的收货地址',
 		chooseBalance: '使用余额',
 		myBalance: '我的余额',

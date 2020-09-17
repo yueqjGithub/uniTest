@@ -43,6 +43,7 @@ export default {
 		buy: 'سېتىۋالاي'
 	},
 	makeOrder: {
+		pay: 'تۆلىمەك',
 		addressTips: 'مال تاپشۇرۋېلىش ئادېرسىنى قوشۇڭ',
 		chooseBalance: 'قالدۇقتىن تۆلەش',
 		myBalance: 'قالدۇق پۇل',
