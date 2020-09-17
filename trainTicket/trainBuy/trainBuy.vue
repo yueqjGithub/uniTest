@@ -216,6 +216,7 @@
 					// 执行提交
 					vm.btnLoading = true
 					vm.$post(urls.commitTrainOrder, obj).then(res => {
+						console.log(res)
 						const socketInfo = {
 							token: token,
 							order_number: res.data.order_number
@@ -280,7 +281,7 @@
 				vm.commitSuccess = true
 				const response = JSON.parse(msg.data)
 				if (response.success) { // 后台返回成功
-					// console.log(response)
+					console.log(response)
 					vm.$store.commit('setCurPassenger', vm.passenger)
 					uni.navigateTo({
 						url: `/trainTicket/trainOrderInfo/trainOrderInfo?order=${response.data.order_number}`

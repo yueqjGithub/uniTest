@@ -42,12 +42,14 @@
 				</view>
 			</view>
 		</view>
+		<button type="default" @click="openBuy">测试购买</button>
 	</view>
 </template>
 
 <script>
-	import { mapState } from 'vuex'
+	import { mapState, mapActions } from 'vuex'
 	import dayjs from 'dayjs'
+	import urls from '@/service/urls.js'
 	export default {
 		name: 'trainOrderInfo',
 		data () {
@@ -108,7 +110,24 @@
 			const vm = this
 			vm.order_number = getCurrentPages()[getCurrentPages().length - 1].options.order
 		},
-		methods: {}
+		methods: {
+			...mapActions(['checkLogin']),
+			async openBuy () {
+				const vm = this
+				const token = await vm.checkLogin()
+				if (token) {
+					const obj = {
+						order_number: vm.order_number,
+						token: token
+					}
+					vm.$post(urls.trainBuy, obj).then(res => {
+						console.log(res)
+					}, err => {
+						console.log(err)
+					})
+				}
+			}
+		}
 	}
 </script>
 
