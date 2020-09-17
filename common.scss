@@ -1,10 +1,13 @@
 @import "./static/iconfont.css";
-
+@font-face{
+	font-family: 'cusFont';
+	src: url('http://boy.shihuai.tech/font/UKIJEkran.ttf')
+}
 :root{
 	font-family: 'yahei';
 }
 text,view{
-	font-family: 'yahei';
+	font-family: 'cusFont','yahei';
 }
 .text-primary{
 	color: $uni-color-primary;
