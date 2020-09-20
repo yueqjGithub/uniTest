@@ -2,10 +2,43 @@
 	<view class="page bg-grey">
 		<view class="back"></view>
 		<view class="cus-gap"></view>
-		<view class="ticket-cont">
+		<view class="ticket-cont bg-white">
 			<view class="ticket-date pa-lg flex-column flex-jst-center flex-ali-center">
 				<text class="text-18 text-bold">{{date}}</text>
 				<text class="text-14 text-grey-1">{{week}}</text>
+			</view>
+			<view class="ads pa-row-md border-box">
+				<!-- ads第一排 -->
+				<view class="full-width flex-jst-btw flex-ali-end" :class="langFlex">
+					<text class="text-16 text-bold flex-1" :class="lang==='zh-CN' ? 'text-left' : 'text-right'">{{startTime}}</text>
+					<view class="flex-1 text-14 text-primary trap-num text-center pa-col-sm border-box flex-row flex-jst-center">
+						<view class="throw-container width-80">
+							<view class="cus-icon" :class="lang==='zh-CN' ? 'throw-right' : 'throw-left'"></view>
+						</view>
+					</view>
+					<text class="text-16 text-bold flex-1" :class="lang==='zh-CN' ? 'text-right' : 'text-left'">{{endTime}}</text>
+					<!-- <text class="text-14">{{lang === 'zh-CN' ? train.start_station_name_cn : train.start_station_name}}</text> -->
+				</view>
+				<!-- ads第二排 -->
+				<view class="full-width flex-jst-btw flex-ali-start ma-top-5" :class="langFlex">
+					<text class="text-14 flex-1" :class="lang==='zh-CN' ? 'text-left' : 'text-right'">
+						{{lang==="zh-CN"?curOrderDetail.start_cn:curOrderDetail.start}}
+					</text>
+					<view class="flex-1 text-center text-grey"></view>
+					<text class="text-14 flex-1" :class="lang==='zh-CN' ? 'text-right' : 'text-left'">
+						{{lang==="zh-CN"?curOrderDetail.end_cn:curOrderDetail.end}}
+					</text>
+				</view>
+			</view>
+			<view class="flex-jst-center flex-ali-center ma-col-sm" :class="langFlex">
+				<text class="text-14 text-grey-1">{{curOrderDetail.train_num}}</text>
+				<text class="text-14 text-grey-1">/</text>
+				<text class="text-14 text-grey-1">{{curOrderDetail.cat_number}}</text>
+			</view>
+			<!-- price -->
+			<view class="flex-row flex-jst-center flex-ali-base pa-md">
+				<text class="text-primary text-bold text-14">￥</text>
+				<text class="text-primary text-bold text-24">{{curOrderDetail.total}}</text>
 			</view>
 		</view>
 	</view>
@@ -37,6 +70,15 @@
 				})
 				const targetWeek = dayjs(vm.curOrderDetail.start_date).day()
 				return result[targetWeek]
+			},
+			startTime () {
+				return dayjs(this.curOrderDetail.start_date).format('hh:mm')
+			},
+			endTime () {
+				const vm = this
+				const diff = vm.runTimeToMinute(vm.curOrderDetail.start_date, vm.curOrderDetail.end_date)
+				const through = diff > 0 ? `(+${diff})` : ''
+				return `${vm.curOrderDetail.end_date.split(' ')[1]}${through}`
 			}
 		},
 		watch: {
@@ -50,6 +92,14 @@
 		},
 		onShow () {
 			console.log(this.curOrderDetail)
+		},
+		methods: {
+			runTimeToMinute (start, end) {
+				const startHour = dayjs(start).hour()
+				const diff = dayjs(end).diff(dayjs(start)) // 运行毫秒
+				const spend = Math.ceil(diff / 1000 / 60 / 60)
+				return parseInt((startHour + spend) / 24)
+			}
 		}
 	}
 </script>
@@ -88,6 +138,31 @@
 			background-size: 100% 100%;
 			.ticket-date {
 				background: #F3F3F3;
+			}
+			.ads{
+				width: 80%;
+				margin: 0 auto;
+				.trap-num{
+					.throw-container{
+						position: relative;
+						border-bottom: 2px solid $uni-color-primary;
+						.cus-icon{
+							width: 2px;
+							height: 8px;
+							background: $uni-color-primary;
+							position: absolute;
+							bottom: -2px;
+							&.throw-right{
+								right: 2px;
+								transform: rotate(-45deg);
+							}
+							&.throw-left{
+								left: 2px;
+								transform: rotate(45deg);
+							}
+						}
+					}
+				}
 			}
 		}
 	}
