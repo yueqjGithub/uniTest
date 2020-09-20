@@ -46,7 +46,7 @@
 				},{
 					id: 'A1597798618',
 					color: '#E74C3C',
-					path: '',
+					path: '/pages/commonOrder/commonOrder?type=air',
 					icon: 'feiji800',
 					name_cn: '机票',
 					name: 'ئايروپىلان بېلىتى'

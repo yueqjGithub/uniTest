@@ -125,7 +125,8 @@ export default {
 		phonePage: 'تېلىفۇن ھەققى زاكاسلىرى',
 		phoneMoneyCharge: 'سۆزلىشىش ھەققىگە پۇل قاچىلاش ',
 		trainPage: 'پويىز بېلىتى زاكاز تالونى',
-		orderDetail: 'زاكاز تالونى'
+		orderDetail: 'زاكاز تالونى',
+		airPage: 'ئايروپىلان بېلىتى زاكاز تالونى'
 	},
 	train: {
 		pageName: 'پويىز بېلىتى',

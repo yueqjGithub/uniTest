@@ -9,6 +9,10 @@
 			<view class="order-container-item full-width pa-md border-box" v-if="orderType === 'train'">
 				<train-order v-for="(k, index) in list" :order="k" class="order-item full-width" :key="index"></train-order>
 			</view>
+			<!-- 飞机票订单 -->
+			<view class="order-container-item full-width pa-md border-box" v-if="orderType === 'air'">
+				<train-order v-for="(k, index) in list" :order="k" class="order-item full-width" :key="index"></train-order>
+			</view>
 			<view v-if="loading" class="loading-bar flex-row flex-jst-center flex-ali-center">
 				<u-loadmore :status="status" bg-color="bg-color" color="#AAAAAA" :load-text="loadText" icon-type="flower"/>
 			</view>
@@ -22,12 +26,14 @@
 <script>
 	import phoneOrder from './phoneItem.vue'
 	import trainOrder from './trainItem.vue'
+	import airOrder from './airItem.vue'
 	export default {
 		name: 'orderShow',
 		props: ['type', 'url', 'orderType'],
 		components: {
 			phoneOrder,
-			trainOrder
+			trainOrder,
+			airOrder
 		},
 		data () {
 			return {
