@@ -1,8 +1,13 @@
 <template>
 	<scroll-view scroll-y class="cus-scroll-content" @scrolltolower="loadMore">
 		<view class="shops-container flex-column flex-jst-start flex-ali-center" v-if="list.length > 0">
-			<view class="full-width pa-md border-box" v-if="orderType === 'phone'">
+			<!-- 话费订单 -->
+			<view class="order-container-item full-width pa-md border-box" v-if="orderType === 'phone'">
 				<phone-order v-for="(k, index) in list" :order="k" class="order-item full-width" :key="index"></phone-order>
+			</view>
+			<!-- 火车票订单 -->
+			<view class="order-container-item full-width pa-md border-box" v-if="orderType === 'train'">
+				<train-order v-for="(k, index) in list" :order="k" class="order-item full-width" :key="index"></train-order>
 			</view>
 			<view v-if="loading" class="loading-bar flex-row flex-jst-center flex-ali-center">
 				<u-loadmore :status="status" bg-color="bg-color" color="#AAAAAA" :load-text="loadText" icon-type="flower"/>
@@ -16,11 +21,13 @@
 
 <script>
 	import phoneOrder from './phoneItem.vue'
+	import trainOrder from './trainItem.vue'
 	export default {
 		name: 'orderShow',
 		props: ['type', 'url', 'orderType'],
 		components: {
-			phoneOrder
+			phoneOrder,
+			trainOrder
 		},
 		data () {
 			return {
@@ -102,7 +109,9 @@
 </script>
 
 <style lang="scss" scoped>
-	.order-item + .order-item {
-		margin-top: 6px;
+	.cus-scroll-content{
+		width: 100%;
+		height: calc(100vh - 44px);
+		box-sizing: border-box;
 	}
 </style>

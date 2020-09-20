@@ -27,7 +27,8 @@
 				listUrl: '',
 				orderType: '',
 				orderTypeList: [
-					{ type: 'phone', pageName: 'phonePage', typeUrl: urls.phoneOrderType, listUrl: urls.phoneOrderList}
+					{ type: 'phone', pageName: 'phonePage', typeUrl: urls.phoneOrderType, listUrl: urls.phoneOrderList },
+					{ type: 'train', pageName: 'trainPage', typeUrl: urls.trainOrderType, listUrl: urls.trainOrderList }
 				]
 			}
 		},

@@ -6,7 +6,7 @@ const urls = {
 	'/v1/api/user/info', '/v1/api/vip/opening', '/v1/api/shop/delivery', '/v1/api/cecharge/attribution', '/v1/api/telephone/denomination',
 	'/v1/api/cecharge/balance', '/v1/api/telephone/commit', '/v1/api/telephone/order', '/v1/api/public/delpis', '/v1/api/train/commit',
 	'/v1/api/train/station', '/v1/api/train/find', '/v1/api/ticket/find', '/v1/api/ticket/station', '/v1/api/public/gitpis', '/v1/api/public/pis',
-	'/v1/api/ticket/commit', '/v1/api/train/pay'
+	'/v1/api/ticket/commit', '/v1/api/train/pay', '/v1/api/train/order'
 	], // 需要加密的接口2
 	baseUrl: 'https://shopapi.apiself.com',
 	// basic
@@ -29,6 +29,8 @@ const urls = {
 	getAddressList: '/v1/api/shop/pretreatment', // 获取收货信息
 	queryOrderType: '/v1/api/shop/ordercate', // 获取订单分类
 	queryOrderList: '/v1/api/shop/orderlist', // 请求订单列表2
+	trainOrderType: '/v1/api/train/cate', // 火车票订单分类
+	trainOrderList: '/v1/api/train/order', // 火车票订单列表2
 	// 个人中心
 	queryMineInfo: '/v1/api/user/info', // 个人中心2
 	// 会员

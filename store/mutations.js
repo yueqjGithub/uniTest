@@ -36,3 +36,7 @@ export const setCurSeat = (state, payload) => { // 设置当前选择的座位
 export const setCurPassenger = (state, payload) => { // 设置当前乘客
 	state.curPassenger = payload
 }
+
+export const setCurOrderDetail = (state, payload) => {
+	state.curOrderDetail = payload
+}

@@ -146,6 +146,12 @@
 				"navigationBarTitleText": "订单信息",
 				"backgroundColor": "#23AF8C"
 			}
+		},{
+			"path": "trainOrderDetail/trainOrderDetail", // 火车订单详情
+			"style": {
+				"navigationBarTitleText": "订单详情",
+				"backgroundColor": "#23AF8C"
+			}
 		}]
 	}],
 	"globalStyle": {

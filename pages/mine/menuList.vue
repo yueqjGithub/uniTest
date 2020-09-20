@@ -39,7 +39,7 @@
 				},{
 					id: 'A1597798659',
 					color: '#7864C8',
-					path: '',
+					path: '/pages/commonOrder/commonOrder?type=train',
 					icon: 'huochepiao',
 					name_cn: '火车票',
 					name: 'پويىز بېلىتى'

@@ -123,7 +123,9 @@ export default {
 	},
 	commonOrder: {
 		phonePage: 'تېلىفۇن ھەققى زاكاسلىرى',
-		phoneMoneyCharge: 'سۆزلىشىش ھەققىگە پۇل قاچىلاش '
+		phoneMoneyCharge: 'سۆزلىشىش ھەققىگە پۇل قاچىلاش ',
+		trainPage: 'پويىز بېلىتى زاكاز تالونى',
+		orderDetail: 'زاكاز تالونى'
 	},
 	train: {
 		pageName: 'پويىز بېلىتى',

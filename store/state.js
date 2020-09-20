@@ -10,5 +10,6 @@ export default {
 	trapSetting: '', // 查询火车票或机票时的参数存放
 	curTrap: '', // 当前选择的班次信息
 	curSeat: '', // 当前选择的座位
-	curPassenger: '' // 当前乘客
+	curPassenger: '', // 当前乘客
+	curOrderDetail: '', // 当前订单详情（火车票，机票）
 }

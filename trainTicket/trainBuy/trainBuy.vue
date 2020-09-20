@@ -242,7 +242,7 @@
 			async createSocket(order) {
 				const vm = this
 				const token = await vm.checkLogin()
-				uni.connectSocket({
+				vm.mySk = uni.connectSocket({
 					url: urls.socket,
 					fail: function () { // socket打开失败
 						uni.showToast({
@@ -252,34 +252,32 @@
 						vm.btnLoading = false
 					}
 				});
-				uni.onSocketOpen(function(res) {
+				vm.mySk.onOpen(function(res) {
 					vm.skOpen = true
-					vm.skSend(order)
+					if (vm.skOpen) {
+						vm.mySk.send({
+							data: JSON.stringify(order)
+						});
+						// 超时，关闭socket
+						// 开启定时
+						vm.skTimeout = setTimeout(() => {
+							if (!vm.commitSuccess) { // 没有收到返回
+								vm.skOpen = false
+								vm.mySk.close() // 超时，关闭socket
+							}
+						}, 5000)
+					}
 				});
-				uni.onSocketMessage(function (res) {
+				vm.mySk.onMessage(function (res) {
 				  vm.skOnMessage(res)
 				});
-				uni.onSocketClose(function (res) {
+				vm.mySk.onClose(function (res) {
 					uni.hideLoading()
 				  vm.skCloase(res)
 				});
-			},
-			skSend(obj) {
-				const vm = this
-				if (vm.skOpen) {
-					uni.sendSocketMessage({
-						data: JSON.stringify(obj)
-					});
-					// 开启定时
-					vm.skTimeout = setTimeout(() => {
-						if (!vm.commitSuccess) { // 没有收到返回
-							uni.closeSocket({
-								code: 3001,
-								reason: '未接收到服务器返回超时关闭'
-							}) // 超时，关闭socket
-						}
-					}, 10000)
-				}
+				vm.mySk.onError(function(err){
+					console.log(err)
+				})
 			},
 			skOnMessage (msg) {
 				const vm = this
@@ -299,7 +297,7 @@
 				}
 				vm.btnLoading = false
 				clearTimeout(vm.skTimeout) // 收到消息，清除定时器
-				uni.closeSocket({
+				vm.mySk.close({
 					code: 3002,
 					reason: '收到消息，正常关闭'
 				})
@@ -316,7 +314,7 @@
 				vm.btnLoading = false
 				vm.commitSuccess = false
 				clearTimeout(this.skTimeout) // 清除定时器
-				uni.closeSocket()
+				// uni.closeSocket()
 			}
 		}
 	}
