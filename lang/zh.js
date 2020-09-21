@@ -154,7 +154,9 @@ export default {
 		makeOrderFail: '下单失败，请稍后再试',
 		// 订单占位页
 		orderPageName: '订单信息',
-		orderNum: '订单编号'
+		orderNum: '订单编号',
+		refund: '退票',
+		buySuccess: '购买成功'
 	},
 	air: {
 		pageName: '飞机票',

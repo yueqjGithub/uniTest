@@ -11,7 +11,7 @@
 			</view>
 			<!-- 飞机票订单 -->
 			<view class="order-container-item full-width pa-md border-box" v-if="orderType === 'air'">
-				<train-order v-for="(k, index) in list" :order="k" class="order-item full-width" :key="index"></train-order>
+				<air-order v-for="(k, index) in list" :order="k" class="order-item full-width" :key="index"></air-order>
 			</view>
 			<view v-if="loading" class="loading-bar flex-row flex-jst-center flex-ali-center">
 				<u-loadmore :status="status" bg-color="bg-color" color="#AAAAAA" :load-text="loadText" icon-type="flower"/>
@@ -68,6 +68,7 @@
 				}
 				vm.loading = true
 				vm.$post(url, obj).then(res => {
+					console.log(res)
 					const len = res.data.data.length
 					if (len === vm.pageSize) { // 首次请求数量填满一页
 						vm.list = [...vm.list, ...res.data.data]

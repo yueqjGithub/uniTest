@@ -7,7 +7,7 @@
 				<text class="text-18 text-bold">{{date}}</text>
 				<text class="text-14 text-grey-1">{{week}}</text>
 			</view>
-			<view class="ads pa-row-md border-box">
+			<view class="ads pa-md border-box">
 				<!-- ads第一排 -->
 				<view class="full-width flex-jst-btw flex-ali-end" :class="langFlex">
 					<text class="text-16 text-bold flex-1" :class="lang==='zh-CN' ? 'text-left' : 'text-right'">{{startTime}}</text>
@@ -34,11 +34,31 @@
 				<text class="text-14 text-grey-1">{{curOrderDetail.train_num}}</text>
 				<text class="text-14 text-grey-1">/</text>
 				<text class="text-14 text-grey-1">{{curOrderDetail.cat_number}}</text>
+				<text class="text-14 text-grey-1">/</text>
+				<text class="text-14 text-grey-1">{{curOrderDetail.seat_no}}</text>
 			</view>
 			<!-- price -->
 			<view class="flex-row flex-jst-center flex-ali-base pa-md">
 				<text class="text-primary text-bold text-14">￥</text>
 				<text class="text-primary text-bold text-24">{{curOrderDetail.total}}</text>
+			</view>
+			<!-- passenger -->
+			<view class="pa-col-lg ma-row-md border-box">
+				<view :class="langFlex" class="flex-jst-start flex-ali-center">
+					<text class="text-grey-1 text-12">{{$t('contact.titTip')}}</text>
+				</view>
+				<view :class="langFlex" class="flex-jst-start flex-ali-center ma-col-sm">
+					<text class="text-14">{{curOrderDetail.passenger.pis_full_name}}</text>
+				</view>
+				<view :class="langFlex" class="flex-jst-start flex-ali-center">
+					<text class="text-14">{{curOrderDetail.passenger.pis_id_card}}</text>
+				</view>
+			</view>
+			<!-- 退票 -->
+			<view class="pa-col-lg ma-row-md flex-row flex-jst-center flex-ali-center" v-if="curOrderDetail.status_type === 2">
+				<view class="flex-row flex-jst-center flex-ali-center width-80">
+					<button type="default" class="my-btn-primary text-white">{{$t('train.refund')}}</button>
+				</view>
 			</view>
 		</view>
 	</view>

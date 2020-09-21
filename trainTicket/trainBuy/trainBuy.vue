@@ -265,7 +265,7 @@
 								vm.skOpen = false
 								vm.mySk.close() // 超时，关闭socket
 							}
-						}, 5000)
+						}, 60000)
 					}
 				});
 				vm.mySk.onMessage(function (res) {

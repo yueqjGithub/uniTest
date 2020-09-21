@@ -62,7 +62,8 @@
 		<!-- 提交按钮 -->
 		<view class="btn-container flex-row flex-jst-center flex-ali-center pa-md border-box full-width">
 			<view class="flex-row flex-jst-center flex-ali-center width-80">
-				<button type="default" class="my-btn-primary text-white text-14" @click="subOrder" :loading="btnLoading" :disabled="btnLoading">{{$t('basic.submit')}}</button>
+				<button type="default" class="my-btn-primary text-white text-14" @click="toOrder" v-if="buySuc">{{$t('train.buySuccess')}}</button>
+				<button v-else type="default" class="my-btn-primary text-white text-14" @click="subOrder" :loading="btnLoading" :disabled="btnLoading">{{$t('basic.submit')}}</button>
 			</view>
 		</view>
 	</view>
@@ -95,10 +96,7 @@
 					pis_id_card: '',
 					pis_full_name: '' // 姓名
 				},
-				mySk: '',
-				skOpen: false,
-				commitSuccess: false, // 是否接收到socket成功返回
-				skTimeout: '' // open后开启定时，超时后关闭socket
+				buySuc: false // 是否购买成功
 			}
 		},
 		computed: {
@@ -153,6 +151,11 @@
 				const arr1 = dayjs(start).hour()
 				const arr2 = run.split(':')
 				return parseInt((Number(arr1) + Number(arr2[0])) / 24)
+			},
+			toOrder () {
+				uni.navigateTo({
+					url: '/pages/commonOrder/commonOrder?type=air'
+				})
 			},
 			getPis (target) { // 乘客编号设置
 				Object.assign(this.passenger, target)
@@ -264,6 +267,7 @@
 					signType: 'MD5',
 					paySign: info.paySign,
 					success: function (result) {
+						vm.buySuc = true
 						uni.hideLoading()
 						uni.showToast({
 							icon: 'success',

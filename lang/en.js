@@ -154,7 +154,9 @@ export default {
 		makeOrderFail: 'سېتىۋېلىش مەغلۇپ بولدى ، سەل تۇرۇپ قايتا سىناڭ',
 		// 订单占位页
 		orderPageName: 'زاكاز ئۇچۇرى',
-		orderNum: 'زاكاز نومۇرى'
+		orderNum: 'زاكاز نومۇرى',
+		refund: 'بېلەت قايتۇرۇش',
+		buySuccess: 'سېتىۋېلىش تاماملاندى'
 	},
 	air: {
 		pageName: 'ئايروپىلان بېلىتى',

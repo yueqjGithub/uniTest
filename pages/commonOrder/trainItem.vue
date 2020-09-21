@@ -65,7 +65,8 @@
 			seatInfo () {
 				const seatType = this.lang === 'zh-CN' ? this.order.seat_name.name_cn : this.order.seat_name.name
 				const cat = this.order.cat_number
-				return this.lang === 'zh-CN' ? `${seatType}${cat}` : `${cat}${seatType}`
+				const seat = this.order.seat_no
+				return this.lang === 'zh-CN' ? `${seatType}/${cat}${seat}` : `${seat}/${cat}${seatType}`
 			}
 		},
 		methods: {

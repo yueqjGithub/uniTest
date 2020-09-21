@@ -61,7 +61,8 @@
 				<text class="text-18 text-primary text-bold" :class="rightClass">￥{{curPassenger.total}}</text>
 				<text class="text-12 text-grey-1" :class="rightClass">{{$t('makeOrder.price')}}</text>
 			</view>
-			<button type="default" class="my-btn-primary text-white" @click="openBuy">{{$t('makeOrder.pay')}}</button>
+			<button type="default" class="my-btn-primary text-white" @click="openBuy" v-if="!buySuc">{{$t('makeOrder.pay')}}</button>
+			<button type="default" class="my-btn-primary text-white text-14" @click="toOrder" v-if="buySuc">{{$t('train.buySuccess')}}</button>
 		</view>
 	</view>
 </template>
@@ -74,7 +75,8 @@
 		name: 'trainOrderInfo',
 		data () {
 			return {
-				order_number: ''
+				order_number: '',
+				buySuc: false
 			}
 		},
 		computed: {
@@ -135,6 +137,11 @@
 		},
 		methods: {
 			...mapActions(['checkLogin']),
+			toOrder () {
+				uni.navigateTo({
+					url: '/pages/commonOrder/commonOrder?type=train'
+				})
+			},
 			async openBuy () {
 				const vm = this
 				const token = await vm.checkLogin()
@@ -155,6 +162,7 @@
 									signType: 'MD5',
 									paySign: info.paySign,
 									success: function (result) {
+										vm.buySuc = true
 										uni.hideLoading()
 										uni.showToast({
 											icon: 'success',
