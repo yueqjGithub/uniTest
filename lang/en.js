@@ -156,7 +156,9 @@ export default {
 		orderPageName: 'زاكاز ئۇچۇرى',
 		orderNum: 'زاكاز نومۇرى',
 		refund: 'بېلەت قايتۇرۇش',
-		buySuccess: 'سېتىۋېلىش تاماملاندى'
+		buySuccess: 'سېتىۋېلىش تاماملاندى',
+		waitingSuc: 'ئورۇن ئىگىلەش جەريانىدا',
+		waitingFail: 'ئورۇن ئىگىلەش مەغلۇپ بولدى'
 	},
 	air: {
 		pageName: 'ئايروپىلان بېلىتى',

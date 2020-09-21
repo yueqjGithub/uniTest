@@ -156,7 +156,9 @@ export default {
 		orderPageName: '订单信息',
 		orderNum: '订单编号',
 		refund: '退票',
-		buySuccess: '购买成功'
+		buySuccess: '购买成功',
+		waitingSuc: '占位中',
+		waitingFail: '占位失败'
 	},
 	air: {
 		pageName: '飞机票',

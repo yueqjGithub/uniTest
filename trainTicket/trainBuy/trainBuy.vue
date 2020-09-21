@@ -216,7 +216,7 @@
 					// 执行提交
 					vm.btnLoading = true
 					uni.showLoading({
-						title: ''
+						title: vm._i18n.messages[vm.lang].train.waitingSuc
 					})
 					vm.$post(urls.commitTrainOrder, obj).then(res => {
 						const socketInfo = {
@@ -252,6 +252,7 @@
 						vm.btnLoading = false
 					}
 				});
+				console.log(vm.mySk)
 				vm.mySk.onOpen(function(res) {
 					vm.skOpen = true
 					if (vm.skOpen) {
