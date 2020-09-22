@@ -158,7 +158,8 @@ export default {
 		refund: '退票',
 		buySuccess: '购买成功',
 		waitingSuc: '占位中',
-		waitingFail: '占位失败'
+		waitingFail: '占位失败',
+		refunding: '正在为您退票'
 	},
 	air: {
 		pageName: '飞机票',

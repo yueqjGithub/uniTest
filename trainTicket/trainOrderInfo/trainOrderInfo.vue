@@ -51,6 +51,10 @@
 				</view>
 				<text class="pas-price text-18 text-primary text-bold">￥{{curPassenger.total}}</text>
 			</view>
+			<view class="seat-info flex-jst-start pa-col-sm border-box flex-ali-center" :class="langFlex">
+				<text class="text-14 text-grey-1">{{curPassenger.seat_name}}</text>
+				<text class="text-14 text-grey-1 ma-row-md">{{curPassenger.cat_number}} / {{curPassenger.seat_no}}</text>
+			</view>
 		</view>
 		<!-- 提交按钮 -->
 		<view class="btn-container flex-row flex-jst-btw flex-ali-center pa-md border-box full-width">
@@ -258,6 +262,11 @@
 						}
 					}
 				}
+			}
+		}
+		.pas-cont{
+			.seat-info{
+				border-top: 1px solid #d5d5d5;
 			}
 		}
 		.btn-container {

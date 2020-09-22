@@ -55,9 +55,9 @@
 				</view>
 			</view>
 			<!-- 退票 -->
-			<view class="pa-col-lg ma-row-md flex-row flex-jst-center flex-ali-center" v-if="curOrderDetail.status_type === 2">
+			<view class="pa-col-lg ma-row-md flex-row flex-jst-center flex-ali-center" v-if="curOrderDetail.status_type === 3">
 				<view class="flex-row flex-jst-center flex-ali-center width-80">
-					<button type="default" class="my-btn-primary text-white">{{$t('train.refund')}}</button>
+					<button type="default" class="my-btn-primary text-white text-14" @click="refund">{{$t('train.refund')}}</button>
 				</view>
 			</view>
 		</view>
@@ -65,8 +65,9 @@
 </template>
 
 <script>
-	import { mapState } from 'vuex'
+	import { mapState, mapActions } from 'vuex'
 	import dayjs from 'dayjs'
+	import urls from '@/service/urls.js'
 	export default {
 		name: 'trainOrderDetail',
 		data () {
@@ -114,11 +115,44 @@
 			console.log(this.curOrderDetail)
 		},
 		methods: {
+			...mapActions(['checkLogin']),
 			runTimeToMinute (start, end) {
 				const startHour = dayjs(start).hour()
 				const diff = dayjs(end).diff(dayjs(start)) // 运行毫秒
 				const spend = Math.ceil(diff / 1000 / 60 / 60)
 				return parseInt((startHour + spend) / 24)
+			},
+			async refund () {
+				const vm = this
+				const token = vm.checkLogin()
+				if (token) {
+					uni.showLoading({
+						title: vm._i18n.messages[vm.lang].train.refunding
+					})
+					const obj = {
+						token: token,
+						order_number: vm.curOrderDetail.order_number
+					}
+					vm.$post(urls.trainRefund, obj).then(res => {
+						console.log(res)
+						uni.hideLoading()
+						if (res.success) {
+							uni.showToast({
+								icon: 'success',
+								title: ''
+							})
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: res.message
+							})
+						}
+					})
+				} else {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+				}
 			}
 		}
 	}

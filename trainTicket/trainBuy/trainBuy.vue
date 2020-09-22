@@ -87,7 +87,7 @@
 					pis_id_card: '',
 					pis_full_name: '' // 姓名
 				},
-				mySk: '',
+				mySocket: '',
 				skOpen: false,
 				commitSuccess: false, // 是否接收到socket成功返回
 				skTimeout: '' // open后开启定时，超时后关闭socket
@@ -222,7 +222,7 @@
 						const socketInfo = {
 							token: token,
 							order_number: res.data.order_number
-							// order_number: 'UT202009150000000159'
+							// order_number: 'TT1600759153600346'
 						}
 						vm.createSocket(socketInfo)
 					}, err => {
@@ -242,7 +242,7 @@
 			async createSocket(order) {
 				const vm = this
 				const token = await vm.checkLogin()
-				vm.mySk = uni.connectSocket({
+				vm.mySocket = uni.connectSocket({
 					url: urls.socket,
 					fail: function () { // socket打开失败
 						uni.showToast({
@@ -252,31 +252,28 @@
 						vm.btnLoading = false
 					}
 				});
-				console.log(vm.mySk)
-				vm.mySk.onOpen(function(res) {
+				vm.mySocket.onOpen(function(res) {
 					vm.skOpen = true
-					if (vm.skOpen) {
-						vm.mySk.send({
-							data: JSON.stringify(order)
-						});
-						// 超时，关闭socket
-						// 开启定时
-						vm.skTimeout = setTimeout(() => {
-							if (!vm.commitSuccess) { // 没有收到返回
-								vm.skOpen = false
-								vm.mySk.close() // 超时，关闭socket
-							}
-						}, 60000)
-					}
+					vm.mySocket.send({
+						data: JSON.stringify(order)
+					});
+					// 超时，关闭socket
+					// 开启定时
+					vm.skTimeout = setTimeout(() => {
+						if (!vm.commitSuccess) { // 没有收到返回
+							vm.skOpen = false
+							vm.mySocket.close()
+						}
+					}, 125000)
 				});
-				vm.mySk.onMessage(function (res) {
+				vm.mySocket.onMessage(function (res) {
 				  vm.skOnMessage(res)
 				});
-				vm.mySk.onClose(function (res) {
+				vm.mySocket.onClose(function (res) {
 					uni.hideLoading()
 				  vm.skCloase(res)
 				});
-				vm.mySk.onError(function(err){
+				vm.mySocket.onError(function(err){
 					console.log(err)
 				})
 			},
@@ -298,12 +295,13 @@
 				}
 				vm.btnLoading = false
 				clearTimeout(vm.skTimeout) // 收到消息，清除定时器
-				vm.mySk.close({
+				vm.mySocket.close({
 					code: 3002,
 					reason: '收到消息，正常关闭'
 				})
 			},
 			skCloase (msg) {
+				console.log(msg)
 				const vm = this
 				if (msg.code === 1006) {
 					uni.showToast({
