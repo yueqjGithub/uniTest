@@ -63,16 +63,14 @@
 				return `${left}-${right}`
 			},
 			seatInfo () {
-				const seatType = this.lang === 'zh-CN' ? this.order.seat_name.name_cn : this.order.seat_name.name
-				const cat = this.order.cat_number
-				return this.lang === 'zh-CN' ? `${seatType}${cat}` : `${cat}${seatType}`
+				return this.lang === 'zh-CN' ? this.order.seat_name.name_cn : this.order.seat_name.name
 			}
 		},
 		methods: {
 			toDetail () {
 				this.$store.commit('setCurOrderDetail', this.order)
 				uni.navigateTo({
-					url: '/trainTicket/trainOrderDetail/trainOrderDetail'
+					url: '/trainTicket/airOrderDetail/airOrderDetail'
 				})
 			}
 		}
@@ -92,7 +90,7 @@
 				width: 173.61rpx;
 				height: 173.61rpx;
 				border-radius: 13.88rpx;
-				background: linear-gradient(-55deg, #6f6fff, #b8b9ff);
+				background: linear-gradient(-55deg, #ff5850, #fbca59);
 				color: #FFFFFF;
 				font-size: 150rpx;
 			}

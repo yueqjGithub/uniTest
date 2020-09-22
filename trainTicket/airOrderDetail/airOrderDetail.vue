@@ -31,11 +31,7 @@
 				</view>
 			</view>
 			<view class="flex-jst-center flex-ali-center ma-col-sm" :class="langFlex">
-				<text class="text-14 text-grey-1">{{curOrderDetail.train_num}}</text>
-				<text class="text-14 text-grey-1">/</text>
-				<text class="text-14 text-grey-1">{{curOrderDetail.cat_number}}</text>
-				<text class="text-14 text-grey-1">/</text>
-				<text class="text-14 text-grey-1">{{curOrderDetail.seat_no}}</text>
+				<text class="text-14 text-grey-1">{{seatInfo}}</text>
 			</view>
 			<!-- price -->
 			<view class="flex-row flex-jst-center flex-ali-base pa-md">
@@ -102,6 +98,9 @@
 				const diff = vm.runTimeToMinute(vm.curOrderDetail.start_date, vm.curOrderDetail.end_date)
 				const through = diff > 0 ? `(+${diff})` : ''
 				return `${vm.curOrderDetail.end_date.split(' ')[1]}${through}`
+			},
+			seatInfo () {
+				return this.lang === 'zh-CN' ? this.curOrderDetail.seat_name.name_cn : this.curOrderDetail.seat_name.name
 			}
 		},
 		watch: {
