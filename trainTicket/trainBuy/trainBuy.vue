@@ -222,7 +222,7 @@
 						const socketInfo = {
 							token: token,
 							order_number: res.data.order_number
-							// order_number: 'TT1600759153600346'
+							// order_number: 'TT1600759153600347'
 						}
 						vm.createSocket(socketInfo)
 					}, err => {

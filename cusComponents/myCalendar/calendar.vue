@@ -183,7 +183,8 @@
 					month: vm.now.getMonth() + 1,
 					date: vm.now.getDate(),
 					week: vm.now.getDay(),
-					isInMonth: true // 是否是当月内
+					isInMonth: true, // 是否是当月内
+					isBetween: vm.compareDays(dayjs())
 				}
 			},
 			reduceMonth () { // 月份前推
