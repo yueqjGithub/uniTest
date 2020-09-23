@@ -65,7 +65,7 @@
 				<text class="text-18 text-primary text-bold" :class="rightClass">￥{{curPassenger.total}}</text>
 				<text class="text-12 text-grey-1" :class="rightClass">{{$t('makeOrder.price')}}</text>
 			</view>
-			<button type="default" class="my-btn-primary text-white" @click="openBuy" v-if="!buySuc">{{$t('makeOrder.pay')}}</button>
+			<button type="default" class="my-btn-primary text-white text-14" @click="openBuy" v-if="!buySuc">{{$t('makeOrder.pay')}}</button>
 			<button type="default" class="my-btn-primary text-white text-14" @click="toOrder" v-if="buySuc">{{$t('train.buySuccess')}}</button>
 		</view>
 	</view>

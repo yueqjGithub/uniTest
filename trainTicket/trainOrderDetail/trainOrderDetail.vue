@@ -30,7 +30,7 @@
 					</text>
 				</view>
 			</view>
-			<view class="flex-jst-center flex-ali-center ma-col-sm" :class="langFlex">
+			<view class="flex-jst-center flex-ali-base ma-col-sm" :class="langFlex">
 				<text class="text-14 text-grey-1">{{curOrderDetail.train_num}}</text>
 				<text class="text-14 text-grey-1">/</text>
 				<text class="text-14 text-grey-1">{{curOrderDetail.cat_number}}</text>
