@@ -8,7 +8,7 @@ const urls = {
 		'/v1/api/cecharge/balance', '/v1/api/telephone/commit', '/v1/api/telephone/order', '/v1/api/public/delpis',
 		'/v1/api/train/commit', '/v1/api/train/refund',
 		'/v1/api/train/station', '/v1/api/train/find', '/v1/api/ticket/find', '/v1/api/ticket/station',
-		'/v1/api/public/gitpis', '/v1/api/public/pis',
+		'/v1/api/public/gitpis', '/v1/api/public/pis', '/v1/api/publicity/index',
 		'/v1/api/ticket/commit', '/v1/api/train/pay', '/v1/api/train/order', '/v1/api/ticket/order'
 	], // 需要加密的接口2
 	baseUrl: 'https://shopapi.apiself.com',
@@ -60,6 +60,8 @@ const urls = {
 	uploadIdcard: '/v1/api/upload/image', // 身份证上传识别
 	saveContact: '/v1/api/public/pis', // 保存联系人2
 	delContact: '/v1/api/public/delpis', // 删除联系人2
+	// 推广
+	pullIndex: '/v1/api/publicity/index', // 推广首页2
 	// 订单公共页
 	phoneOrderType: '/v1/api/telephone/ordercate', // 获取话费充值订单类型
 	phoneOrderList: '/v1/api/telephone/order' // 话费订单列表2

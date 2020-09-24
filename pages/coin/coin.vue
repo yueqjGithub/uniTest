@@ -18,7 +18,8 @@
 
 <script>
 	import cusTabbar from '../../components/cus-tabbar/cusTabbar.vue'
-	import { mapState } from 'vuex'
+	import { mapState, mapActions } from 'vuex'
+	import urls from '@/service/urls.js'
 	export default {
 		name: 'coin',
 		components: {
@@ -40,7 +41,34 @@
 				return this._i18n.messages[this.lang].pullPage.pageName
 			}
 		},
+		onShow () {
+			this.queryInfo()
+		},
 		methods: {
+			...mapActions(['checkLogin']),
+			async queryInfo () {
+				const vm = this
+				const token = await vm.checkLogin()
+				if (token) {
+					const obj = {
+						token: token
+					}
+					uni.showLoading({
+						title: ''
+					})
+					vm.$post(urls.pullIndex, obj).then(res => {
+						console.log(res)
+						uni.hideLoading()
+					}, err => {
+						uni.hideLoading()
+						console.log(err)
+					})
+				} else {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+				}
+			}
 		}
 	}
 </script>
