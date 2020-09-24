@@ -181,5 +181,10 @@ export default {
 	},
 	pullPage: { // 推广首页
 		pageName: 'كېڭەيتمەك'
+	},
+	junior: { // 我的成员
+		pageName: 'ئەزالىرىم',
+		level_one: 'بىرىنجى دەرىجىلىك',
+		level_two: 'ئىككىنجى دەرىجىلىك'
 	}
 }

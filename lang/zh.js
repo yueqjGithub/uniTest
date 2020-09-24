@@ -181,5 +181,10 @@ export default {
 	},
 	pullPage: { // 推广首页
 		pageName: '推广'
+	},
+	junior: { // 我的下级
+		pageName: '我的成员',
+		level_one: '一级',
+		level_two: '二级'
 	}
 }
