@@ -15,7 +15,10 @@
 			}
 		}, {
 			"path": "pages/coin/coin",
-			"style": {}
+			"style": {
+				"navigationStyle": "custom",
+				"backgroundColor": "#F3F3F3"
+			}
 		}, {
 			"path": "pages/mine/mine", // 个人中心
 			"style": {
@@ -99,60 +102,60 @@
 				"navigationStyle": "custom",
 				"backgroundColor": "#F3F3F3"
 			}
-		},{
+		}, {
 			"path": "trapList/trapList",
 			"style": {
 				"navigationStyle": "custom"
 			}
-		},{
+		}, {
 			"path": "airIndex/airIndex", // 飞机票首页
 			"style": {
 				"navigationStyle": "custom",
 				"backgroundColor": "#F3F3F3"
 			}
-		},{
+		}, {
 			"path": "seats/seats", // 座位选择
 			"style": {
 				"navigationBarTitleText": "车票信息",
 				"backgroundColor": "#23AF8C"
 			}
-		},{
+		}, {
 			"path": "airSeats/airSeats", // 仓位选择
 			"style": {
 				"navigationBarTitleText": "机票信息",
 				"backgroundColor": "#23AF8C"
 			}
-		},{
+		}, {
 			"path": "trainBuy/trainBuy", // 乘车人选择
 			"style": {
 				"navigationBarTitleText": "票证信息",
 				"backgroundColor": "#23AF8C"
 			}
-		},{
+		}, {
 			"path": "airBuy/airBuy", // 机票信息确认
 			"style": {
 				"navigationBarTitleText": "票证信息",
 				"backgroundColor": "#23AF8C"
 			}
-		},{
+		}, {
 			"path": "passenger/passenger", // 乘客信息
 			"style": {
 				"navigationBarTitleText": "旅客信息",
 				"backgroundColor": "#23AF8C"
 			}
-		},{
+		}, {
 			"path": "trainOrderInfo/trainOrderInfo", // 火车订单占位
 			"style": {
 				"navigationBarTitleText": "订单信息",
 				"backgroundColor": "#23AF8C"
 			}
-		},{
+		}, {
 			"path": "trainOrderDetail/trainOrderDetail", // 火车订单详情
 			"style": {
 				"navigationBarTitleText": "订单详情",
 				"backgroundColor": "#23AF8C"
 			}
-		},{
+		}, {
 			"path": "airOrderDetail/airOrderDetail", // 飞机订单详情
 			"style": {
 				"navigationBarTitleText": "订单详情",

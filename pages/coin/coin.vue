@@ -1,39 +1,43 @@
 <template>
-	<view class="bg-grey">
-		<u-popup v-model="show" mode="bottom" :closeable="false">
-			<cus-calendar
-				:name="calendarName"
-				:weekNames="weekList"
-				:btnText="btnText"
-			></cus-calendar>
-		</u-popup>
+	<view class="page bg-grey">
+		<view class="train-head">
+			<!--status占位-->
+			<view class="status-bar flex-column flex-jst-end flex-ali-center">
+				<text class="text-14 text-white ma-col-sm">{{pageName}}</text>
+			</view>
+			<!-- navbar -->
+		</view>
+		<!-- body -->
+		<view class="content border-box flex-column flex-jst-start flex-ali-center">
+		</view>
+		<!-- tabbar-->
+		<view class='tab-add'></view> 
 		<cus-tabbar></cus-tabbar>
 	</view>
 </template>
 
 <script>
-	import cusCalendar from '@/cusComponents/myCalendar/calendar.vue'
 	import cusTabbar from '../../components/cus-tabbar/cusTabbar.vue'
+	import { mapState } from 'vuex'
 	export default {
 		name: 'coin',
 		components: {
-			cusTabbar,
-			cusCalendar
+			cusTabbar
 		},
 		data() {
 			return {
 				show: true,
-				weekList: [
-					'ي',
-					'د',
-					'س',
-					'چ',
-					'پ',
-					'ج',
-					'ش'
-				],
-				calendarName: 'ۋاقىت تاللاڭ',
-				btnText: 'تاقاش'
+			}
+		},
+		watch: {
+		},
+		computed: {
+			...mapState(['lang']),
+			langFlex () {
+				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'
+			},
+			pageName() {
+				return this._i18n.messages[this.lang].pullPage.pageName
 			}
 		},
 		methods: {
@@ -41,6 +45,31 @@
 	}
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.page{
+	width: 100vw;
+	min-height: 100vh;
+	.train-head {
+		height: 479.16rpx;
+		background: linear-gradient(45deg, #19C882, #23AF8C);
+		border-bottom-left-radius: 50vw 3vh;
+		border-bottom-right-radius: 50vw 3vh;
+	
+		.status-bar {
+			width: 100%;
+			height: 175rpx;
+			position: relative;
+			box-sizing: border-box;
+			padding-bottom: 4px;
+		}
+	}
+	.content {
+		width: 90%;
+		margin: -260rpx auto 0 auto;
+		padding: 48.61rpx 41.66rpx;
+		background: #FFFFFF;
+		box-shadow: 0px 10px 35px 0px rgba(170, 170, 170, 0.1);
+		border-radius: 20.83rpx;
+	}
+}
 </style>
