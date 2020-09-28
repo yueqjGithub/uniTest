@@ -180,7 +180,17 @@ export default {
 		tip2: '儿童票是指2岁到12岁的儿童,不含12岁儿童,婴儿票是指2个月至2岁的儿童。'
 	},
 	pullPage: { // 推广首页
-		pageName: '推广'
+		pageName: '推广',
+		balance: '账户余额',
+		deposit: '已提现',
+		withdraw: '可提现',
+		inviter: '推荐人',
+		// menulist
+		total: '累计赚取',
+		order: '盈利订单',
+		record: '兑现记录',
+		link: '推广链接',
+		picture: '推广海报'
 	},
 	junior: { // 我的下级
 		pageName: '我的成员',
