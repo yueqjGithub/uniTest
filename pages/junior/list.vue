@@ -64,7 +64,6 @@
 						token: token
 					}
 					vm.$post(urls.queryJunior, obj).then(res => {
-						console.log(res)
 						const len = res.data.data.length
 						if (len === vm.pageSize) { // 首次请求数量填满一页
 							vm.list = [...vm.list, ...res.data.data]
