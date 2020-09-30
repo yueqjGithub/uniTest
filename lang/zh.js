@@ -192,6 +192,9 @@ export default {
 		link: '推广链接',
 		picture: '推广海报'
 	},
+	pullSalon: {
+		pageName: '推广链接'
+	},
 	junior: { // 我的下级
 		pageName: '我的成员',
 		level_one: '一级',

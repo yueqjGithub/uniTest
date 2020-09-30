@@ -50,7 +50,7 @@
 				<text class="font-12">{{$t('junior.pageName')}}</text>
 			</view>
 			<view class="flex-row flex-jst-start flex-ali-center junior-container">
-				<view v-for="k in personal.subordinate.data" class="junior-item flex-row flex-jst-center flex-ali-center">
+				<view v-for="(k,idx) in personal.subordinate.data" :key="idx" class="junior-item flex-row flex-jst-center flex-ali-center">
 					<u-avatar :src="k.profile_photo" class="my-avatar"></u-avatar>
 				</view>
 				<u-badge type="error" :count="personal.subordinate.count" :offset='[20,-5]'></u-badge>
@@ -58,7 +58,7 @@
 		</view>
 		<!-- menuList -->
 		<view class="content-item border-box pa-md flex-jst-start flex-ali-start flex-wrap" :class="langFlex">
-			<view class="menu-item flex-column flex-jst-start flex-ali-center" v-for="k in menuList">
+			<view class="menu-item flex-column flex-jst-start flex-ali-center" v-for="k in menuList" :key="k.keyName" @click="toPath(k.path)">
 				<u-icon custom-prefix="iconfont" :name="k.iconName" :style="{color: k.color}" size="55"></u-icon>
 				<text class="text-12">{{$t(`pullPage.${k.keyName}`)}}</text>
 			</view>
@@ -94,7 +94,7 @@
 					{ keyName: 'total', iconName: 'weibiaoti--31', color: '#E74C3C', path: '' },
 					{ keyName: 'order', iconName: 'weibiaoti--33', color: '#3498DB', path: '' },
 					{ keyName: 'record', iconName: 'weibiaoti--50', color: '#F39C12', path: '' },
-					{ keyName: 'link', iconName: 'ABSxitong-weixintubiao', color: '#00BE87', path: '' },
+					{ keyName: 'link', iconName: 'ABSxitong-weixintubiao', color: '#00BE87', path: '/pages/pullSalon/pullSalon' },
 					{ keyName: 'picture', iconName: 'weibiaoti--28', color: '#9B59B6', path: '' },
 				]
 			}
@@ -144,7 +144,6 @@
 						uni.hideLoading()
 					}, err => {
 						uni.hideLoading()
-						console.log(err)
 					})
 				} else {
 					uni.navigateTo({

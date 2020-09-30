@@ -192,6 +192,9 @@ export default {
 		link: 'سالۇنغا ئۇلاش',
 		picture: 'تەشۋىقات رەسىم'
 	},
+	pullSalon: {
+		pageName: 'سالۇن باغلاش'
+	},
 	junior: { // 我的成员
 		pageName: 'ئەزالىرىم',
 		level_one: 'بىرىنجى دەرىجىلىك',

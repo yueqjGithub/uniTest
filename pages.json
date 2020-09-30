@@ -98,6 +98,12 @@
 				"navigationBarTitleText": "我的成员",
 				"backgroundColor": "#23AF8C"
 			}
+		}, {
+			"path": "pages/pullSalon/pullSalon",
+			"style": {
+				"navigationBarTitleText": "推广链接",
+				"backgroundColor": "#23AF8C"
+			}
 		}
 	],
 	"subPackages": [{
