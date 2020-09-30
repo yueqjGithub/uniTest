@@ -1,5 +1,6 @@
 <script>
 	import urls from './service/urls.js'
+	// test
 	import {
 		mapState
 	} from 'vuex'
