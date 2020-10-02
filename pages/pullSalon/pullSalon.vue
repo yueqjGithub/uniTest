@@ -3,6 +3,9 @@
 		<view class="head-bg"></view>
 		<!-- body -->
 		<view class="cus-gap full-width"></view>
+		<view class="head-img">
+			<u-image :src="info.tg_img" width="100%" height="308.33" mode="widthFit"></u-image>
+		</view>
 	</view>
 </template>
 
@@ -16,6 +19,7 @@
 		name: 'pullSalon',
 		data() {
 			return {
+				info: ''
 			}
 		},
 		computed: {
@@ -49,7 +53,14 @@
 						token: token
 					}
 					vm.$post(urls.pullSetting, obj).then(res => {
-						console.log(res)
+						if (res.success) {
+							vm.info = res.data
+						} else {
+							uni.showToast({
+								title: res.message,
+								icon: 'none'
+							})
+						}
 					})
 				} else {
 					uni.navigateTo({
@@ -81,6 +92,22 @@
 		}
 		.cus-gap{
 			height: 4vh;
+		}
+		.head-img{
+			width: 90%;
+			height: 308.33rpx;
+			margin: 0 auto;
+			border-radius: 13.88rpx;
+			background: #FFFFFF;
+			display: block;
+			position: relative;
+			z-index: 2;
+			overflow: hidden;
+		}
+		.cont-item{
+			width: 90%;
+			background: #FFFFFF;
+			border-radius: 13.88rpx;
 		}
 	}
 </style>
