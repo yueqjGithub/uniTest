@@ -14,8 +14,15 @@
 				font-size="14px"
 				:duration="4000"
 				:speed="1000"
+				@click="openDetail"
 			 ></u-notice-bar>
 		</view>
+		<u-popup v-model="show" mode="center" border-radius="13.88">
+			<view class="tips-content pa-md flex-column flex-jst-start flex-ali-center">
+				<text class="text-14">{{detailTitle}}</text>
+				<view class="text-12 pa-col-md">{{detailContent}}</view>
+			</view>
+		</u-popup>
 	</view>
 </template>
 
@@ -29,7 +36,9 @@
 		data() {
 			return {
 				list: [],
-				timeout: ''
+				timeout: '',
+				show: false,
+				curTip: ''
 			}
 		},
 		computed: {
@@ -43,7 +52,7 @@
 			curList() {
 				let arr = []
 				arr = this.list.map(item => {
-					return this.lang === 'zh-CN' ? item.content_cn : item.content
+					return this.lang === 'zh-CN' ? item.title_cn : item.title
 				})
 				return arr
 			},
@@ -51,7 +60,15 @@
 				return this.lang === 'zh-CN' ? '' : 'notice-reverse'
 			},
 			queryTime () {
-				return this.list.length * 5000
+				return this.list.length > 0 ? this.list.length * 5000 : 5000
+			},
+			detailTitle () {
+				const keyName = this.lang === 'zh-CN' ? 'title_cn' : 'title'
+				return this.curTip[keyName]
+			},
+			detailContent () {
+				const keyName = this.lang === 'zh-CN' ? 'content_cn' : 'content'
+				return this.curTip[keyName]
 			}
 		},
 		watch: {
@@ -68,6 +85,11 @@
 			clearTimeout(this.timeout)
 		},
 		methods: {
+			openDetail (idx) {
+				// console.log(idx)
+				this.curTip = this.list[idx]
+				this.show = true
+			},
 			queryList() {
 				const vm = this
 				vm.$get(urls.queryNotice, {}).then(res => {
@@ -100,5 +122,10 @@
 				transform: rotate(180deg);
 			}
 		}
+	}
+	.tips-content{
+		width: 90vw;
+		background: #FFFFFF;
+		border-radius: 13.88rpx;
 	}
 </style>

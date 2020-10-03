@@ -20,7 +20,7 @@
 
 <script>
 	import urls from '@/service/urls.js'
-	import { mapState } from 'vuex'
+	import { mapState, mapActions } from 'vuex'
 	export default {
 		name: 'vipList',
 		data () {
@@ -36,9 +36,11 @@
 			this.queryList()
 		},
 		methods: {
-			queryList () {
+			...mapActions(['checkLogin']),
+			async queryList () {
 				const vm = this
-				vm.$get(urls.queryVipList, {}).then(res => {
+				const token = await vm.checkLogin()
+				vm.$post(urls.queryVipList, {token: token}).then(res => {
 					vm.list = res.data
 				})
 			},

@@ -15,7 +15,9 @@ export default {
 		saturday: 'ش',
 		sunday: 'ي',
 		hour: 'سائەت',
-		minute: 'مىنۇت'
+		minute: 'مىنۇت',
+		copy: 'كۆپەيتىش',
+		copyTips: 'ئاللىقاچان كۆپەيتىش سىزنىڭ چاپلاش تاختىسى'
 	},
 	tab: {
 		index: 'باش بەت',

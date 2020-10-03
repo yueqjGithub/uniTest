@@ -15,7 +15,9 @@ export default {
 		saturday: '周六',
 		sunday: '周日',
 		hour: '时',
-		minute: '分'
+		minute: '分',
+		copy: '复制',
+		copyTips: '已复制到您的粘贴板'
 	},
 	tab: {
 		index: '首页',

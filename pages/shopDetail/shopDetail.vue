@@ -104,7 +104,7 @@
 				return this.carList.length
 			},
 			alreadyAdd () {
-				return this.carList.includes(this.goods)
+				return this.carList.includes(this.goods.shop_number)
 			}
 		},
 		onShow() {
@@ -162,15 +162,15 @@
 			// 添加进购物车1
 			addToCar (target) {
 				const vm = this
-				const num = vm.carList.indexOf(target)
+				const num = vm.carList.indexOf(target.shop_number)
 				if (num === -1) {
-					vm.carList.push(target)
+					vm.carList.push(target.shop_number)
 				} else {
 					vm.carList.splice(num, 1)
 				}
 				uni.setStorageSync('carList', vm.carList)
 			},
-			// 创建订单
+			// 创建订单2
 			async toMakeOrder () {
 				const vm = this
 				const token = await uni.getStorageSync('token')

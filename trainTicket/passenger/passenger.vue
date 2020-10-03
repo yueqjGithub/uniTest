@@ -8,7 +8,7 @@
 				<u-icon name="tianchongxing-41" size="90" class="text-primary" custom-prefix="iconfont"></u-icon>
 			</view>
 			<text class="text-14 ma-col-sm text-grey-1 text-center">{{$t('contact.idCardTips')}}</text>
-			<u-form :model="form" ref="myForm" class='full-width' :label-width="0" label-position="top" :error-type="errorType">
+			<u-form :border-bottom="false" :model="form" ref="myForm" class='full-width' :label-width="0" label-position="top" :error-type="errorType">
 				<u-form-item prop="pis_id_card">
 					<u-input v-model="form.pis_id_card" type="text" :class="rightClass" :border="true" class="my-input" :placeholder="numberTips"></u-input>
 				</u-form-item>

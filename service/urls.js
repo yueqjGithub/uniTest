@@ -6,7 +6,7 @@ const urls = {
 		'/v1/api/user/info', '/v1/api/vip/opening', '/v1/api/shop/delivery', '/v1/api/cecharge/attribution',
 		'/v1/api/telephone/denomination', '/v1/api/publicity/subordinate', '/v1/api/publicity/config',
 		'/v1/api/cecharge/balance', '/v1/api/telephone/commit', '/v1/api/telephone/order', '/v1/api/public/delpis',
-		'/v1/api/train/commit', '/v1/api/train/refund',
+		'/v1/api/train/commit', '/v1/api/train/refund','/v1/api/vip/list',
 		'/v1/api/train/station', '/v1/api/train/find', '/v1/api/ticket/find', '/v1/api/ticket/station',
 		'/v1/api/public/gitpis', '/v1/api/public/pis', '/v1/api/publicity/index',
 		'/v1/api/ticket/commit', '/v1/api/train/pay', '/v1/api/train/order', '/v1/api/ticket/order'
@@ -38,7 +38,7 @@ const urls = {
 	queryMineInfo: '/v1/api/user/info', // 个人中心2
 	// 会员
 	becomeVip: '/v1/api/vip/opening', // 开通会员2
-	queryVipList: '/v1/api/vip/list', // 获取会员类型列表
+	queryVipList: '/v1/api/vip/list', // 获取会员类型列表2
 	queryPriceList: '/v1/api/telephone/denomination', // 查询充值面额列表2
 	searchPhoneInfo: '/v1/api/cecharge/attribution', // 查询归属地？2
 	queryPhoneBalance: '/v1/api/cecharge/balance', // 查询话费余额2
