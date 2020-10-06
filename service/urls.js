@@ -15,6 +15,8 @@ const urls = {
 	// basic
 	login: '/v1/api/public/login', // 登录2
 	init: '/v1/api/public/init', // 初始化
+	// help
+	queryHelp: '/v1/api/public/help', // 帮助中心
 	// index
 	queryIndex: '/v1/api/index/index', // 首页
 	queryNotice: '/v1/api/index/notify', // 首页消息

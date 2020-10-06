@@ -201,5 +201,8 @@ export default {
 		pageName: '我的成员',
 		level_one: '一级',
 		level_two: '二级'
+	},
+	help: {
+		pageName: '帮助中心'
 	}
 }

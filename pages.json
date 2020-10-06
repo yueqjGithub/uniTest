@@ -104,6 +104,12 @@
 				"navigationBarTitleText": "推广链接",
 				"backgroundColor": "#23AF8C"
 			}
+		}, {
+			"path": "pages/help/help",
+			"style": {
+				"navigationBarTitleText": "帮助中心",
+				"backgroundColor": "#23AF8C"
+			}
 		}
 	],
 	"subPackages": [{

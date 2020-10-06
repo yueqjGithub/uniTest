@@ -47,7 +47,7 @@
 					<u-icon name="bangzhu" custom-prefix="iconfont" size="40" class="text-primary"></u-icon>
 					<text class="ma-row-sm text-12">{{$t('mobileCharge.helpCenter')}}</text>
 				</view>
-				<button type="default" class="plain-btn" @click="toAuthPage('/pages/buyVip/buyVip')">
+				<button type="default" class="plain-btn" @click="toPage('/pages/help/help?type=telephone_fare')">
 					<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
 				</button>
 			</view>

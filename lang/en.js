@@ -201,5 +201,8 @@ export default {
 		pageName: 'ئەزالىرىم',
 		level_one: 'بىرىنجى دەرىجىلىك',
 		level_two: 'ئىككىنجى دەرىجىلىك'
+	},
+	help: {
+		pageName: 'ياردەم مەركىزى'
 	}
 }
