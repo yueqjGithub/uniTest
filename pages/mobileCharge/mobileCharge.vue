@@ -201,7 +201,6 @@
 						title: ''
 					})
 					vm.$post(urls.queryPriceList, obj).then(res => {
-						console.log(res)
 						uni.hideLoading()
 						if (res.success) {
 							vm.priceAll = res.data
