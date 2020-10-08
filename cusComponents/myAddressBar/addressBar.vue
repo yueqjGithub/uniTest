@@ -7,7 +7,7 @@
 		<view class="text-center ads-tit text-16">{{titName}}</view>
 		<!-- 搜索 -->
 		<view class="search-container flex-jst-btw flex-ali-center flex-row">
-			<u-field :class="lang === 'zh-CN' ? '' : 'my-text-right'" :border-bottom="false" @input="changeSearch"
+			<u-field :class="lang === 'zh-CN' ? '' : 'my-text-right'" :border-bottom="false" @input="changeSearch" :clearable="false"
 			:placeholder="$t('train.searchPlaceholder')" :label-width="1"
 			 type="text"></u-field>
 			 <u-icon custom-prefix="iconfont" name="weibiaoti--4" class="text-grey" size="35"></u-icon>
