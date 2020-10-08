@@ -134,11 +134,11 @@
 				vm.$post(urls.chargeMobile, obj).then(res => {
 					uni.requestPayment({ // 调用支付
 					    provider: 'wxpay',
-					    timeStamp: res.timeStamp,
-					    nonceStr: res.nonceStr,
-					    package: res.package,
+					    timeStamp: res.data.timeStamp,
+					    nonceStr: res.data.nonceStr,
+					    package: res.data.package,
 					    signType: 'MD5',
-					    paySign: res.paySign,
+					    paySign: res.data.paySign,
 					    success: function (result) {
 								uni.hideLoading()
 								uni.requestSubscribeMessage({ // 订阅消息 
@@ -150,7 +150,6 @@
 								})
 					    },
 					    fail: function (err) {
-								console.log(err)
 								uni.hideLoading()
 								uni.showToast({
 									icon: 'none',
