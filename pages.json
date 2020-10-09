@@ -113,6 +113,15 @@
 		}
 	],
 	"subPackages": [{
+		"root": "electric",
+		"pages": [{
+			"path": "electricIndex/electricIndex",
+			"style": {
+				"navigationBarTitleText": "电费充值",
+				"backgroundColor": "#23AF8C"
+			}
+		}]
+	}, {
 		"root": "trainTicket",
 		"pages": [{
 			"path": "index/index", // 火车票首页
