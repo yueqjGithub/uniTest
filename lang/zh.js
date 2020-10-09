@@ -204,5 +204,12 @@ export default {
 	},
 	help: {
 		pageName: '帮助中心'
+	},
+	electricIndex: {
+		pageName: '电费充值',
+		addressTips: '区域选择',
+		companyTips: '缴纳机构选择',
+		numberTips: '请输入电卡卡号',
+		makeSure: '勾选即代表同意《用户协议》中的内容'
 	}
 }

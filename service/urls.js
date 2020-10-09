@@ -57,6 +57,9 @@ const urls = {
 	commitAirOrder: '/v1/api/ticket/commit', // 机票订单提交2
 	airOrderType: '/v1/api/ticket/cate', // 机票订单类型
 	airOrderList: '/v1/api/ticket/order', // 机票订单列表2
+	// 电费
+	electricAreaList: '/v1/api/electric/address', // 请求电费缴纳区域
+	electricCompanyList: '/v1/api/electric/corporation', // 请求电费缴费公司
 	// 联系人模块
 	queryContact: '/v1/api/public/gitpis', // 获取乘客2
 	uploadIdcard: '/v1/api/upload/image', // 身份证上传识别

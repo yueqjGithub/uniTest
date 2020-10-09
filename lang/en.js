@@ -204,5 +204,12 @@ export default {
 	},
 	help: {
 		pageName: 'ياردەم مەركىزى'
+	},
+	electricIndex: {
+		pageName: 'توك سۇ ھەققى قاچىلاش',
+		addressTips: 'رايۇن تاللاڭ',
+		companyTips: 'تاپشۇرىدىغان ئورگاننى تاللاڭ',
+		numberTips: 'توك كارتىسى نۇمۇرىنى كىرگۈزۈڭ',
+		makeSure: '“ئىشلەتكۈچىلەر كېلىشىمى” نى ئوقۇدۇم ۋە قوشۇلدۇم'
 	}
 }

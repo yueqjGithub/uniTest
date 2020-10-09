@@ -195,3 +195,10 @@ text,view{
 		display: block !important;
 	}
 }
+
+// 取消checkbox label margin
+.no-ma-checkbox{
+	.u-checkbox__label{
+		margin: 0 !important;
+	}
+}
