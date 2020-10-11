@@ -29,9 +29,14 @@
 			<view class="pa-sm"></view>
 			<view class="full-width flex-jst-start flex-ali-center pa-col-md no-ma-checkbox" :class="langFlex">
 				<u-checkbox-group active-color="#00BE88" shape="circle">
-					<u-checkbox v-model="sure" name="true"></u-checkbox >
+					<u-checkbox v-model="sure" name="true"></u-checkbox>
 				</u-checkbox-group>
 				<text class="text-12 text-grey-1 ma-row-sm">{{$t('electricIndex.makeSure')}}</text>
+			</view>
+			<!-- 提交按钮 -->
+			<view class="pa-lg border-box full-width flex-row flex-jst-center flex-ali-center">
+				<button type="normal" :class="couldSubmit ? 'my-btn-primary text-white' : 'my-btn-normal text-dk-grey'" class="text-14"
+				 :disabled="!couldSubmit" @click="toDetail">{{$t('basic.ok')}}</button>
 			</view>
 		</view>
 		<!-- 选择器区域 -->
@@ -61,7 +66,8 @@
 				companyList: [],
 				showCompany: false,
 				cardNumber: '',
-				sure: false
+				sure: false,
+				pass: false
 			}
 		},
 		watch: {
@@ -73,6 +79,17 @@
 							title: this._i18n.messages[val].electricIndex.pageName
 						})
 					}
+				}
+			},
+			cardNumber: {
+				immediate: false,
+				handler: function(val) {
+					const vm = this
+					setTimeout(function() {
+						if (vm.cardNumber === val && vm.cardNumber !== '') {
+							vm.queryInfoByCard()
+						}
+					}, 1200)
 				}
 			}
 		},
@@ -127,6 +144,9 @@
 					this.company = result[0]
 				}
 				return result
+			},
+			couldSubmit() {
+				return this.sure && this.pass
 			}
 		},
 		onShow() {
@@ -176,6 +196,43 @@
 			chooseCompany(val) {
 				const vm = this
 				vm.company = val[0]
+			},
+			async queryInfoByCard() { // 根据用户输入卡号查询相关信息
+				const vm = this
+				const token = await vm.checkLogin()
+				if (token) {
+					const obj = {
+						token: token,
+						number: vm.cardNumber,
+						address_name: vm.address.value,
+						corporation_name: vm.company.value
+					}
+					uni.showLoading()
+					vm.$post(urls.queryByCard, obj).then(res => {
+						console.log(res)
+						uni.hideLoading()
+						if (res.success) {
+							vm.$store.commit('setCurElectricDetail', res.data)
+							vm.pass = true
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: res.message
+							})
+						}
+					}, err => {
+						uni.hideLoading()
+					})
+				} else {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+				}
+			},
+			toDetail() {
+				uni.navigateTo({
+					url: '/electric/detail/detail'
+				})
 			}
 		}
 	}
@@ -185,6 +242,7 @@
 	.page {
 		width: 100vw;
 		height: 100vh;
+
 		.head-bg {
 			position: absolute;
 			z-index: 1;
@@ -220,6 +278,7 @@
 
 			.input-item {
 				border-bottom: 1px solid #D3D3D3;
+
 				.tran-icon {
 					transform: rotate(180deg);
 				}

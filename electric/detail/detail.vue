@@ -1,0 +1,222 @@
+<template>
+	<view class="page bg-grey">
+		<view class="head-bg"></view>
+		<view class="content-container flex-column flex-jst-start flex-ali-center">
+			<view class="address-icon flex-row flex-jst-center flex-ali-center">
+				<u-icon name="shuidian" size="90" class="text-primary" custom-prefix="iconfont"></u-icon>
+			</view>
+			<!-- 余额显示 -->
+			<view class="balance full-width pa-lg border-box flex-column flex-jst-center flex-ali-center">
+				<view>
+					<text class="text-14 text-primary text-bold">￥</text>
+					<text class="text-32 text-primary text-bold">{{curElectric.account_balance}}</text>
+				</view>
+				<text class="text-grey-1 text-12">{{$t('electricIndex.balance')}}</text>
+			</view>
+			<!-- 详情显示 -->
+			<view class="full-width pa-col-md flex-column flex-jst-start flex-ali-center">
+				<view class="detail-item full-width flex-jst-start flex-ali-center" :class="langFlex">
+					<text class="flex-1 text-14 text-grey-1">{{$t('electricIndex.uName')}}</text>
+					<text class="flex-3 text-14 ma-row-sm">{{curElectric.user_name}}</text>
+				</view>
+				<view class="detail-item full-width flex-jst-start flex-ali-center" :class="langFlex">
+					<text class="flex-1 text-14 text-grey-1">{{$t('electricIndex.uNumber')}}</text>
+					<text class="flex-3 text-14 ma-row-sm">{{curElectric.number}}</text>
+				</view>
+				<view class="detail-item full-width flex-jst-start flex-ali-center" :class="langFlex">
+					<text class="flex-1 text-14 text-grey-1">{{$t('electricIndex.corporation')}}</text>
+					<text class="flex-3 text-14 ma-row-sm">{{curElectric.corporation}}</text>
+				</view>
+				<view class="detail-item full-width flex-jst-start flex-ali-center" :class="langFlex">
+					<text class="flex-1 text-14 text-grey-1">{{$t('electricIndex.ads')}}</text>
+					<text class="flex-3 text-14 ma-row-sm">{{curElectric.address}}</text>
+				</view>
+			</view>
+			<!-- 面额列表 -->
+			<view class="price-list full-width pa-col-md flex-row flex-jst-start flex-ali-start">
+				<view class="price-item flex-row flex-jst-center flex-ali-center ma-sm" v-for="k in priceList"
+				 :key="k.id" :class="choose === k.id ? 'price-choose' : ''" @click="choosePrice(k)">{{k.face_value}}</view>
+			</view>
+			<!-- 输入面额 -->
+			<view class="full-width pa-col-sm">
+				<u-input v-model="cusPrice" type="number" :class="rightClass" :border="true" class="my-input" :placeholder="$t('electricIndex.inputTips')" :clearable="false"></u-input>
+			</view>
+			<!-- 提交按钮 -->
+			<view class="pa-row-lg ma-col-md border-box full-width flex-row flex-jst-center flex-ali-center">
+				<button type="normal" class="text-white my-btn-primary text-14" @click="doCharge">{{$t('basic.ok')}}</button>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	import {
+		mapState,
+		mapActions
+	} from 'vuex'
+	import urls from '@/service/urls.js'
+	export default {
+		name: 'electicDetail',
+		data() {
+			return {
+				priceList: [],
+				choose: '',
+				cusPrice: '' // 自定义面额
+			}
+		},
+		watch: {
+			lang: {
+				immediate: true,
+				handler: function(val) {
+					if (val !== 'zh-CN') {
+						uni.setNavigationBarTitle({
+							title: this._i18n.messages[val].electricIndex.pageName
+						})
+					}
+				}
+			},
+			cusPrice (val) {
+				if (val !== '') {
+					this.choose = ''
+				}
+			},
+			choose (val) {
+				if (val !== '') {
+					this.cusPrice = ''
+				}
+			}
+		},
+		computed: {
+			...mapState(['lang', 'curElectric']),
+			langFlex() {
+				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'
+			},
+			rightClass() {
+				return this.lang === 'zh-CN' ? '' : 'my-text-right'
+			}
+		},
+		onShow() {
+			this.queryPrice()
+		},
+		methods: {
+			...mapActions(['checkLogin']),
+			choosePrice (target) {
+				this.choose = target.id
+			},
+			async queryPrice() {
+				const vm = this
+				const token = await vm.checkLogin()
+				if (token) {
+					const obj = {
+						token: token
+					}
+					uni.showLoading()
+					vm.$post(urls.queryElePrice, obj).then(res => {
+						uni.hideLoading()
+						console.log(res)
+						if (res.success) {
+							vm.priceList = [...res.data]
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: res.message
+							})
+						}
+					}, err => {
+						uni.hideLoading()
+					})
+				} else {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+				}
+			},
+			doCharge () {
+				const vm = this
+				// 验证金额合法性
+				if (vm.choose === '' && vm.cusPrice === '') {
+					uni.showToast({
+						icon: 'none',
+						title: vm._i18n.messages[vm.lang].electricIndex.tip1
+					})
+					return false
+				}
+				if (vm.curPrice !== '') {
+					const reg = /^\d+$/
+					if (!reg.test(vm.curPrice)) {
+						uni.showToast({
+							icon: 'none',
+							title: vm._i18n.messages[vm.lang].electricIndex.tip1
+						})
+					}
+					return false
+				}
+			}
+		}
+	}
+</script>
+
+<style lang="scss" scoped>
+	.page {
+		width: 100vw;
+		height: 100vh;
+
+		.head-bg {
+			position: absolute;
+			z-index: 1;
+			top: 0;
+			left: 0;
+			box-sizing: border-box;
+			width: 100%;
+			height: 356.8rpx;
+			border-bottom-left-radius: 50vw 5vh;
+			border-bottom-right-radius: 50vw 5vh;
+			padding-top: 20rpx;
+			margin-bottom: 30rpx;
+			background: linear-gradient(0deg, #19C882, #23AF8C);
+		}
+
+		.content-container {
+			position: relative;
+			z-index: 2;
+			background: #ffffff;
+			margin: 17px auto;
+			box-shadow: 0px 10px 35px 0px rgba(170, 170, 170, 0.1);
+			border-radius: 20.83rpx;
+			width: 90%;
+			box-sizing: border-box;
+			padding: 83.33rpx 55.55rpx;
+
+			.address-icon {
+				border: 1px solid rgba(207, 207, 207, 1);
+				border-radius: 13.88rpx;
+				width: 138.88rpx;
+				height: 138.88rpx;
+			}
+
+			.balance {
+				border-bottom: 1px solid #d5d5d5;
+			}
+
+			.detail-item {
+				margin-bottom: 8px;
+			}
+
+			.price-list {
+				.price-item {
+					width: 50px;
+					height: 50px;
+					font-size: 16px;
+					border-radius: 5px;
+					border: 1px solid #d5d5d5;
+					color: #d5d5d5;
+
+					&.price-choose {
+						border: 1px solid $uni-color-primary;
+						color: $uni-color-primary;
+					}
+				}
+			}
+		}
+	}
+</style>

@@ -40,3 +40,7 @@ export const setCurPassenger = (state, payload) => { // 设置当前乘客
 export const setCurOrderDetail = (state, payload) => {
 	state.curOrderDetail = payload
 }
+
+export const setCurElectricDetail = (state, payload) => {
+	state.curElectric = payload
+}

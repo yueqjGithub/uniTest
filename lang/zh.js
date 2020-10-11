@@ -210,6 +210,13 @@ export default {
 		addressTips: '区域选择',
 		companyTips: '缴纳机构选择',
 		numberTips: '请输入电卡卡号',
-		makeSure: '勾选即代表同意《用户协议》中的内容'
+		makeSure: '勾选即代表同意《用户协议》中的内容',
+		balance: '余额',
+		uName: '户名',
+		uNumber: '户号',
+		corporation: '缴费单位',
+		ads: '地址',
+		inputTips: '输入需要充值的金额',
+		tip1: '请设置充值金额'
 	}
 }
