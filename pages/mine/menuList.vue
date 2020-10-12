@@ -32,7 +32,7 @@
 				},{
 					id: 'A1597798908',
 					color: '#1ABC9C',
-					path: '',
+					path: '/pages/commonOrder/commonOrder?type=electric',
 					icon: 'shuidian',
 					name_cn: '水电费',
 					name: 'توك،سۇ ھەققى'

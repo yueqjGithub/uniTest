@@ -161,6 +161,9 @@
 					address: vm.curElectric.corporation
 				}
 				console.log(obj)
+				vm.$post(urls.subEleOrder, obj).then(res => {
+					console.log(res)
+				})
 			}
 		}
 	}

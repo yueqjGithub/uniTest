@@ -128,7 +128,9 @@ export default {
 		phoneMoneyCharge: '话费充值',
 		trainPage: '火车票订单',
 		orderDetail: '订单详情',
-		airPage: '机票订单'
+		airPage: '机票订单',
+		elePage: '水电费订单',
+		eleCharge: '电费充值'
 	},
 	train: {
 		pageName: '火车票',

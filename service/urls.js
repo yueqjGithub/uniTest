@@ -7,9 +7,9 @@ const urls = {
 		'/v1/api/telephone/denomination', '/v1/api/publicity/subordinate', '/v1/api/publicity/config',
 		'/v1/api/cecharge/balance', '/v1/api/telephone/commit', '/v1/api/telephone/order', '/v1/api/public/delpis',
 		'/v1/api/train/commit', '/v1/api/train/refund','/v1/api/vip/list', '/v1/api/electric/details',
-		'/v1/api/train/station', '/v1/api/train/find', '/v1/api/ticket/find', '/v1/api/ticket/station',
+		'/v1/api/train/station', '/v1/api/train/find', '/v1/api/ticket/find', '/v1/api/ticket/station', '/v1/api/electric/orderlist',
 		'/v1/api/public/gitpis', '/v1/api/public/pis', '/v1/api/publicity/index', '/v1/api/electric/denomination',
-		'/v1/api/ticket/commit', '/v1/api/train/pay', '/v1/api/train/order', '/v1/api/ticket/order'
+		'/v1/api/ticket/commit', '/v1/api/train/pay', '/v1/api/train/order', '/v1/api/ticket/order', '/v1/api/electric/commit'
 	], // 需要加密的接口2
 	baseUrl: 'https://shopapi.apiself.com',
 	// basic
@@ -62,6 +62,9 @@ const urls = {
 	electricCompanyList: '/v1/api/electric/corporation', // 请求电费缴费公司
 	queryByCard: '/v1/api/electric/details', // 根据卡号获取详细信息2
 	queryElePrice: '/v1/api/electric/denomination', // 电费冲值面额列表2
+	subEleOrder: '/v1/api/electric/commit', // 提交电费订单2
+	eleOrderType: '/v1/api/electric/ordercate', // 电费订单类型
+	queryEleOrder: '/v1/api/electric/orderlist', // 电费订单列表2
 	// 联系人模块
 	queryContact: '/v1/api/public/gitpis', // 获取乘客2
 	uploadIdcard: '/v1/api/upload/image', // 身份证上传识别
@@ -72,7 +75,7 @@ const urls = {
 	queryJunior: '/v1/api/publicity/subordinate', // 我的成员2
 	pullSetting: '/v1/api/publicity/config', // 推广配置2
 	// 反馈中心
-	subFeedback: '/v1/api/public/feedback', // 提交反馈2
+	subFeedback: '/v1/api/public/feedback', // 提交反馈
 	// 订单公共页
 	phoneOrderType: '/v1/api/telephone/ordercate', // 获取话费充值订单类型
 	phoneOrderList: '/v1/api/telephone/order' // 话费订单列表2
