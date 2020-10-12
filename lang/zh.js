@@ -218,5 +218,11 @@ export default {
 		ads: '地址',
 		inputTips: '输入需要充值的金额',
 		tip1: '请设置充值金额'
+	},
+	feedback: {
+		title: '反馈标题',
+		content: '反馈内容',
+		titTips: '请输入反馈标题',
+		contTips: '请输入反馈内容'
 	}
 }

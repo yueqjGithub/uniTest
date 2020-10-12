@@ -110,6 +110,12 @@
 				"navigationBarTitleText": "帮助中心",
 				"backgroundColor": "#23AF8C"
 			}
+		}, {
+			"path": "pages/feedback/feedback",
+			"style": {
+				"navigationBarTitleText": "意见反馈",
+				"backgroundColor": "#23AF8C"
+			}
 		}
 	],
 	"subPackages": [{
@@ -214,7 +220,7 @@
 			},
 			{
 				"name": "devlope",
-				"path": "pages/junior/junior",
+				"path": "pages/feedback/feedback",
 				"query": ""
 			}
 		]

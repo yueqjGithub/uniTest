@@ -17,23 +17,23 @@
 			<view class="full-width pa-col-md flex-column flex-jst-start flex-ali-center">
 				<view class="detail-item full-width flex-jst-start flex-ali-center" :class="langFlex">
 					<text class="flex-1 text-14 text-grey-1">{{$t('electricIndex.uName')}}</text>
-					<text class="flex-3 text-14 ma-row-sm">{{curElectric.user_name}}</text>
+					<text class="flex-3 text-14 ma-row-sm" :class="rightClass">{{curElectric.user_name}}</text>
 				</view>
 				<view class="detail-item full-width flex-jst-start flex-ali-center" :class="langFlex">
 					<text class="flex-1 text-14 text-grey-1">{{$t('electricIndex.uNumber')}}</text>
-					<text class="flex-3 text-14 ma-row-sm">{{curElectric.number}}</text>
+					<text class="flex-3 text-14 ma-row-sm" :class="rightClass">{{curElectric.number}}</text>
 				</view>
 				<view class="detail-item full-width flex-jst-start flex-ali-center" :class="langFlex">
 					<text class="flex-1 text-14 text-grey-1">{{$t('electricIndex.corporation')}}</text>
-					<text class="flex-3 text-14 ma-row-sm">{{curElectric.corporation}}</text>
+					<text class="flex-3 text-14 ma-row-sm" :class="rightClass">{{curElectric.corporation}}</text>
 				</view>
 				<view class="detail-item full-width flex-jst-start flex-ali-center" :class="langFlex">
 					<text class="flex-1 text-14 text-grey-1">{{$t('electricIndex.ads')}}</text>
-					<text class="flex-3 text-14 ma-row-sm">{{curElectric.address}}</text>
+					<text class="flex-3 text-14 ma-row-sm" :class="rightClass">{{curElectric.address}}</text>
 				</view>
 			</view>
 			<!-- 面额列表 -->
-			<view class="price-list full-width pa-col-md flex-row flex-jst-start flex-ali-start">
+			<view class="price-list full-width pa-col-md flex-jst-start flex-ali-start" :class="langFlex">
 				<view class="price-item flex-row flex-jst-center flex-ali-center ma-sm" v-for="k in priceList"
 				 :key="k.id" :class="choose === k.id ? 'price-choose' : ''" @click="choosePrice(k)">{{k.face_value}}</view>
 			</view>
@@ -131,7 +131,7 @@
 					})
 				}
 			},
-			doCharge () {
+			async doCharge () {
 				const vm = this
 				// 验证金额合法性
 				if (vm.choose === '' && vm.cusPrice === '') {
@@ -141,16 +141,26 @@
 					})
 					return false
 				}
-				if (vm.curPrice !== '') {
-					const reg = /^\d+$/
-					if (!reg.test(vm.curPrice)) {
+				if (vm.cusPrice !== '') {
+					const reg = /^[0-9.]{1,10}$/
+					if (!reg.test(vm.cusPrice)) {
 						uni.showToast({
 							icon: 'none',
 							title: vm._i18n.messages[vm.lang].electricIndex.tip1
 						})
+						return false
 					}
-					return false
 				}
+				// 提交订单
+				const token = await vm.checkLogin()
+				const obj = {
+					token: token,
+					card_number: vm.curElectric.number,
+					recharge_amount: vm.cusPrice ? vm.cusPrice : vm.priceList.find(item => item.id === vm.choose).selling_price,
+					account_balance: vm.curElectric.account_balance,
+					address: vm.curElectric.corporation
+				}
+				console.log(obj)
 			}
 		}
 	}

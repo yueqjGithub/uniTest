@@ -71,6 +71,8 @@ const urls = {
 	pullIndex: '/v1/api/publicity/index', // 推广首页2
 	queryJunior: '/v1/api/publicity/subordinate', // 我的成员2
 	pullSetting: '/v1/api/publicity/config', // 推广配置2
+	// 反馈中心
+	subFeedback: '/v1/api/public/feedback', // 提交反馈2
 	// 订单公共页
 	phoneOrderType: '/v1/api/telephone/ordercate', // 获取话费充值订单类型
 	phoneOrderList: '/v1/api/telephone/order' // 话费订单列表2
