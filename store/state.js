@@ -12,5 +12,6 @@ export default {
 	curSeat: '', // 当前选择的座位
 	curPassenger: '', // 当前乘客
 	curOrderDetail: '', // 当前订单详情（火车票，机票）
-	curElectric: '' // 当前充值电费详细信息
+	curElectric: '', // 当前充值电费详细信息
+	shareForPhoneCharge: false // 话费充值分享
 }

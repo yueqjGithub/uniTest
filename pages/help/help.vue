@@ -19,18 +19,6 @@
 				cont: ''
 			};
 		},
-		watch: {
-			lang: {
-				immediate: true,
-				handler: function (val) {
-					if (val !== 'zh-CN') {
-						uni.setNavigationBarTitle({
-							title: this._i18n.messages[val].help.pageName
-						})
-					}
-				}
-			}
-		},
 		computed: {
 			...mapState(['lang'])
 		},
@@ -41,6 +29,20 @@
 			init () {
 				const vm = this
 				vm.type = getCurrentPages()[getCurrentPages().length - 1].options.type
+				let pageName = ''
+				switch (vm.type) {
+					case 'user_xy':
+					pageName = vm._i18n.messages[vm.lang].help.noticePageName
+					break;
+					case 'about_us':
+					pageName = vm._i18n.messages[vm.lang].help.aboutPageName
+					break;
+					default:
+					pageName = vm._i18n.messages[vm.lang].help.pageName
+				}
+				uni.setNavigationBarTitle({
+					title: pageName
+				})
 				this.queryInfo()
 			},
 			queryInfo () {

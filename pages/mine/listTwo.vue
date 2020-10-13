@@ -35,7 +35,7 @@
 				<u-icon name="renwuzhongxin-fabuneirong" custom-prefix="iconfont" size="40" class="text-primary"></u-icon>
 				<text class="ma-row-sm text-12">{{$t('mine.earingPost')}}</text>
 			</view>
-			<button type="default" class="plain-btn">
+			<button type="default" class="plain-btn"  @click="toAuthPage('/pages/pullPoster/pullPoster')">
 				<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
 			</button>
 		</view>

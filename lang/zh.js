@@ -17,7 +17,8 @@ export default {
 		hour: '时',
 		minute: '分',
 		copy: '复制',
-		copyTips: '已复制到您的粘贴板'
+		copyTips: '已复制到您的粘贴板',
+		share: '分享'
 	},
 	tab: {
 		index: '首页',
@@ -121,7 +122,8 @@ export default {
 		promote: '推广降价',
 		vipGuide: '开通会员优惠更多',
 		promoteGuide: '推广赚钱创造价值',
-		helpCenter: '帮助中心'
+		helpCenter: '帮助中心',
+		alreadyPull: '您已获得推广优惠'
 	},
 	commonOrder: {
 		phonePage: '充值订单',
@@ -199,13 +201,18 @@ export default {
 	pullSalon: {
 		pageName: '推广链接'
 	},
+	pullPoster: {
+		pageName: '推广海报'
+	},
 	junior: { // 我的下级
 		pageName: '我的成员',
 		level_one: '一级',
 		level_two: '二级'
 	},
 	help: {
-		pageName: '帮助中心'
+		pageName: '帮助中心',
+		aboutPageName: '关于我们',
+		noticePageName: '用户协议'
 	},
 	electricIndex: {
 		pageName: '电费充值',

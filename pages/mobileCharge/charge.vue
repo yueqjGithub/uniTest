@@ -51,7 +51,8 @@
 <script>
 	import urls from '@/service/urls.js'
 	import {
-		mapState
+		mapState,
+		mapMutations
 	} from 'vuex'
 	export default {
 		name: 'charge',
@@ -73,7 +74,6 @@
 				ad: '', // 广告
 				isLoaded: true, // 广告是否加载成功
 				adv: false, // 是否观看完广告
-				sharing_preferences: false, // 推广参与
 				balance: false // 使用余额
 			}
 		},
@@ -105,7 +105,7 @@
 			}
 		},
 		computed: {
-			...mapState(['lang']),
+			...mapState(['lang', 'shareForPhoneCharge']),
 			langFlex() {
 				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'
 			},
@@ -117,6 +117,7 @@
 			// console.log(this.target)
 		},
 		methods: {
+			...mapMutations(['setSharePhone']),
 			async doCharge () {
 				const vm = this
 				const token = await uni.getStorageSync('token')
@@ -125,9 +126,10 @@
 					id: vm.target.id,
 					mobile: vm.phone,
 					adv: vm.adv ? 'true' : 'false',
-					sharing_preferences: vm.sharing_preferences ? 'true' : 'false',
+					sharing_preferences: vm.shareForPhoneCharge ? 'true' : 'false',
 					balance: vm.balance ? 'true' : 'false'
 				}
+				console.log(obj)
 				uni.showLoading({
 					title: ''
 				})
@@ -140,6 +142,7 @@
 					    signType: 'MD5',
 					    paySign: res.data.paySign,
 					    success: function (result) {
+								vm.setSharePhone(false)
 								uni.hideLoading()
 								uni.requestSubscribeMessage({ // 订阅消息 
 								  tmplIds: ['9UTQnyosblyWEn16aJ5GT9DbjClzWU6yljBWXncAPIk'],
@@ -162,10 +165,17 @@
 				})
 			},
 			promote () { // 推广
-				this.sharing_preferences = true
-				uni.navigateTo({
-					url: '/pages/coin/coin'
-				})
+				const vm = this
+				if (vm.shareForPhoneCharge) {
+					uni.showToast({
+						icon: 'none',
+						title: vm._i18n.messages[vm.lang].mobileCharge.alreadyPull
+					})
+				} else {
+					uni.navigateTo({
+						url: '/pages/pullPoster/pullPoster?mode=phone'
+					})
+				}
 			},
 			showAd () { // 播放广告
 				this.ad.show()

@@ -46,7 +46,7 @@
 					<u-icon name="renwuzhongxin-huodepinglun" custom-prefix="iconfont" size="40" class="text-gold"></u-icon>
 					<text class="ma-row-sm text-12">{{$t('vip.agreement')}}</text>
 				</view>
-				<button type="default" class="plain-btn">
+				<button type="default" class="plain-btn" @click="toPage('/pages/help/help?type=user_xy')">
 					<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon"></u-icon>
 				</button>
 			</view>

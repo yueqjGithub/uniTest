@@ -113,7 +113,6 @@
 					uni.showLoading()
 					vm.$post(urls.queryElePrice, obj).then(res => {
 						uni.hideLoading()
-						console.log(res)
 						if (res.success) {
 							vm.priceList = [...res.data]
 						} else {
@@ -160,9 +159,59 @@
 					account_balance: vm.curElectric.account_balance,
 					address: vm.curElectric.corporation
 				}
-				console.log(obj)
+				uni.showLoading()
 				vm.$post(urls.subEleOrder, obj).then(res => {
-					console.log(res)
+					// console.log(res)
+					if (res.success) {
+						uni.hideLoading()
+						if (res.data.result_code === 'SUCCESS') {
+							vm.toPay(res.data)
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: res.data.err_code_des
+							})
+						}
+					} else {
+						uni.hideLoading()
+						uni.showToast({
+							icon: 'none',
+							title: res.message
+						})
+					}
+				})
+			},
+			toPay (info) {
+				const vm = this
+				uni.requestPayment({ // 调用支付
+					provider: 'wxpay',
+					timeStamp: info.timeStamp,
+					nonceStr: info.nonceStr,
+					package: info.package,
+					signType: 'MD5',
+					paySign: info.paySign,
+					success: function (result) {
+						vm.buySuc = true
+						uni.hideLoading()
+						uni.showToast({
+							icon: 'success',
+							title: ''
+						})
+						uni.requestSubscribeMessage({ // 订阅消息 
+						  tmplIds: ['9UTQnyosblyWEn16aJ5GT9DbjClzWU6yljBWXncAPIk'],
+						  success (result) {
+							},
+							fail (err) {
+							}
+						})
+					},
+					fail: function (err) {
+						uni.hideLoading()
+						uni.showToast({
+							icon: 'none',
+							title: vm._i18n.messages[vm.lang].makeOrder.payFail
+						})
+					}
 				})
 			}
 		}

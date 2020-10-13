@@ -17,7 +17,8 @@ export default {
 		hour: 'سائەت',
 		minute: 'مىنۇت',
 		copy: 'كۆپەيتىش',
-		copyTips: 'ئاللىقاچان كۆپەيتىش سىزنىڭ چاپلاش تاختىسى'
+		copyTips: 'ئاللىقاچان كۆپەيتىش سىزنىڭ چاپلاش تاختىسى',
+		share: 'كېڭەيتمەك'
 	},
 	tab: {
 		index: 'باش بەت',
@@ -121,7 +122,8 @@ export default {
 		promote: 'تەشۋىق قىلىپ باھا تۆۋەنلىتىش',
 		vipGuide: 'ئالىي ئەزا بولسىڭىز مۇلازىمەت ھەققى ئېلىنمايدۇ',
 		promoteGuide: 'ئەپچىمىزدە پۇل تېپىپ خالىغانچە ئىشلىتەلەيسىز',
-		helpCenter: 'ياردەم مەركىزى'
+		helpCenter: 'ياردەم مەركىزى',
+		alreadyPull: 'سىز ئاللىقاچان كېڭەيتىش ئېتىبار بېرىش'
 	},
 	commonOrder: {
 		phonePage: 'تېلىفۇن ھەققى زاكاسلىرى',
@@ -199,13 +201,18 @@ export default {
 	pullSalon: {
 		pageName: 'سالۇن باغلاش'
 	},
+	pullPoster: {
+		pageName: 'تەشۋىقات رەسىمى'
+	},
 	junior: { // 我的成员
 		pageName: 'ئەزالىرىم',
 		level_one: 'بىرىنجى دەرىجىلىك',
 		level_two: 'ئىككىنجى دەرىجىلىك'
 	},
 	help: {
-		pageName: 'ياردەم مەركىزى'
+		pageName: 'ياردەم مەركىزى',
+		aboutPageName: 'بىز توغرىسىدا',
+		noticePageName: 'خېرىدار كېلىشىمى'
 	},
 	electricIndex: {
 		pageName: 'توك سۇ ھەققى قاچىلاش',

@@ -95,7 +95,7 @@
 					{ keyName: 'order', iconName: 'weibiaoti--33', color: '#3498DB', path: '' },
 					{ keyName: 'record', iconName: 'weibiaoti--50', color: '#F39C12', path: '' },
 					{ keyName: 'link', iconName: 'ABSxitong-weixintubiao', color: '#00BE87', path: '/pages/pullSalon/pullSalon' },
-					{ keyName: 'picture', iconName: 'weibiaoti--28', color: '#9B59B6', path: '' },
+					{ keyName: 'picture', iconName: 'weibiaoti--28', color: '#9B59B6', path: '/pages/pullPoster/pullPoster' },
 				]
 			}
 		},

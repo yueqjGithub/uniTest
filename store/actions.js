@@ -49,6 +49,7 @@ export const getLoginToken = (context, user) => { // 自定义登录
 		console.log(res)
 		if (res.success) {
 			wx.setStorageSync('token', res.data.token)
+			wx.setStorageSync('myInviterCode', res.data.inviter)
 			uni.navigateBack({
 				delta: 1
 			})
