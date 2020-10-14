@@ -125,6 +125,21 @@
 		}
 	],
 	"subPackages": [{
+		"root": "pullOtherPage",
+		"pages": [{
+			"path": "withdraw/withdraw",
+			"style": {
+				"navigationBarTitleText": "提现",
+				"backgroundColor": "#23AF8C"
+			}
+		}, {
+			"path": "withdrawHis/withdrawHis",
+			"style": {
+				"navigationBarTitleText": "提现记录",
+				"backgroundColor": "#23AF8C"
+			}
+		}]
+	}, {
 		"root": "electric",
 		"pages": [{
 			"path": "electricIndex/electricIndex",

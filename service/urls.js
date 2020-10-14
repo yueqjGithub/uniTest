@@ -9,7 +9,8 @@ const urls = {
 		'/v1/api/train/commit', '/v1/api/train/refund','/v1/api/vip/list', '/v1/api/electric/details',
 		'/v1/api/train/station', '/v1/api/train/find', '/v1/api/ticket/find', '/v1/api/ticket/station', '/v1/api/electric/orderlist',
 		'/v1/api/public/gitpis', '/v1/api/public/pis', '/v1/api/publicity/index', '/v1/api/electric/denomination',
-		'/v1/api/ticket/commit', '/v1/api/train/pay', '/v1/api/train/order', '/v1/api/ticket/order', '/v1/api/electric/commit'
+		'/v1/api/ticket/commit', '/v1/api/train/pay', '/v1/api/train/order', '/v1/api/ticket/order', '/v1/api/electric/commit',
+		'/v1/api/withdraw/commit'
 	], // 需要加密的接口2
 	baseUrl: 'https://shopapi.apiself.com',
 	// basic
@@ -74,6 +75,7 @@ const urls = {
 	pullIndex: '/v1/api/publicity/index', // 推广首页2
 	queryJunior: '/v1/api/publicity/subordinate', // 我的成员2
 	pullSetting: '/v1/api/publicity/config', // 推广配置2
+	submitWithdraw: '/v1/api/withdraw/commit', // 申请提现2
 	// 反馈中心
 	subFeedback: '/v1/api/public/feedback', // 提交反馈
 	// 订单公共页

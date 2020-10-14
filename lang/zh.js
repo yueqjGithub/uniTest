@@ -194,15 +194,22 @@ export default {
 		// menulist
 		total: '累计赚取',
 		order: '盈利订单',
-		record: '兑现记录',
+		record: '提现记录',
 		link: '推广链接',
-		picture: '推广海报'
+		picture: '推广海报',
+		withdrawBtn: '提现',
+		withdrawTips: '可提余额不足',
+		amountTips: '请输入提现金额',
+		withdrawTip2: '无效的金额'
 	},
 	pullSalon: {
 		pageName: '推广链接'
 	},
 	pullPoster: {
 		pageName: '推广海报'
+	},
+	withdrawHis: {
+		pageName: '提现记录'
 	},
 	junior: { // 我的下级
 		pageName: '我的成员',

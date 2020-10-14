@@ -196,13 +196,20 @@ export default {
 		order: 'پايدا ئالغان زاكاس',
 		record: 'نەقلەش خاتىرەم',
 		link: 'سالۇنغا ئۇلاش',
-		picture: 'تەشۋىقات رەسىم'
+		picture: 'تەشۋىقات رەسىم',
+		withdrawBtn: 'نەقلەشتۈرىمەن',
+		withdrawTips: 'قالدۇق سومما يېتىشمەسلىك',
+		amountTips: 'نەق پۇل ئېلىش سوممىسى كىرگۈزۈڭ',
+		withdrawTip2: 'ئىناۋەتسىز سومما'
 	},
 	pullSalon: {
 		pageName: 'سالۇن باغلاش'
 	},
 	pullPoster: {
 		pageName: 'تەشۋىقات رەسىمى'
+	},
+	withdrawHis: {
+		pageName: 'نەقلەشتۈرۈش خاتىرىسى'
 	},
 	junior: { // 我的成员
 		pageName: 'ئەزالىرىم',
