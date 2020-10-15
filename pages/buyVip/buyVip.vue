@@ -126,7 +126,6 @@
 						token: token
 					}
 					vm.$post(urls.queryMineInfo, obj).then(res => {
-						console.log(res)
 						this.person = res.data
 					})
 				}
@@ -145,14 +144,14 @@
 					vm.$post(urls.becomeVip, obj).then(res => {
 						uni.hideLoading()
 						if (res.success) {
-							if (res.data.order_number.err_code_des === '' || !res.data.order_number.err_code_des) {
+							if (res.data.err_code_des === '' || !res.data.err_code_des) {
 								uni.requestPayment({ // 调用支付
 								    provider: 'wxpay',
-								    timeStamp: res.data.order_number.timeStamp,
-								    nonceStr: res.data.order_number.nonceStr,
-								    package: res.data.order_number.package,
+								    timeStamp: res.data.timeStamp,
+								    nonceStr: res.data.nonceStr,
+								    package: res.data.package,
 								    signType: 'MD5',
-								    paySign: res.data.order_number.paySign,
+								    paySign: res.data.paySign,
 								    success: function (result) {
 											vm.queryMine()
 								    },
