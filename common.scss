@@ -78,6 +78,9 @@ text,view{
 .flex-3{flex: 3;}
 .flex-4{flex: 4;}
 .self-end{align-self: flex-end;}
+.self-stretch{
+	align-self: stretch;
+}
 // ---------------float
 .fl{float: left;}
 .clear::after{
@@ -100,6 +103,7 @@ text,view{
 .ma-row-sm{margin: 0 15rpx;}
 .ma-col-md{margin: 27.77rpx 0;}
 .ma-col-sm{margin: 15rpx 0;}
+.ma-col-lg{margin: 28px 0;}
 .pa-lg{
 	padding: 28px;
 }

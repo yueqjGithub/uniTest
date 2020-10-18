@@ -197,10 +197,15 @@ export default {
 		record: 'نەقلەش خاتىرەم',
 		link: 'سالۇنغا ئۇلاش',
 		picture: 'تەشۋىقات رەسىم',
+		top: 'ئومۇملاشتۇرۇش تىزىملىكى',
 		withdrawBtn: 'نەقلەشتۈرىمەن',
 		withdrawTips: 'قالدۇق سومما يېتىشمەسلىك',
 		amountTips: 'نەق پۇل ئېلىش سوممىسى كىرگۈزۈڭ',
 		withdrawTip2: 'ئىناۋەتسىز سومما'
+	},
+	pullHot: {
+		pageName: 'شەرەپ تاختىسى',
+		earn: 'تاپقان پۇل'
 	},
 	pullSalon: {
 		pageName: 'سالۇن باغلاش'

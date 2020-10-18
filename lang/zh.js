@@ -197,10 +197,15 @@ export default {
 		record: '提现记录',
 		link: '推广链接',
 		picture: '推广海报',
+		top: '推广榜单',
 		withdrawBtn: '提现',
 		withdrawTips: '可提余额不足',
 		amountTips: '请输入提现金额',
 		withdrawTip2: '无效的金额'
+	},
+	pullHot: {
+		pageName: '推广排行',
+		earn: '盈利'
 	},
 	pullSalon: {
 		pageName: '推广链接'

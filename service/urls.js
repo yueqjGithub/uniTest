@@ -4,9 +4,9 @@ const urls = {
 	md5List: ['/v1/api/public/login', '/v1/api/shop/details', '/v1/api/shop/collect', '/v1/api/shop/buy',
 		'/v1/api/shop/pretreatment', '/v1/api/shippingaddress/edit', '/v1/api/shop/orderlist', '/v1/api/user/shopcollect',
 		'/v1/api/user/info', '/v1/api/vip/opening', '/v1/api/shop/delivery', '/v1/api/cecharge/attribution',
-		'/v1/api/telephone/denomination', '/v1/api/publicity/subordinate', '/v1/api/publicity/config',
+		'/v1/api/telephone/denomination', '/v1/api/publicity/subordinate', '/v1/api/publicity/config', '/v1/api/publicity/ranking',
 		'/v1/api/cecharge/balance', '/v1/api/telephone/commit', '/v1/api/telephone/order', '/v1/api/public/delpis',
-		'/v1/api/train/commit', '/v1/api/train/refund','/v1/api/vip/list', '/v1/api/electric/details',
+		'/v1/api/train/commit', '/v1/api/train/refund','/v1/api/vip/list', '/v1/api/electric/details', '/v1/api/withdraw/list',
 		'/v1/api/train/station', '/v1/api/train/find', '/v1/api/ticket/find', '/v1/api/ticket/station', '/v1/api/electric/orderlist',
 		'/v1/api/public/gitpis', '/v1/api/public/pis', '/v1/api/publicity/index', '/v1/api/electric/denomination',
 		'/v1/api/ticket/commit', '/v1/api/train/pay', '/v1/api/train/order', '/v1/api/ticket/order', '/v1/api/electric/commit',
@@ -76,6 +76,8 @@ const urls = {
 	queryJunior: '/v1/api/publicity/subordinate', // 我的成员2
 	pullSetting: '/v1/api/publicity/config', // 推广配置2
 	submitWithdraw: '/v1/api/withdraw/commit', // 申请提现2
+	withdrawList: '/v1/api/withdraw/list', // 提现记录2
+	pullRank: '/v1/api/publicity/ranking', // 推广排行2
 	// 反馈中心
 	subFeedback: '/v1/api/public/feedback', // 提交反馈
 	// 订单公共页
