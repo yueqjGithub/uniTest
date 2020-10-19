@@ -66,6 +66,8 @@ const urls = {
 	subEleOrder: '/v1/api/electric/commit', // 提交电费订单2
 	eleOrderType: '/v1/api/electric/ordercate', // 电费订单类型
 	queryEleOrder: '/v1/api/electric/orderlist', // 电费订单列表2
+	// 油卡
+	queryOilType: '/v1/api/oilcard/cate', // 油费类型
 	// 联系人模块
 	queryContact: '/v1/api/public/gitpis', // 获取乘客2
 	uploadIdcard: '/v1/api/upload/image', // 身份证上传识别

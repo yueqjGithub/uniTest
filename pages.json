@@ -125,6 +125,15 @@
 		}
 	],
 	"subPackages": [{
+		"root": "oil",
+		"pages": [{
+			"path": "index/index",
+			"style": {
+				"navigationBarTitleText": "油费",
+				"backgroundColor": "#23AF8C"
+			}
+		}]
+	},{
 		"root": "pullOtherPage",
 		"pages": [{
 			"path": "withdraw/withdraw",
@@ -248,8 +257,8 @@
 			},
 			{
 				"name": "devlope",
-				"path": "pages/pullPoster/pullPoster",
-				"query": "mode=phone"
+				"path": "oil/index/index",
+				"query": ""
 			}
 		]
 	}

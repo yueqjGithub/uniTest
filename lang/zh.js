@@ -18,7 +18,8 @@ export default {
 		minute: '分',
 		copy: '复制',
 		copyTips: '已复制到您的粘贴板',
-		share: '分享'
+		share: '分享',
+		charge: '充值'
 	},
 	tab: {
 		index: '首页',
@@ -245,5 +246,12 @@ export default {
 		content: '反馈内容',
 		titTips: '请输入反馈标题',
 		contTips: '请输入反馈内容'
+	},
+	oilIndex: {
+		pageName: '油费',
+		oil1: '中国石油加油卡',
+		oil2: '中国石化加油卡',
+		tip1: '罚单二维码扫描直接罚款你可以交费',
+		tip2: '以罚款处罚的序号来支付罚款你可以交'
 	}
 }
