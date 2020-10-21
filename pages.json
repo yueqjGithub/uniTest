@@ -132,8 +132,16 @@
 				"navigationBarTitleText": "油费",
 				"backgroundColor": "#23AF8C"
 			}
+		}, {
+			"path": "card/card",
+			"style": {
+				"navigationBarTitleText": "油卡信息",
+				"enablePullDownRefresh": false,
+				"backgroundColor": "#23AF8C"
+			}
+
 		}]
-	},{
+	}, {
 		"root": "pullOtherPage",
 		"pages": [{
 			"path": "withdraw/withdraw",
@@ -257,7 +265,7 @@
 			},
 			{
 				"name": "devlope",
-				"path": "oil/index/index",
+				"path": "oil/card/card",
 				"query": ""
 			}
 		]
