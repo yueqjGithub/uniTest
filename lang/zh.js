@@ -19,7 +19,8 @@ export default {
 		copy: '复制',
 		copyTips: '已复制到您的粘贴板',
 		share: '分享',
-		charge: '充值'
+		charge: '充值',
+		getValiCode: '获取验证码'
 	},
 	tab: {
 		index: '首页',
@@ -255,6 +256,10 @@ export default {
 		tip2: '以罚款处罚的序号来支付罚款你可以交'
 	},
 	oilCard: {
-		pageName: '油卡信息'
+		pageName: '油卡信息',
+		nameTips: '请输入姓名',
+		idcardTips: '请输入身份证号码',
+		oilcardTips: '请输入油卡号码',
+		codeTips: '请输入验证码'
 	}
 }
