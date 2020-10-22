@@ -260,5 +260,8 @@ export default {
 		idcardTips: 'كىملىك نۇمۇرىڭىزنى كىرگۈزۈڭ',
 		oilcardTips: 'ماي كارتىسى نۇمۇرىنى كىرگۈزۈڭ',
 		codeTips: 'تەستىق كودنى كىرگۈزۈڭ'
+	},
+	oilCenter: {
+		pageName: 'ماي كارتىسى'
 	}
 }

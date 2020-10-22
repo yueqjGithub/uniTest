@@ -261,5 +261,8 @@ export default {
 		idcardTips: '请输入身份证号码',
 		oilcardTips: '请输入油卡号码',
 		codeTips: '请输入验证码'
+	},
+	oilCenter: {
+		pageName: '油卡充值'
 	}
 }

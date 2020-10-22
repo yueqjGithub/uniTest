@@ -140,6 +140,14 @@
 				"backgroundColor": "#23AF8C"
 			}
 
+		}, {
+			"path": "center/center",
+			"style": {
+				"navigationBarTitleText": "油卡充值",
+				"enablePullDownRefresh": false,
+				"backgroundColor": "#23AF8C"
+			}
+
 		}]
 	}, {
 		"root": "pullOtherPage",
@@ -265,7 +273,7 @@
 			},
 			{
 				"name": "devlope",
-				"path": "oil/card/card",
+				"path": "oil/center/center",
 				"query": ""
 			}
 		]
