@@ -29,8 +29,8 @@
 			<view class="pa-col-lg full-width flex-row flex-jst-center flex-ali-start">
 				<u-radio-group v-model="cardType" :wrap="false" class="full-width" width="50%"
 				 active-color="#23AF8C" :label-disabled="false">
-					<u-radio v-for="(item, index) in typeList" :key="index" :name="item.value">
-						<image :src="item.url" mode="aspectFill" class="oil-logo"></image>
+					<u-radio v-for="(item, index) in oilList" :key="index" :name="item.id">
+						<image :src="item.thumb_image" mode="aspectFill" class="oil-logo"></image>
 					</u-radio>
 				</u-radio-group>
 			</view>
@@ -53,17 +53,8 @@
 				name: '',
 				id_card: '',
 				oil_card: '',
-				cardType: 1,
+				cardType: '',
 				codeTime: 60,
-				typeList: [{
-						url: '../../static/images/oil1.png',
-						value: 1
-					},
-					{
-						url: '../../static/images/oil2.png',
-						value: 2
-					},
-				],
 				regExps: {
 					idcard: /^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$|^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X|x)$/
 				}
@@ -82,7 +73,7 @@
 			}
 		},
 		computed: {
-			...mapState(['lang']),
+			...mapState(['lang', 'oilList']),
 			langFlex() {
 				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'
 			},

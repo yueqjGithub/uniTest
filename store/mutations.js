@@ -48,3 +48,7 @@ export const setCurElectricDetail = (state, payload) => {
 export const setSharePhone = (state, payload) => {
 	state.shareForPhoneCharge = payload
 }
+
+export const setOilList = (state, payload) => {
+	state.oilList = payload
+}

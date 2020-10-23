@@ -1,18 +1,10 @@
 <template>
 	<view class="page bg-grey">
 		<view class="head-bg"></view>
-		<view class="cont-item pa-md flex-column flex-jst-center flex-ali-center">
-			<image src="../../static/images/oil1.png" mode="aspectFill" class="oil-logo"></image>
-			<text class="text-grey-1 text-12 ma-col-md">{{lang==='zh-CN' ? typeList[0].name_cn : typeList[0].name}}</text>
-			<view class="pa-row-md border-box full-width">
-				<view class="pa-row-md flex-row flex-jst-center flex-ali-center">
-					<button type="normal" class="my-btn-primary text-white text-12">{{$t('basic.charge')}}</button>
-				</view>
-			</view>
-		</view>
-		<view class="cont-item pa-md flex-column flex-jst-center flex-ali-center">
-			<image src="../../static/images/oil2.png" mode="aspectFill" class="oil-logo"></image>
-			<text class="text-grey-1 text-12 ma-col-md">{{lang==='zh-CN' ? typeList[1].name_cn : typeList[1].name}}</text>
+		<view class="cont-item pa-md flex-column flex-jst-center flex-ali-center" v-for="k in typeList" :key="k.id">
+			<image :src="k.thumb_image" mode="aspectFill" class="oil-logo"></image>
+			<text class="text-grey-1 text-14 ma-col-md">{{lang==='zh-CN' ? k.name_cn : k.name}}</text>
+			<!-- <text class="text-grey-1 text-14">{{k.oil_card_number}}</text> -->
 			<view class="pa-row-md border-box full-width">
 				<view class="pa-row-md flex-row flex-jst-center flex-ali-center">
 					<button type="normal" class="my-btn-primary text-white text-12">{{$t('basic.charge')}}</button>
@@ -67,6 +59,7 @@
 					uni.hideLoading()
 					if (res.success) {
 						vm.typeList = [...res.data]
+						vm.$store.commit('setOilList', vm.typeList)
 					} else {
 						uni.showToast({
 							icon: 'none',
