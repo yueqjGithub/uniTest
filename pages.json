@@ -148,6 +148,14 @@
 				"backgroundColor": "#23AF8C"
 			}
 
+		}, {
+			"path": "myCard/myCard",
+			"style": {
+				"navigationBarTitleText": "我的油卡",
+				"enablePullDownRefresh": false,
+				"backgroundColor": "#23AF8C"
+			}
+
 		}]
 	}, {
 		"root": "pullOtherPage",
