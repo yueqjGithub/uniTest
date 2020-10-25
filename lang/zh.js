@@ -263,6 +263,10 @@ export default {
 		codeTips: '请输入验证码'
 	},
 	oilCenter: {
-		pageName: '油卡充值'
+		pageName: '油卡充值',
+		addCard: '添加油卡',
+		cardList: '我的油卡',
+		charge: '油卡充值',
+		priceChoose: '选择充值金额'
 	}
 }

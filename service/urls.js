@@ -10,7 +10,7 @@ const urls = {
 		'/v1/api/train/station', '/v1/api/train/find', '/v1/api/ticket/find', '/v1/api/ticket/station', '/v1/api/electric/orderlist',
 		'/v1/api/public/gitpis', '/v1/api/public/pis', '/v1/api/publicity/index', '/v1/api/electric/denomination',
 		'/v1/api/ticket/commit', '/v1/api/train/pay', '/v1/api/train/order', '/v1/api/ticket/order', '/v1/api/electric/commit',
-		'/v1/api/withdraw/commit'
+		'/v1/api/withdraw/commit', '/v1/api/oilcard/shop'
 	], // 需要加密的接口2
 	baseUrl: 'https://shopapi.apiself.com',
 	// basic
@@ -68,6 +68,7 @@ const urls = {
 	queryEleOrder: '/v1/api/electric/orderlist', // 电费订单列表2
 	// 油卡
 	queryOilType: '/v1/api/oilcard/cate', // 油费类型
+	queryOilPrice: '/v1/api/oilcard/shop', // 油费面额列表2
 	// 联系人模块
 	queryContact: '/v1/api/public/gitpis', // 获取乘客2
 	uploadIdcard: '/v1/api/upload/image', // 身份证上传识别

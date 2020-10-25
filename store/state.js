@@ -15,4 +15,5 @@ export default {
 	curElectric: '', // 当前充值电费详细信息
 	shareForPhoneCharge: false, // 话费充值分享
 	oilList: '', // 油卡类型存放
+	curOilType: ''
 }

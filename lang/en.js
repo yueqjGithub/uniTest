@@ -262,6 +262,10 @@ export default {
 		codeTips: 'تەستىق كودنى كىرگۈزۈڭ'
 	},
 	oilCenter: {
-		pageName: 'ماي كارتىسى'
+		pageName: 'ماي كارتىسى',
+		addCard: 'ماي قاچىلاش كارتىسى',
+		cardList: 'مېنىڭ ماي كارتام',
+		charge: 'ماي كارتىسى',
+		priceChoose: 'تاللاش سوممىسى'
 	}
 }

@@ -52,3 +52,7 @@ export const setSharePhone = (state, payload) => {
 export const setOilList = (state, payload) => {
 	state.oilList = payload
 }
+
+export const setOilType = (state, payload) => {
+	state.curOilType = payload
+}

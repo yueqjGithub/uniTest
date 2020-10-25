@@ -7,7 +7,7 @@
 			<!-- <text class="text-grey-1 text-14">{{k.oil_card_number}}</text> -->
 			<view class="pa-row-md border-box full-width">
 				<view class="pa-row-md flex-row flex-jst-center flex-ali-center">
-					<button type="normal" class="my-btn-primary text-white text-12">{{$t('basic.charge')}}</button>
+					<button type="normal" class="my-btn-primary text-white text-12" @click="toCenter(k.id)">{{$t('basic.charge')}}</button>
 				</view>
 			</view>
 		</view>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-	import { mapState } from 'vuex'
+	import { mapState, mapMutations } from 'vuex'
 	import urls from '@/service/urls.js'
 	export default {
 		name: 'oilIndex',
@@ -52,6 +52,13 @@
 			this.queryType()
 		},
 		methods: {
+			...mapMutations(['setOilType']),
+			toCenter (id) {
+				this.setOilType(id)
+				uni.navigateTo({
+					url: '/oil/center/center'
+				})
+			},
 			queryType () {
 				const vm = this
 				uni.showLoading()
