@@ -95,9 +95,12 @@
 				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'
 			}
 		},
+		onShow () {
+			this.queryPirceList()
+		},
 		watch: {
 			curOilType: {
-				immediate: true,
+				immediate: false,
 				handler: function(val) {
 					if (val !== '') {
 						this.queryPirceList()

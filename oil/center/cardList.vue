@@ -3,8 +3,20 @@
 		<view class="pa-col-sm border-box card-tit flex-row flex-jst-center flex-ali-center text-16">{{$t('oilCenter.cardList')}}</view>
 		<scroll-view scroll-y class="cus-scroll-content" @scrolltolower="loadMore">
 			<view class="shops-container flex-column flex-jst-start flex-ali-center" v-if="list.length > 0">
-				<view class="card-item flex-jst-btw flex-ali-center pa-sm border-box" :class="langFlex" v-for="(k, idx) in list" :key="idx">
-					1
+				<view class="full-width card-item ma-col-sm" :class="k.id === choose ? 'card-choose' : ''" v-for="(k, idx) in list" :key="idx" @click="choose=k.id">
+					<view class="flex-jst-btw flex-ali-center pa-md border-box" :class="langFlex">
+						<view class="card-cont flex-jst-start flex-ali-center" :class="langFlex">
+							<image :src="k.thumb_image" mode="aspectFill" class="oil-logo"></image>
+							<view class="flex-column flex-jst-center flex-ali-start ma-row-sm">
+								<text class="text-12">{{lang==='zh-CN' ? k.name_cn : k.name}}</text>
+								<text class="text-12 text-grey-1">{{k.user_name}}</text>
+								<text class="text-12 text-grey-1">{{k.oil_card}}</text>
+							</view>
+						</view>
+						<view class="card-confirm">
+							<u-icon name="xuanze" custom-prefix="iconfont" v-if="choose === k.id" size="45" color="#23AF8C"></u-icon>
+						</view>
+					</view>
 				</view>
 			</view>
 		</scroll-view>
@@ -28,7 +40,8 @@
 					loadmore: '',
 					loading: '',
 					nomore: ''
-				}
+				},
+				choose: '4'
 			}
 		},
 		computed: {
@@ -53,9 +66,9 @@
 					pagesize: vm.pageSize,
 					oil_card_number: vm.curOilType
 				}
-				debugger
 				vm.loading = true
 				vm.$post(urls.queryOilCardList, obj).then(res => {
+					console.log(res)
 					const len = res.data.data.length
 					if (len === vm.pageSize) { // 首次请求数量填满一页
 						vm.list = [...vm.list, ...res.data.data]
@@ -113,6 +126,22 @@
 		.card-item{
 			border-radius: 10.41rpx;
 			border: 1px solid #d5d5d5;
+			.card-confirm{
+				width: 45rpx;
+				height: 45rpx;
+				border: 1px solid #d5d5d5;
+				border-radius: 50%;
+			}
+			&.card-choose{
+				border: 1px solid #23AF8C;
+				.card-confirm{
+					border: none;
+				}
+			}
+			.oil-logo {
+				width: 15vw;
+				height: 15vw;
+			}
 		}
 	}
 </style>
