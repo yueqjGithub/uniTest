@@ -7,7 +7,7 @@
 			<!-- <text class="text-grey-1 text-14">{{k.oil_card_number}}</text> -->
 			<view class="pa-row-md border-box full-width">
 				<view class="pa-row-md flex-row flex-jst-center flex-ali-center">
-					<button type="normal" class="my-btn-primary text-white text-12" @click="toCenter(k.id)">{{$t('basic.charge')}}</button>
+					<button type="normal" class="my-btn-primary text-white text-12" @click="toCenter(k.oil_card_number)">{{$t('basic.charge')}}</button>
 				</view>
 			</view>
 		</view>
@@ -66,6 +66,7 @@
 					uni.hideLoading()
 					if (res.success) {
 						vm.typeList = [...res.data]
+						console.log(vm.typeList)
 						vm.$store.commit('setOilList', vm.typeList)
 					} else {
 						uni.showToast({

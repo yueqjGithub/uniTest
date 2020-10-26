@@ -56,3 +56,7 @@ export const setOilList = (state, payload) => {
 export const setOilType = (state, payload) => {
 	state.curOilType = payload
 }
+
+export const setOilCard = (state, payload) => {
+	state.curOilCard = payload
+}

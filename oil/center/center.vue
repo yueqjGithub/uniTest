@@ -1,5 +1,6 @@
 <template>
 	<view class="page bg-grey">
+		<u-top-tips ref="uTips"></u-top-tips>
 		<view class="head-bg"></view>
 		<view class="cont-item pa-md flex-column flex-jst-center flex-ali-center">
 			<view class="full-width border-box flex-row flex-jst-btw flex-ali-center">
@@ -11,7 +12,7 @@
 			</view>
 			<view class="pa-col-md full-width flex-row flex-jst-btw flex-ali-center card-list">
 				<view class="card-item pa-row-md border-box flex-row flex-jst-center flex-ali-center" v-for="k in oilList" :key="k.id"
-				 :class="curOilType === k.id ? 'type-choose' : ''" @click="chooseType(k.id)">
+				 :class="curOilType === k.oil_card_number ? 'type-choose' : ''" @click="chooseType(k.oil_card_number)">
 					<image :src="k.thumb_image" mode="aspectFill" class="oil-logo ma-col-sm"></image>
 					<u-icon custom-prefix="iconfont" name="xuanze" size="35" class="type-icon"></u-icon>
 				</view>
@@ -38,14 +39,19 @@
 			</view>
 			<!-- 按钮 -->
 			<view class="pa-row-lg ma-col-md border-box full-width flex-row flex-jst-center flex-ali-center">
-				<button type="default" class="my-btn-primary text-white text-14">{{$t('basic.charge')}}</button>
+				<button type="default" class="my-btn-primary text-white text-14" @click="doCharge">{{$t('basic.charge')}}</button>
 			</view>
+			<!-- 选择卡 -->
+			<u-popup v-model="showModal" mode="center" width="580" height="auto" border-radius="15">
+				<card-list v-if="showModal"></card-list>
+			</u-popup>
 		</view>
 	</view>
 </template>
 
 <script>
 	import urls from '@/service/urls.js'
+	import cardList from './cardList.vue'
 	import {
 		mapState,
 		mapMutations,
@@ -53,8 +59,12 @@
 	} from 'vuex'
 	export default {
 		name: 'center',
+		components: {
+			cardList
+		},
 		data() {
 			return {
+				showModal: false,
 				menuChoose: 'charge',
 				sure: false,
 				menuList: [{
@@ -98,6 +108,26 @@
 		methods: {
 			...mapMutations(['setOilType']),
 			...mapActions(['checkLogin']),
+			doCharge () {
+				const vm = this
+				if (vm.choosePrice === '') {
+					this.$refs.uTips.show({
+						title: this._i18n.messages[this.lang].oilCenter.priceChoose,
+						type: 'error',
+						duration: '2300'
+					})
+					return false
+				}
+				if (!vm.sure) {
+					this.$refs.uTips.show({
+						title: this._i18n.messages[this.lang].basic.aggrement,
+						type: 'error',
+						duration: '2300'
+					})
+					return false
+				}
+				vm.showModal = true
+			},
 			menuClickHandler(target) {
 				if (target.path) {
 					uni.navigateTo({
@@ -117,7 +147,6 @@
 						oil_card_number: vm.curOilType
 					}
 					vm.$post(urls.queryOilPrice, obj).then(res => {
-						console.log(res)
 						if (res.success) {
 							vm.priceList = [...res.data]
 						}

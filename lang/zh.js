@@ -20,7 +20,11 @@ export default {
 		copyTips: '已复制到您的粘贴板',
 		share: '分享',
 		charge: '充值',
-		getValiCode: '获取验证码'
+		getValiCode: '获取验证码',
+		notFill: '信息未填写完整',
+		success: '操作成功',
+		faild: '操作失败',
+		aggrement: '请确认已知晓用户协议'
 	},
 	tab: {
 		index: '首页',
@@ -253,14 +257,16 @@ export default {
 		oil1: '中国石油加油卡',
 		oil2: '中国石化加油卡',
 		tip1: '罚单二维码扫描直接罚款你可以交费',
-		tip2: '以罚款处罚的序号来支付罚款你可以交'
+		tip2: '以罚款处罚的序号来支付罚款你可以交',
+		delConfirm: '确认要删除这张油卡吗'
 	},
 	oilCard: {
 		pageName: '油卡信息',
 		nameTips: '请输入姓名',
 		idcardTips: '请输入身份证号码',
 		oilcardTips: '请输入油卡号码',
-		codeTips: '请输入验证码'
+		codeTips: '请输入验证码',
+		mobileTips: '请输入手机号'
 	},
 	oilCenter: {
 		pageName: '油卡充值',
