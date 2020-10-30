@@ -17,6 +17,10 @@
 			<view class="order-container-item full-width pa-md border-box" v-if="orderType === 'electric'">
 				<ele-order v-for="(k, index) in list" :order="k" class="order-item full-width" :key="index"></ele-order>
 			</view>
+			<!-- 加油费订单 -->
+			<view class="order-container-item full-width pa-md border-box" v-if="orderType === 'oil'">
+				<oil-order v-for="(k, index) in list" :order="k" class="order-item full-width" :key="index"></oil-order>
+			</view>
 			<view v-if="loading" class="loading-bar flex-row flex-jst-center flex-ali-center">
 				<u-loadmore :status="status" bg-color="bg-color" color="#AAAAAA" :load-text="loadText" icon-type="flower"/>
 			</view>
@@ -32,6 +36,7 @@
 	import trainOrder from './trainItem.vue'
 	import airOrder from './airItem.vue'
 	import eleOrder from './eleItem.vue'
+	import oilOrder from './oilItem.vue'
 	export default {
 		name: 'orderShow',
 		props: ['type', 'url', 'orderType'],
@@ -39,7 +44,8 @@
 			phoneOrder,
 			trainOrder,
 			airOrder,
-			eleOrder
+			eleOrder,
+			oilOrder
 		},
 		data () {
 			return {

@@ -156,6 +156,14 @@
 				"backgroundColor": "#23AF8C"
 			}
 
+		}, {
+			"path": "addCar/addCar",
+			"style": {
+				"navigationBarTitleText": "添加车辆",
+				"enablePullDownRefresh": false,
+				"backgroundColor": "#23AF8C"
+			}
+
 		}]
 	}, {
 		"root": "pullOtherPage",
@@ -276,12 +284,17 @@
 		"current": 1, //当前激活的模式(list 的索引项)
 		"list": [{
 				"name": "mine", //模式名称
-				"path": "pullOtherPage/pullHot/pullHot", //启动页面，必选
-				"query": "" //启动参数，在页面的onLoad函数里面得到
+				"path": "pages/commonOrder/commonOrder", //启动页面，必选
+				"query": "type=oil" //启动参数，在页面的onLoad函数里面得到
 			},
 			{
 				"name": "devlope",
 				"path": "oil/index/index",
+				"query": ""
+			},
+			{
+				"name": "devlop2",
+				"path": "oil/addCar/addCar",
 				"query": ""
 			}
 		]

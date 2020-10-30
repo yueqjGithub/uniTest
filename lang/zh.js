@@ -138,7 +138,8 @@ export default {
 		orderDetail: '订单详情',
 		airPage: '机票订单',
 		elePage: '水电费订单',
-		eleCharge: '电费充值'
+		eleCharge: '电费充值',
+		oilPage: '油费订单'
 	},
 	train: {
 		pageName: '火车票',
@@ -274,5 +275,12 @@ export default {
 		cardList: '我的油卡',
 		charge: '油卡充值',
 		priceChoose: '选择充值金额'
+	},
+	addCar: {
+		pageName: '添加车辆',
+		carNumTips: '请输入车牌号',
+		vinTips: '请输入车架号',
+		engineTips: '请输入发动机号',
+		timeTips: '请选择注册时间'
 	}
 }

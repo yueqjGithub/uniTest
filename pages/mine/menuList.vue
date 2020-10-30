@@ -57,6 +57,13 @@
 					icon: 'shouji',
 					name_cn: '电话费',
 					name: "تېلېفۇن ھەققى"
+				},{
+					id: 'A1603117092',
+					color: '#FF7341',
+					path: '/pages/commonOrder/commonOrder?type=oil',
+					icon: 'ditujiayouzhan',
+					name_cn: '电话费',
+					name: "تېلېفۇن ھەققى"
 				}]
 			}
 		},

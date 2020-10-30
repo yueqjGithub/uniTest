@@ -5,7 +5,7 @@
 			<button type="default" class="plain-btn" @click="reduceMonth">
 				<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="34" class="text-grey-1"></u-icon>
 			</button>
-			<view class="text-18 text-bold text-primary">
+			<view class="text-18 text-bold text-primary" @click="openYearPick">
 				<text>{{year}}</text>
 				<text>-</text>
 				<text>{{month > 9 ? month : `0${month}`}}</text>
@@ -31,11 +31,14 @@
 		<view class="width-80 flex-row flex-jst-center flex-ali-center btn-container">
 			<button type="default" class="my-btn-primary text-white" @click="subDays">{{btnText}}</button>
 		</view>
+		<!-- 年月快选 -->
+		<u-picker mode="time" v-model="showYearPick" :params="yearPickParams" @confirm='chooseYear' confirm-color='#23AF8C' :confirm-text='okText' :cancel-text='cancelText'></u-picker>
 	</view>
 </template>
  
 <script>
 	import dayjs from 'dayjs'
+	import { mapState } from 'vuex'
 	const isBetween = require('dayjs/plugin/isBetween')
 	dayjs.extend(isBetween)
 	export default {
@@ -66,10 +69,19 @@
 				default: function () {
 					return dayjs().add(30,'day').format('YYYY/MM/DD')
 				}
+			},
+			couldChooseYear: {
+				default: false
 			}
 		},
 		data () {
 			return {
+				showYearPick: false,
+				yearPickParams: {
+					year: true,
+					month: true,
+					day: false
+				},
 				year: '',
 				month: '',
 				date: '',
@@ -105,6 +117,13 @@
 			}
 		},
 		computed: {
+			...mapState(['lang']),
+			okText () {
+				return this._i18n.messages[this.lang].basic.ok
+			},
+			cancelText () {
+				return this._i18n.messages[this.lang].basic.cancel
+			},
 			monthList () { // 每月天数
 				const vm = this
 				const list = [
@@ -153,6 +172,16 @@
 			}
 		},
 		methods: {
+			openYearPick () {
+				if (this.couldChooseYear) {
+					this.showYearPick = true
+				}
+			},
+			chooseYear (val) {
+				console.log(val)
+				this.year = val.year
+				this.month = Number(val.month)
+			},
 			chooseDays (target) { // 点击日期
 				if (target.isBetween) {
 					this.choose = target

@@ -129,7 +129,6 @@
 					sharing_preferences: vm.shareForPhoneCharge ? 'true' : 'false',
 					balance: vm.balance ? 'true' : 'false'
 				}
-				console.log(obj)
 				uni.showLoading({
 					title: ''
 				})

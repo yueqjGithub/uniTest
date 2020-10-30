@@ -30,7 +30,8 @@
 					{ type: 'phone', pageName: 'phonePage', typeUrl: urls.phoneOrderType, listUrl: urls.phoneOrderList },
 					{ type: 'train', pageName: 'trainPage', typeUrl: urls.trainOrderType, listUrl: urls.trainOrderList },
 					{ type: 'air', pageName: 'airPage', typeUrl: urls.airOrderType, listUrl: urls.airOrderList },
-					{ type: 'electric', pageName: 'elePage', typeUrl: urls.eleOrderType, listUrl: urls.queryEleOrder }
+					{ type: 'electric', pageName: 'elePage', typeUrl: urls.eleOrderType, listUrl: urls.queryEleOrder },
+					{ type: 'oil', pageName: 'oilPage', typeUrl: urls.oilOrderType, listUrl: urls.queryOilOrder }
 				]
 			}
 		},

@@ -138,7 +138,8 @@ export default {
 		orderDetail: 'زاكاز تالونى',
 		airPage: 'ئايروپىلان بېلىتى زاكاز تالونى',
 		elePage: 'سۇ زاكاز تالونى',
-		eleCharge: 'تاما - تاما'
+		eleCharge: 'تاما - تاما',
+		oilPage: 'ماي پۇل قاچىلاش زاكاسلىرى'
 	},
 	train: {
 		pageName: 'پويىز بېلىتى',
@@ -273,5 +274,12 @@ export default {
 		cardList: 'مېنىڭ ماي كارتام',
 		charge: 'ماي كارتىسى',
 		priceChoose: 'تاللاش سوممىسى'
+	},
+	addCar: {
+		pageName: 'قاتناش جەرىمانىسى',
+		carNumTips: 'ماشىنا نۇمۇر تاختىسىنى كىرگۈزۈڭ',
+		vinTips: 'ماشىنا رام نۇمۇرىنى كىرگۈزۈڭ',
+		engineTips: 'ماتور نۇمۇرىنى كىرگۈزۈڭ',
+		timeTips: 'تېزىملاتقان ۋاقىتنى كىرگۈزۈڭ'
 	}
 }

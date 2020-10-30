@@ -3,7 +3,7 @@
 		<view class="pa-col-sm border-box card-tit flex-row flex-jst-center flex-ali-center text-16">{{$t('oilCenter.cardList')}}</view>
 		<scroll-view scroll-y class="cus-scroll-content" @scrolltolower="loadMore">
 			<view class="shops-container flex-column flex-jst-start flex-ali-center" v-if="list.length > 0">
-				<view class="full-width card-item ma-col-sm" :class="k.id === choose ? 'card-choose' : ''" v-for="(k, idx) in list" :key="idx" @click="choose=k.id">
+				<view class="full-width card-item ma-col-sm" :class="k.oil_card === choose ? 'card-choose' : ''" v-for="(k, idx) in list" :key="idx" @click="choose=k.oil_card">
 					<view class="flex-jst-btw flex-ali-center pa-md border-box" :class="langFlex">
 						<view class="card-cont flex-jst-start flex-ali-center" :class="langFlex">
 							<image :src="k.thumb_image" mode="aspectFill" class="oil-logo"></image>
@@ -14,20 +14,24 @@
 							</view>
 						</view>
 						<view class="card-confirm">
-							<u-icon name="xuanze" custom-prefix="iconfont" v-if="choose === k.id" size="45" color="#23AF8C"></u-icon>
+							<u-icon name="xuanze" custom-prefix="iconfont" v-if="choose === k.oil_card" size="45" color="#23AF8C"></u-icon>
 						</view>
 					</view>
 				</view>
 			</view>
 		</scroll-view>
+		<view class="full-width pa-md flex-row flex-jst-center flex-ali-center">
+			<button type="default" class="my-btn-primary text-white text-12" @click="doCharge">{{$t('basic.charge')}}</button>
+		</view>
 	</view>
 </template>
 
 <script>
-	import { mapState } from 'vuex'
+	import { mapState, mapActions } from 'vuex'
 	import urls from '@/service/urls.js'
 	export default {
 		name: 'cardList',
+		props: ['priceId'],
 		data () {
 			return {
 				page: 1,
@@ -41,7 +45,7 @@
 					loading: '',
 					nomore: ''
 				},
-				choose: '4'
+				choose: ''
 			}
 		},
 		computed: {
@@ -54,6 +58,34 @@
 			this.queryIndex()
 		},
 		methods: {
+			...mapActions(['checkLogin']),
+			async doCharge () {
+				const vm = this
+				const token = await vm.checkLogin()
+				if (token) {
+					const obj = {
+						token: token,
+						card_number: vm.choose,
+						shop_number: vm.priceId
+					}
+					vm.subCharge(obj)
+				} else {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+				}
+			},
+			subCharge (options) {
+				const vm = this
+				debugger
+				vm.$post(urls.commitOilOrder, options).then(res => {
+					if (res.success) {
+						console.log(res)
+					} else {
+						console.log(res)
+					}
+				})
+			},
 			async queryIndex () { // 请求首页
 				const vm = this
 				vm.final = false
@@ -72,9 +104,11 @@
 					const len = res.data.data.length
 					if (len === vm.pageSize) { // 首次请求数量填满一页
 						vm.list = [...vm.list, ...res.data.data]
+						vm.choose = vm.list[0].oil_card
 						vm.page++
 					} else if (len > 0 && len < vm.pageSize) { // 有数据，但不足一页
 						vm.list = [...vm.list, ...res.data.data]
+						vm.choose = vm.list[0].oil_card
 						vm.final = true
 						vm.status = 'nomore'
 					} else {

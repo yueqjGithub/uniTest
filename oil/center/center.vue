@@ -43,7 +43,7 @@
 			</view>
 			<!-- 选择卡 -->
 			<u-popup v-model="showModal" mode="center" width="580" height="auto" border-radius="15">
-				<card-list v-if="showModal"></card-list>
+				<card-list v-if="showModal" :priceId="priceId"></card-list>
 			</u-popup>
 		</view>
 	</view>
@@ -93,12 +93,25 @@
 			...mapState(['lang', 'oilList', 'curOilType']),
 			langFlex() {
 				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'
+			},
+			priceId () {
+				return this.choosePrice
 			}
 		},
 		onShow () {
 			this.queryPirceList()
 		},
 		watch: {
+			lang: {
+				immediate: true,
+				handler: function (val) {
+					if (val !== 'zh-CN') {
+						uni.setNavigationBarTitle({
+							title: this._i18n.messages[val].oilCenter.pageName
+						})
+					}
+				}
+			},
 			curOilType: {
 				immediate: false,
 				handler: function(val) {

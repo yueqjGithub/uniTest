@@ -3,12 +3,12 @@ const urls = {
 	authList: [], // 需要身份认证的接口
 	md5List: ['/v1/api/public/login', '/v1/api/shop/details', '/v1/api/shop/collect', '/v1/api/shop/buy',
 		'/v1/api/shop/pretreatment', '/v1/api/shippingaddress/edit', '/v1/api/shop/orderlist', '/v1/api/user/shopcollect',
-		'/v1/api/user/info', '/v1/api/vip/opening', '/v1/api/shop/delivery', '/v1/api/cecharge/attribution',
+		'/v1/api/user/info', '/v1/api/vip/opening', '/v1/api/shop/delivery', '/v1/api/cecharge/attribution', '/v1/api/oilcard/orderlist',
 		'/v1/api/telephone/denomination', '/v1/api/publicity/subordinate', '/v1/api/publicity/config', '/v1/api/publicity/ranking',
 		'/v1/api/cecharge/balance', '/v1/api/telephone/commit', '/v1/api/telephone/order', '/v1/api/public/delpis',
 		'/v1/api/train/commit', '/v1/api/train/refund','/v1/api/vip/list', '/v1/api/electric/details', '/v1/api/withdraw/list',
 		'/v1/api/train/station', '/v1/api/train/find', '/v1/api/ticket/find', '/v1/api/ticket/station', '/v1/api/electric/orderlist',
-		'/v1/api/public/gitpis', '/v1/api/public/pis', '/v1/api/publicity/index', '/v1/api/electric/denomination',
+		'/v1/api/public/gitpis', '/v1/api/public/pis', '/v1/api/publicity/index', '/v1/api/electric/denomination', '/v1/api/oilcard/commit',
 		'/v1/api/ticket/commit', '/v1/api/train/pay', '/v1/api/train/order', '/v1/api/ticket/order', '/v1/api/electric/commit',
 		'/v1/api/withdraw/commit', '/v1/api/oilcard/shop', '/v1/api/oilcard/cardlist', '/v1/api/oilcard/addoilcard', '/v1/api/oilcard/del'
 	], // 需要加密的接口2
@@ -72,6 +72,9 @@ const urls = {
 	queryOilCardList: '/v1/api/oilcard/cardlist', // 油卡列表2
 	addOilCard: '/v1/api/oilcard/addoilcard', // 添加油卡2
 	delOilCard: '/v1/api/oilcard/del', // 删除油卡2
+	commitOilOrder: '/v1/api/oilcard/commit', // 油卡充值2
+	oilOrderType: '/v1/api/oilcard/ordercate', // 油费订单类型
+	queryOilOrder: '/v1/api/oilcard/orderlist', // 油费订单
 	// 联系人模块
 	queryContact: '/v1/api/public/gitpis', // 获取乘客2
 	uploadIdcard: '/v1/api/upload/image', // 身份证上传识别
