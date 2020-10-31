@@ -77,12 +77,37 @@
 			},
 			subCharge (options) {
 				const vm = this
-				debugger
 				vm.$post(urls.commitOilOrder, options).then(res => {
-					if (res.success) {
-						console.log(res)
+					console.log(res)
+					if (res.result_code === 'SUCCESS') {
+						uni.requestPayment({ // 调用支付
+						    provider: 'wxpay',
+						    timeStamp: res.timeStamp,
+						    nonceStr: res.nonceStr,
+						    package: res.package,
+						    signType: 'MD5',
+						    paySign: res.paySign,
+						    success: function (result) {
+									uni.hideLoading()
+									uni.showToast({
+										icon: 'success',
+										title: ''
+									})
+									vm.$emit('closeModal')
+						    },
+						    fail: function (err) {
+									uni.hideLoading()
+									uni.showToast({
+										icon: 'none',
+										title: vm._i18n.messages[vm.lang].makeOrder.payFail
+									})
+						    }
+						});
 					} else {
-						console.log(res)
+						uni.showToast({
+							icon:'none',
+							title: res.message || res.err_code_des
+						})
 					}
 				})
 			},

@@ -28,7 +28,7 @@
 		<notice v-if="showNotice"></notice>
 		<!-- 广告图 -->
 		<view class="pa-row-md">
-			<image :src="adv" mode="" class="adv-img"></image>
+			<image :src="adv" mode="scaleToFill" class="adv-img"></image>
 		</view>
 		<!-- 推荐商品 -->
 		<recommended :info='recommendedGoods' v-if="recommendedGoods"></recommended>

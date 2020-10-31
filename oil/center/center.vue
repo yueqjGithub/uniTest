@@ -43,7 +43,7 @@
 			</view>
 			<!-- 选择卡 -->
 			<u-popup v-model="showModal" mode="center" width="580" height="auto" border-radius="15">
-				<card-list v-if="showModal" :priceId="priceId"></card-list>
+				<card-list v-if="showModal" :priceId="priceId" @closeModal='closeModal'></card-list>
 			</u-popup>
 		</view>
 	</view>
@@ -124,6 +124,9 @@
 		methods: {
 			...mapMutations(['setOilType']),
 			...mapActions(['checkLogin']),
+			closeModal () {
+				this.showModal = false
+			},
 			doCharge () {
 				const vm = this
 				if (vm.choosePrice === '') {

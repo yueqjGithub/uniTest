@@ -282,5 +282,11 @@ export default {
 		vinTips: '请输入车架号',
 		engineTips: '请输入发动机号',
 		timeTips: '请选择注册时间'
+	},
+	credit: {
+		pageName: '信用借还',
+		charge: '充值',
+		withdraw: '提现',
+		tips: '请输入金额'
 	}
 }

@@ -1,9 +1,9 @@
 <template>
 	<view class="order-item pa-md">
 		<view class="order-top pa-col-md flex-jst-btw flex-ali-center" :class="langFlex">
-			<u-icon name="shuidian" custom-prefix="iconfont" class="order-image flex-row flex-jst-center flex-ali-center"></u-icon>
+			<u-icon name="ditujiayouzhan" custom-prefix="iconfont" class="order-image flex-row flex-jst-center flex-ali-center"></u-icon>
 			<view class="order-cont flex-2 pa-row-md flex-column flex-jst-btw flex-ali-start">
-				<text class="shop-name full-width text-12 text-bold" :class="langFlex">{{$t('commonOrder.eleCharge')}}</text>
+				<text class="shop-name full-width text-12 text-bold" :class="langFlex">{{$t('commonOrder.oilPage')}}</text>
 				<text class="shop-price full-width text-grey-1" :class="langFlex">
 					{{order.address_area}}
 				</text>

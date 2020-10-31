@@ -164,6 +164,14 @@
 				"backgroundColor": "#23AF8C"
 			}
 
+		}, {
+			"path": "visaIndex/visaIndex",
+			"style": {
+				"navigationBarTitleText": "信用借还",
+				"enablePullDownRefresh": false,
+				"backgroundColor": "#23AF8C"
+			}
+
 		}]
 	}, {
 		"root": "pullOtherPage",
@@ -295,6 +303,11 @@
 			{
 				"name": "devlop2",
 				"path": "oil/addCar/addCar",
+				"query": ""
+			},
+			{
+				"name": "visa",
+				"path": "oil/visaIndex/visaIndex",
 				"query": ""
 			}
 		]

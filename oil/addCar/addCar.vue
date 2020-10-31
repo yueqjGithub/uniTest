@@ -11,7 +11,7 @@
 				<view class="province-choose flex-row flex-jst-center flex-ali-center text-14 text-primary" @click="showModal = true">{{provinceChoose}}</view>
 				<view class="ma-row-sm"></view>
 				<view class="input-item pa-col-sm border-box flex-1">
-					<u-input v-model="name" :class="inputClass" :custom-style="{color: '#aaaaaa', fontSize: '14px'}" placeholder-style="color: #aaaaaa"
+					<u-input v-model="carNum" :class="inputClass" :custom-style="{color: '#aaaaaa', fontSize: '14px'}" placeholder-style="color: #aaaaaa"
 					 class="input-item" :placeholder="$t('addCar.carNumTips')" type="text"></u-input>
 				</view>
 			</view>
@@ -24,14 +24,31 @@
 			<!-- 发动机号 -->
 			<view class="pa-md"></view>
 			<view class="full-width input-item pa-col-sm border-box">
-				<u-input v-model="vin" :class="inputClass" :custom-style="{color: '#aaaaaa', fontSize: '14px'}" placeholder-style="color: #aaaaaa"
+				<u-input v-model="engine_number" :class="inputClass" :custom-style="{color: '#aaaaaa', fontSize: '14px'}" placeholder-style="color: #aaaaaa"
 				 :placeholder="$t('addCar.engineTips')" type="text"></u-input>
 			</view>
 			<!-- 注册时间 -->
 			<view class="pa-md"></view>
 			<view class="full-width input-item pa-col-sm border-box">
-				<u-input v-model="reg_time" :class="inputClass" :custom-style="{color: '#aaaaaa', fontSize: '14px'}" disabled @click="showTimes=true"
-				 placeholder-style="color: #aaaaaa" :placeholder="$t('addCar.timeTips')" type="text"></u-input>
+				<u-input v-model="reg_time" :class="inputClass" :custom-style="{color: '#aaaaaa', fontSize: '14px'}" disabled
+				 @click="showTimes=true" placeholder-style="color: #aaaaaa" :placeholder="$t('addCar.timeTips')" type="text"></u-input>
+			</view>
+			<!-- 电话号码 -->
+			<view class="pa-md"></view>
+			<view class="full-width input-item pa-col-sm border-box">
+				<u-input v-model="mobile" :class="inputClass" :custom-style="{color: '#aaaaaa', fontSize: '14px'}"
+				 placeholder-style="color: #aaaaaa" :placeholder="$t('mobileCharge.numberTips')" type="text"></u-input>
+			</view>
+			<view class="pa-md"></view>
+			<view class="full-width pa-col-sm border-box">
+				<u-radio-group v-model="type" @change="radioGroupChange">
+					<u-radio v-for="(item, index) in carType" :key="item.label" :name="item.label" active-color="#23AF8C">
+						{{lang === 'zh-CN' ? item.label : item.label_en}}
+					</u-radio>
+				</u-radio-group>
+			</view>
+			<view class="full-width pa-md border-box flex-row flex-jst-center flex-ali-center">
+				<button type="default" class="my-btn-primary text-14 text-white" @click="saveCar">{{$t('basic.ok')}}</button>
 			</view>
 		</view>
 		<!-- 省选择弹出 -->
@@ -70,17 +87,29 @@
 				provinceList: ['新', '京', '沪', '津', '渝', '鲁', '冀', '晋', '蒙', '辽', '吉', '黑', '苏', '浙', '皖', '闽', '赣', '豫', '湘', '鄂',
 					'粤', '桂', '琼', '川', '贵', '云', '藏', '陕', '甘', '青', '宁', '港', '澳', '台'
 				],
+				carType: [{
+					label: '小车',
+					label_en: 'كىچىك تىپتىكى ئاپتوموبىل'
+				}, {
+					label: '大车',
+					lebel_en: 'چوڭ تىپتىكى ئاپتوموبىل'
+				}],
 				provinceChoose: '',
 				carNum: '', // 车牌号
 				vin: '', // 车架号
 				engine_number: '', // 发动机号
 				reg_time: '', // 注册时间
+				type: '小车',
+				mobile: ''
 			}
 		},
 		computed: {
 			...mapState(['lang']),
 			langFlex() {
 				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'
+			},
+			inputClass() {
+				return this.lang === 'zh-CN' ? '' : ' my-text-right'
 			},
 			weekList() {
 				const vm = this
@@ -110,6 +139,87 @@
 			}
 		},
 		methods: {
+			...mapActions(['checkLogin']),
+			async saveCar () {
+				const vm = this
+				const token = await vm.checkLogin()
+				if (token) {
+					if (!vm.carNum) {
+						vm.$refs.uTips.show({
+							title: this._i18n.messages[this.lang].addCar.carNumTips,
+							type: 'error',
+							duration: '2300'
+						})
+						return false
+					}
+					if (!vm.vin) {
+						vm.$refs.uTips.show({
+							title: this._i18n.messages[this.lang].addCar.vinTips,
+							type: 'error',
+							duration: '2300'
+						})
+						return false
+					}
+					if (!vm.engine_number) {
+						vm.$refs.uTips.show({
+							title: this._i18n.messages[this.lang].addCar.engineTips,
+							type: 'error',
+							duration: '2300'
+						})
+						return false
+					}
+					if (!vm.reg_time) {
+						vm.$refs.uTips.show({
+							title: this._i18n.messages[this.lang].addCar.timeTips,
+							type: 'error',
+							duration: '2300'
+						})
+						return false
+					}
+					if (!vm.mobile) {
+						vm.$refs.uTips.show({
+							title: this._i18n.messages[this.lang].mobileCharge.numberTips,
+							type: 'error',
+							duration: '2300'
+						})
+						return false
+					}
+					const obj = {
+						license: `${vm.provinceChoose}${vm.carNum}`,
+						vin: vm.vin,
+						engine_number: vm.engine_number,
+						reg_time: vm.reg_time,
+						type: vm.type,
+						mobile: vm.mobile
+					}
+					// console.log(obj)
+					vm.$post(urls.addCarForm, obj).then(res => {
+						if (res.success) {
+							vm.$refs.uTips.show({
+								title: this._i18n.messages[this.lang].basic.success,
+								type: 'success',
+								duration: '2300'
+							})
+						} else {
+							vm.$refs.uTips.show({
+								title: res.message,
+								type: 'error',
+								duration: '2300'
+							})
+						}
+					}, err => {
+						vm.$refs.uTips.show({
+							title: this._i18n.messages[this.lang].basic.faild,
+							type: 'error',
+							duration: '2300'
+						})
+					})
+				} else {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+				}
+			},
 			setTrainTime(result) { // 设置出发时间
 				this.reg_time = result
 				this.showTimes = false
