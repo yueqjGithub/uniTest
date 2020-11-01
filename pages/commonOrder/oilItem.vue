@@ -5,7 +5,7 @@
 			<view class="order-cont flex-2 pa-row-md flex-column flex-jst-btw flex-ali-start">
 				<text class="shop-name full-width text-12 text-bold" :class="langFlex">{{$t('commonOrder.oilPage')}}</text>
 				<text class="shop-price full-width text-grey-1" :class="langFlex">
-					{{order.address_area}}
+					{{order.cate.name_cn}}
 				</text>
 				<text class="text-14 text-grey-1">{{order.card_number}}</text>
 				<view class="order-time flex-jst-btw full-width flex-ali-base" :class="langFlex">
