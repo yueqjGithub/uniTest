@@ -1,7 +1,9 @@
 <template>
 	<view class="page bg-grey">
 		<view class="head-bg"></view>
-		<view class='card-container'></view>
+		<view class='card-container flex-row flex-jst-start flex-ali-center'>
+			<view class="card-num">{{credit_card}}</view>
+		</view>
 		<view class="balance-container flex-column flex-jst-center flex-ali-center pa-lg border-box">
 			<view class="flex-row flex-jst-center flex-ali-base full-width ma-top-5">
 				<text class="text-bold text-14 text-primary">￥</text>
@@ -44,6 +46,7 @@
 	export default {
 		data() {
 			return {
+				credit_card: '',
 				credit_line: '',
 				show: false,
 				modalType: 1, // 1-充值，2提现
@@ -114,6 +117,7 @@
 						console.log(res)
 						if (res.success) {
 							vm.credit_line = res.data.credit_line
+							vm.credit_card = res.data.credit_card
 						} else {
 							uni.showToast({
 								icon: 'none',
@@ -159,9 +163,16 @@
 			margin: 3vw auto 10vw auto;
 			background: #0443E6;
 			background-image: url('~static/images/Visa.png');
-			background-size: 100% 100%;
+			background-size: 100%;
 			border-radius: 20.83rpx;
 			height: 50vw;
+			.card-num{
+				font-size: 22px;
+				font-weight: bold;
+				color: #FFFFFF;
+				margin-left: 9%;
+				letter-spacing: 2px;
+			}
 		}
 
 		.balance-container {
