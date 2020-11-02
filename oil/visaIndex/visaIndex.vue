@@ -1,6 +1,7 @@
 <template>
 	<view class="page bg-grey">
 		<view class="head-bg"></view>
+		<u-top-tips ref="uTips"></u-top-tips>
 		<view class='card-container flex-row flex-jst-start flex-ali-center'>
 			<view class="card-num">{{credit_card}}</view>
 		</view>
@@ -25,7 +26,7 @@
 					</view>
 					<view class="flex-column flex-jst-center flex-ali-center pa-row-md border-box bg-white">
 						<view class="full-width pa-col-md flex-row flex-jst-center flex-ali-center">
-							<u-input v-model="amount" type="text" :class="rightClass" :border="true" class="my-input" :placeholder="tips" :clearable="false"></u-input>
+							<u-input v-model="amount" size="small" type="text" :class="rightClass" :border="true" class="my-input" :placeholder="tips" :clearable="false"></u-input>
 						</view>
 						<view class="full-width pa-row-lg flex-row flex-jst-center flex-ali-center ma-col-sm">
 							<button type="default" class="my-btn-primary text-white text-14" @click='doSub'>{{modalTit}}</button>
@@ -94,8 +95,70 @@
 						token: token,
 						amount: Number(vm.amount) || 0
 					}
+					if (obj.amount === 0) {
+						vm.$refs.uTips.show({
+							type: 'error',
+							title: vm._i18n.messages[vm.lang].pullPage.withdrawTip2,
+							duration: 2000
+						})
+						return false
+					}
 					const url = vm.modalType === 1 ? urls.chargeCredit : urls.withdrawCredit
-					vm.$post(url, obj).then()
+					uni.showLoading({
+						title: ''
+					})
+					vm.$post(url, obj).then(res => {
+						if (vm.modalType === 1) {
+							if (res.data.result_code === 'SUCCESS') {
+								uni.requestPayment({ // 调用支付
+								    provider: 'wxpay',
+								    timeStamp: res.data.timeStamp,
+								    nonceStr: res.data.nonceStr,
+								    package: res.data.package,
+								    signType: 'MD5',
+								    paySign: res.data.paySign,
+								    success: function (result) {
+											uni.hideLoading()
+											vm.$refs.uTips.show({
+												type: 'success',
+												title: vm._i18n.messages[vm.lang].basic.success,
+												duration: 2000
+											})
+											vm.queryIndex()
+								    },
+								    fail: function (err) {
+											uni.hideLoading()
+											vm.$refs.uTips.show({
+												type: 'error',
+												title: vm._i18n.messages[vm.lang].makeOrder.payFail,
+												duration: 2000
+											})
+								    }
+								});
+							} else {
+								uni.showToast({
+									icon:'none',
+									title: res.message || res.err_code_des
+								})
+							}
+						} else {
+							uni.hideLoading()
+							if (res.success) {
+								vm.$refs.uTips.show({
+									type: 'success',
+									title: res.message,
+									duration: 2000
+								})
+								vm.queryIndex()
+							} else {
+								vm.$refs.uTips.show({
+									type: 'error',
+									title: res.message,
+									duration: 2000
+								})
+							}
+						}
+					})
 				} else {
 					uni.navigateTo({
 						url: '/pages/login/login'
