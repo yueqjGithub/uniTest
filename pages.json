@@ -172,6 +172,29 @@
 				"backgroundColor": "#23AF8C"
 			}
 
+		}, {
+			"path": "carCenter/carCenter",
+			"style": {
+				"navigationBarTitleText": "汽车助手",
+				"enablePullDownRefresh": false,
+				"backgroundColor": "#23AF8C"
+			}
+		}, {
+			"path": "wzPay/wzPay",
+			"style": {
+				"navigationBarTitleText": "违章缴费",
+				"enablePullDownRefresh": false,
+				"backgroundColor": "#23AF8C"
+			}
+
+		}, {
+			"path": "wzDetail/wzDetail",
+			"style": {
+				"navigationBarTitleText": "违章缴费",
+				"enablePullDownRefresh": false,
+				"backgroundColor": "#23AF8C"
+			}
+
 		}]
 	}, {
 		"root": "pullOtherPage",
@@ -307,7 +330,7 @@
 			},
 			{
 				"name": "visa",
-				"path": "oil/visaIndex/visaIndex",
+				"path": "oil/carCenter/carCenter",
 				"query": ""
 			}
 		]

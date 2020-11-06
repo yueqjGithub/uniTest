@@ -288,5 +288,24 @@ export default {
 		charge: '充值',
 		withdraw: '提现',
 		tips: '请输入金额'
+	},
+	carCenter: {
+		pageName: '汽车助手',
+		licenseSearch: '驾照查询',
+		illegalSearch: '违章查询',
+		illegalPay: '违章缴费',
+		oilTitle: '今日油价',
+		gasoline: '汽油',
+		diesel: '柴油',
+		scanTips: '扫描违章罚单可快速获取罚单编号',
+		wzTips: '请输入违章编号',
+		fkAmount: '罚款金额',
+		Wztip1: '扫描违章罚单上的条形码或二维码可缴费',
+		Wztip2: '直接输入罚单上的编号可进行缴费',
+		carNumber: '车牌号',
+		orderNum: '单号',
+		wzTime: '违章时间',
+		payIntroduction: '请在罚单发出时间起，15日内缴纳罚款，超出上述时间将每日增加3%的滞纳金',
+		payTips: '请在确认上述罚单信息后继续进行违章缴纳'
 	}
 }

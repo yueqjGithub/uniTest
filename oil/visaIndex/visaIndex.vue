@@ -26,7 +26,7 @@
 					</view>
 					<view class="flex-column flex-jst-center flex-ali-center pa-row-md border-box bg-white">
 						<view class="full-width pa-col-md flex-row flex-jst-center flex-ali-center">
-							<u-input v-model="amount" size="small" type="text" :class="rightClass" :border="true" class="my-input" :placeholder="tips" :clearable="false"></u-input>
+							<u-input v-model="amount" size="small" type="text" :class="rightClass" :border="true" class="my-input-fill" :placeholder="tips" :clearable="false"></u-input>
 						</view>
 						<view class="full-width pa-row-lg flex-row flex-jst-center flex-ali-center ma-col-sm">
 							<button type="default" class="my-btn-primary text-white text-14" @click='doSub'>{{modalTit}}</button>

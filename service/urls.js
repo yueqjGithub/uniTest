@@ -9,7 +9,7 @@ const urls = {
 		'/v1/api/train/commit', '/v1/api/train/refund','/v1/api/vip/list', '/v1/api/electric/details', '/v1/api/withdraw/list',
 		'/v1/api/train/station', '/v1/api/train/find', '/v1/api/ticket/find', '/v1/api/ticket/station', '/v1/api/electric/orderlist',
 		'/v1/api/public/gitpis', '/v1/api/public/pis', '/v1/api/publicity/index', '/v1/api/electric/denomination', '/v1/api/oilcard/commit',
-		'/v1/api/ticket/commit', '/v1/api/train/pay', '/v1/api/train/order', '/v1/api/ticket/order', '/v1/api/electric/commit',
+		'/v1/api/ticket/commit', '/v1/api/train/pay', '/v1/api/train/order', '/v1/api/ticket/order', '/v1/api/electric/commit', '/v1/api/driving/wzfind',
 		'/v1/api/withdraw/commit', '/v1/api/credit/creditline', '/v1/api/credit/update', '/v1/api/oilcard/shop', '/v1/api/oilcard/cardlist', '/v1/api/oilcard/addoilcard', '/v1/api/driving/edit', '/v1/api/oilcard/del'
 	], // 需要加密的接口2
 	baseUrl: 'https://shopapi.apiself.com',
@@ -97,6 +97,7 @@ const urls = {
 	chargeCredit: '/v1/api/credit/add', // 信用卡充值2
 	withdrawCredit: '/v1/api/credit/update', // 信用卡提现2
 	// 违章
+	searchWzInfo: '/v1/api/driving/wzfind', // 查询违章详细2
 	addCarForm: '/v1/api/driving/edit' // 添加车辆2
 }
 

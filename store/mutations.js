@@ -60,3 +60,7 @@ export const setOilType = (state, payload) => {
 export const setOilCard = (state, payload) => {
 	state.curOilCard = payload
 }
+
+export const setCurWz = (state, payload) => { // 设置当前违章信息
+	state.curWz = payload
+}

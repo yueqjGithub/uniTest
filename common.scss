@@ -163,6 +163,19 @@ text,view{
 		border-radius: 35px !important;
 	}
 }
+.my-input-fill{
+	width: 100%;
+	.u-input{
+		border-color: #dcdfe6;
+		text-align: left;
+		height: 60px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 0 20px !important;
+		border-radius: 35px !important;
+	}
+}
 .my-btn-primary{ // 绿色渐变按钮
 	width: 83%;
 	height: 40px;
