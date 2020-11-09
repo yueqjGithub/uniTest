@@ -98,7 +98,8 @@ const urls = {
 	withdrawCredit: '/v1/api/credit/update', // 信用卡提现2
 	// 违章
 	searchWzInfo: '/v1/api/driving/wzfind', // 查询违章详细2
-	addCarForm: '/v1/api/driving/edit' // 添加车辆2
+	addCarForm: '/v1/api/driving/edit', // 添加车辆2
+	uploadLicense: '/v1/api/upload/image' // 上传行驶证2
 }
 
 export default urls

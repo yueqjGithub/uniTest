@@ -195,6 +195,14 @@
 				"backgroundColor": "#23AF8C"
 			}
 
+		}, {
+			"path": "carScoreIndex/carScoreIndex",
+			"style": {
+				"navigationBarTitleText": "我的驾驶证",
+				"enablePullDownRefresh": false,
+				"backgroundColor": "#23AF8C"
+			}
+
 		}]
 	}, {
 		"root": "pullOtherPage",
@@ -320,7 +328,7 @@
 			},
 			{
 				"name": "devlope",
-				"path": "oil/index/index",
+				"path": "oil/carScoreIndex/carScoreIndex",
 				"query": ""
 			},
 			{

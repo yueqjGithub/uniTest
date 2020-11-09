@@ -306,6 +306,11 @@ export default {
 		orderNum: '单号',
 		wzTime: '违章时间',
 		payIntroduction: '请在罚单发出时间起，15日内缴纳罚款，超出上述时间将每日增加3%的滞纳金',
-		payTips: '请在确认上述罚单信息后继续进行违章缴纳'
+		payTips: '请在确认上述罚单信息后继续进行违章缴纳',
+		// 驾照分查询
+		myLicense: '我的驾驶证',
+		addLicense: '添加驾驶证',
+		uploadLicenseTips: '上传驾驶证照片进行识别',
+		manual: '手动输入驾驶证信息'
 	}
 }
