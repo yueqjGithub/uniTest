@@ -304,6 +304,8 @@ export default {
 		Wztip2: '直接输入罚单上的编号可进行缴费',
 		carNumber: '车牌号',
 		orderNum: '单号',
+		licenseNumber: '驾驶证号',
+		fileNumber: '档案编号',
 		wzTime: '违章时间',
 		payIntroduction: '请在罚单发出时间起，15日内缴纳罚款，超出上述时间将每日增加3%的滞纳金',
 		payTips: '请在确认上述罚单信息后继续进行违章缴纳',

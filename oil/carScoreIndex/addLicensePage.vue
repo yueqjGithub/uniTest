@@ -35,9 +35,9 @@
 	.add-license-page{
 		.scan-container{
 			border-radius: 10.41rpx;
-			border: 1px solid rgba(207, 207, 207, 1);
+			border: 1px solid #efefef;
 			.address-icon {
-				border: 1px solid rgba(207, 207, 207, 1);
+				border: 1px solid #efefef;
 				border-radius: 13.88rpx;
 				width: 138.88rpx;
 				height: 138.88rpx;

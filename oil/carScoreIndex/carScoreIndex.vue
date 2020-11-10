@@ -24,7 +24,7 @@
 					<add-license @scanCode='scanCode'></add-license>
 				</swiper-item>
 				<swiper-item class="swiper-item">
-					<view>2</view>
+					<pre-license></pre-license>
 				</swiper-item>
 			</swiper>
 		</view>
@@ -36,11 +36,13 @@
 		mapState
 	} from 'vuex'
 	import addLicense from './addLicensePage.vue'
+	import preLicense from './preLicensePage.vue' 
 	import urls from '@/service/urls.js'
 	export default {
 		name: 'carScoreIndex', // 驾照分查询首页
 		components: {
-			addLicense
+			addLicense,
+			preLicense
 		},
 		data() {
 			return {
