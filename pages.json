@@ -203,6 +203,14 @@
 				"backgroundColor": "#23AF8C"
 			}
 
+		}, {
+			"path": "addCarLicense/addCarLicense",
+			"style": {
+				"navigationBarTitleText": "添加驾驶证",
+				"enablePullDownRefresh": false,
+				"backgroundColor": "#23AF8C"
+			}
+
 		}]
 	}, {
 		"root": "pullOtherPage",

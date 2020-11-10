@@ -21,7 +21,7 @@
 			<!-- swiper -->
 			<swiper :current="swiperCurrent" @animationfinish="animationfinish" class="full-width cus-swiper">
 				<swiper-item class="swiper-item">
-					<add-license @scanCode='scanCode'></add-license>
+					<add-license @scanCode='scanCode' @openAddLicense="toAddLicense"></add-license>
 				</swiper-item>
 				<swiper-item class="swiper-item">
 					<pre-license></pre-license>
@@ -88,6 +88,11 @@
 						});
 					}
 				});
+			},
+			toAddLicense () {
+				uni.navigateTo({
+					url: '/oil/addCarLicense/addCarLicense'
+				})
 			},
 			changeTab(idx) {
 				this.tabIdx = idx

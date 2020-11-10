@@ -314,5 +314,11 @@ export default {
 		addLicense: '添加驾驶证',
 		uploadLicenseTips: '上传驾驶证照片进行识别',
 		manual: '手动输入驾驶证信息'
+	},
+	addLicense: {
+		pageName: '添加驾驶证',
+		licenseNumberTips: '请输入驾驶证号',
+		fileNumberTips: '请输入驾驶证档案编号',
+		timeTips: '请选择发证时间'
 	}
 }
