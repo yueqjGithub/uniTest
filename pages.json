@@ -211,6 +211,14 @@
 				"backgroundColor": "#23AF8C"
 			}
 
+		}, {
+			"path": "wgIndex/wgIndex",
+			"style": {
+				"navigationBarTitleText": "违章查询",
+				"enablePullDownRefresh": false,
+				"backgroundColor": "#23AF8C"
+			}
+
 		}]
 	}, {
 		"root": "pullOtherPage",
@@ -336,7 +344,7 @@
 			},
 			{
 				"name": "devlope",
-				"path": "oil/carScoreIndex/carScoreIndex",
+				"path": "oil/wgIndex/wgIndex",
 				"query": ""
 			},
 			{

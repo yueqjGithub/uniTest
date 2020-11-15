@@ -17,7 +17,7 @@ export default {
 		return {
 			typeList: [
 				{name: 'licenseSearch', icon: '97-yonghuchaxun', type: 1, id: 0, start_bg: '#FF4B4B', end_bg: '#FF9696', path: '/oil/carScoreIndex/carScoreIndex'},
-				{name: 'illegalSearch', icon: 'chaxunzimuhecailiao', type: 3, id: 0, start_bg: '#FF9632', end_bg: '#FFD232', path: ''},
+				{name: 'illegalSearch', icon: 'chaxunzimuhecailiao', type: 3, id: 0, start_bg: '#FF9632', end_bg: '#FFD232', path: '/oil/wgIndex/wgIndex'},
 				{name: 'illegalPay', icon: 'weibiaoti--31', type: 2, id: 0,start_bg: '#00AFFF', end_bg: '#00D7FF', path: '/oil/wzPay/wzPay'}
 			]
 		}

@@ -320,5 +320,11 @@ export default {
 		licenseNumberTips: '请输入驾驶证号',
 		fileNumberTips: '请输入驾驶证档案编号',
 		timeTips: '请选择发证时间'
+	},
+	wgIndex: {
+		pageName: '违章查询',
+		addTips: '添加行驶证信息，方便下次使用',
+		scanTips: '扫描行驶证快速添加',
+		manual: '手动输入行驶证信息'
 	}
 }
