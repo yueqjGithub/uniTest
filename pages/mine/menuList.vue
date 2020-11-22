@@ -62,7 +62,7 @@
 					color: '#FF7341',
 					path: '/pages/commonOrder/commonOrder?type=oil',
 					icon: 'ditujiayouzhan',
-					name_cn: '电话费',
+					name_cn: '油卡',
 					name: "تېلېفۇن ھەققى"
 				}]
 			}
