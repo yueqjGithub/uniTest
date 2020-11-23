@@ -292,6 +292,7 @@ export default {
 		pageName: 'ماشىنا ياردەمچىسى',
 		licenseSearch: 'پىراۋا تەكشۈرۈش',
 		illegalSearch: 'جەرىمانە تەكشۈرۈش',
+		searchScore: 'نومۇر تارتىپ تەكشۈرۈش ',
 		illegalPay: 'جەرىمانە تاپشۇرۇش',
 		oilTitle: 'بۈگۈنكى ماي باھاسى',
 		gasoline: 'بېىنزىن',

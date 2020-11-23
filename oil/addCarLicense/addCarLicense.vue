@@ -18,18 +18,6 @@
 				<u-input v-model="fileNumber" :class="inputClass" :custom-style="{color: '#aaaaaa', fontSize: '14px'}" placeholder-style="color: #aaaaaa"
 				 :placeholder="$t('addLicense.fileNumberTips')" type="text"></u-input>
 			</view>
-			<!-- 发证日期 -->
-			<view class="pa-md"></view>
-			<view class="full-width input-item pa-col-sm border-box">
-				<u-input v-model="reg_time" :class="inputClass" :custom-style="{color: '#aaaaaa', fontSize: '14px'}" disabled
-				 @click="showTimes=true" placeholder-style="color: #aaaaaa" :placeholder="$t('addCar.timeTips')" type="text"></u-input>
-			</view>
-			<!-- 电话号码 -->
-			<view class="pa-md"></view>
-			<view class="full-width input-item pa-col-sm border-box">
-				<u-input v-model="mobile" :class="inputClass" :custom-style="{color: '#aaaaaa', fontSize: '14px'}"
-				 placeholder-style="color: #aaaaaa" :placeholder="$t('mobileCharge.numberTips')" type="text"></u-input>
-			</view>
 			<view class="pa-md"></view>
 			<view class="full-width pa-col-sm border-box">
 				<u-radio-group v-model="type" @change="radioGroupChange">
@@ -42,17 +30,11 @@
 				<button type="default" class="my-btn-primary text-14 text-white" @click="saveCar">{{$t('basic.ok')}}</button>
 			</view>
 		</view>
-		<!-- 时间选择弹出 -->
-		<u-popup v-model="showTimes" mode="bottom" :closeable="false" border-radius="15">
-			<cus-calendar :name="$t('train.timeChooseTit')" :weekNames="weekList" :btnText="$t('basic.ok')" @choose="setTrainTime"
-			 :startDate="startDate" :endDate="endDate" :couldChooseYear="true"></cus-calendar>
-		</u-popup>
 	</view>
 </template>
 
 <script>
 	import urls from '@/service/urls.js'
-	import cusCalendar from '@/cusComponents/myCalendar/calendar.vue'
 	import dayjs from 'dayjs'
 	import {
 		mapState,
@@ -61,7 +43,6 @@
 	export default {
 		name: 'addCar',
 		components: {
-			cusCalendar
 		},
 		data() {
 			return {
@@ -90,15 +71,6 @@
 			},
 			inputClass() {
 				return this.lang === 'zh-CN' ? '' : ' my-text-right'
-			},
-			weekList() {
-				const vm = this
-				let result = []
-				let list = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
-				list.forEach(item => {
-					result.push(vm._i18n.messages[vm.lang].basic[item])
-				})
-				return result
 			}
 		},
 		watch: {
@@ -137,31 +109,11 @@
 						})
 						return false
 					}
-					if (!vm.reg_time) {
-						vm.$refs.uTips.show({
-							title: this._i18n.messages[this.lang].addLicense.timeTips,
-							type: 'error',
-							duration: '2300'
-						})
-						return false
-					}
-					if (!vm.mobile) {
-						vm.$refs.uTips.show({
-							title: this._i18n.messages[this.lang].mobileCharge.numberTips,
-							type: 'error',
-							duration: '2300'
-						})
-						return false
-					}
 				} else {
 					uni.navigateTo({
 						url: '/pages/login/login'
 					})
 				}
-			},
-			setTrainTime(result) { // 设置出发时间
-				this.reg_time = result
-				this.showTimes = false
 			}
 		}
 	}

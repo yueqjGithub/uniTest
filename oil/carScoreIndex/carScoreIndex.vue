@@ -14,7 +14,7 @@
 				<view class="flex-column flex-jst-center flex-ali-center tab-item border-box" :class="tabIdx === 1 ? 'tab-y' : ''"
 				 @click="changeTab(1)">
 					<u-icon name="chaxunzimuhecailiao" custom-prefix="iconfont" size="65" color="#0fc28e"></u-icon>
-					<text class="font-12">{{$t('carCenter.addLicense')}}</text>
+					<text class="font-12">{{$t('carCenter.searchScore')}}</text>
 					<view class="border-btm"></view>
 				</view>
 			</view>

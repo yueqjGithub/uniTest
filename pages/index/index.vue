@@ -19,7 +19,7 @@
 		<!-- fixed元素补位-弥补absolute轮播 -->
 		<view class="fix-add-swiper"></view>
 		<!-- menulist -->
-		<view class="menu-list bg-white pa-row-md flex-row flex-wrap flex-jst-btw flex-ali-start">
+		<view class="menu-list bg-white pa-row-md flex-row flex-wrap flex-jst-start flex-ali-start">
 			<view class="menu-item-container flex-row flex-jst-center flex-ali-start" v-for="(k, index) in applyList" :key="index">
 				<Item :item="k"></Item>
 			</view>

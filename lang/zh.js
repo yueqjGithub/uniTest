@@ -293,6 +293,7 @@ export default {
 		pageName: '汽车助手',
 		licenseSearch: '驾照查询',
 		illegalSearch: '违章查询',
+		searchScore: '扣分查询',
 		illegalPay: '违章缴费',
 		oilTitle: '今日油价',
 		gasoline: '汽油',
