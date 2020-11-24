@@ -277,7 +277,7 @@ export default {
 		priceChoose: '选择充值金额'
 	},
 	addCar: {
-		pageName: '添加车辆',
+		pageName: '添加行驶证',
 		carNumTips: '请输入车牌号',
 		vinTips: '请输入车架号',
 		engineTips: '请输入发动机号',

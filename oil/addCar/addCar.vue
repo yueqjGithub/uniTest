@@ -125,11 +125,9 @@
 			lang: {
 				immediate: true,
 				handler: function(val) {
-					if (val !== 'zh-CN') {
-						uni.setNavigationBarTitle({
-							title: this._i18n.messages[val].addCar.pageName
-						})
-					}
+					uni.setNavigationBarTitle({
+						title: this._i18n.messages[val].addCar.pageName
+					})
 				}
 			}
 		},

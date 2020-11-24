@@ -67,6 +67,8 @@
 			scanCode() { // 上传驾驶证供服务器识别
 				const vm = this
 				uni.chooseImage({
+					count: 1,
+					sizeType: ['compressed'],
 					success: (chooseImageRes) => {
 						const tempFilePaths = chooseImageRes.tempFilePaths;
 						uni.showLoading()
@@ -86,6 +88,9 @@
 								})
 							}
 						});
+					},
+					fail(err) {
+						console.log(err)
 					}
 				});
 			},

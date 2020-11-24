@@ -22,7 +22,7 @@
 			</view>
 		</view>
 		<!-- 拍照添加 -->
-		<view class="cont-item pa-md flex-jst-btw flex-ali-center" :class="langFlex">
+		<view class="cont-item pa-md flex-jst-btw flex-ali-center" :class="langFlex" @click="scanCode">
 			<u-icon name="camera-fill" size="70" color='#3598db'></u-icon>
 			<text class="flex-1 text-12 ma-sm" :class="rightClass">{{$t('wgIndex.scanTips')}}</text>
 			<u-icon name='weibiaoti--11' size='40' :class="lang === 'zh-CN' ? 'tran-icon' : ''" custom-prefix='iconfont' color='#b1b1b1'></u-icon>
@@ -40,6 +40,7 @@
 	import {
 		mapState
 	} from 'vuex'
+	import urls from '@/service/urls.js'
 	export default {
 		name: 'wgIndex',
 		data() {
@@ -81,7 +82,35 @@
 				uni.navigateTo({
 					url: '/oil/addCar/addCar'
 				})
-			}
+			},
+			scanCode () { // 上传驾驶证供服务器识别
+				const vm = this
+				uni.chooseImage({
+					success: (chooseImageRes) => {
+						const tempFilePaths = chooseImageRes.tempFilePaths;
+						uni.showLoading()
+						uni.uploadFile({
+							url: `${urls.baseUrl}${urls.uploadLicense}?type=3`, //仅为示例，非真实的接口地址
+							filePath: tempFilePaths[0],
+							name: 'file',
+							success: (uploadFileRes) => {
+								uni.hideLoading()
+								console.log(JSON.parse(uploadFileRes.data));
+							},
+							fail: err => {
+								uni.hideLoading()
+								vm.$refs.uTips.show({
+									title: err.errMsg,
+									duration: 2000
+								})
+							}
+						});
+					},
+					fail(err) {
+						console.log(err)
+					}
+				});
+			},
 		}
 	}
 </script>

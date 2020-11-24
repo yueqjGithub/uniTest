@@ -109,6 +109,38 @@
 						})
 						return false
 					}
+					const obj = {
+						token: token,
+						idcard: vm.licenseNumber,
+						drivers_license_number: vm.fileNumber,
+						type: vm.type
+					}
+					uni.showLoading({
+						title: ''
+					})
+					vm.$post(urls.setDriveLicense, obj).then(res => {
+						uni.hideLoading()
+						if (res.success) {
+							vm.$refs.uTips.show({
+								title: this._i18n.messages[this.lang].basic.success,
+								type: 'success',
+								duration: '2300'
+							})
+						} else {
+							vm.$refs.uTips.show({
+								title: res.message,
+								type: 'error',
+								duration: '2300'
+							})
+						}
+					}, err => {
+						uni.hideLoading()
+						vm.$refs.uTips.show({
+							title: this._i18n.messages[this.lang].basic.faild,
+							type: 'error',
+							duration: '2300'
+						})
+					})
 				} else {
 					uni.navigateTo({
 						url: '/pages/login/login'
