@@ -20,7 +20,7 @@
 			</view>
 			<view class="pa-md"></view>
 			<view class="full-width pa-col-sm border-box">
-				<u-radio-group v-model="type" @change="radioGroupChange">
+				<u-radio-group v-model="type">
 					<u-radio v-for="(item, index) in carType" :key="item.label" :name="item.label" active-color="#23AF8C">
 						{{lang === 'zh-CN' ? item.label : item.label_en}}
 					</u-radio>
@@ -120,6 +120,9 @@
 						idcard: vm.licenseNumber,
 						drivers_license_number: vm.fileNumber,
 						type: vm.type
+					}
+					if (vm.curDrivingLicense.id) {
+						obj.id = vm.curDrivingLicense.id
 					}
 					uni.showLoading({
 						title: ''

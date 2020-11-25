@@ -200,7 +200,18 @@
 								// },
 								success: (uploadFileRes) => {
 									uni.hideLoading()
-									console.log(JSON.parse(uploadFileRes.data));
+									const target = JSON.parse(uploadFileRes.data)
+									if (target.data.jsz && typeof(target.data.jsz) !== 'string') {
+										const obj = {
+											drivers_license_number: target.data.jsz.archiveno,
+											idcard: target.data.jsz.number,
+											type: '小车'
+										}
+										vm.setCurDrivingLicense(obj)
+										uni.navigateTo({
+											url: '/oil/addCarLicense/addCarLicense'
+										})
+									}
 								},
 								fail: err => {
 									uni.hideLoading()
