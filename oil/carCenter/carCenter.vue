@@ -14,14 +14,13 @@
 		<view class="full-width pa-md border-box flex-row flex-jst-center flex-ali-center oil-container">
 			<view class="cont-item pa-md full-width border-box">
 				<view class="full-width flex-row flex-jst-center flex-ali-center pa-col-sm border-box text-bold tex-14">{{$t('carCenter.oilTitle')}}</view>
-				<view v-for="k in priceList" :key='k.symbol' :class="langFlex" class="flex-jst-btw flex-ali-center price-item pa-col-md">
+				<view v-for="k in priceList" :key='k.name' :class="langFlex" class="flex-jst-btw flex-ali-center price-item pa-col-md">
 					<view class="flex-row flex-jst-start flex-ali-center">
-						<text class="oil-name text-16">{{$t(`carCenter.${k.type === 1 ? 'gasoline' : 'diesel'}`)}}</text>
-						<text class="oil-name ma-row-sm text-16">{{k.symbol}}</text>
+						<text class="oil-name text-16">{{lang === 'zh-CN' ? k.type.name_cn : k.type.name}}</text>
+						<text class="oil-name ma-row-sm text-16">{{k.name}}</text>
 					</view>
 					<view class="flex-row flex-jst-center flex-ali-base">
-						<text class="text-primary text-14 text-bold">￥</text>
-						<text class="text-primary text-18 text-bold">{{k.price}}/L</text>
+						<text class="text-primary text-18 text-bold">{{k.price}}</text>
 					</view>
 				</view>
 			</view>
@@ -44,8 +43,6 @@
 			return {
 				bannerList: [],
 				priceList: [
-					{symbol: '92#', type: 1, price: 10},
-					{symbol: '95#', type: 2, price: 12}
 				]
 			}
 		},
@@ -71,8 +68,8 @@
 		methods: {
 			queryStore() {
 				const vm = this
-				vm.$get(urls.queryStore, {}).then(res => {
-					this.bannerList = res.data.banner
+				vm.$get(urls.queryCurrentOilPrice, {}).then(res => {
+					this.priceList = [...res]
 				})
 			}
 		}

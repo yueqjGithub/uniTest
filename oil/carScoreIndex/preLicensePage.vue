@@ -2,19 +2,19 @@
 	<view class="pre-license full-width  ma-col-md">
 		<view class="pa-lg border-box scan-container flex-column flex-jst-center" :class="lang === 'zh-CN' ? 'flex-ali-start' : 'flex-ali-end'">
 			<view class="flex-jst-start flex-ali-center ma-col-sm" :class="langFlex">
-				<text class="labels text-12 text-grey-1" :class="rightClass">{{$t('carCenter.licenseNumber')}}</text>
-				<text class="text-12" :class="rightClass">{{licenseNumber}}</text>
+				<text class="labels text-12 text-grey-1 ma-rt-5" :class="rightClass">{{$t('carCenter.licenseNumber')}}</text>
+				<text class="text-12" :class="rightClass">{{licenseList[0].idcard}}</text>
 			</view>
 			<view class="flex-jst-start flex-ali-center ma-col-sm" :class="langFlex">
-				<text class="labels text-12 text-grey-1" :class="rightClass">{{$t('carCenter.fileNumber')}}</text>
-				<text class="text-12" :class="rightClass">{{fileNumber}}</text>
+				<text class="labels text-12 text-grey-1 ma-rt-5" :class="rightClass">{{$t('carCenter.fileNumber')}}</text>
+				<text class="text-12" :class="rightClass">{{licenseList[0].drivers_license_number}}</text>
 			</view>
 			<view class="ma-col-md full-width my-split"></view>
 			<view class="pa-row-md border-box full-width flex-row flex-jst-center flex-ali-center">
-				<view class="action flex-row flex-jst-center flex-ali-center">
+				<view class="action flex-row flex-jst-center flex-ali-center" @click='removeLicense'>
 					<u-icon name="weibiaoti--32" custom-prefix="iconfont" color="#d5d5d5" size="35"></u-icon>
 				</view>
-				<view class="action flex-row flex-jst-center flex-ali-center">
+				<view class="action flex-row flex-jst-center flex-ali-center" @click='edit'>
 					<u-icon name="weibiaoti--67" custom-prefix="iconfont" color="#d5d5d5" size="35"></u-icon>
 				</view>
 			</view>
@@ -29,13 +29,14 @@
 		</view>
 		<!-- 按钮 -->
 		<view class="pa-row-lg ma-col-md border-box full-width flex-row flex-jst-center flex-ali-center">
-			<button type="default" class="my-btn-primary text-white text-14" @click="doCharge">{{$t('basic.search')}}</button>
+			<button type="default" class="my-btn-primary text-white text-14" @click="searchInfo">{{$t('basic.search')}}</button>
 		</view>
 	</view>
 </template>
 
 <script>
-	import { mapState } from 'vuex'
+	import { mapState, mapActions } from 'vuex'
+	import urls from '@/service/urls.js'
 	export default {
 		name: 'preLicensePage',
 		data () {
@@ -45,8 +46,16 @@
 				fileNumber: ''
 			}
 		},
+		props: {
+			licenseList: {
+				type: Array,
+				default: function () {
+					return []
+				}
+			}
+		},
 		computed: {
-			...mapState(['lang']),
+			...mapState(['lang', 'curDrivingLicense']),
 			langFlex () {
 				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'
 			},
@@ -54,7 +63,56 @@
 				return this.lang === 'zh-CN' ? 'text-left' : 'text-right'
 			}
 		},
-		methods: {}
+		mounted () {
+		},
+		methods: {
+			...mapActions(['checkLogin']),
+			removeLicense () {
+				this.$emit('remove')
+			},
+			edit () {
+				this.$emit('edit')
+			},
+			async searchInfo () {
+				const vm = this
+				let content = null
+				if (vm.licenseList.length < 1) {
+					content = {
+						type: 'error',
+						title: vm._i18n.messages[vm.lang].addLicense.noLicense
+					}
+					vm.$emit('showTip', content)
+					return false
+				}
+				if (!vm.sure) {
+					content = {
+						type: 'error',
+						title: vm._i18n.messages[vm.lang].basic.aggrement
+					}
+					vm.$emit('showTip', content)
+					return false
+				}
+				const token = await vm.checkLogin()
+				if (token) {
+					const obj = {
+						token: token,
+						id: vm.curDrivingLicense.id
+					}
+					uni.showLoading()
+					vm.$post(urls.searchLicenseInfo, obj).then(res => {
+						uni.hideLoading()
+						console.log(res)
+					}, err => {
+						uni.hideLoading()
+						console.log(err)
+					})
+				} else {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+				}
+			}
+		}
 	}
 </script>
 

@@ -65,7 +65,7 @@
 			}
 		},
 		computed: {
-			...mapState(['lang']),
+			...mapState(['lang', 'curDrivingLicense']),
 			langFlex() {
 				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'
 			},
@@ -86,6 +86,12 @@
 			}
 		},
 		onShow() {
+			const vm = this
+			if (vm.curDrivingLicense) {
+				vm.licenseNumber = vm.curDrivingLicense.idcard
+				vm.fileNumber = vm.curDrivingLicense.drivers_license_number
+				vm.type = vm.curDrivingLicense.type
+			}
 		},
 		methods: {
 			...mapActions(['checkLogin']),
@@ -126,6 +132,11 @@
 								type: 'success',
 								duration: '2300'
 							})
+							setTimeout(() => {
+								uni.navigateBack({
+									delta: 1
+								})
+							}, 2000)
 						} else {
 							vm.$refs.uTips.show({
 								title: res.message,

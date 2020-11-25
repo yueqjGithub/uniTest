@@ -24,7 +24,8 @@ export default {
 		notFill: '信息未填写完整',
 		success: '操作成功',
 		faild: '操作失败',
-		aggrement: '请确认已知晓用户协议'
+		aggrement: '请确认已知晓用户协议',
+		delConfirm: '确定要删除吗'
 	},
 	tab: {
 		index: '首页',
@@ -320,7 +321,9 @@ export default {
 		pageName: '添加驾驶证',
 		licenseNumberTips: '请输入驾驶证号',
 		fileNumberTips: '请输入驾驶证档案编号',
-		timeTips: '请选择发证时间'
+		timeTips: '请选择发证时间',
+		hadAdded: '已添加驾驶证，请先删除或修改',
+		noLicense: '您暂未添加驾驶证'
 	},
 	wgIndex: {
 		pageName: '违章查询',

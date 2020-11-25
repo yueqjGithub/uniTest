@@ -1,10 +1,10 @@
 const urls = {
 	socket: 'wss://shopapi.apiself.com:9527', // 火车订单socket地址
 	authList: [], // 需要身份认证的接口
-	md5List: ['/v1/api/public/login', '/v1/api/shop/details', '/v1/api/shop/collect', '/v1/api/shop/buy',
-		'/v1/api/shop/pretreatment', '/v1/api/shippingaddress/edit', '/v1/api/shop/orderlist', '/v1/api/user/shopcollect',
+	md5List: ['/v1/api/public/login', '/v1/api/shop/details', '/v1/api/shop/collect', '/v1/api/shop/buy', '/v1/api/driving/jszlist',
+		'/v1/api/shop/pretreatment', '/v1/api/shippingaddress/edit', '/v1/api/shop/orderlist', '/v1/api/user/shopcollect', '/v1/api/driving/deljsz',
 		'/v1/api/user/info', '/v1/api/vip/opening', '/v1/api/shop/delivery', '/v1/api/cecharge/attribution', '/v1/api/oilcard/orderlist',
-		'/v1/api/telephone/denomination', '/v1/api/publicity/subordinate', '/v1/api/publicity/config', '/v1/api/publicity/ranking',
+		'/v1/api/telephone/denomination', '/v1/api/publicity/subordinate', '/v1/api/publicity/config', '/v1/api/publicity/ranking', '/v1/api/driving/find',
 		'/v1/api/cecharge/balance', '/v1/api/telephone/commit', '/v1/api/telephone/order', '/v1/api/public/delpis', '/v1/api/credit/add',
 		'/v1/api/train/commit', '/v1/api/train/refund','/v1/api/vip/list', '/v1/api/electric/details', '/v1/api/withdraw/list', '/v1/api/driving/editjsz',
 		'/v1/api/train/station', '/v1/api/train/find', '/v1/api/ticket/find', '/v1/api/ticket/station', '/v1/api/electric/orderlist',
@@ -100,7 +100,12 @@ const urls = {
 	searchWzInfo: '/v1/api/driving/wzfind', // 查询违章详细2
 	addCarForm: '/v1/api/driving/edit', // 添加车辆2
 	uploadLicense: '/v1/api/upload/image', // 上传行驶证2
-	setDriveLicense: '/v1/api/driving/editjsz' // 添加，编辑驾驶证2
+	setDriveLicense: '/v1/api/driving/editjsz', // 添加，编辑驾驶证2
+	// 汽车助手
+	queryCurrentOilPrice: '/v1/api/public/oil', // 今日油价
+	driverLicenseList: '/v1/api/driving/jszlist', // 驾驶证列表2
+	delDrivingLicense: '/v1/api/driving/deljsz', // 删除驾驶证2
+	searchLicenseInfo: '/v1/api/driving/find', // 驾驶证信息查询2
 }
 
 export default urls

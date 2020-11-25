@@ -64,3 +64,7 @@ export const setOilCard = (state, payload) => {
 export const setCurWz = (state, payload) => { // 设置当前违章信息
 	state.curWz = payload
 }
+
+export const setCurDrivingLicense = (state, payload) => { // 设置当前处于编辑状态的驾驶证
+	state.curDrivingLicense = payload
+}

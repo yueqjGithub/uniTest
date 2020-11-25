@@ -1,6 +1,8 @@
 <template>
 	<view class="page bg-grey">
 		<u-top-tips ref="uTips"></u-top-tips>
+		<u-modal v-model="showDel" ref="uModal" :content='delTips' :show-cancel-button='true' :confirm-text='okText'
+		 :cancel-text='cancelText' :show-title='false' @confirm='removeHandler'></u-modal>
 		<view class="head-bg"></view>
 		<view class="cont-item pa-md flex-column flex-jst-start flex-ali-center">
 			<!-- 自定义tab -->
@@ -24,7 +26,7 @@
 					<add-license @scanCode='scanCode' @openAddLicense="toAddLicense"></add-license>
 				</swiper-item>
 				<swiper-item class="swiper-item">
-					<pre-license></pre-license>
+					<pre-license :licenseList='licenseList' @remove='removeLicense' @edit='editDrivlingLicense' @showTip='headerTipsShow'></pre-license>
 				</swiper-item>
 			</swiper>
 		</view>
@@ -33,10 +35,12 @@
 
 <script>
 	import {
-		mapState
+		mapState,
+		mapActions,
+		mapMutations
 	} from 'vuex'
 	import addLicense from './addLicensePage.vue'
-	import preLicense from './preLicensePage.vue' 
+	import preLicense from './preLicensePage.vue'
 	import urls from '@/service/urls.js'
 	export default {
 		name: 'carScoreIndex', // 驾照分查询首页
@@ -46,12 +50,23 @@
 		},
 		data() {
 			return {
-				tabIdx: 0,
-				swiperCurrent: 0
+				showDel: false,
+				tabIdx: 1,
+				swiperCurrent: 1,
+				licenseList: []
 			};
 		},
 		computed: {
-			...mapState(['lang'])
+			...mapState(['lang']),
+			delTips() {
+				return this._i18n.messages[this.lang].basic.delConfirm
+			},
+			okText () {
+				return this._i18n.messages[this.lang].basic.ok
+			},
+			cancelText () {
+				return this._i18n.messages[this.lang].basic.cancel
+			}
 		},
 		watch: {
 			lang: {
@@ -63,40 +78,175 @@
 				}
 			}
 		},
+		onShow() {
+			this.queryMyLicense()
+		},
 		methods: {
+			...mapMutations(['setCurDrivingLicense']),
+			...mapActions(['checkLogin']),
+			headerTipsShow (content) {
+				this.$refs.uTips.show({
+					type: content.type,
+					title: content.title,
+					duration: 2000
+				})
+			},
+			editDrivlingLicense () {
+				const vm = this
+				if (vm.licenseList.length > 0) {
+					const target = vm.licenseList[0]
+					vm.setCurDrivingLicense(target)
+					uni.navigateTo({
+						url: '/oil/addCarLicense/addCarLicense'
+					})
+				} else {
+					vm.$refs.uTips.show({
+						type: 'error',
+						title: vm._i18n.messages[vm.lang].addLicense.noLicense,
+						duration: 2000
+					})
+				}
+			},
+			async removeHandler () { // 删除驾驶证
+				const vm = this
+				const token = await vm.checkLogin()
+				if (token) {
+					const obj = {
+						token: token,
+						id: vm.licenseList[0].id
+					}
+					uni.showLoading()
+					vm.$post(urls.delDrivingLicense, obj).then(res => {
+						uni.hideLoading()
+						vm.showDel = false
+						if (res.success) {
+							vm.licenseList = []
+						} else {
+							vm.$refs.uTips.show({
+								type: 'error',
+								title: res.message,
+								duration: 2000
+							})
+						}
+					}, err => {
+						uni.hideLoading()
+						vm.showDel = false
+						vm.$refs.uTips.show({
+							type: 'error',
+							title: vm._i18n.messages[vm.lang].basic.faild,
+							duration: 2000
+						})
+					})
+				} else {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+				}
+			},
+			removeLicense() { // 删除驾驶证-confirm
+				const vm = this
+				if (vm.licenseList.length > 0) {
+					this.showDel = true
+				} else {
+					vm.$refs.uTips.show({
+						type: 'error',
+						title: vm._i18n.messages[vm.lang].addLicense.noLicense,
+						duration: 2000
+					})
+				}
+			},
+			async queryMyLicense() { // 驾驶证列表
+				const vm = this
+				const token = await vm.checkLogin()
+				if (token) {
+					const obj = {
+						token: token
+					}
+					uni.showLoading()
+					vm.$post(urls.driverLicenseList, obj).then(res => {
+						uni.hideLoading()
+						if (res.success) {
+							vm.licenseList = res.data.data
+						}
+					}, err => {
+						uni.hideLoading()
+						vm.$refs.uTips.show({
+							type: 'error',
+							title: vm._i18n.messages[vm.lang].basic.faild,
+							duration: 2000
+						})
+					})
+				} else {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+				}
+			},
 			scanCode() { // 上传驾驶证供服务器识别
 				const vm = this
-				uni.chooseImage({
-					count: 1,
-					sizeType: ['compressed'],
-					success: (chooseImageRes) => {
-						const tempFilePaths = chooseImageRes.tempFilePaths;
-						uni.showLoading()
-						uni.uploadFile({
-							url: `${urls.baseUrl}${urls.uploadIdcard}?type=2`, //仅为示例，非真实的接口地址
-							filePath: tempFilePaths[0],
-							name: 'file',
-							success: (uploadFileRes) => {
-								uni.hideLoading()
-								console.log(JSON.parse(uploadFileRes.data));
-							},
-							fail: err => {
-								uni.hideLoading()
-								vm.$refs.uTips.show({
-									title: err.errMsg,
-									duration: 2000
-								})
-							}
-						});
-					},
-					fail(err) {
-						console.log(err)
-					}
-				});
+				vm.checkLicenseStatus().then(() => {
+					uni.chooseImage({
+						count: 1,
+						sizeType: ['compressed'],
+						success: (chooseImageRes) => {
+							const tempFilePaths = chooseImageRes.tempFilePaths;
+							uni.showLoading()
+							uni.uploadFile({
+								url: `${urls.baseUrl}${urls.uploadIdcard}?type=2`, //仅为示例，非真实的接口地址
+								filePath: tempFilePaths[0],
+								name: 'file',
+								// formData: {
+								// 	'type': '2'
+								// },
+								success: (uploadFileRes) => {
+									uni.hideLoading()
+									console.log(JSON.parse(uploadFileRes.data));
+								},
+								fail: err => {
+									uni.hideLoading()
+									vm.$refs.uTips.show({
+										type: 'error',
+										title: err.errMsg,
+										duration: 2000
+									})
+								}
+							});
+						},
+						fail(err) {
+							console.log(err)
+						}
+					});
+				}, () => {
+					vm.$refs.uTips.show({
+						type: 'error',
+						title: vm._i18n.messages[vm.lang].addLicense.hadAdded,
+						duration: 2000
+					})
+				})
 			},
-			toAddLicense () {
-				uni.navigateTo({
-					url: '/oil/addCarLicense/addCarLicense'
+			checkLicenseStatus() {
+				const vm = this
+				return new Promise((resolve, reject) => {
+					if (vm.licenseList.length > 0) {
+						reject()
+					} else {
+						resolve()
+					}
+				})
+			},
+			toAddLicense() { // 添加驾驶证
+				const vm = this
+				vm.checkLicenseStatus().then(() => {
+					vm.setCurDrivingLicense(null)
+					uni.navigateTo({
+						url: '/oil/addCarLicense/addCarLicense'
+					})
+				}, () => {
+					vm.$refs.uTips.show({
+						type: 'error',
+						title: vm._i18n.messages[vm.lang].addLicense.hadAdded,
+						duration: 2000
+					})
 				})
 			},
 			changeTab(idx) {
@@ -160,9 +310,11 @@
 					}
 				}
 			}
-			.cus-swiper{
+
+			.cus-swiper {
 				height: 70vh;
-				.swiper-item{
+
+				.swiper-item {
 					height: 100%;
 				}
 			}

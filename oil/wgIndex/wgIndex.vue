@@ -90,7 +90,7 @@
 						const tempFilePaths = chooseImageRes.tempFilePaths;
 						uni.showLoading()
 						uni.uploadFile({
-							url: `${urls.baseUrl}${urls.uploadLicense}?type=3`, //仅为示例，非真实的接口地址
+							url: `${urls.baseUrl}${urls.uploadIdcard}?type=3`, //仅为示例，非真实的接口地址
 							filePath: tempFilePaths[0],
 							name: 'file',
 							success: (uploadFileRes) => {
