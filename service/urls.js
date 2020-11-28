@@ -7,7 +7,7 @@ const urls = {
 		'/v1/api/telephone/denomination', '/v1/api/publicity/subordinate', '/v1/api/publicity/config', '/v1/api/publicity/ranking', '/v1/api/driving/find',
 		'/v1/api/cecharge/balance', '/v1/api/telephone/commit', '/v1/api/telephone/order', '/v1/api/public/delpis', '/v1/api/credit/add',
 		'/v1/api/train/commit', '/v1/api/train/refund','/v1/api/vip/list', '/v1/api/electric/details', '/v1/api/withdraw/list', '/v1/api/driving/editjsz',
-		'/v1/api/train/station', '/v1/api/train/find', '/v1/api/ticket/find', '/v1/api/ticket/station', '/v1/api/electric/orderlist',
+		'/v1/api/train/station', '/v1/api/train/find', '/v1/api/ticket/find', '/v1/api/ticket/station', '/v1/api/electric/orderlist', '/v1/api/driving/xszlist',
 		'/v1/api/public/gitpis', '/v1/api/public/pis', '/v1/api/publicity/index', '/v1/api/electric/denomination', '/v1/api/oilcard/commit',
 		'/v1/api/ticket/commit', '/v1/api/train/pay', '/v1/api/train/order', '/v1/api/ticket/order', '/v1/api/electric/commit', '/v1/api/driving/wzfind',
 		'/v1/api/withdraw/commit', '/v1/api/credit/creditline', '/v1/api/credit/update', '/v1/api/oilcard/shop', '/v1/api/oilcard/cardlist', '/v1/api/oilcard/addoilcard', '/v1/api/driving/edit', '/v1/api/oilcard/del'
@@ -101,6 +101,7 @@ const urls = {
 	addCarForm: '/v1/api/driving/edit', // 添加车辆2
 	uploadLicense: '/v1/api/upload/image', // 上传行驶证2
 	setDriveLicense: '/v1/api/driving/editjsz', // 添加，编辑驾驶证2
+	xszList: '/v1/api/driving/xszlist', // 行驶证列表2
 	// 汽车助手
 	queryCurrentOilPrice: '/v1/api/public/oil', // 今日油价
 	driverLicenseList: '/v1/api/driving/jszlist', // 驾驶证列表2

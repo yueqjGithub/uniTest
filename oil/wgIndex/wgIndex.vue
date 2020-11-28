@@ -14,7 +14,23 @@
 					</view>
 				</swiper-item>
 				<swiper-item class="swiper-item" v-for="k in carList" :key='k'>
-					<view>{{k}}</view>
+					<view class="flex-jst-btw flex-ali-center border-box pa-md" :class="langFlex">
+						<view class="flex-jst-start flex-ali-center" :class="langFlex">
+							<view class="address-icon flex-row flex-jst-center flex-ali-center">
+								<u-icon name="qiche" size="90" class="text-primary" custom-prefix="iconfont"></u-icon>
+							</view>
+							<text class="text-18 text-bold text-primary ma-row-sm">{{k.license}}</text>
+						</view>
+						<!-- 右侧 -->
+						<view class="flex-jst-start flex-ali-center flex-row">
+							<view class="action flex-row flex-jst-center flex-ali-center">
+								<u-icon name="weibiaoti--32" custom-prefix="iconfont" color="#d5d5d5" size="30"></u-icon>
+							</view>
+							<view class="action flex-row flex-jst-center flex-ali-center">
+								<u-icon name="weibiaoti--67" custom-prefix="iconfont" color="#d5d5d5" size="30"></u-icon>
+							</view>
+						</view>
+					</view>
 				</swiper-item>
 			</swiper>
 			<view class="full-width pa-row-md border-box flex-row flex-jst-center flex-ali-center">
@@ -38,7 +54,8 @@
 
 <script>
 	import {
-		mapState
+		mapState,
+		mapActions
 	} from 'vuex'
 	import urls from '@/service/urls.js'
 	export default {
@@ -72,7 +89,34 @@
 				}
 			}
 		},
+		onShow () {
+			this.queryList()
+		},
 		methods: {
+			...mapActions(['checkLogin']),
+			async queryList () {
+				const vm = this
+				const token = await vm.checkLogin()
+				if (token) {
+					const obj = {
+						token: token
+					}
+					vm.$post(urls.xszList, obj).then(res => {
+						console.log(res)
+						vm.carList = [...res.data.data]
+					}, err => {
+						vm.$refs.uTips.show({
+							type: 'error',
+							title: err.message,
+							duration: 2300
+						})
+					})
+				} else {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+				}
+			},
 			animationfinish(e) {
 				let current = e.detail.current;
 				this.swiperCurrent = current;
@@ -159,6 +203,14 @@
 				height: 25vh;
 				.swiper-item{
 					height: 100%;
+					.action {
+						margin-left: 5px;
+						margin-right: 5px;
+						width: 50rpx;
+						height: 50rpx;
+						border-radius: 50%;
+						border: 1px solid #d5d5d5;
+					}
 				}
 			}
 			.tab-control{

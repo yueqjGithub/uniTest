@@ -183,6 +183,7 @@
 						return false
 					}
 					const obj = {
+						token: token,
 						license: `${vm.provinceChoose}${vm.carNum}`,
 						vin: vm.vin,
 						engine_number: vm.engine_number,
@@ -198,6 +199,11 @@
 								type: 'success',
 								duration: '2300'
 							})
+							setTimeout(() => {
+								uni.navigateBack({
+									delta: 1
+								})
+							}, 2000)
 						} else {
 							vm.$refs.uTips.show({
 								title: res.message,
