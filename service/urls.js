@@ -1,9 +1,9 @@
 const urls = {
 	socket: 'wss://shopapi.apiself.com:9527', // 火车订单socket地址
 	authList: [], // 需要身份认证的接口
-	md5List: ['/v1/api/public/login', '/v1/api/shop/details', '/v1/api/shop/collect', '/v1/api/shop/buy', '/v1/api/driving/jszlist',
+	md5List: ['/v1/api/public/login', '/v1/api/shop/details', '/v1/api/shop/collect', '/v1/api/shop/buy', '/v1/api/driving/jszlist', '/v1/api/driving/del',
 		'/v1/api/shop/pretreatment', '/v1/api/shippingaddress/edit', '/v1/api/shop/orderlist', '/v1/api/user/shopcollect', '/v1/api/driving/deljsz',
-		'/v1/api/user/info', '/v1/api/vip/opening', '/v1/api/shop/delivery', '/v1/api/cecharge/attribution', '/v1/api/oilcard/orderlist',
+		'/v1/api/user/info', '/v1/api/vip/opening', '/v1/api/shop/delivery', '/v1/api/cecharge/attribution', '/v1/api/oilcard/orderlist', '/v1/api/traffic/denomination',
 		'/v1/api/telephone/denomination', '/v1/api/publicity/subordinate', '/v1/api/publicity/config', '/v1/api/publicity/ranking', '/v1/api/driving/find',
 		'/v1/api/cecharge/balance', '/v1/api/telephone/commit', '/v1/api/telephone/order', '/v1/api/public/delpis', '/v1/api/credit/add',
 		'/v1/api/train/commit', '/v1/api/train/refund','/v1/api/vip/list', '/v1/api/electric/details', '/v1/api/withdraw/list', '/v1/api/driving/editjsz',
@@ -43,6 +43,7 @@ const urls = {
 	becomeVip: '/v1/api/vip/opening', // 开通会员2
 	queryVipList: '/v1/api/vip/list', // 获取会员类型列表2
 	queryPriceList: '/v1/api/telephone/denomination', // 查询充值面额列表2
+	queryTrafficPriceList: '/v1/api/traffic/denomination', // 流量面额列表2
 	searchPhoneInfo: '/v1/api/cecharge/attribution', // 查询归属地？2
 	queryPhoneBalance: '/v1/api/cecharge/balance', // 查询话费余额2
 	chargeMobile: '/v1/api/telephone/commit', // 话费充值2
@@ -102,6 +103,7 @@ const urls = {
 	uploadLicense: '/v1/api/upload/image', // 上传行驶证2
 	setDriveLicense: '/v1/api/driving/editjsz', // 添加，编辑驾驶证2
 	xszList: '/v1/api/driving/xszlist', // 行驶证列表2
+	delCarLicense: '/v1/api/driving/del', // 删除行驶证2
 	// 汽车助手
 	queryCurrentOilPrice: '/v1/api/public/oil', // 今日油价
 	driverLicenseList: '/v1/api/driving/jszlist', // 驾驶证列表2

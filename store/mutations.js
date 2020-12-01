@@ -68,3 +68,7 @@ export const setCurWz = (state, payload) => { // 设置当前违章信息
 export const setCurDrivingLicense = (state, payload) => { // 设置当前处于编辑状态的驾驶证
 	state.curDrivingLicense = payload
 }
+
+export const setCurCarLicense = (state, payload) => { // 设置当前处于编辑状态的行驶证
+	state.curCarLicense = payload
+}

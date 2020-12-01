@@ -19,4 +19,5 @@ export default {
 	curOilCard: '', // 存放编辑的油卡
 	curWz: '', // 当前的违章信息
 	curDrivingLicense: '', // 存放当前处于编辑状态的驾驶证
+	curCarLicense: '', // 存放当前处于编辑状态的行驶证
 }

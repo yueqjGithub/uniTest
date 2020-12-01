@@ -104,7 +104,7 @@
 			}
 		},
 		computed: {
-			...mapState(['lang']),
+			...mapState(['lang', 'curCarLicense']),
 			langFlex() {
 				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'
 			},
@@ -132,8 +132,18 @@
 			}
 		},
 		onShow() {
+			const vm = this
 			if (this.provinceChoose === '') {
 				this.provinceChoose = this.provinceList[0]
+			}
+			if (vm.curCarLicense) {
+				vm.provinceChoose = vm.curCarLicense.license.substr(0, 1)
+				vm.carNum = vm.curCarLicense.license.substr(1)
+				vm.vin = vm.curCarLicense.vin
+				vm.engine_number = vm.curCarLicense.engine_number
+				vm.reg_time = vm.curCarLicense.reg_time
+				vm.mobile = vm.curCarLicense.mobile
+				vm.type = vm.curCarLicense.type
 			}
 		},
 		methods: {
@@ -192,6 +202,9 @@
 						mobile: vm.mobile
 					}
 					// console.log(obj)
+					if (vm.curCarLicense.id) {
+						obj.id = vm.curCarLicense.id
+					}
 					vm.$post(urls.addCarForm, obj).then(res => {
 						if (res.success) {
 							vm.$refs.uTips.show({

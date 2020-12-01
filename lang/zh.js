@@ -329,6 +329,9 @@ export default {
 		pageName: '违章查询',
 		addTips: '添加行驶证信息，方便下次使用',
 		scanTips: '扫描行驶证快速添加',
-		manual: '手动输入行驶证信息'
+		manual: '手动输入行驶证信息',
+		buyBx: '购买保险',
+		wgRecord: '违章记录',
+		payForWg: '违章缴费'
 	}
 }

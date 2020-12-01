@@ -122,6 +122,13 @@
 				"navigationBarTitleText": "推广海报",
 				"backgroundColor": "#23AF8C"
 			}
+		}, {
+			"path": "pages/trafficCharge/trafficCharge",
+			"style": {
+				"navigationBarTitleText": "话费充值中心",
+				"backgroundColor": "#23AF8C"
+			}
+
 		}
 	],
 	"subPackages": [{
@@ -349,7 +356,7 @@
 			},
 			{
 				"name": "devlop2",
-				"path": "oil/addCar/addCar",
+				"path": "pages/trafficCharge/trafficCharge",
 				"query": ""
 			},
 			{

@@ -24,16 +24,30 @@
 						<!-- 右侧 -->
 						<view class="flex-jst-start flex-ali-center flex-row">
 							<view class="action flex-row flex-jst-center flex-ali-center">
-								<u-icon name="weibiaoti--32" custom-prefix="iconfont" color="#d5d5d5" size="30"></u-icon>
+								<u-icon name="weibiaoti--32" custom-prefix="iconfont" color="#d5d5d5" size="30" @click='removeCarLicense(k)'></u-icon>
 							</view>
 							<view class="action flex-row flex-jst-center flex-ali-center">
-								<u-icon name="weibiaoti--67" custom-prefix="iconfont" color="#d5d5d5" size="30"></u-icon>
+								<u-icon name="weibiaoti--67" custom-prefix="iconfont" color="#d5d5d5" size="30" @click='editCarLicense(k)'></u-icon>
 							</view>
 						</view>
 					</view>
 				</swiper-item>
 			</swiper>
-			<view class="full-width pa-row-md border-box flex-row flex-jst-center flex-ali-center">
+			<view class="flex-row flex-jst-btw flex-ali-center full-width pa-row-md border-box border-top">
+				<view class="flex-column flex-jst-btw flex-ali-center pa-col-md border-box">
+					<u-icon name='icon_safety_fill' custom-prefix='iconfont' size='65' color='#f39c10'></u-icon>
+					<text class="text-12">{{$t('wgIndex.buyBx')}}</text>
+				</view>
+				<view class="flex-column flex-jst-btw flex-ali-center pa-col-md border-box">
+					<u-icon name='honglvdengweizhang' custom-prefix='iconfont' size='65' color='#3598db'></u-icon>
+					<text class="text-12">{{$t('wgIndex.wgRecord')}}</text>
+				</view>
+				<view class="flex-column flex-jst-btw flex-ali-center pa-col-md border-box"  @click="toPage('/oil/wzPay/wzPay')">
+					<u-icon name='qian' custom-prefix='iconfont' size='65' color='#ff4b4b'></u-icon>
+					<text class="text-12">{{$t('wgIndex.payForWg')}}</text>
+				</view>
+			</view>
+			<view class="full-width pa-row-md border-box flex-row flex-jst-center flex-ali-center ma-col-sm">
 				<view class="tab-control" v-for="k in tabLength" :key='k' :class="tabIdx === k ? 'tab-choose' : ''"></view>
 			</view>
 		</view>
@@ -55,7 +69,8 @@
 <script>
 	import {
 		mapState,
-		mapActions
+		mapActions,
+		mapMutations
 	} from 'vuex'
 	import urls from '@/service/urls.js'
 	export default {
@@ -94,6 +109,46 @@
 		},
 		methods: {
 			...mapActions(['checkLogin']),
+			...mapMutations(['setCurCarLicense']),
+			toPage (path) {
+				uni.navigateTo({
+					url: path
+				})
+			},
+			editCarLicense (target) {
+				const vm = this
+				vm.setCurCarLicense(target)
+				uni.navigateTo({
+					url: '/oil/addCar/addCar'
+				})
+			},
+			async removeCarLicense (target) {
+				const vm = this
+				const token = await vm.checkLogin()
+				const obj = {
+					token: token,
+					id: target.id
+				}
+				uni.showLoading()
+				vm.$post(urls.delCarLicense, obj).then(res => {
+					uni.hideLoading()
+					if (res.success) {
+						vm.queryList()
+					} else {
+						vm.$refs.uTips.show({
+							title: res.message,
+							type: 'error',
+							duration: 2000
+						})
+					}
+				}, err => {
+					vm.$refs.uTips.show({
+						title: err.message,
+						type: 'error',
+						duration: 2000
+					})
+				})
+			},
 			async queryList () {
 				const vm = this
 				const token = await vm.checkLogin()
@@ -123,6 +178,7 @@
 				this.tabIdx = current;
 			},
 			manualAdd () {
+				this.setCurCarLicense(null)
 				uni.navigateTo({
 					url: '/oil/addCar/addCar'
 				})
@@ -143,9 +199,11 @@
 							},
 							fail: err => {
 								uni.hideLoading()
+								console.log(err)
 								vm.$refs.uTips.show({
 									title: err.errMsg,
-									duration: 2000
+									duration: 2000,
+									type: 'error'
 								})
 							}
 						});
@@ -179,7 +237,9 @@
 			margin-bottom: 30rpx;
 			background: linear-gradient(0deg, #19C882, #23AF8C);
 		}
-
+		.border-top{
+			border-top: 1px solid #f6f6f6;
+		}
 		.cont-item {
 			position: relative;
 			z-index: 2;
@@ -200,7 +260,7 @@
 				transform: rotate(180deg);
 			}
 			.cus-swiper{
-				height: 25vh;
+				height: 15vh;
 				.swiper-item{
 					height: 100%;
 					.action {
