@@ -137,8 +137,8 @@
 				this.provinceChoose = this.provinceList[0]
 			}
 			if (vm.curCarLicense) {
-				vm.provinceChoose = vm.curCarLicense.license.substr(0, 1)
-				vm.carNum = vm.curCarLicense.license.substr(1)
+				vm.provinceChoose = vm.curCarLicense.prefix
+				vm.carNum = vm.curCarLicense.license
 				vm.vin = vm.curCarLicense.vin
 				vm.engine_number = vm.curCarLicense.engine_number
 				vm.reg_time = vm.curCarLicense.reg_time
@@ -194,7 +194,8 @@
 					}
 					const obj = {
 						token: token,
-						license: `${vm.provinceChoose}${vm.carNum}`,
+						prefix: vm.provinceChoose,
+						license: vm.carNum,
 						vin: vm.vin,
 						engine_number: vm.engine_number,
 						reg_time: vm.reg_time,

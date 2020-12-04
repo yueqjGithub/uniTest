@@ -10,7 +10,8 @@ const urls = {
 		'/v1/api/train/station', '/v1/api/train/find', '/v1/api/ticket/find', '/v1/api/ticket/station', '/v1/api/electric/orderlist', '/v1/api/driving/xszlist',
 		'/v1/api/public/gitpis', '/v1/api/public/pis', '/v1/api/publicity/index', '/v1/api/electric/denomination', '/v1/api/oilcard/commit',
 		'/v1/api/ticket/commit', '/v1/api/train/pay', '/v1/api/train/order', '/v1/api/ticket/order', '/v1/api/electric/commit', '/v1/api/driving/wzfind',
-		'/v1/api/withdraw/commit', '/v1/api/credit/creditline', '/v1/api/credit/update', '/v1/api/oilcard/shop', '/v1/api/oilcard/cardlist', '/v1/api/oilcard/addoilcard', '/v1/api/driving/edit', '/v1/api/oilcard/del'
+		'/v1/api/withdraw/commit', '/v1/api/credit/creditline', '/v1/api/credit/update', '/v1/api/oilcard/shop', '/v1/api/oilcard/cardlist', '/v1/api/oilcard/addoilcard', '/v1/api/driving/edit', '/v1/api/oilcard/del',
+		'/v1/api/driving/kffind', '/v1/api/driving/wz'
 	], // 需要加密的接口2
 	baseUrl: 'https://shopapi.apiself.com',
 	// basic
@@ -109,6 +110,8 @@ const urls = {
 	driverLicenseList: '/v1/api/driving/jszlist', // 驾驶证列表2
 	delDrivingLicense: '/v1/api/driving/deljsz', // 删除驾驶证2
 	searchLicenseInfo: '/v1/api/driving/find', // 驾驶证信息查询2
+	kfSearch: '/v1/api/driving/kffind', // 扣分查询2
+	wgTimesSearch: '/v1/api/driving/wz', // 违章次数查询2
 }
 
 export default urls

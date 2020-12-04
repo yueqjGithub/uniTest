@@ -96,7 +96,8 @@
 				if (token) {
 					const obj = {
 						token: token,
-						id: vm.curDrivingLicense.id
+						licenseid: vm.licenseList[0].idcard,
+						licensenumber: vm.licenseList[0].drivers_license_number
 					}
 					uni.showLoading()
 					vm.$post(urls.searchLicenseInfo, obj).then(res => {

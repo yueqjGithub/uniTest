@@ -5,7 +5,7 @@
 		<view class="cont-item pa-md flex-column flex-jst-start flex-ali-center">
 			<!-- swiper -->
 			<swiper :current="swiperCurrent" @animationfinish="animationfinish" class="full-width cus-swiper">
-				<swiper-item class="swiper-item">
+				<swiper-item class="swiper-item" v-if="carList.length < 1">
 					<view class="full-height full-width flex-column flex-jst-center flex-ali-center">
 						<view class="address-icon flex-row flex-jst-center flex-ali-center">
 							<u-icon name="qiche" size="90" class="text-primary" custom-prefix="iconfont"></u-icon>
@@ -13,13 +13,13 @@
 						<text class="text-grey-1 text-12 ma-col-sm">{{$t('wgIndex.addTips')}}</text>
 					</view>
 				</swiper-item>
-				<swiper-item class="swiper-item" v-for="k in carList" :key='k'>
+				<swiper-item class="swiper-item" v-for="(k, idx) in carList" :key='k'>
 					<view class="flex-jst-btw flex-ali-center border-box pa-md" :class="langFlex">
 						<view class="flex-jst-start flex-ali-center" :class="langFlex">
 							<view class="address-icon flex-row flex-jst-center flex-ali-center">
 								<u-icon name="qiche" size="90" class="text-primary" custom-prefix="iconfont"></u-icon>
 							</view>
-							<text class="text-18 text-bold text-primary ma-row-sm">{{k.license}}</text>
+							<text class="text-18 text-bold text-primary ma-row-sm">{{k.prefix}}{{k.license}}</text>
 						</view>
 						<!-- 右侧 -->
 						<view class="flex-jst-start flex-ali-center flex-row">
@@ -31,6 +31,13 @@
 							</view>
 						</view>
 					</view>
+					<view :class="langFlex" class="flex-jst-start flex-ali-base pa-row-md">
+						<span>{{$t('wgIndex.wgTimes')}}</span>
+						<span class='text-cus-error text-18 text-bold ma-row-sm'>{{k.wgTimes || '*'}}</span>
+						<view class="action flex-row flex-jst-center flex-ali-center">
+							<u-icon name="weibiaoti--4" custom-prefix="iconfont" color="#d5d5d5" size="30" @click='queryWgTimes(idx)'></u-icon>
+						</view>
+ 					</view>
 				</swiper-item>
 			</swiper>
 			<view class="flex-row flex-jst-btw flex-ali-center full-width pa-row-md border-box border-top">
@@ -91,7 +98,7 @@
 				return this.lang === 'zh-CN' ? 'text-left' : 'text-right'
 			},
 			tabLength () {
-				return this.carList.length + 1
+				return this.carList.length === 0 ? 1 : this.carList.length
 			}
 		},
 		watch: {
@@ -113,6 +120,36 @@
 			toPage (path) {
 				uni.navigateTo({
 					url: path
+				})
+			},
+			async queryWgTimes (idx) {
+				const vm = this
+				const token = await vm.checkLogin()
+				const obj = {
+					id: vm.carList[idx].id,
+					token: token
+				}
+				uni.showLoading()
+				vm.$post(urls.wgTimesSearch, obj).then(res => {
+					uni.hideLoading()
+					console.log(res)
+					if (res.data.result.illegalnum) {
+						// vm.carList[idx].wgTimes = res.data.result.illegalnum
+						vm.$set(vm.carList[idx], 'wgTimes', res.data.result.illegalnum)
+					} else {
+						vm.$refs.uTips.show({
+							title: res.msg,
+							duration: 2300,
+							type: 'error'
+						})
+					}
+				}, err => {
+					uni.hideLoading()
+					vm.$refs.uTips.show({
+						title: vm._i18n.messages[vm.lang].basic.faild,
+						duration: 2300,
+						type: 'error'
+					})
 				})
 			},
 			editCarLicense (target) {
@@ -260,7 +297,7 @@
 				transform: rotate(180deg);
 			}
 			.cus-swiper{
-				height: 15vh;
+				height: 19vh;
 				.swiper-item{
 					height: 100%;
 					.action {

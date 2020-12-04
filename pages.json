@@ -226,6 +226,14 @@
 				"backgroundColor": "#23AF8C"
 			}
 
+		}, {
+			"path": "myDrivingLicense/myDrivingLicense",
+			"style": {
+				"navigationBarTitleText": "我的驾驶证",
+				"enablePullDownRefresh": false,
+				"backgroundColor": "#23AF8C"
+			}
+
 		}]
 	}, {
 		"root": "pullOtherPage",
