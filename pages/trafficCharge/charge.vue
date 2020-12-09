@@ -21,14 +21,14 @@
 				<text class="text-12 text-bold">{{$t('mobileCharge.vipPrice')}}</text>
 				<text class="text-primary text-14">￥{{target.preferential}}</text>
 			</view>
-			<view class="charge-row border-box pa-col-md full-width flex-jst-btw flex-ali-center" :class="langFlex">
+			<!-- <view class="charge-row border-box pa-col-md full-width flex-jst-btw flex-ali-center" :class="langFlex">
 				<text class="text-12 text-bold">{{$t('mobileCharge.advertising')}}</text>
 				<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey" @click="showAd"></u-icon>
 			</view>
 			<view class="charge-row border-box pa-col-md full-width flex-jst-btw flex-ali-center" :class="langFlex">
 				<text class="text-12 text-bold">{{$t('mobileCharge.promote')}}</text>
 				<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey" @click="promote()"></u-icon>
-			</view>
+			</view> -->
 			<view class="charge-row border-box pa-col-md full-width flex-jst-btw flex-ali-center flex-row">
 				<view class="balance-left flex-ali-center" :class="langFlex">
 					<text class="text-grey text-12">{{$t('makeOrder.myBalance')}}</text>
@@ -73,7 +73,7 @@
 			return {
 				ad: '', // 广告
 				isLoaded: true, // 广告是否加载成功
-				adv: false, // 是否观看完广告
+				// adv: false, // 是否观看完广告
 				balance: false // 使用余额
 			}
 		},
@@ -125,8 +125,8 @@
 					token: token,
 					id: vm.target.id,
 					mobile: vm.phone,
-					adv: vm.adv ? 'true' : 'false',
-					sharing_preferences: vm.shareForPhoneCharge ? 'true' : 'false',
+					// adv: vm.adv ? 'true' : 'false',
+					// sharing_preferences: vm.shareForPhoneCharge ? 'true' : 'false',
 					balance: vm.balance ? 'true' : 'false'
 				}
 				uni.showLoading({

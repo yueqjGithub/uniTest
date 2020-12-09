@@ -334,5 +334,8 @@ export default {
 		wgRecord: '违章记录',
 		payForWg: '违章缴费',
 		wgTimes: '您的违章次数'
+	},
+	traffic: {
+		pageName: '流量充值'
 	}
 }

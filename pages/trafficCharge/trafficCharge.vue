@@ -10,7 +10,7 @@
 		</view>
 		<!-- body -->
 		<view class="content-container pa-md flex-column flex-jst-start flex-ali-center">
-			<button type="default" class="search-btn text-primary" @click='queryBalance'>{{$t('mobileCharge.queryBalance')}}</button>
+			<!-- <button type="default" class="search-btn text-primary" @click='queryBalance'>{{$t('mobileCharge.queryBalance')}}</button> -->
 			<!-- 面额列表 -->
 			<view class="face-list flex-row flex-wrap flex-jst-start flex-ali-start full-width">
 				<view class="face-item flex-row flex-jst-center flex-ali-center" v-for="k in priceList" :key="k.id" :class="k.id === currentFace.id && 'cur-face'"
@@ -139,7 +139,7 @@
 				immediate: true,
 				handler: function(val) {
 					uni.setNavigationBarTitle({
-						title: this._i18n.messages[val].mobileCharge.pageName
+						title: this._i18n.messages[val].traffic.pageName
 					});
 				}
 			},
@@ -247,36 +247,6 @@
 							url: '/pages/login/login'
 						})
 					}
-				}
-			},
-			async queryBalance() { // 余额查询
-				const vm = this
-				const token = await vm.checkLogin()
-				if (vm.$u.test.mobile(vm.phone)) {
-					const obj = {
-						token: token ? token : '',
-						mobile: vm.phone
-					}
-					uni.showLoading({
-						title: ''
-					})
-					vm.$post(urls.queryPhoneBalance, obj).then(res => {
-						uni.hideLoading()
-						if (res.success && res.data.status === 1) {
-							vm.phone_balance = res.data.money
-							vm.showBalance = true
-						} else {
-							uni.showToast({
-								icon: 'none',
-								title: res.data.message || res.message
-							})
-						}
-					})
-				} else {
-					uni.showToast({
-						icon: 'none',
-						title: vm._i18n.messages[vm.lang].mobileCharge.numberErrTips
-					})
 				}
 			}
 		}
