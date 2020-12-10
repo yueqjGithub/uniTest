@@ -80,6 +80,7 @@
 		mapMutations
 	} from 'vuex'
 	import urls from '@/service/urls.js'
+	import dayjs from 'dayjs'
 	export default {
 		name: 'wgIndex',
 		data() {
@@ -232,7 +233,28 @@
 							name: 'file',
 							success: (uploadFileRes) => {
 								uni.hideLoading()
-								console.log(JSON.parse(uploadFileRes.data));
+								const result = JSON.parse(uploadFileRes.data)
+								if (result.data.xsz) {
+									const target = {
+										prefix: result.data.xsz.qz,
+										license: result.data.xsz.cqhm,
+										engine_number: result.data.xsz.VEHICLE_ENGINE_ID,
+										vin: result.data.xsz.VEHICLE_IDENTIFICATION_CODE,
+										reg_time: dayjs(result.data.xsz.VEHICLE_LICENSE_FIRST_DATE).format('YYYY-MM-DD'),
+										mobile: '',
+										type: '小车'
+									}
+									vm.setCurCarLicense(target)
+									uni.navigateTo({
+										url: '/oil/addCar/addCar'
+									})
+								} else {
+									vm.$refs.uTips.show({
+										title: result.message,
+										duration: 2000,
+										type: 'error'
+									})
+								}
 							},
 							fail: err => {
 								uni.hideLoading()

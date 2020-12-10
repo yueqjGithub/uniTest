@@ -94,6 +94,9 @@
 				// console.log('onClose event', res)
 			})
 		},
+		destroyed () {
+			this.ad = null
+		},
 		watch: {
 			isLoaded: {
 				immediate: false,

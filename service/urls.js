@@ -11,7 +11,7 @@ const urls = {
 		'/v1/api/public/gitpis', '/v1/api/public/pis', '/v1/api/publicity/index', '/v1/api/electric/denomination', '/v1/api/oilcard/commit',
 		'/v1/api/ticket/commit', '/v1/api/train/pay', '/v1/api/train/order', '/v1/api/ticket/order', '/v1/api/electric/commit', '/v1/api/driving/wzfind',
 		'/v1/api/withdraw/commit', '/v1/api/credit/creditline', '/v1/api/credit/update', '/v1/api/oilcard/shop', '/v1/api/oilcard/cardlist', '/v1/api/oilcard/addoilcard', '/v1/api/driving/edit', '/v1/api/oilcard/del',
-		'/v1/api/driving/kffind', '/v1/api/driving/wz'
+		'/v1/api/driving/kffind', '/v1/api/driving/wz', '/v1/api/traffic/commit'
 	], // 需要加密的接口2
 	baseUrl: 'https://shopapi.apiself.com',
 	// basic
@@ -112,6 +112,8 @@ const urls = {
 	searchLicenseInfo: '/v1/api/driving/find', // 驾驶证信息查询2
 	kfSearch: '/v1/api/driving/kffind', // 扣分查询2
 	wgTimesSearch: '/v1/api/driving/wz', // 违章次数查询2
+	// 流量
+	chargeTraffic: '/v1/api/traffic/commit', // 充值流量2
 }
 
 export default urls

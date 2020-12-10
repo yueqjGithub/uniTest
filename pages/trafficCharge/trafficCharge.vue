@@ -13,10 +13,12 @@
 			<!-- <button type="default" class="search-btn text-primary" @click='queryBalance'>{{$t('mobileCharge.queryBalance')}}</button> -->
 			<!-- 面额列表 -->
 			<view class="face-list flex-row flex-wrap flex-jst-start flex-ali-start full-width">
-				<view class="face-item flex-row flex-jst-center flex-ali-center" v-for="k in priceList" :key="k.id" :class="k.id === currentFace.id && 'cur-face'"
+				<view class="face-item flex-column flex-jst-center flex-ali-center" v-for="k in priceList" :key="k.id" :class="k.id === currentFace.id && 'cur-face'"
 				 @click="chooseCur(k)">
-					<text class="text-12 text-bold">￥</text>
 					<text class="text-24 text-bold">{{k.face_value}}</text>
+					<view class="flex-row flex-jst-center flex-ali-center ma-col-sm">
+						<text class="text-12">￥{{k.selling_price}}</text>
+					</view>
 				</view>
 			</view>
 			<!-- 充值按钮 -->
