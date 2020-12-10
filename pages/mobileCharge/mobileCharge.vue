@@ -3,7 +3,7 @@
 		<view class="head-container flex-row flex-jst-center flex-ali-center">
 			<view class="phone-container">
 				<view class="text-white text-14 full-width text-right area-show">{{phoneArea}}</view>
-				<u-input v-model="phone" class="text-white my-text-right" :custom-style="{color: '#ffffff', fontSize: '18px'}" :placeholder="numberTip"
+				<u-input v-model="phone" class="text-white my-text-right" :custom-style="{color: '#ffffff', fontSize: '22px'}" :placeholder="numberTip"
 				 type="text"></u-input>
 				<view class="bottom-gap"></view>
 			</view>

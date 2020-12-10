@@ -3,7 +3,7 @@
 		<view class="head-container flex-row flex-jst-center flex-ali-center">
 			<view class="phone-container">
 				<view class="text-white text-14 full-width text-right area-show">{{phoneArea}}</view>
-				<u-input v-model="phone" class="text-white my-text-right" :custom-style="{color: '#ffffff', fontSize: '18px'}" :placeholder="numberTip"
+				<u-input v-model="phone" class="text-white my-text-right" :custom-style="{color: '#ffffff', fontSize: '22px'}" :placeholder="numberTip"
 				 type="text"></u-input>
 				<view class="bottom-gap"></view>
 			</view>
@@ -17,7 +17,7 @@
 				 @click="chooseCur(k)">
 					<text class="text-24 text-bold">{{k.face_value}}</text>
 					<view class="flex-row flex-jst-center flex-ali-center ma-col-sm">
-						<text class="text-12">￥{{k.selling_price}}</text>
+						<text class="text-12 text-grey-1">￥{{k.selling_price}}</text>
 					</view>
 				</view>
 			</view>
