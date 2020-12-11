@@ -50,15 +50,13 @@
 					<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon"></u-icon>
 				</button>
 			</view>
-			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click='openContact'>
+			<button class="cus-plain-btn fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" open-type="contact">
 				<view class="flex-jst-start flex-ali-center" :class="langFlex">
 					<u-icon name="kefuzhongxin" custom-prefix="iconfont" size="40" class="text-gold"></u-icon>
 					<text class="ma-row-sm text-12">{{$t('vip.service')}}</text>
 				</view>
-				<button type="default" class="plain-btn" open-type="contact" ref='contact'>
-					<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon"></u-icon>
-				</button>
-			</view>
+				<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon"></u-icon>
+			</button>
 			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toPage('/pages/help/help?type=my_help')">
 				<view class="flex-jst-start flex-ali-center" :class="langFlex">
 					<u-icon name="bangzhu" custom-prefix="iconfont" size="40" class="text-gold"></u-icon>

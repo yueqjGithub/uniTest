@@ -225,3 +225,12 @@ text,view{
 		margin: 0 !important;
 	}
 }
+
+.cus-plain-btn{
+	background: none;
+	border: none;
+	&:after{
+		border: none !important;
+		background: none !important;
+	}
+}

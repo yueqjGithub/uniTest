@@ -10,15 +10,13 @@
 			</button>
 		</view>
 		<!-- 收藏 -->
-		<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click='openContact'>
-			<view class="flex-jst-start flex-ali-center" :class="langFlex">
+		<button class="cus-plain-btn fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" open-type="contact">
+			<view class="flex-jst-start flex-ali-center" :class="langFlex" ref='myContact1'>
 				<u-icon name="kefuzhongxin" custom-prefix="iconfont" size="40" class="text-primary"></u-icon>
 				<text class="ma-row-sm text-12">{{$t('mine.service')}}</text>
 			</view>
-			<button type="default" class="plain-btn" open-type="contact" ref='myContact'>
-				<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
-			</button>
-		</view>
+			<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
+		</button>
 		<!-- 地址管理 -->
 		<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toAuthPage('/pages/help/help?type=my_help')">
 			<view class="flex-jst-start flex-ali-center" :class="langFlex">
@@ -61,7 +59,6 @@
 		methods: {
 			...mapActions(['checkLogin']),
 			openContact () {
-				this.$refs.contact.click()
 			},
 			async toAuthPage (path) {
 				const vm = this
