@@ -1,41 +1,41 @@
 <template>
 	<view class="vip-feedback pa-col-sm">
-		<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex">
+		<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toAuthPage('/pages/feedback/feedback')">
 			<view class="flex-jst-start flex-ali-center" :class="langFlex">
 				<u-icon name="renwuzhongxin-huodepinglun" custom-prefix="iconfont" size="40" class="text-primary"></u-icon>
 				<text class="ma-row-sm text-12">{{$t('mine.feedback')}}</text>
 			</view>
-			<button type="default" class="plain-btn" @click="toAuthPage('/pages/feedback/feedback')">
+			<button type="default" class="plain-btn">
 				<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
 			</button>
 		</view>
 		<!-- 收藏 -->
-		<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex">
+		<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click='openContact'>
 			<view class="flex-jst-start flex-ali-center" :class="langFlex">
 				<u-icon name="kefuzhongxin" custom-prefix="iconfont" size="40" class="text-primary"></u-icon>
 				<text class="ma-row-sm text-12">{{$t('mine.service')}}</text>
 			</view>
-			<button type="default" class="plain-btn" open-type="contact">
+			<button type="default" class="plain-btn" open-type="contact" ref='myContact'>
 				<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
 			</button>
 		</view>
 		<!-- 地址管理 -->
-		<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex">
+		<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toAuthPage('/pages/help/help?type=my_help')">
 			<view class="flex-jst-start flex-ali-center" :class="langFlex">
 				<u-icon name="bangzhu" custom-prefix="iconfont" size="40" class="text-primary"></u-icon>
 				<text class="ma-row-sm text-12">{{$t('mine.support')}}</text>
 			</view>
-			<button type="default" class="plain-btn" @click="toAuthPage('/pages/help/help?type=my_help')">
+			<button type="default" class="plain-btn">
 				<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
 			</button>
 		</view>
 		<!-- 推广海报 -->
-		<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex">
+		<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toAuthPage('/pages/help/help?type=about_us')">
 			<view class="flex-jst-start flex-ali-center" :class="langFlex">
 				<u-icon name="weibiaoti--16" custom-prefix="iconfont" size="40" class="text-primary"></u-icon>
 				<text class="ma-row-sm text-12">{{$t('mine.about')}}</text>
 			</view>
-			<button type="default" class="plain-btn" @click="toAuthPage('/pages/help/help?type=about_us')">
+			<button type="default" class="plain-btn">
 				<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
 			</button>
 		</view>
@@ -60,6 +60,9 @@
 		},
 		methods: {
 			...mapActions(['checkLogin']),
+			openContact () {
+				this.$refs.contact.click()
+			},
 			async toAuthPage (path) {
 				const vm = this
 				const result = await vm.checkLogin()

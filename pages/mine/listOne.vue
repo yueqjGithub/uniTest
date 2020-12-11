@@ -1,31 +1,31 @@
 <template>
 	<view class="vip-feedback pa-col-sm">
-		<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex">
+		<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toAuthPage('/pages/myOrder/myOrder')">
 			<view class="flex-jst-start flex-ali-center" :class="langFlex">
 				<u-icon name="weibiaoti--33" custom-prefix="iconfont" size="40" class="text-primary"></u-icon>
 				<text class="ma-row-sm text-12">{{$t('mine.order')}}</text>
 			</view>
-			<button type="default" class="plain-btn" @click="toAuthPage('/pages/myOrder/myOrder')">
+			<button type="default" class="plain-btn">
 				<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
 			</button>
 		</view>
 		<!-- 收藏 -->
-		<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex">
+		<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toAuthPage('/pages/collect/collect')">
 			<view class="flex-jst-start flex-ali-center" :class="langFlex">
 				<u-icon name="weibiaoti--34" custom-prefix="iconfont" size="40" class="text-primary"></u-icon>
 				<text class="ma-row-sm text-12">{{$t('mine.collect')}}</text>
 			</view>
-			<button type="default" class="plain-btn" @click="toAuthPage('/pages/collect/collect')">
+			<button type="default" class="plain-btn">
 				<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
 			</button>
 		</view>
 		<!-- 地址管理 -->
-		<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex">
+		<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toAuthPage('/pages/memberAddress/memberAddress')">
 			<view class="flex-jst-start flex-ali-center" :class="langFlex">
 				<u-icon name="weibiaoti--37" custom-prefix="iconfont" size="40" class="text-primary"></u-icon>
 				<text class="ma-row-sm text-12">{{$t('mine.address')}}</text>
 			</view>
-			<button type="default" class="plain-btn" @click="toAuthPage('/pages/memberAddress/memberAddress')">
+			<button type="default" class="plain-btn">
 				<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
 			</button>
 		</view>

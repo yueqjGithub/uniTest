@@ -41,30 +41,30 @@
 		</view>
 		<!-- list栏 -->
 		<view class="vip-feedback pa-col-sm">
-			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex">
+			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toPage('/pages/help/help?type=user_xy')">
 				<view class="flex-jst-start flex-ali-center" :class="langFlex">
 					<u-icon name="renwuzhongxin-huodepinglun" custom-prefix="iconfont" size="40" class="text-gold"></u-icon>
 					<text class="ma-row-sm text-12">{{$t('vip.agreement')}}</text>
 				</view>
-				<button type="default" class="plain-btn" @click="toPage('/pages/help/help?type=user_xy')">
+				<button type="default" class="plain-btn">
 					<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon"></u-icon>
 				</button>
 			</view>
-			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex">
+			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click='openContact'>
 				<view class="flex-jst-start flex-ali-center" :class="langFlex">
 					<u-icon name="kefuzhongxin" custom-prefix="iconfont" size="40" class="text-gold"></u-icon>
 					<text class="ma-row-sm text-12">{{$t('vip.service')}}</text>
 				</view>
-				<button type="default" class="plain-btn" open-type="contact">
+				<button type="default" class="plain-btn" open-type="contact" ref='contact'>
 					<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon"></u-icon>
 				</button>
 			</view>
-			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex">
+			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toPage('/pages/help/help?type=my_help')">
 				<view class="flex-jst-start flex-ali-center" :class="langFlex">
 					<u-icon name="bangzhu" custom-prefix="iconfont" size="40" class="text-gold"></u-icon>
 					<text class="ma-row-sm text-12">{{$t('vip.support')}}</text>
 				</view>
-				<button type="default" class="plain-btn" @click="toPage('/pages/help/help?type=my_help')">
+				<button type="default" class="plain-btn">
 					<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon"></u-icon>
 				</button>
 			</view>
@@ -110,6 +110,9 @@
 			this.queryMine()
 		},
 		methods: {
+			openContact () {
+				this.$refs.contact.click()
+			},
 			toVip () {
 			},
 			toPage (path) {
