@@ -19,7 +19,7 @@
 			</view>
 			<view class="charge-row border-box pa-col-md full-width flex-jst-btw flex-ali-center" :class="langFlex">
 				<text class="text-12 text-bold">{{$t('mobileCharge.vipPrice')}}</text>
-				<text class="text-primary text-14">￥{{target.preferential}}</text>
+				<text class="text-primary text-14">￥{{target.member_price}}</text>
 			</view>
 			<view class="charge-row border-box pa-col-md full-width flex-jst-btw flex-ali-center flex-row">
 				<view class="balance-left flex-ali-center" :class="langFlex">
@@ -120,6 +120,7 @@
 					token: token,
 					id: vm.target.id,
 					mobile: vm.phone,
+					isp: vm.target.service_provider,
 					// adv: vm.adv ? 'true' : 'false',
 					// sharing_preferences: vm.shareForPhoneCharge ? 'true' : 'false',
 					balance: vm.balance ? 'true' : 'false'
@@ -127,8 +128,8 @@
 				uni.showLoading({
 					title: ''
 				})
-				vm.$post(urls.chargeMobile, obj).then(res => {
-					// console.log(res)
+				debugger
+				vm.$post(urls.chargeTraffic, obj).then(res => {
 					uni.requestPayment({ // 调用支付
 					    provider: 'wxpay',
 					    timeStamp: res.data.timeStamp,
