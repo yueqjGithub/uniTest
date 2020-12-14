@@ -15,7 +15,7 @@
 			<view class="face-list flex-row flex-wrap flex-jst-start flex-ali-start full-width">
 				<view class="face-item flex-column flex-jst-center flex-ali-center" v-for="k in priceList" :key="k.id" :class="k.id === currentFace.id && 'cur-face'"
 				 @click="chooseCur(k)">
-					<text class="text-24 text-bold">{{k.face_value}}</text>
+					<text class="text-24 text-bold">{{k.face_value}}M</text>
 					<view class="flex-row flex-jst-center flex-ali-center ma-col-sm">
 						<text class="text-12 text-grey-1">￥{{k.selling_price}}</text>
 					</view>
@@ -208,6 +208,10 @@
 						if (res.success) {
 							vm.priceAll = res.data
 						}
+					})
+				} else {
+					uni.navigateTo({
+						url: '/pages/login/login'
 					})
 				}
 			},

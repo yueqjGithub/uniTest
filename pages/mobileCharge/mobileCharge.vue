@@ -206,6 +206,10 @@
 							vm.priceAll = res.data
 						}
 					})
+				} else {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
 				}
 			},
 			async queryBelone() { // 归属地和用户余额

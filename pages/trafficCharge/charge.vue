@@ -21,14 +21,6 @@
 				<text class="text-12 text-bold">{{$t('mobileCharge.vipPrice')}}</text>
 				<text class="text-primary text-14">￥{{target.preferential}}</text>
 			</view>
-			<!-- <view class="charge-row border-box pa-col-md full-width flex-jst-btw flex-ali-center" :class="langFlex">
-				<text class="text-12 text-bold">{{$t('mobileCharge.advertising')}}</text>
-				<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey" @click="showAd"></u-icon>
-			</view>
-			<view class="charge-row border-box pa-col-md full-width flex-jst-btw flex-ali-center" :class="langFlex">
-				<text class="text-12 text-bold">{{$t('mobileCharge.promote')}}</text>
-				<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey" @click="promote()"></u-icon>
-			</view> -->
 			<view class="charge-row border-box pa-col-md full-width flex-jst-btw flex-ali-center flex-row">
 				<view class="balance-left flex-ali-center" :class="langFlex">
 					<text class="text-grey text-12">{{$t('makeOrder.myBalance')}}</text>
