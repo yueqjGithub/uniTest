@@ -31,11 +31,11 @@
 				<text class="text-blk text-14">{{curWz.wfsj}}</text>
 			</view>
 			<view class="pa-md full-width"></view>
-			<view class="full-width text-grey-1 text-14" :class="rightClass">{{$t('carCenter.payIntroduction')}}</view>
+			<view class="full-width text-grey-1 text-14" :class="rightClass">{{curWz.wfdz}}</view>
 			<view class="full-width my-split"></view>
 			<view class="full-width text-grey-1 text-14" :class="rightClass">{{$t('carCenter.payTips')}}</view>
 			<view class="width-80 pa-md border-box flex-row flex-jst-center flex-ali-center">
-				<button type="default" class="my-btn-primary text-14 text-white" :loading="loading" :disabled="loading">{{$t('basic.ok')}}</button>
+				<button type="default" class="my-btn-primary text-14 text-white" :loading="loading" :disabled="loading" @click="subOrder">{{$t('basic.ok')}}</button>
 			</view>
 		</view>
 	</view>
@@ -72,6 +72,89 @@
 				}
 			}
 		},
+		methods: {
+			...mapActions(['checkLogin']),
+			async queryDetail () {
+				const vm = this
+				const token = await vm.checkLogin()
+				if (token) {
+					const obj = {
+						token: token,
+						finenum: vm.curWz.jdsbh
+					}
+					vm.loading = true
+					vm.$post(urls.searchWzInfo, obj).then(res => {
+						vm.loading = false
+						if (res.success) {
+							vm.setCurWz(res.data)
+						} else {
+							vm.$refs.uTips.show({
+								title: res.message,
+								type: 'error',
+								duration: 2000
+							})
+						}
+					}, err => {
+						vm.loading = false
+					})
+				} else {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+				}
+			},
+			async subOrder () {
+				const vm = this
+				const token = await vm.checkLogin()
+				if (token) {
+					const obj = {
+						token: token,
+						license: vm.curWz.hphm,
+						peccancy_number: vm.curWz.jdsbh,
+						peccancy_time: vm.curWz.wfsj,
+						peccancy_info: vm.curWz.wfdz,
+						fkje: vm.curWz.fkje,
+						znj: vm.curWz.znj,
+						type: vm.curWz.hpzlStr,
+						name: vm.curWz.dsr
+					}
+					uni.showLoading({
+						title: ''
+					})
+					vm.$post(urls.commitWzOrder, obj).then(res => {
+						uni.requestPayment({ // 调用支付
+						    provider: 'wxpay',
+						    timeStamp: res.data.timeStamp,
+						    nonceStr: res.data.nonceStr,
+						    package: res.data.package,
+						    signType: 'MD5',
+						    paySign: res.data.paySign,
+						    success: function (result) {
+									vm.$refs.uTips.show({
+										title: vm._i18n.messages[vm.lang].basic.success,
+										type: 'success',
+										duration: 2300
+									})
+									vm.queryDetail()
+						    },
+						    fail: function (err) {
+									vm.$refs.uTips.show({
+										title: vm._i18n.messages[vm.lang].basic.faild,
+										type: 'error',
+										duration: 2300
+									})
+						    }
+						});
+					}, () => {
+						uni.hideLoading()
+					})
+				} else {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+				}
+			}
+		}
 	}
 </script>
 

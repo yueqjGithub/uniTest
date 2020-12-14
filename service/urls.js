@@ -11,7 +11,7 @@ const urls = {
 		'/v1/api/public/gitpis', '/v1/api/public/pis', '/v1/api/publicity/index', '/v1/api/electric/denomination', '/v1/api/oilcard/commit',
 		'/v1/api/ticket/commit', '/v1/api/train/pay', '/v1/api/train/order', '/v1/api/ticket/order', '/v1/api/electric/commit', '/v1/api/driving/wzfind',
 		'/v1/api/withdraw/commit', '/v1/api/credit/creditline', '/v1/api/credit/update', '/v1/api/oilcard/shop', '/v1/api/oilcard/cardlist', '/v1/api/oilcard/addoilcard', '/v1/api/driving/edit', '/v1/api/oilcard/del',
-		'/v1/api/driving/kffind', '/v1/api/driving/wz', '/v1/api/traffic/commit', '/v1/api/traffic/order', '/v1/api/driving/wzorder'
+		'/v1/api/driving/kffind', '/v1/api/driving/wz', '/v1/api/traffic/commit', '/v1/api/traffic/order', '/v1/api/driving/wzordercreate', '/v1/api/driving/wzorder'
 	], // 需要加密的接口2
 	baseUrl: 'https://shopapi.apiself.com',
 	// basic
@@ -105,6 +105,7 @@ const urls = {
 	setDriveLicense: '/v1/api/driving/editjsz', // 添加，编辑驾驶证2
 	xszList: '/v1/api/driving/xszlist', // 行驶证列表2
 	delCarLicense: '/v1/api/driving/del', // 删除行驶证2
+	commitWzOrder: '/v1/api/driving/wzordercreate', // 提交违章订单2
 	// 汽车助手
 	queryCurrentOilPrice: '/v1/api/public/oil', // 今日油价
 	driverLicenseList: '/v1/api/driving/jszlist', // 驾驶证列表2
