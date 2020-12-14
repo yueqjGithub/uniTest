@@ -31,7 +31,9 @@
 					{ type: 'train', pageName: 'trainPage', typeUrl: urls.trainOrderType, listUrl: urls.trainOrderList },
 					{ type: 'air', pageName: 'airPage', typeUrl: urls.airOrderType, listUrl: urls.airOrderList },
 					{ type: 'electric', pageName: 'elePage', typeUrl: urls.eleOrderType, listUrl: urls.queryEleOrder },
-					{ type: 'oil', pageName: 'oilPage', typeUrl: urls.oilOrderType, listUrl: urls.queryOilOrder }
+					{ type: 'oil', pageName: 'oilPage', typeUrl: urls.oilOrderType, listUrl: urls.queryOilOrder },
+					{ type: 'traffic', pageName: 'trafficPage', typeUrl: urls.trafficOrderType, listUrl: urls.trafficOrderList },
+					{ type: 'car', pageName: 'wzPage', typeUrl: urls.carOrderType, listUrl: urls.carOrderList }
 				]
 			}
 		},

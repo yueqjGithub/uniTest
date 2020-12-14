@@ -2,8 +2,8 @@
 	<scroll-view scroll-y class="cus-scroll-content" @scrolltolower="loadMore">
 		<view class="shops-container flex-column flex-jst-start flex-ali-center" v-if="list.length > 0">
 			<!-- 话费订单 -->
-			<view class="order-container-item full-width pa-md border-box" v-if="orderType === 'phone'">
-				<phone-order v-for="(k, index) in list" :order="k" class="order-item full-width" :key="index"></phone-order>
+			<view class="order-container-item full-width pa-md border-box" v-if="orderType === 'phone' || orderType === 'traffic'">
+				<phone-order v-for="(k, index) in list" :order="k" class="order-item full-width" :key="index" :type='orderType'></phone-order>
 			</view>
 			<!-- 火车票订单 -->
 			<view class="order-container-item full-width pa-md border-box" v-if="orderType === 'train'">
@@ -24,6 +24,10 @@
 			<view v-if="loading" class="loading-bar flex-row flex-jst-center flex-ali-center">
 				<u-loadmore :status="status" bg-color="bg-color" color="#AAAAAA" :load-text="loadText" icon-type="flower"/>
 			</view>
+			<!-- 汽车助手订单 -->
+			<view class="order-container-item full-width pa-md border-box" v-if="orderType === 'car'">
+				<car-order v-for="(k, index) in list" :order="k" class="order-item full-width" :key="index"></car-order>
+			</view>
 		</view>
 		<view v-else class="pa-lg">
 			<u-empty mode="favor" text=" "></u-empty>
@@ -37,6 +41,7 @@
 	import airOrder from './airItem.vue'
 	import eleOrder from './eleItem.vue'
 	import oilOrder from './oilItem.vue'
+	import carOrder from './carItem.vue'
 	export default {
 		name: 'orderShow',
 		props: ['type', 'url', 'orderType'],
@@ -45,7 +50,8 @@
 			trainOrder,
 			airOrder,
 			eleOrder,
-			oilOrder
+			oilOrder,
+			carOrder
 		},
 		data () {
 			return {
@@ -80,6 +86,7 @@
 				}
 				vm.loading = true
 				vm.$post(url, obj).then(res => {
+					debugger
 					const len = res.data.data.length
 					if (len === vm.pageSize) { // 首次请求数量填满一页
 						vm.list = [...vm.list, ...res.data.data]

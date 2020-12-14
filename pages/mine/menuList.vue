@@ -30,6 +30,13 @@
 					name_cn: '商城',
 					name: 'بازار'
 				},{
+					id: 'A1597798942',
+					color: '#FF8C28',
+					path: '/pages/commonOrder/commonOrder?type=traffic',
+					icon: 'shouji',
+					name_cn: '流量',
+					name: "تور ئېقىمى"
+				},{
 					id: 'A1597798908',
 					color: '#1ABC9C',
 					path: '/pages/commonOrder/commonOrder?type=electric',
@@ -64,7 +71,15 @@
 					icon: 'ditujiayouzhan',
 					name_cn: '油卡',
 					name: "تېلېفۇن ھەققى"
+				},{
+					id: 'A1604643763',
+					color: '#3498DB',
+					path: '/pages/commonOrder/commonOrder?type=car',
+					icon: 'qiche',
+					name_cn: '汽车违章',
+					name: "جەرىمانە تاپشۇرۇش"
 				}]
+				
 			}
 		},
 		computed: {

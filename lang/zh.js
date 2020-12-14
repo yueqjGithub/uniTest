@@ -20,6 +20,7 @@ export default {
 		copyTips: '已复制到您的粘贴板',
 		share: '分享',
 		charge: '充值',
+		chargeSuc: '充值成功',
 		getValiCode: '获取验证码',
 		notFill: '信息未填写完整',
 		success: '操作成功',
@@ -140,7 +141,8 @@ export default {
 		airPage: '机票订单',
 		elePage: '水电费订单',
 		eleCharge: '电费充值',
-		oilPage: '油费订单'
+		oilPage: '油费订单',
+		trafficPage: '流量订单'
 	},
 	train: {
 		pageName: '火车票',

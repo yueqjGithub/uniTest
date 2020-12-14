@@ -128,34 +128,51 @@
 				uni.showLoading({
 					title: ''
 				})
-				debugger
 				vm.$post(urls.chargeTraffic, obj).then(res => {
-					uni.requestPayment({ // 调用支付
-					    provider: 'wxpay',
-					    timeStamp: res.data.timeStamp,
-					    nonceStr: res.data.nonceStr,
-					    package: res.data.package,
-					    signType: 'MD5',
-					    paySign: res.data.paySign,
-					    success: function (result) {
-								vm.setSharePhone(false)
-								uni.hideLoading()
-								uni.requestSubscribeMessage({ // 订阅消息 
-								  tmplIds: ['9UTQnyosblyWEn16aJ5GT9DbjClzWU6yljBWXncAPIk'],
-								  success (result) {
-									},
-									fail (err) {
-									}
-								})
-					    },
-					    fail: function (err) {
-								uni.hideLoading()
-								uni.showToast({
-									icon: 'none',
-									title: vm._i18n.messages[vm.lang].makeOrder.payFail
-								})
-					    }
-					});
+					if (res.data.payment_amount === 0) {
+						uni.showToast({
+							title: vm._i18n.messages[vm.lang].basic.chargeSuc,
+							icon: 'success'
+						})
+						vm.$emit('close')
+					} else {
+						uni.requestPayment({ // 调用支付
+						    provider: 'wxpay',
+						    timeStamp: res.data.timeStamp,
+						    nonceStr: res.data.nonceStr,
+						    package: res.data.package,
+						    signType: 'MD5',
+						    paySign: res.data.paySign,
+						    success: function (result) {
+									vm.setSharePhone(false)
+									uni.hideLoading()
+									uni.requestSubscribeMessage({ // 订阅消息 
+									  tmplIds: ['9UTQnyosblyWEn16aJ5GT9DbjClzWU6yljBWXncAPIk'],
+									  success (result) {
+											uni.showToast({
+												title: vm._i18n.messages[vm.lang].basic.chargeSuc,
+												icon: 'success'
+											})
+											vm.$emit('close')
+										},
+										fail (err) {
+											uni.showToast({
+												title: vm._i18n.messages[vm.lang].basic.chargeSuc,
+												icon: 'success'
+											})
+											vm.$emit('close')
+										}
+									})
+						    },
+						    fail: function (err) {
+									uni.hideLoading()
+									uni.showToast({
+										icon: 'none',
+										title: vm._i18n.messages[vm.lang].makeOrder.payFail
+									})
+						    }
+						});
+					}
 				}, () => {
 					uni.hideLoading()
 				})
