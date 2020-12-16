@@ -57,7 +57,7 @@
 				newList.forEach(item => {
 					item.name = vm._i18n.messages[vm.lang].mine[item.name]
 				})
-				return newList
+				return vm.lang === 'zh-CN' ? newList : [...newList].reverse()
 			}
 		},
 		methods: {

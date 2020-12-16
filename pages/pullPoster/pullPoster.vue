@@ -2,7 +2,7 @@
 	<view class="page bg-grey">
 		<view class="head-bg"></view>
 		<view class="content-container">
-			<u-image mode="aspectFill" width="100%" height="70vh"></u-image>
+			<u-image mode="aspectFill" width="100%" height="70vh" src='/static/images/123.png'></u-image>
 			<view class="full-width pa-lg flex-row flex-jst-center flex-ali-center border-box">
 				<button type="normal" class="my-btn-primary text-white text-12" open-type="share" @click="test">{{$t('basic.share')}}</button>
 			</view>

@@ -41,7 +41,10 @@
 		},
 		data() {
 			return {
-				bannerList: [],
+				bannerList: [{
+					id: "3",
+					image: "/static/images/22222.png"
+				}],
 				priceList: [
 				]
 			}

@@ -1,6 +1,6 @@
 <template>
 	<view class="pre-license full-width  ma-col-md">
-		<view class="pa-lg border-box scan-container flex-column flex-jst-center" :class="lang === 'zh-CN' ? 'flex-ali-start' : 'flex-ali-end'">
+		<view class="pa-lg border-box scan-container flex-column flex-jst-center" :class="lang === 'zh-CN' ? 'flex-ali-start' : 'flex-ali-end'" v-if='licenseList[0]'>
 			<view class="flex-jst-start flex-ali-center ma-col-sm" :class="langFlex">
 				<text class="labels text-12 text-grey-1 ma-rt-5" :class="rightClass">{{$t('carCenter.licenseNumber')}}</text>
 				<text class="text-12" :class="rightClass">{{licenseList[0].idcard}}</text>

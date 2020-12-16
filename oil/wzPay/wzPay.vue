@@ -71,7 +71,6 @@
 						vm.wz_number = res.result
 					},
 					fail (err) {
-						console.log(err)
 						vm.$refs.uTips.show({
 							title: vm._i18n.messages[vm.lang].basic.faild,
 							type: 'error',

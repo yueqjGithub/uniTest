@@ -5,7 +5,7 @@
 		<!-- 内容 -->
 		<view class="content-container flex-column flex-jst-start flex-ali-center">
 			<view class="address-icon flex-row flex-jst-center flex-ali-center" @click="upload">
-				<u-icon name="tianchongxing-41" size="90" class="text-primary" custom-prefix="iconfont"></u-icon>
+				<u-icon name="camera-fill" size="90" class="text-primary"></u-icon>
 			</view>
 			<text class="text-14 ma-col-sm text-grey-1 text-center">{{$t('contact.idCardTips')}}</text>
 			<u-form :border-bottom="false" :model="form" ref="myForm" class='full-width' :label-width="0" label-position="top" :error-type="errorType">
@@ -26,7 +26,7 @@
 			</u-form>
 			<!-- 提交按钮 -->
 			<view class="full-width pa-md ma-top-5 flex-row flex-jst-center flex-ali-center">
-				<button type="default" class="my-btn-primary text-white" @click="subInfo" :disabled="loading" :loading="loading">{{$t('basic.ok')}}</button>
+				<button type="default" class="my-btn-primary text-white text-14" @click="subInfo" :disabled="loading" :loading="loading">{{$t('basic.ok')}}</button>
 			</view>
 		</view>
 		<!-- 说明 -->

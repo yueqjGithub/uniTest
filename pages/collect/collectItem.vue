@@ -1,12 +1,12 @@
 <template>
-	<view class="order-item pa-md" @click="toDetail">
+	<view class="order-item pa-md">
 		<view class="order-top pa-col-md flex-jst-btw flex-ali-center" :class="langFlex">
-			<image :src="collect.cover_image" mode="" class="order-image"></image>
+			<image :src="collect.cover_image" mode="" class="order-image" @click="toDetail"></image>
 			<view class="order-cont flex-2 pa-row-md flex-column flex-jst-start flex-ali-start">
-				<text class="shop-name full-width text-12" :class="langFlex">{{shopName}}</text>
+				<text class="shop-name full-width text-12" :class="langFlex" @click="toDetail">{{shopName}}</text>
 				<view class="order-time flex-jst-btw full-width flex-ali-base ma-col-md" :class="langFlex">
 					<text class="total-price text-16 text-bold text-primary">￥{{collect.commodity_price || 0}}</text>
-					<u-icon name="weibiaoti--32" size="24" custom-prefix="iconfont" @click="delCollect"></u-icon>
+					<u-icon name="weibiaoti--32" size="34" custom-prefix="iconfont" @click.stop="delCollect"></u-icon>
 				</view>
 			</view>
 		</view>

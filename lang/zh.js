@@ -318,7 +318,11 @@ export default {
 		myLicense: '我的驾驶证',
 		addLicense: '添加驾驶证',
 		uploadLicenseTips: '上传驾驶证照片进行识别',
-		manual: '手动输入驾驶证信息'
+		manual: '手动输入驾驶证信息',
+		wzPerson: '姓名',
+		wfdz: '违法地址',
+		znj: '滞纳金',
+		wzDetailTips: '交通违法行为人接受罚款处罚后逾期15天不履行处罚决定的，严格按照《中华人民共和国道路交通安全法》第109条有关规定，每日按罚款数额的3%加处罚款，加处罚款总数额不超过处罚金额。'
 	},
 	addLicense: {
 		pageName: '添加驾驶证',

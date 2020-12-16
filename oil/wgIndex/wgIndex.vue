@@ -319,7 +319,7 @@
 				transform: rotate(180deg);
 			}
 			.cus-swiper{
-				height: 19vh;
+				height: 22vh;
 				.swiper-item{
 					height: 100%;
 					.action {

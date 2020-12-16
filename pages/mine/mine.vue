@@ -15,7 +15,7 @@
 			<view class="user-id text-light-grey" v-if="isLogin">ID:{{person.user_number}}</view>
 			<!-- 统计 -->
 			<view class="flex-row flex-jst-ard flex-ali-center full-width pa-md">
-				<view class="total-item flex-column flex-jst-btw flex-ali-center">
+				<view class="total-item flex-column flex-jst-btw flex-ali-center" @click="toAuthPage('/pages/collect/collect')">
 					<text class="text-18 text-bold text-white">{{person.collect || 0}}</text>
 					<text class="text-12 text-light-grey">{{$t('mine.collect')}}</text>
 				</view>
@@ -90,6 +90,19 @@
 				if (result) {
 					uni.reLaunch({
 						url: '/pages/buyVip/buyVip'
+					})
+				} else {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+				}
+			},
+			async toAuthPage (path) {
+				const vm = this
+				const result = await vm.checkLogin()
+				if (result) {
+					uni.navigateTo({
+						url: path
 					})
 				} else {
 					uni.navigateTo({

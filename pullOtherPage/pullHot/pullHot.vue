@@ -13,6 +13,7 @@
 		<!-- body -->
 		<view class="head-bg flex-column flex-jst-end flex-ali-center">
 			<!-- 图片预留 -->
+			<u-image  src='/static/images/111.png' mode="aspectFill" width="50vw" height='25vw'></u-image>
 		</view>
 		<view class="cont-container mine-info pa-md border-box flex-jst-btw flex-ali-center" :class="langFlex">
 			<view class="flex-row flex-jst-center flex-ali-center">
@@ -187,6 +188,7 @@
 		background: linear-gradient(80deg, #A023C8, #E11932);
 		border-bottom-left-radius: 50vw 5vh;
 		border-bottom-right-radius: 50vw 5vh;
+		padding-bottom: 100rpx;
 	}
 	.cont-container{
 		width: 95%;

@@ -33,7 +33,7 @@
 					id: 'A1597798942',
 					color: '#FF8C28',
 					path: '/pages/commonOrder/commonOrder?type=traffic',
-					icon: 'shouji',
+					icon: 'liuliang',
 					name_cn: '流量',
 					name: "تور ئېقىمى"
 				},{

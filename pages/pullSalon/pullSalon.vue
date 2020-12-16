@@ -4,7 +4,7 @@
 		<!-- body -->
 		<view class="cus-gap full-width"></view>
 		<view class="head-img">
-			<u-image :src="info.tg_img" width="100%" height="308.33" mode="widthFit"></u-image>
+			<u-image src="/static/images/pul-salon.png" width="100%" height="308.33" mode="widthFit"></u-image>
 		</view>
 		<view class="cont-item ma-col-md pa-md border-box flex-jst-btw flex-ali-center flex-row">
 			<view class="flex-row flex-jst-start flex-ali-center flex-2">
