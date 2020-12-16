@@ -142,7 +142,8 @@ export default {
 		elePage: '水电费订单',
 		eleCharge: '电费充值',
 		oilPage: '油费订单',
-		trafficPage: '流量订单'
+		trafficPage: '流量订单',
+		wzPay: '违章缴费'
 	},
 	train: {
 		pageName: '火车票',
@@ -335,7 +336,8 @@ export default {
 		buyBx: '购买保险',
 		wgRecord: '违章记录',
 		payForWg: '违章缴费',
-		wgTimes: '您的违章次数'
+		wgTimes: '您的违章次数',
+		paieded: '已缴纳'
 	},
 	traffic: {
 		pageName: '流量充值'

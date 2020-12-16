@@ -35,7 +35,8 @@
 			<view class="full-width my-split"></view>
 			<view class="full-width text-grey-1 text-14" :class="rightClass">{{$t('carCenter.payTips')}}</view>
 			<view class="width-80 pa-md border-box flex-row flex-jst-center flex-ali-center">
-				<button type="default" class="my-btn-primary text-14 text-white" :loading="loading" :disabled="loading" @click="subOrder">{{$t('basic.ok')}}</button>
+				<text class="text-16 text-primary" v-if="ended">{{$t('wgIndex.paieded')}}</text>
+				<button v-else type="default" class="my-btn-primary text-14 text-white" :loading="loading" :disabled="loading" @click="subOrder">{{$t('basic.ok')}}</button>
 			</view>
 		</view>
 	</view>
@@ -50,7 +51,8 @@
 	export default {
 		data() {
 			return {
-				loading: false
+				loading: false,
+				ended: false
 			};
 		},
 		computed: {
@@ -130,16 +132,19 @@
 						    signType: 'MD5',
 						    paySign: res.data.paySign,
 						    success: function (result) {
+									uni.hideLoading()
 									vm.$refs.uTips.show({
 										title: vm._i18n.messages[vm.lang].basic.success,
 										type: 'success',
 										duration: 2300
 									})
 									vm.queryDetail()
+									vm.ended = true
 						    },
 						    fail: function (err) {
+									uni.hideLoading()
 									vm.$refs.uTips.show({
-										title: vm._i18n.messages[vm.lang].basic.faild,
+										title: vm._i18n.messages[vm.lang].makeOrder.payFail,
 										type: 'error',
 										duration: 2300
 									})
