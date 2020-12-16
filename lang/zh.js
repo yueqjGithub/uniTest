@@ -304,7 +304,7 @@ export default {
 		diesel: '柴油',
 		scanTips: '扫描违章罚单可快速获取罚单编号',
 		wzTips: '请输入违章编号',
-		fkAmount: '罚款金额',
+		fkAmount: '罚款总金额',
 		Wztip1: '扫描违章罚单上的条形码或二维码可缴费',
 		Wztip2: '直接输入罚单上的编号可进行缴费',
 		carNumber: '车牌号',
@@ -322,6 +322,8 @@ export default {
 		wzPerson: '姓名',
 		wfdz: '违法地址',
 		znj: '滞纳金',
+		fkje: '罚款金额',
+		servicePrice: '服务费',
 		wzDetailTips: '交通违法行为人接受罚款处罚后逾期15天不履行处罚决定的，严格按照《中华人民共和国道路交通安全法》第109条有关规定，每日按罚款数额的3%加处罚款，加处罚款总数额不超过处罚金额。'
 	},
 	addLicense: {

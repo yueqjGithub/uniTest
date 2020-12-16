@@ -7,12 +7,12 @@
 				<u-icon name="honglvdengweizhang" size="90" class="text-primary" custom-prefix="iconfont"></u-icon>
 			</view>
 			<!-- price -->
-			<view class="flex-column flex-jst-center flex-ali-center pa-md border-box">
+			<view class="flex-column flex-jst-center flex-ali-center border-box">
 				<view class="flex-row flex-jst-center flex-ali-base ma-col-sm">
 					<text class="text-primary text-14 text-bold">￥</text>
-					<text class="text-primary text-32 text-bold">{{curWz.fkje}}</text>
+					<text class="text-primary text-32 text-bold">{{fkTotal}}</text>
 				</view>
-				<text class="text-grey-1 text-14 ma-col-sm">{{$t('carCenter.fkAmount')}}</text>
+				<text class="text-grey-1 text-14">{{$t('carCenter.fkAmount')}}</text>
 			</view>
 			<!-- split -->
 			<view class="full-width my-split"></view>
@@ -41,6 +41,14 @@
 			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
 				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.znj')}}</text>
 				<text class="text-blk text-14">{{curWz.znj}}</text>
+			</view>
+			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
+				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.fkje')}}</text>
+				<text class="text-blk text-14">{{curWz.fkje}}</text>
+			</view>
+			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
+				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.servicePrice')}}</text>
+				<text class="text-blk text-14">{{servicePrice}}</text>
 			</view>
 			<view class="pa-md full-width"></view>
 			<view class="full-width text-grey-1 text-14" :class="rightClass">{{$t('carCenter.wzDetailTips')}}</view>
@@ -74,6 +82,22 @@
 			},
 			rightClass() {
 				return this.lang === 'zh-CN' ? '' : 'my-text-right'
+			},
+			fkTotal () {
+				const result = Number(this.curWz.fkje) + Number(this.curWz.znj)
+				return Math.floor(result)
+			},
+			servicePrice () {
+				const vm = this
+				let result = 0
+				if (vm.fkTotal < 50) {
+					result = 3
+				} else if (vm.fkTotal < 100 && vm.fkTotal >= 50) {
+					result = 5
+				} else {
+					result = 10
+				}
+				return result
 			}
 		},
 		watch: {
@@ -178,8 +202,9 @@
 <style lang="scss" scoped>
 .page {
 		width: 100%;
-		height: 100vh;
+		min-height: 100vh;
 		padding-top: 17px;
+		padding-bottom: 17px;
 
 		.head-bg {
 			position: absolute;
