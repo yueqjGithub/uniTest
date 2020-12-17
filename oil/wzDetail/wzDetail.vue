@@ -48,7 +48,7 @@
 			</view>
 			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
 				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.servicePrice')}}</text>
-				<text class="text-blk text-14">{{servicePrice}}</text>
+				<text class="text-blk text-14">{{curWz.fee}}</text>
 			</view>
 			<view class="pa-md full-width"></view>
 			<view class="full-width text-grey-1 text-14" :class="rightClass">{{$t('carCenter.wzDetailTips')}}</view>
@@ -86,18 +86,6 @@
 			fkTotal () {
 				const result = Number(this.curWz.fkje) + Number(this.curWz.znj)
 				return Math.floor(result)
-			},
-			servicePrice () {
-				const vm = this
-				let result = 0
-				if (vm.fkTotal < 50) {
-					result = 3
-				} else if (vm.fkTotal < 100 && vm.fkTotal >= 50) {
-					result = 5
-				} else {
-					result = 10
-				}
-				return result
 			}
 		},
 		watch: {
