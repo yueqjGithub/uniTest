@@ -167,6 +167,10 @@
 						uni.hideLoading()
 						if (res.success) {
 							vm.licenseList = res.data.data
+							if (vm.licenseList.length < 1) {
+								this.tabIdx = 0
+								this.swiperCurrent = 0
+							}
 						}
 					}, err => {
 						uni.hideLoading()

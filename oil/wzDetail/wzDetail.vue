@@ -19,7 +19,7 @@
 			<view class="pa-md full-width"></view>
 			<!-- detail -->
 			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
-				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.orderNum')}}</text>
+				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.fdbh')}}</text>
 				<text class="text-blk text-14">{{curWz.jdsbh}}</text>
 			</view>
 			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
@@ -39,12 +39,12 @@
 				<text class="text-blk text-14 flex-1">{{curWz.wfdz}}</text>
 			</view>
 			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
-				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.znj')}}</text>
-				<text class="text-blk text-14">{{curWz.znj}}</text>
-			</view>
-			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
 				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.fkje')}}</text>
 				<text class="text-blk text-14">{{curWz.fkje}}</text>
+			</view>
+			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
+				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.znj')}}</text>
+				<text class="text-blk text-14">{{curWz.znj}}</text>
 			</view>
 			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
 				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.servicePrice')}}</text>

@@ -41,7 +41,7 @@
 		<view class="list-bar pa-sm" v-if="person.apply">
 			<menu-list :list="person.apply"></menu-list>
 		</view>
-		<list-one></list-one>
+		<!-- <list-one></list-one> -->
 		<list-two></list-two>
 		<list-three></list-three>
 		<!-- 底部 -->
@@ -56,7 +56,7 @@
 	import { mapActions } from 'vuex'
 	import orderTab from './orderTabItem.vue'
 	import menuList from './menuList.vue'
-	import listOne from './listOne.vue'
+	// import listOne from './listOne.vue'
 	import listTwo from './listTwo.vue'
 	import listThree from './listThree.vue'
 	export default {
@@ -65,7 +65,7 @@
 			cusTabbar,
 			orderTab,
 			menuList,
-			listOne,
+			// listOne,
 			listTwo,
 			listThree
 		},

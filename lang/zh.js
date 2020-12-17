@@ -319,6 +319,7 @@ export default {
 		addLicense: '添加驾驶证',
 		uploadLicenseTips: '上传驾驶证照片进行识别',
 		manual: '手动输入驾驶证信息',
+		fdbh: '罚单编号',
 		wzPerson: '姓名',
 		wfdz: '违法地址',
 		znj: '滞纳金',
