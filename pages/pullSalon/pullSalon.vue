@@ -19,10 +19,10 @@
 		<view class="cont-item ma-col-md pa-md border-box flex-jst-btw flex-ali-center flex-row">
 			<view class="flex-row flex-jst-start flex-ali-center flex-2">
 				<text class="ma-row-sm text-12">路径</text>
-				<text class="text-grey-1 text-14">{{info.tg_path}}</text>
+				<text class="text-grey-1 text-14">{{tgPath}}</text>
 			</view>
 			<view class="flex-1 flex-row flex-jst-end flex-ali-center">
-				<button type="default" class="my-btn-primary text-white text-12" @click="copyToBoard(info.tg_path)">{{$t('basic.copy')}}</button>
+				<button type="default" class="my-btn-primary text-white text-12" @click="copyToBoard(tgPath)">{{$t('basic.copy')}}</button>
 			</view>
 		</view>
 		<!-- 备用路径 -->
@@ -48,13 +48,19 @@
 		name: 'pullSalon',
 		data() {
 			return {
-				info: ''
+				info: '',
+				inviter: ''
 			}
 		},
 		computed: {
 			...mapState(['lang']),
 			langFlex () {
 				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'
+			},
+			tgPath () {
+				let base = this.info.tg_path ? this.info.tg_path : ''
+				let param = this.inviter ? `?inviter=${this.inviter}` : ''
+				return `${base}${param ? param : ''}`
 			}
 		},
 		watch: {
@@ -70,6 +76,7 @@
 			}
 		},
 		onShow () {
+			this.inviter = uni.getStorageSync('myInviterCode')
 			this.queryInfo()
 		},
 		methods: {

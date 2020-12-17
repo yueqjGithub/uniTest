@@ -19,6 +19,7 @@ export default {
 		copy: '复制',
 		copyTips: '已复制到您的粘贴板',
 		share: '分享',
+		saveShare: '保存到本地',
 		charge: '充值',
 		chargeSuc: '充值成功',
 		getValiCode: '获取验证码',
