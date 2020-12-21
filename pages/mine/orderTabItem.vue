@@ -15,20 +15,20 @@
 			return {
 				list: [
 					{
-						name: 'noPay',
-						icon: 'tianchongxing-66',
-						color: '#00AFFF',
-						path: '',
-						id: 0,
-						type: 1
-					},
-					{
 						name: 'all',
 						icon: 'tianchongxing-28',
 						color: '#AF41FF',
 						path: '',
 						id: 0,
 						type: 0
+					},
+					{
+						name: 'noPay',
+						icon: 'tianchongxing-66',
+						color: '#00AFFF',
+						path: '',
+						id: 0,
+						type: 1
 					},
 					{
 						name: 'waitSure',
