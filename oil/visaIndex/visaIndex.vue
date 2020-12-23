@@ -108,6 +108,7 @@
 						title: ''
 					})
 					vm.$post(url, obj).then(res => {
+						debugger
 						if (vm.modalType === 1) {
 							if (res.data.result_code === 'SUCCESS') {
 								uni.requestPayment({ // 调用支付

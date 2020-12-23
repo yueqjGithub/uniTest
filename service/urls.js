@@ -5,7 +5,7 @@ const urls = {
 		'/v1/api/shop/pretreatment', '/v1/api/shippingaddress/edit', '/v1/api/shop/orderlist', '/v1/api/user/shopcollect', '/v1/api/driving/deljsz',
 		'/v1/api/user/info', '/v1/api/vip/opening', '/v1/api/shop/delivery', '/v1/api/cecharge/attribution', '/v1/api/oilcard/orderlist', '/v1/api/traffic/denomination',
 		'/v1/api/telephone/denomination', '/v1/api/publicity/subordinate', '/v1/api/publicity/config', '/v1/api/publicity/ranking', '/v1/api/driving/find',
-		'/v1/api/cecharge/balance', '/v1/api/telephone/commit', '/v1/api/telephone/order', '/v1/api/public/delpis', '/v1/api/credit/add',
+		'/v1/api/cecharge/balance', '/v1/api/telephone/commit', '/v1/api/telephone/order', '/v1/api/public/delpis', '/v1/api/credit/add', '/v1/api/credit/order',
 		'/v1/api/train/commit', '/v1/api/train/refund','/v1/api/vip/list', '/v1/api/electric/details', '/v1/api/withdraw/list', '/v1/api/driving/editjsz',
 		'/v1/api/train/station', '/v1/api/train/find', '/v1/api/ticket/find', '/v1/api/ticket/station', '/v1/api/electric/orderlist', '/v1/api/driving/xszlist',
 		'/v1/api/public/gitpis', '/v1/api/public/pis', '/v1/api/publicity/index', '/v1/api/electric/denomination', '/v1/api/oilcard/commit',
@@ -98,6 +98,8 @@ const urls = {
 	queryVisaIndex: '/v1/api/credit/creditline', // 信用卡首页2
 	chargeCredit: '/v1/api/credit/add', // 信用卡充值2
 	withdrawCredit: '/v1/api/credit/update', // 信用卡提现2
+	creditOrderType: '/v1/api/credit/ordercate', // 信用卡订单分类
+	creditOrderList: '/v1/api/credit/order', // 信用卡订单列表2
 	// 违章
 	searchWzInfo: '/v1/api/driving/wzfind', // 查询违章详细2
 	addCarForm: '/v1/api/driving/edit', // 添加车辆2

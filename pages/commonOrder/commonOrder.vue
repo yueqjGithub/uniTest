@@ -33,7 +33,8 @@
 					{ type: 'electric', pageName: 'elePage', typeUrl: urls.eleOrderType, listUrl: urls.queryEleOrder },
 					{ type: 'oil', pageName: 'oilPage', typeUrl: urls.oilOrderType, listUrl: urls.queryOilOrder },
 					{ type: 'traffic', pageName: 'trafficPage', typeUrl: urls.trafficOrderType, listUrl: urls.trafficOrderList },
-					{ type: 'car', pageName: 'wzPage', typeUrl: urls.carOrderType, listUrl: urls.carOrderList }
+					{ type: 'car', pageName: 'wzPage', typeUrl: urls.carOrderType, listUrl: urls.carOrderList },
+					{ type: 'credit', pageName: 'credit', typeUrl: urls.creditOrderType, listUrl: urls.creditOrderList }
 				]
 			}
 		},

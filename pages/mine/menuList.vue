@@ -78,8 +78,14 @@
 					icon: 'qiche',
 					name_cn: '汽车违章',
 					name: "جەرىمانە تاپشۇرۇش"
+				},{
+					id: 'A1604147601',
+					color: '#0ABEC8',
+					path: '/pages/commonOrder/commonOrder?type=credit',
+					icon: 'xinyongqiahuankuan',
+					name_cn: '信用卡',
+					name: 'ئىناۋەت كارتا'
 				}]
-				
 			}
 		},
 		computed: {

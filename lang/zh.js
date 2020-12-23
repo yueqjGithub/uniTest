@@ -144,7 +144,8 @@ export default {
 		eleCharge: '电费充值',
 		oilPage: '油费订单',
 		trafficPage: '流量订单',
-		wzPay: '违章缴费'
+		wzPay: '违章缴费',
+		credit: '信用卡订单'
 	},
 	train: {
 		pageName: '火车票',

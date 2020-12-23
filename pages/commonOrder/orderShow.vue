@@ -21,12 +21,16 @@
 			<view class="order-container-item full-width pa-md border-box" v-if="orderType === 'oil'">
 				<oil-order v-for="(k, index) in list" :order="k" class="order-item full-width" :key="index"></oil-order>
 			</view>
-			<view v-if="loading" class="loading-bar flex-row flex-jst-center flex-ali-center">
-				<u-loadmore :status="status" bg-color="bg-color" color="#AAAAAA" :load-text="loadText" icon-type="flower"/>
-			</view>
 			<!-- 汽车助手订单 -->
 			<view class="order-container-item full-width pa-md border-box" v-if="orderType === 'car'">
 				<car-order v-for="(k, index) in list" :order="k" class="order-item full-width" :key="index"></car-order>
+			</view>
+			<!-- 信用卡订单 -->
+			<view class="order-container-item full-width pa-md border-box" v-if="orderType === 'credit'">
+				<credit-order v-for="(k, index) in list" :order="k" class="order-item full-width" :key="index"></credit-order>
+			</view>
+			<view v-if="loading" class="loading-bar flex-row flex-jst-center flex-ali-center">
+				<u-loadmore :status="status" bg-color="bg-color" color="#AAAAAA" :load-text="loadText" icon-type="flower"/>
 			</view>
 		</view>
 		<view v-else class="pa-lg">
@@ -42,6 +46,7 @@
 	import eleOrder from './eleItem.vue'
 	import oilOrder from './oilItem.vue'
 	import carOrder from './carItem.vue'
+	import creditOrder from './creditItem.vue'
 	export default {
 		name: 'orderShow',
 		props: ['type', 'url', 'orderType'],
@@ -51,7 +56,8 @@
 			airOrder,
 			eleOrder,
 			oilOrder,
-			carOrder
+			carOrder,
+			creditOrder
 		},
 		data () {
 			return {
