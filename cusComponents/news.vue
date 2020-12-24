@@ -57,7 +57,7 @@
 			}
 		}
 		.shops-container{
-			padding: 0 10px;
+			padding: 0 5px;
 			.goods-item{
 				margin-bottom: 10px;
 			}

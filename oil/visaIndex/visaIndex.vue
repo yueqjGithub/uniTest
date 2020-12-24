@@ -187,7 +187,7 @@
 								icon: 'none',
 								title: res.message
 							})
-						}
+						} 
 					})
 				} else {
 					uni.navigateTo({

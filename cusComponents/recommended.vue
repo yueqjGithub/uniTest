@@ -86,7 +86,7 @@
 			box-sizing: border-box;
 			height: 455.38rpx;
 			.swiper-item{
-				padding: 0 10px;
+				padding: 0 5px;
 			}
 			.goods-item{
 			}

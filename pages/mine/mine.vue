@@ -42,7 +42,7 @@
 			<menu-list :list="person.apply"></menu-list>
 		</view>
 		<!-- <list-one></list-one> -->
-		<list-two></list-two>
+		<!-- <list-two></list-two> -->
 		<list-three></list-three>
 		<!-- 底部 -->
 		<view class="tab-add"></view>
@@ -57,7 +57,7 @@
 	import orderTab from './orderTabItem.vue'
 	import menuList from './menuList.vue'
 	// import listOne from './listOne.vue'
-	import listTwo from './listTwo.vue'
+	// import listTwo from './listTwo.vue'
 	import listThree from './listThree.vue'
 	export default {
 		name: 'mine',
@@ -66,7 +66,7 @@
 			orderTab,
 			menuList,
 			// listOne,
-			listTwo,
+			// listTwo,
 			listThree
 		},
 		data() {

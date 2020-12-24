@@ -35,7 +35,7 @@
 			</view>
 			<!-- 提交按钮 -->
 			<view class="pa-lg border-box full-width flex-row flex-jst-center flex-ali-center">
-				<button type="normal" :class="couldSubmit ? 'my-btn-primary text-white' : 'my-btn-normal text-dk-grey'" class="text-14"
+				<button type="normal" class="my-btn-primary text-white text-14"
 				 :disabled="!couldSubmit" @click="toDetail">{{$t('basic.ok')}}</button>
 			</view>
 		</view>

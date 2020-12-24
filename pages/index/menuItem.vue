@@ -29,7 +29,7 @@
 				return `${this.item.apply_iconfont.split('icon-')[1]}`
 			},
 			boxShadow () {
-				return `0px 2px 5px 1px ${this.item.apply_end_background}`
+				return `0px 1px 2px 1px ${this.item.apply_end_background}`
 			},
 			menuName () {
 				let result = ''

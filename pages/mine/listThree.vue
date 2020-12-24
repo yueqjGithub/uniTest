@@ -1,5 +1,24 @@
 <template>
 	<view class="vip-feedback pa-col-sm">
+		<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toAuthPage('/pages/memberAddress/memberAddress')">
+			<view class="flex-jst-start flex-ali-center" :class="langFlex">
+				<u-icon name="weibiaoti--37" custom-prefix="iconfont" size="40" class="text-primary"></u-icon>
+				<text class="ma-row-sm text-12">{{$t('mine.address')}}</text>
+			</view>
+			<button type="default" class="plain-btn">
+				<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
+			</button>
+		</view>
+		<!-- 推广海报 -->
+		<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toAuthPage('/pages/pullPoster/pullPoster')">
+			<view class="flex-jst-start flex-ali-center" :class="langFlex">
+				<u-icon name="renwuzhongxin-fabuneirong" custom-prefix="iconfont" size="40" class="text-primary"></u-icon>
+				<text class="ma-row-sm text-12">{{$t('mine.earingPost')}}</text>
+			</view>
+			<button type="default" class="plain-btn">
+				<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
+			</button>
+		</view>
 		<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toAuthPage('/pages/feedback/feedback')">
 			<view class="flex-jst-start flex-ali-center" :class="langFlex">
 				<u-icon name="renwuzhongxin-huodepinglun" custom-prefix="iconfont" size="40" class="text-primary"></u-icon>
