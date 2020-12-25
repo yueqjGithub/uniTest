@@ -80,7 +80,7 @@
 
 <style lang='scss'>
 	.cus-tab-container {
-		&.hide-tab{bottom: -56px;}
+		/* &.hide-tab{bottom: -56px;} */
 		height: 56px;
 		width: 100vw;
 		position: fixed;
