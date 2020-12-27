@@ -67,6 +67,9 @@
 			},
 			accountBalance: {
 				default: ''
+			},
+			savePhoneArea: {
+				default: ''
 			}
 		},
 		data() {
@@ -137,7 +140,7 @@
 					token: token,
 					id: vm.target.id,
 					mobile: vm.phone,
-					isp: vm.target.service_provider,
+					isp: vm.savePhoneArea,
 					adv: vm.adv ? 'true' : 'false',
 					sharing_preferences: vm.shareForPhoneCharge ? 'true' : 'false',
 					balance: vm.balance ? 'true' : 'false'

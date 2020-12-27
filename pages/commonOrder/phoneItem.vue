@@ -63,7 +63,6 @@
 			}
 		},
 		mounted() {
-			// console.log(this.order)
 		},
 		methods:{
 			toDetail () {

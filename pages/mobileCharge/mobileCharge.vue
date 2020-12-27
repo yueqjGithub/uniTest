@@ -69,7 +69,7 @@
 		</u-popup>
 		<!-- 充值弹出层 -->
 		<u-popup mode="center" v-model="showCharge" width="88%" border-radius="20.83" :mask-close-able="false">
-			<charge :target="currentFace" :phone="phone" v-if="showCharge" @close="showCharge = false" :accountBalance="account_balance"></charge>
+			<charge :target="currentFace" :phone="phone" v-if="showCharge" @close="showCharge = false" :accountBalance="account_balance" :savePhoneArea='savePhoneArea'></charge>
 		</u-popup>
 	</view>
 </template>
@@ -89,6 +89,7 @@
 		},
 		data() {
 			return {
+				savePhoneArea: '',
 				phone: '',
 				phoneArea: '', // 归属地
 				account_balance: '', // 用户余额
@@ -239,6 +240,7 @@
 								vm.provider = vm.typeList.find(item => item.type === res.data.type).value
 								vm.account_balance = res.data.account_balance
 								vm.phoneArea = vm.lang === 'zh-CN' ? res.data.name_cn : res.data.name
+								vm.savePhoneArea = res.data.name_cn
 							} else {
 								uni.showToast({
 									icon: 'none',
