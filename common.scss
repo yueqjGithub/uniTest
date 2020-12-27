@@ -104,6 +104,7 @@ text,view{
 .ma-col-md{margin: 27.77rpx 0;}
 .ma-col-sm{margin: 15rpx 0;}
 .ma-col-lg{margin: 28px 0;}
+.pa-btm-md{padding-bottom: 27.77rpx;}
 .pa-lg{
 	padding: 28px;
 }
@@ -230,10 +231,14 @@ text,view{
 	background: none;
 	border: none;
 	&.charge-row{
-		padding: 0;
+		padding: 7rpx 0;
 	}
 	&:after{
 		border: none !important;
 		background: none !important;
 	}
+}
+
+.order-bottom{
+	margin-top: 15rpx;
 }

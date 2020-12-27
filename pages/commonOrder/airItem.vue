@@ -1,6 +1,6 @@
 <template>
 	<view class="order-item pa-md" @click="toDetail">
-		<view class="order-top pa-col-md flex-jst-btw flex-ali-center" :class="langFlex">
+		<view class="order-top pa-btm-md flex-jst-btw flex-ali-center" :class="langFlex">
 			<u-icon name="feiji800" custom-prefix="iconfont" class="order-image flex-row flex-jst-center flex-ali-center"></u-icon>
 			<view class="order-cont flex-2 pa-row-md flex-column flex-jst-btw flex-ali-start">
 				<text class="shop-name full-width text-12 text-bold" :class="langFlex">{{stations}}</text>
@@ -15,7 +15,7 @@
 			</view>
 		</view>
 		<!-- 下 -->
-		<view class="flex-jst-btw flex-ali-center" :class="langFlex">
+		<view class="flex-jst-btw flex-ali-center order-bottom" :class="langFlex">
 			<view class="flex-jst-start flex-ali-center" :class="langFlex">
 				<text class="text-12 text-grey-1">{{$t('myOrder.orderNumber')}}</text>
 				<text class="text-12 text-grey-1 ma-row-sm">{{order.order_number}}</text>
@@ -82,7 +82,7 @@
 		background-color: #FFFFFF;
 		box-shadow:0px 10px 30px 0px rgba(152,152,152,0.15);
 		border-radius:13.88rpx;
-		height: 312.5rpx;
+		// height: 312.5rpx;
 		margin-bottom: 8px;
 		.order-top{
 			border-bottom: 1px solid #CCCCCC;
@@ -92,7 +92,7 @@
 				border-radius: 13.88rpx;
 				background: linear-gradient(-55deg, #ff5850, #fbca59);
 				color: #FFFFFF;
-				font-size: 150rpx;
+				font-size: 100rpx;
 			}
 			.order-cont{
 				height: 173.61rpx;

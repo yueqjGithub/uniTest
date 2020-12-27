@@ -116,9 +116,11 @@
 				let result = this.target.selling_price
 				if (this.adv) {
 					result -= (this.target.preferential * 0.5)
+					debugger
 				}
 				if (this.shareForPhoneCharge) {
 					result -= (this.target.preferential * 0.5)
+					debugger
 				}
 				return Number(result).toFixed(2)
 			}

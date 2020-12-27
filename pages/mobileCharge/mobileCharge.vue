@@ -390,6 +390,7 @@
 					&.cur-face {
 						border-color: $uni-color-primary;
 						color: $uni-color-primary;
+						border-width: 2px;
 					}
 				}
 			}

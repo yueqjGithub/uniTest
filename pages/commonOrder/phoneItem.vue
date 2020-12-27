@@ -1,10 +1,10 @@
 <template>
 	<view class="order-item pa-md">
-		<view class="order-top pa-col-md flex-jst-btw flex-ali-center" :class="langFlex">
+		<view class="order-top pa-btm-md flex-jst-btw flex-ali-center" :class="langFlex">
 			<u-icon name="shouji" custom-prefix="iconfont" class="order-image flex-row flex-jst-center flex-ali-center" :class="type === 'traffic' ? 'order-image-traffic' : ''"></u-icon>
 			<view class="order-cont flex-2 pa-row-md flex-column flex-jst-btw flex-ali-start">
 				<text class="shop-name full-width text-12 text-bold" :class="langFlex">{{titleName}}</text>
-				<text class="shop-price full-width text-grey-1" :class="langFlex">
+				<text class="shop-price full-width text-grey-1 text-12" :class="langFlex">
 					{{ispName}}
 				</text>
 				<text class="text-14 text-grey-1">{{order.mobile}}</text>
@@ -15,7 +15,7 @@
 			</view>
 		</view>
 		<!-- 下 -->
-		<view class="flex-jst-btw flex-ali-center" :class="langFlex">
+		<view class="flex-jst-btw flex-ali-center order-bottom" :class="langFlex">
 			<view class="flex-jst-start flex-ali-center" :class="langFlex">
 				<text class="text-12 text-grey-1">{{$t('myOrder.orderNumber')}}</text>
 				<text class="text-12 text-grey-1 ma-row-sm">{{order.order_number}}</text>
@@ -42,7 +42,7 @@
 				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'
 			},
 			ispName () {
-				return this.lang === 'zh-CN' ? this.order.isp : this.order.isp
+				return this.lang === 'zh-CN' ? this.order.isp.name_cn : this.order.isp.name
 			},
 			statusName () {
 				return this.lang === 'zh-CN' ? this.order.status.name_cn : this.order.status.name
@@ -63,6 +63,7 @@
 			}
 		},
 		mounted() {
+			// console.log(this.order)
 		},
 		methods:{
 			toDetail () {
@@ -80,7 +81,7 @@
 		background-color: #FFFFFF;
 		box-shadow:0px 10px 30px 0px rgba(152,152,152,0.15);
 		border-radius:13.88rpx;
-		height: 312.5rpx;
+		// height: 312.5rpx;
 		margin-bottom: 8px;
 		.order-top{
 			border-bottom: 1px solid #CCCCCC;
@@ -90,7 +91,7 @@
 				border-radius: 13.88rpx;
 				background: linear-gradient(-55deg, #0F96FF, #4BDCFF);
 				color: #FFFFFF;
-				font-size: 150rpx;
+				font-size: 100rpx;
 				&.order-image-traffic{
 					background: linear-gradient(-55deg, #FF8C28, #FFD232);
 				}
