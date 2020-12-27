@@ -3,14 +3,14 @@
 		<view class="head-container flex-row flex-jst-center flex-ali-center">
 			<view class="phone-container">
 				<view class="text-white text-14 full-width text-right area-show">{{phoneArea}}</view>
-				<u-input v-model="phone" class="text-white my-text-right" :custom-style="{color: '#ffffff', fontSize: '22px'}" :placeholder="numberTip"
+				<u-input v-model="phone" class="text-white my-text-right" :custom-style="{color: '#ffffff', fontSize: phone ? '28px' : '20px'}" :placeholder="numberTip"
 				 type="text"></u-input>
 				<view class="bottom-gap"></view>
 			</view>
 		</view>
 		<!-- body -->
 		<view class="content-container pa-md flex-column flex-jst-start flex-ali-center">
-			<button type="default" class="search-btn text-primary" @click='queryBalance'>{{$t('mobileCharge.queryBalance')}}</button>
+			<button type="default" class="my-btn-normal search-btn text-primary" @click='queryBalance'>{{$t('mobileCharge.queryBalance')}}</button>
 			<!-- 面额列表 -->
 			<view class="face-list flex-row flex-wrap flex-jst-start flex-ali-start full-width">
 				<view class="face-item flex-row flex-jst-center flex-ali-center" v-for="k in priceList" :key="k.id" :class="k.id === currentFace.id && 'cur-face'"
@@ -24,30 +24,30 @@
 		</view>
 		<!-- 链接列表 -->
 		<view class="vip-feedback pa-col-sm ma-col-md">
-			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex">
+			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toPage('/pages/buyVip/buyVip')">
 				<view class="flex-jst-start flex-ali-center" :class="langFlex">
 					<u-icon name="weibiaoti--46" custom-prefix="iconfont" size="40" class="text-primary"></u-icon>
 					<text class="ma-row-sm text-12">{{$t('mobileCharge.vipGuide')}}</text>
 				</view>
-				<button type="default" class="plain-btn" @click="toPage('/pages/buyVip/buyVip')">
+				<button type="default" class="plain-btn">
 					<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
 				</button>
 			</view>
-			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex">
+			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toPage('/pages/coin/coin')">
 				<view class="flex-jst-start flex-ali-center" :class="langFlex">
 					<u-icon name="weibiaoti--50" custom-prefix="iconfont" size="40" class="text-primary"></u-icon>
 					<text class="ma-row-sm text-12">{{$t('mobileCharge.promoteGuide')}}</text>
 				</view>
-				<button type="default" class="plain-btn" @click="toPage('/pages/coin/coin')">
+				<button type="default" class="plain-btn">
 					<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
 				</button>
 			</view>
-			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex">
+			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toPage('/pages/help/help?type=telephone_fare')">
 				<view class="flex-jst-start flex-ali-center" :class="langFlex">
 					<u-icon name="bangzhu" custom-prefix="iconfont" size="40" class="text-primary"></u-icon>
 					<text class="ma-row-sm text-12">{{$t('mobileCharge.helpCenter')}}</text>
 				</view>
-				<button type="default" class="plain-btn" @click="toPage('/pages/help/help?type=telephone_fare')">
+				<button type="default" class="plain-btn">
 					<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
 				</button>
 			</view>
@@ -77,7 +77,8 @@
 <script>
 	import {
 		mapState,
-		mapActions
+		mapActions,
+		mapMutations
 	} from 'vuex'
 	import urls from '@/service/urls.js'
 	import charge from './charge.vue'
@@ -154,7 +155,15 @@
 		onShow() {
 			this.queryPrice()
 		},
+		onShareAppMessage(res) {
+			this.setSharePhone(true)
+			return {
+				title: '自定义分享标题',
+				path: '/pages/index/index'
+			}
+		},
 		methods: {
+			...mapMutations(['setSharePhone']),
 			...mapActions(['checkLogin']),
 			toPage (path) {
 				uni.navigateTo({
@@ -265,8 +274,8 @@
 					})
 					vm.$post(urls.queryPhoneBalance, obj).then(res => {
 						uni.hideLoading()
-						if (res.success && res.data.status === 1) {
-							vm.phone_balance = res.data.money
+						if (res.success) {
+							vm.phone_balance = res.data.account_balance
 							vm.showBalance = true
 						} else {
 							uni.showToast({
@@ -380,6 +389,7 @@
 
 					&.cur-face {
 						border-color: $uni-color-primary;
+						color: $uni-color-primary;
 					}
 				}
 			}

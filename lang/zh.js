@@ -25,6 +25,7 @@ export default {
 		getValiCode: '获取验证码',
 		notFill: '信息未填写完整',
 		success: '操作成功',
+		paySuc: '支付成功',
 		faild: '操作失败',
 		aggrement: '请确认已知晓用户协议',
 		delConfirm: '确定要删除吗'

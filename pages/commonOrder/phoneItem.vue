@@ -9,7 +9,7 @@
 				</text>
 				<text class="text-14 text-grey-1">{{order.mobile}}</text>
 				<view class="order-time flex-jst-btw full-width flex-ali-base" :class="langFlex">
-					<text class="total-price text-16 text-bold text-primary">￥{{order.order_total}}</text>
+					<text class="total-price text-16 text-bold text-primary">￥{{type === 'traffic' ? order.order_total : order.recharge_amount}}</text>
 					<text class="time-show text-grey-1 text-12">{{order.createtime}}</text>
 				</view>
 			</view>
@@ -36,7 +36,7 @@
 		computed: {
 			...mapState(['lang']),
 			titleName () {
-				return this.order === 'phone' ? this._i18n.messages[this.lang].commonOrder.phoneMoneyCharge : this._i18n.messages[this.lang].commonOrder.trafficPage
+				return this.type === 'phone' ? this._i18n.messages[this.lang].commonOrder.phoneMoneyCharge : this._i18n.messages[this.lang].commonOrder.trafficPage
 			},
 			langFlex () {
 				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'

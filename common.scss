@@ -229,6 +229,9 @@ text,view{
 .cus-plain-btn{
 	background: none;
 	border: none;
+	&.charge-row{
+		padding: 0;
+	}
 	&:after{
 		border: none !important;
 		background: none !important;

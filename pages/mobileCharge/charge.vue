@@ -15,20 +15,20 @@
 			</view>
 			<view class="charge-row border-box pa-col-md full-width flex-jst-btw flex-ali-center" :class="langFlex">
 				<text class="text-12 text-bold">{{$t('mobileCharge.normalPrice')}}</text>
-				<text class="text-cus-error text-14">￥{{target.selling_price}}</text>
+				<text class="text-cus-error text-14">￥{{sellPrice}}</text>
 			</view>
 			<view class="charge-row border-box pa-col-md full-width flex-jst-btw flex-ali-center" :class="langFlex">
 				<text class="text-12 text-bold">{{$t('mobileCharge.vipPrice')}}</text>
-				<text class="text-primary text-14">￥{{target.preferential}}</text>
+				<text class="text-primary text-14">￥{{target.selling_price}}</text>
 			</view>
-			<view class="charge-row border-box pa-col-md full-width flex-jst-btw flex-ali-center" :class="langFlex">
+			<view class="charge-row border-box pa-col-md full-width flex-jst-btw flex-ali-center" :class="langFlex" @click="showAd">
 				<text class="text-12 text-bold">{{$t('mobileCharge.advertising')}}</text>
-				<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey" @click="showAd"></u-icon>
+				<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
 			</view>
-			<view class="charge-row border-box pa-col-md full-width flex-jst-btw flex-ali-center" :class="langFlex">
-				<text class="text-12 text-bold">{{$t('mobileCharge.promote')}}</text>
-				<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey" @click="promote()"></u-icon>
-			</view>
+			<button class="cus-plain-btn charge-row border-box full-width flex-jst-btw flex-ali-center" :class="langFlex" open-type="share">
+					<text class="text-12 text-bold">{{$t('mobileCharge.promote')}}</text>
+					<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
+			</button>
 			<view class="charge-row border-box pa-col-md full-width flex-jst-btw flex-ali-center flex-row">
 				<view class="balance-left flex-ali-center" :class="langFlex">
 					<text class="text-grey text-12">{{$t('makeOrder.myBalance')}}</text>
@@ -111,6 +111,16 @@
 			},
 			transIcon() {
 				return this.lang === 'zh-CN' ? 'tran-icon' : ''
+			},
+			sellPrice () {
+				let result = this.target.selling_price
+				if (this.adv) {
+					result -= (this.target.preferential * 0.5)
+				}
+				if (this.shareForPhoneCharge) {
+					result -= (this.target.preferential * 0.5)
+				}
+				return Number(result).toFixed(2)
 			}
 		},
 		mounted() {
@@ -156,14 +166,14 @@
 									  tmplIds: ['9UTQnyosblyWEn16aJ5GT9DbjClzWU6yljBWXncAPIk'],
 									  success (result) {
 											uni.showToast({
-												title: vm._i18n.messages[vm.lang].basic.chargeSuc,
+												title: vm._i18n.messages[vm.lang].basic.paySuc,
 												icon: 'success'
 											})
 											vm.$emit('close')
 										},
 										fail (err) {
 											uni.showToast({
-												title: vm._i18n.messages[vm.lang].basic.chargeSuc,
+												title: vm._i18n.messages[vm.lang].basic.paySuc,
 												icon: 'success'
 											})
 											vm.$emit('close')
@@ -200,6 +210,8 @@
 				this.ad.show()
 			},
 			closeHandler() {
+				this.setSharePhone(false)
+				this.ad.destroy()
 				this.$emit('close')
 			}
 		}
