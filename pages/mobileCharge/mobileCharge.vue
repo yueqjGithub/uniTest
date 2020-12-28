@@ -56,8 +56,8 @@
 		<u-popup mode="center" v-model="showBalance" width="88%" border-radius="20.83" :mask-close-able="false">
 			<view class="pa-md flex-column flex-jst-start flex-ali-center balance-container full-width">
 				<view class="balance-show flex-row flex-jst-center flex-ali-base full-width">
-					<text class="text-bold text-12 text-primary">￥</text>
-					<text class="text-bold text-24 text-primary">{{phone_balance}}</text>
+					<!-- <text class="text-bold text-12 text-primary"></text> -->
+					<text class="text-bold text-24 text-primary text-center">{{phone_balance}}￥</text>
 				</view>
 				<view class="full-width text-center text-12 text-grey ma-col-sm">{{$t('mobileCharge.balanceTit')}}</view>
 				<view class="ma-col-sm btn-group flex-column flex-ali-center flex-jst-btw">

@@ -232,6 +232,7 @@ text,view{
 	border: none;
 	&.charge-row{
 		padding: 7rpx 0;
+		border-radius: 0;
 	}
 	&:after{
 		border: none !important;

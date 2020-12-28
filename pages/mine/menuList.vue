@@ -62,7 +62,7 @@
 					color: '#3498DB',
 					path: '/pages/commonOrder/commonOrder?type=phone',
 					icon: 'shouji',
-					name_cn: '电话费',
+					name_cn: '手机充值',
 					name: "تېلېفۇن ھەققى"
 				},{
 					id: 'A1603117092',
