@@ -15,15 +15,15 @@
 			<view class="user-id text-light-grey" v-if="isLogin">ID:{{person.user_number}}</view>
 			<!-- 统计 -->
 			<view class="flex-row flex-jst-ard flex-ali-center full-width pa-md">
-				<view class="total-item flex-column flex-jst-btw flex-ali-center" @click="toAuthPage('/pages/collect/collect')">
+				<view class="total-item flex-column flex-jst-btw flex-ali-center pa-row-md border-box" @click="toAuthPage('/pages/collect/collect')">
 					<text class="text-18 text-bold text-white">{{person.collect || 0}}</text>
 					<text class="text-12 text-light-grey">{{$t('mine.collect')}}</text>
 				</view>
-				<view class="total-item flex-column flex-jst-btw flex-ali-center">
+				<view class="total-item flex-column flex-jst-btw flex-ali-center pa-row-md border-box">
 					<text class="text-18 text-bold text-white">{{person.income || 0}}</text>
 					<text class="text-12 text-light-grey">{{$t('mine.earnings')}}</text>
 				</view>
-				<view class="total-item flex-column flex-jst-btw flex-ali-center">
+				<view class="total-item flex-column flex-jst-btw flex-ali-center pa-row-md border-box">
 					<text class="text-18 text-bold text-white">{{person.account_balance || 0}}</text>
 					<text class="text-12 text-light-grey">{{$t('mine.balance')}}</text>
 				</view>
