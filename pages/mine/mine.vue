@@ -119,7 +119,6 @@
 						token: token
 					}
 					vm.$post(urls.queryMineInfo, obj).then(res => {
-						console.log(res)
 						this.person = res.data
 					})
 				}

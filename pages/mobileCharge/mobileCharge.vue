@@ -14,13 +14,13 @@
 			<!-- 面额列表 -->
 			<view class="face-list flex-row flex-wrap flex-jst-start flex-ali-start full-width">
 				<view class="face-item flex-row flex-jst-center flex-ali-center" v-for="k in priceList" :key="k.id" :class="k.id === currentFace.id && 'cur-face'"
-				 @click="chooseCur(k)">
+				 @click="openCharge(k)">
 					<text class="text-12 text-bold">￥</text>
 					<text class="text-24 text-bold">{{k.face_value}}</text>
 				</view>
 			</view>
 			<!-- 充值按钮 -->
-			<button type="default" class="charge-btn" @click="openCharge">{{$t('mobileCharge.charge')}}</button>
+			<!-- <button type="default" class="charge-btn" @click="openCharge">{{$t('mobileCharge.charge')}}</button> -->
 		</view>
 		<!-- 链接列表 -->
 		<view class="vip-feedback pa-col-sm ma-col-md">
@@ -69,7 +69,7 @@
 		</u-popup>
 		<!-- 充值弹出层 -->
 		<u-popup mode="center" v-model="showCharge" width="88%" border-radius="20.83" :mask-close-able="false">
-			<charge :target="currentFace" :phone="phone" v-if="showCharge" @close="showCharge = false" :accountBalance="account_balance" :savePhoneArea='savePhoneArea'></charge>
+			<charge :target="currentFace" :phone="phone" v-if="showCharge" @close="showCharge = false" :accountBalance="account_balance" :savePhoneArea='savePhoneArea' :isVip='isVip'></charge>
 		</u-popup>
 	</view>
 </template>
@@ -99,6 +99,7 @@
 				priceAll: '',
 				currentFace: '', // 当前选择的面额id
 				provider: 'china_mobile', // 运营商标识
+				isVip: false,
 				typeList: [{
 						type: '联通',
 						value: 'china_unicom'
@@ -171,11 +172,12 @@
 					url: path
 				})
 			},
-			chooseCur(target) {
-				this.currentFace = target
-			},
-			async openCharge() {
+			// chooseCur(target) {
+			// 	this.currentFace = target
+			// },
+			async openCharge(target) {
 				const vm = this
+				this.currentFace = target
 				vm.showBalance = false
 				if (vm.currentFace === '') {
 					uni.showToast({
@@ -214,6 +216,7 @@
 						uni.hideLoading()
 						if (res.success) {
 							vm.priceAll = res.data
+							vm.isVip = res.data.is_vip
 						}
 					})
 				} else {

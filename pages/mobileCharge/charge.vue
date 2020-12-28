@@ -19,7 +19,7 @@
 			</view>
 			<view class="charge-row border-box pa-col-md full-width flex-jst-btw flex-ali-center" :class="langFlex">
 				<text class="text-12 text-bold">{{$t('mobileCharge.vipPrice')}}</text>
-				<text class="text-primary text-14">￥{{target.selling_price}}</text>
+				<text class="text-primary text-14">￥{{target.member_price}}</text>
 			</view>
 			<view class="charge-row border-box pa-col-md full-width flex-jst-btw flex-ali-center" :class="langFlex" @click="showAd">
 				<text class="text-12 text-bold">{{$t('mobileCharge.advertising')}}</text>
@@ -70,6 +70,10 @@
 			},
 			savePhoneArea: {
 				default: ''
+			},
+			isVip: {
+				type: Boolean,
+				default: false
 			}
 		},
 		data() {
@@ -116,20 +120,18 @@
 				return this.lang === 'zh-CN' ? 'tran-icon' : ''
 			},
 			sellPrice () {
-				let result = this.target.selling_price
+				let result = this.isVip ? this.target.member_price : this.target.regular_price
 				if (this.adv) {
 					result -= (this.target.preferential * 0.5)
-					debugger
 				}
 				if (this.shareForPhoneCharge) {
 					result -= (this.target.preferential * 0.5)
-					debugger
 				}
 				return Number(result).toFixed(2)
 			}
 		},
 		mounted() {
-			// console.log(this.target)
+			console.log(this.target)
 		},
 		methods: {
 			...mapMutations(['setSharePhone']),
