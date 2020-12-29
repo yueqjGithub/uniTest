@@ -131,7 +131,6 @@
 			}
 		},
 		mounted() {
-			console.log(this.target)
 		},
 		methods: {
 			...mapMutations(['setSharePhone']),
