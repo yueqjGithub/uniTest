@@ -256,6 +256,13 @@
 				"navigationStyle": "custom",
 				"enablePullDownRefresh": false
 			}
+		}, {
+			"path": "pullOrder/pullOrder",
+			"style": {
+				"navigationBarTitleText": "盈利订单",
+				"backgroundColor": "#23AF8C"
+			}
+
 		}]
 	}, {
 		"root": "electric",

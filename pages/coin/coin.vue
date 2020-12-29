@@ -95,7 +95,7 @@
 				},
 				menuList: [
 					// { keyName: 'total', iconName: 'weibiaoti--31', color: '#E74C3C', path: '' },
-					{ keyName: 'order', iconName: 'weibiaoti--33', color: '#3498DB', path: '' },
+					{ keyName: 'order', iconName: 'weibiaoti--33', color: '#3498DB', path: '/pullOtherPage/pullOrder/pullOrder' },
 					{ keyName: 'record', iconName: 'weibiaoti--50', color: '#F39C12', path: '/pullOtherPage/withdrawHis/withdrawHis' },
 					{ keyName: 'link', iconName: 'ABSxitong-weixintubiao', color: '#00BE87', path: '/pages/pullSalon/pullSalon' },
 					{ keyName: 'picture', iconName: 'weibiaoti--28', color: '#9B59B6', path: '/pages/pullPoster/pullPoster' },

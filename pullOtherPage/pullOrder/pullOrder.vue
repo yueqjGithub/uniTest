@@ -4,14 +4,17 @@
 			<view class="shops-container flex-column flex-jst-start flex-ali-center" v-if="list.length > 0">
 				<!-- 话费订单 -->
 				<view class="his-item ma-col-sm pa-row-md border-box full-width" v-for="k in list" :key="k.id">
-					<view class="item-container pa-md border-box flex-row flex-jst-btw flex-ali-center" :class="langFlex">
-						<view class="flex-row flex-jst-center flex-ali-base">
-							<text class="text-14 text-bold text-primary">￥</text>
-							<text class="text-32 text-bold text-primary">{{k.amount}}</text>
+					<view class="item-container pa-md border-box flex-row flex-jst-btw flex-ali-end" :class="langFlex">
+						<view class="flex-column flex-jst-btw" :class="lang==='zh-CN' ? 'flex-ali-start' : 'flex-ali-end'">
+							<view class="flex-row flex-jst-center flex-ali-base">
+								<text class="text-14 text-bold text-primary">￥</text>
+								<text class="text-24 text-bold text-primary">{{k.money}}</text>
+							</view>
+							<text class="text-grey text-12">{{k.createtime}}</text>
 						</view>
 						<view class="flex-column flex-jst-btw" :class="lang==='zh-CN' ? 'flex-ali-end' : 'flex-ali-start'">
-							<text class="text-14" :style='{color: statusColor(k.status)}'>{{k.status}}</text>
-							<text class="text-grey text-12">{{k.createtime}}</text>
+							<text class="text-14">{{lang === 'zh-CN' ? k.memo.name_cn : k.memo.name}}</text>
+							<text class="text-grey text-12">{{k.order_number}}</text>
 						</view>
 					</view>
 				</view>
@@ -62,11 +65,9 @@
 			lang: {
 				immediate: true,
 				handler: function(val) {
-					if (val !== 'zh-CN') {
-						uni.setNavigationBarTitle({
-							title: this._i18n.messages[val].pullPage.record
-						})
-					}
+					uni.setNavigationBarTitle({
+						title: this._i18n.messages[val].pullPage.order
+					})
 				}
 			}
 		},
@@ -100,7 +101,7 @@
 					token: token
 				}
 				vm.loading = true
-				vm.$post(urls.withdrawList, obj).then(res => {
+				vm.$post(urls.pullOrder, obj).then(res => {
 					console.log(res)
 					const len = res.data.data.length
 					if (len === vm.pageSize) { // 首次请求数量填满一页
@@ -126,7 +127,7 @@
 						pagesize: vm.pageSize,
 						token: token
 					}
-					vm.$post(urls.withdrawList, obj).then(res => {
+					vm.$post(urls.pullOrder, obj).then(res => {
 						const len = res.data.data.length
 						if (len === vm.pageSize) { // 首次请求数量填满一页
 							vm.list = [...vm.list, ...res.data.data]

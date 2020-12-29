@@ -11,7 +11,7 @@ const urls = {
 		'/v1/api/public/gitpis', '/v1/api/public/pis', '/v1/api/publicity/index', '/v1/api/electric/denomination', '/v1/api/oilcard/commit',
 		'/v1/api/ticket/commit', '/v1/api/train/pay', '/v1/api/train/order', '/v1/api/ticket/order', '/v1/api/electric/commit', '/v1/api/driving/wzfind',
 		'/v1/api/withdraw/commit', '/v1/api/credit/creditline', '/v1/api/credit/update', '/v1/api/oilcard/shop', '/v1/api/oilcard/cardlist', '/v1/api/oilcard/addoilcard', '/v1/api/driving/edit', '/v1/api/oilcard/del',
-		'/v1/api/driving/kffind', '/v1/api/driving/wz', '/v1/api/traffic/commit', '/v1/api/traffic/order', '/v1/api/driving/wzordercreate', '/v1/api/driving/wzorder'
+		'/v1/api/driving/kffind', '/v1/api/driving/wz', '/v1/api/traffic/commit', '/v1/api/traffic/order', '/v1/api/driving/wzordercreate', '/v1/api/driving/wzorder', '/v1/api/publicity/profitorder'
 	], // 需要加密的接口2
 	baseUrl: 'https://shopapi.apiself.com',
 	// basic
@@ -89,6 +89,7 @@ const urls = {
 	submitWithdraw: '/v1/api/withdraw/commit', // 申请提现2
 	withdrawList: '/v1/api/withdraw/list', // 提现记录2
 	pullRank: '/v1/api/publicity/ranking', // 推广排行2
+	pullOrder: '/v1/api/publicity/profitorder', // 盈利订单2
 	// 反馈中心
 	subFeedback: '/v1/api/public/feedback', // 提交反馈
 	// 订单公共页
