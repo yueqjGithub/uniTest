@@ -5,8 +5,7 @@
 		</view>
 		<view class="flex-column full-width flex-jst-start flex-ali-center">
 			<view class="full-width flex-row flex-jst-center flex-ali-base">
-				<text class="text-primary text-12 text-bold">￥</text>
-				<text class="text-primary text-24 text-bold">{{target.face_value}}</text>
+				<text class="text-primary text-24 text-bold">{{target.face_value}}M</text>
 			</view>
 			<text class="full-width text-center ma-col-sm text-grey text-12">{{$t('mobileCharge.chargeValue')}}</text>
 			<view class="charge-row border-box pa-col-md full-width flex-jst-btw flex-ali-center" :class="langFlex">
@@ -15,7 +14,7 @@
 			</view>
 			<view class="charge-row border-box pa-col-md full-width flex-jst-btw flex-ali-center" :class="langFlex">
 				<text class="text-12 text-bold">{{$t('mobileCharge.normalPrice')}}</text>
-				<text class="text-cus-error text-14">￥{{target.selling_price}}</text>
+				<text class="text-cus-error text-14">￥{{sellPrice}}</text>
 			</view>
 			<view class="charge-row border-box pa-col-md full-width flex-jst-btw flex-ali-center" :class="langFlex">
 				<text class="text-12 text-bold">{{$t('mobileCharge.vipPrice')}}</text>
@@ -59,6 +58,13 @@
 			},
 			accountBalance: {
 				default: ''
+			},
+			savePhoneArea: {
+				default: ''
+			},
+			isVip: {
+				type: Boolean,
+				default: false
 			}
 		},
 		data() {
@@ -70,21 +76,6 @@
 			}
 		},
 		created () {
-			this.ad = wx.createRewardedVideoAd({
-				adUnitId: 'adunit-be9bafbf29884a63'
-			})
-			this.ad.onLoad(() => {
-				this.isLoaded = true
-				// console.log('onLoad event')
-				// 当激励视频被关闭时，默认预载下一条数据，加载完成时仍然触发 `onLoad` 事件
-			})
-			this.ad.onError((err) => {
-				console.log('onError event', err)
-			})
-			this.ad.onClose(res => {
-				this.adv = res.isEnded
-				// console.log('onClose event', res)
-			})
 		},
 		destroyed () {
 			this.ad = null
@@ -106,6 +97,10 @@
 			},
 			transIcon() {
 				return this.lang === 'zh-CN' ? 'tran-icon' : ''
+			},
+			sellPrice () {
+				let result = this.isVip ? this.target.member_price : this.target.regular_price
+				return Number(result).toFixed(2)
 			}
 		},
 		mounted() {
@@ -120,7 +115,7 @@
 					token: token,
 					id: vm.target.id,
 					mobile: vm.phone,
-					isp: vm.target.service_provider,
+					isp: vm.savePhoneArea,
 					// adv: vm.adv ? 'true' : 'false',
 					// sharing_preferences: vm.shareForPhoneCharge ? 'true' : 'false',
 					balance: vm.balance ? 'true' : 'false'
@@ -176,22 +171,6 @@
 				}, () => {
 					uni.hideLoading()
 				})
-			},
-			promote () { // 推广
-				const vm = this
-				if (vm.shareForPhoneCharge) {
-					uni.showToast({
-						icon: 'none',
-						title: vm._i18n.messages[vm.lang].mobileCharge.alreadyPull
-					})
-				} else {
-					uni.navigateTo({
-						url: '/pages/pullPoster/pullPoster?mode=phone'
-					})
-				}
-			},
-			showAd () { // 播放广告
-				this.ad.show()
 			},
 			closeHandler() {
 				this.$emit('close')
