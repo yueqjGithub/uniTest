@@ -41,7 +41,7 @@
 		</view>
 		<!-- list栏 -->
 		<view class="vip-feedback pa-col-sm">
-			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toPage('/pages/help/help?type=user_xy')">
+			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toInfoPage('/pages/help/help?type=user_xy')">
 				<view class="flex-jst-start flex-ali-center" :class="langFlex">
 					<u-icon name="renwuzhongxin-huodepinglun" custom-prefix="iconfont" size="40" class="text-gold"></u-icon>
 					<text class="ma-row-sm text-12">{{$t('vip.agreement')}}</text>
@@ -57,7 +57,7 @@
 				</view>
 				<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon"></u-icon>
 			</button>
-			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toPage('/pages/help/help?type=my_help')">
+			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toInfoPage('/pages/help/help?type=my_help')">
 				<view class="flex-jst-start flex-ali-center" :class="langFlex">
 					<u-icon name="bangzhu" custom-prefix="iconfont" size="40" class="text-gold"></u-icon>
 					<text class="ma-row-sm text-12">{{$t('vip.support')}}</text>
@@ -116,6 +116,13 @@
 			toPage (path) {
 				uni.navigateTo({
 					url: path
+				})
+			},
+			toInfoPage (path) {
+				const vm = this
+				const url = vm.lang === 'zh-CN' ? `${path}_cn` : path
+				uni.navigateTo({
+					url: url
 				})
 			},
 			async queryMine () {

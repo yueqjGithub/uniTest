@@ -53,7 +53,7 @@
 				})
 				vm.$get(urls.queryHelp, obj).then(res => {
 					uni.hideLoading()
-					vm.cont = res.code.telephone_fare
+					vm.cont = res.data
 				})
 			}
 		}
