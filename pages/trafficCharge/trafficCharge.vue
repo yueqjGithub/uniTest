@@ -3,8 +3,8 @@
 		<view class="head-container flex-row flex-jst-center flex-ali-center">
 			<view class="phone-container">
 				<view class="text-white text-14 full-width text-right area-show">{{phoneArea}}</view>
-				<u-input v-model="phone" class="text-white my-text-right" :custom-style="{color: '#ffffff', fontSize: '22px'}" :placeholder="numberTip"
-				 type="text"></u-input>
+				<u-input v-model="phone" class="text-white my-text-right" :custom-style="{color: '#ffffff', fontSize: '22px'}"
+				 :placeholder="numberTip" type="text"></u-input>
 				<view class="bottom-gap"></view>
 			</view>
 		</view>
@@ -14,42 +14,42 @@
 			<!-- 面额列表 -->
 			<view class="face-list flex-row flex-wrap flex-jst-start flex-ali-start full-width">
 				<view class="face-item flex-column flex-jst-center flex-ali-center" v-for="k in priceList" :key="k.id" :class="k.id === currentFace.id && 'cur-face'"
-				 @click="chooseCur(k)">
-					<text class="text-24 text-bold">{{k.face_value}}M</text>
+				 @click="openCharge(k)">
+					<text class="text-18 text-bold">{{k.face_value}}M</text>
 					<view class="flex-row flex-jst-center flex-ali-center ma-col-sm">
-						<text class="text-12 text-grey-1">￥{{k.selling_price}}</text>
+						<text class="text-12 text-grey-1">￥{{k.regular_price}}</text>
 					</view>
 				</view>
 			</view>
 			<!-- 充值按钮 -->
-			<button type="default" class="charge-btn" @click="openCharge">{{$t('mobileCharge.charge')}}</button>
+			<!-- <button type="default" class="charge-btn" @click="openCharge">{{$t('mobileCharge.charge')}}</button> -->
 		</view>
 		<!-- 链接列表 -->
 		<view class="vip-feedback pa-col-sm ma-col-md">
-			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex">
+			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toPage('/pages/buyVip/buyVip')">
 				<view class="flex-jst-start flex-ali-center" :class="langFlex">
 					<u-icon name="weibiaoti--46" custom-prefix="iconfont" size="40" class="text-primary"></u-icon>
 					<text class="ma-row-sm text-12">{{$t('mobileCharge.vipGuide')}}</text>
 				</view>
-				<button type="default" class="plain-btn" @click="toPage('/pages/buyVip/buyVip')">
+				<button type="default" class="plain-btn">
 					<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
 				</button>
 			</view>
-			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex">
+			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toPage('/pages/coin/coin')">
 				<view class="flex-jst-start flex-ali-center" :class="langFlex">
 					<u-icon name="weibiaoti--50" custom-prefix="iconfont" size="40" class="text-primary"></u-icon>
 					<text class="ma-row-sm text-12">{{$t('mobileCharge.promoteGuide')}}</text>
 				</view>
-				<button type="default" class="plain-btn" @click="toPage('/pages/coin/coin')">
+				<button type="default" class="plain-btn">
 					<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
 				</button>
 			</view>
-			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex">
+			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toInfoPage('/pages/help/help?type=telephone_fare')">
 				<view class="flex-jst-start flex-ali-center" :class="langFlex">
 					<u-icon name="bangzhu" custom-prefix="iconfont" size="40" class="text-primary"></u-icon>
 					<text class="ma-row-sm text-12">{{$t('mobileCharge.helpCenter')}}</text>
 				</view>
-				<button type="default" class="plain-btn" @click="toInfoPage('/pages/help/help?type=telephone_fare')">
+				<button type="default" class="plain-btn">
 					<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
 				</button>
 			</view>
@@ -71,7 +71,8 @@
 		</u-popup>
 		<!-- 充值弹出层 -->
 		<u-popup mode="center" v-model="showCharge" width="88%" border-radius="20.83" :mask-close-able="false">
-			<charge :target="currentFace" :phone="phone" v-if="showCharge" @close="showCharge = false" :accountBalance="account_balance"></charge>
+			<charge :target="currentFace" :phone="phone" v-if="showCharge" @close="showCharge = false" :accountBalance="account_balance"
+			 :savePhoneArea='savePhoneArea' :isVip='isVip'></charge>
 		</u-popup>
 	</view>
 </template>
@@ -90,6 +91,8 @@
 		},
 		data() {
 			return {
+				savePhoneArea: '',
+				isVip: false,
 				phone: '',
 				phoneArea: '', // 归属地
 				account_balance: '', // 用户余额
@@ -116,10 +119,10 @@
 		},
 		computed: {
 			...mapState(['lang']),
-			langFlex () {
+			langFlex() {
 				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'
 			},
-			transIcon () {
+			transIcon() {
 				return this.lang === 'zh-CN' ? 'tran-icon' : ''
 			},
 			inputClass() {
@@ -158,7 +161,7 @@
 		},
 		methods: {
 			...mapActions(['checkLogin']),
-			toPage (path) {
+			toPage(path) {
 				uni.navigateTo({
 					url: path
 				})
@@ -177,11 +180,9 @@
 					})
 				}
 			},
-			chooseCur(target) {
-				this.currentFace = target
-			},
-			async openCharge() {
+			async openCharge(target) {
 				const vm = this
+				this.currentFace = target
 				vm.showBalance = false
 				if (vm.currentFace === '') {
 					uni.showToast({
@@ -221,6 +222,7 @@
 						uni.hideLoading()
 						if (res.success) {
 							vm.priceAll = res.data
+							vm.isVip = res.data.is_vip
 						}
 					})
 				} else {
@@ -242,11 +244,11 @@
 							title: ''
 						})
 						vm.$post(urls.searchPhoneInfo, obj).then(res => {
-							console.log(res)
 							if (res.success) {
 								vm.provider = vm.typeList.find(item => item.type === res.data.type).value
 								vm.account_balance = res.data.account_balance
 								vm.phoneArea = vm.lang === 'zh-CN' ? res.data.name_cn : res.data.name
+								vm.savePhoneArea = res.data.name_cn
 							} else {
 								uni.showToast({
 									icon: 'none',
@@ -295,12 +297,14 @@
 			background: linear-gradient(0deg, #19C882, #23AF8C);
 			border-bottom-left-radius: 50vw 3vh;
 			border-bottom-right-radius: 50vw 3vh;
-			
+
 			.phone-container {
 				width: 90%;
-				.area-show{
+
+				.area-show {
 					height: 20px;
 				}
+
 				.bottom-gap {
 					opacity: 0.25;
 					width: 100%;
@@ -309,24 +313,29 @@
 				}
 			}
 		}
-		.vip-feedback{
+
+		.vip-feedback {
 			width: 90%;
 			margin: 18px auto 20px auto;
 			background: #FFFFFF;
 			border-radius: 13.88rpx;
-			.fb-item{
-				&:not(:last-child){
+
+			.fb-item {
+				&:not(:last-child) {
 					border-bottom: 1px solid #f3f3f3;
 				}
-				button{
+
+				button {
 					margin: 0;
 					padding: 0;
 				}
-				.tran-icon{
+
+				.tran-icon {
 					transform: rotate(180deg);
 				}
 			}
 		}
+
 		.content-container {
 			box-sizing: border-box;
 			width: 90%;
@@ -367,6 +376,8 @@
 
 					&.cur-face {
 						border-color: $uni-color-primary;
+						color: $uni-color-primary;
+						border-width: 2px;
 					}
 				}
 			}

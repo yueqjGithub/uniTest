@@ -252,7 +252,6 @@
 							title: ''
 						})
 						vm.$post(urls.searchPhoneInfo, obj).then(res => {
-							console.log(res)
 							if (res.success) {
 								vm.provider = vm.typeList.find(item => item.type === res.data.type).value
 								vm.account_balance = res.data.account_balance
