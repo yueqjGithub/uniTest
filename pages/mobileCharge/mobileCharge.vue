@@ -61,9 +61,7 @@
 				</view>
 				<view class="full-width text-center text-12 text-grey ma-col-sm">{{$t('mobileCharge.balanceTit')}}</view>
 				<view class="ma-col-sm btn-group flex-column flex-ali-center flex-jst-btw">
-					<button type="default" class="my-btn-primary text-white text-14" @click="openCharge">{{$t('mobileCharge.charge')}}</button>
-					<view class="full-width ma-col-sm"></view>
-					<button type="default" class="my-btn-normal text-grey text-14" @click="showBalance = false">{{$t('basic.cancel')}}</button>
+					<button type="default" class="my-btn-primary text-white text-14" @click="showBalance = false">{{$t('basic.ok')}}</button>
 				</view>
 			</view>
 		</u-popup>

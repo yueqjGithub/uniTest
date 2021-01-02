@@ -1,5 +1,6 @@
 const urls = {
-	socket: 'wss://shopapi.apiself.com:9527', // 火车订单socket地址
+	baseUrl: 'https://wechat.altunyaprak.cn', // 请求主域名
+	socket: 'wss://wechat.altunyaprak.cn:9527', // 火车订单socket地址
 	authList: [], // 需要身份认证的接口
 	md5List: ['/v1/api/public/login', '/v1/api/shop/details', '/v1/api/shop/collect', '/v1/api/shop/buy', '/v1/api/driving/jszlist', '/v1/api/driving/del',
 		'/v1/api/shop/pretreatment', '/v1/api/shippingaddress/edit', '/v1/api/shop/orderlist', '/v1/api/user/shopcollect', '/v1/api/driving/deljsz',
@@ -13,7 +14,6 @@ const urls = {
 		'/v1/api/withdraw/commit', '/v1/api/credit/creditline', '/v1/api/credit/update', '/v1/api/oilcard/shop', '/v1/api/oilcard/cardlist', '/v1/api/oilcard/addoilcard', '/v1/api/driving/edit', '/v1/api/oilcard/del',
 		'/v1/api/driving/kffind', '/v1/api/driving/wz', '/v1/api/traffic/commit', '/v1/api/traffic/order', '/v1/api/driving/wzordercreate', '/v1/api/driving/wzorder', '/v1/api/publicity/profitorder'
 	], // 需要加密的接口2
-	baseUrl: 'https://shopapi.apiself.com',
 	// basic
 	login: '/v1/api/public/login', // 登录2
 	init: '/v1/api/public/init', // 初始化
