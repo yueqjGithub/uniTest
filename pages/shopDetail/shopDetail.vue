@@ -2,7 +2,7 @@
 	<view class="detail-container bg-grey">
 		<view class="detail-head-container pa-row-md">
 			<view class="detail-head flex-column flex-jst-start flex-ali-start">
-				<u-swiper :list="bannerList" :image-mode="'scaleToFill'" height="486.11" indicator-pos="bottomLeft" mode="number"
+				<u-swiper :list="bannerList" img-mode='scaleToFill' height="486.11" indicator-pos="bottomLeft" mode="number"
 				 :autoplay="false" class="full-width"></u-swiper>
 				<view class="full-width flex-1 flex-column flex-jst-start flex-ali-start price-container pa-md">
 					<view class="full-width flex-jst-start flex-ali-center" :class="langFlex">

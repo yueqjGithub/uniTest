@@ -8,13 +8,13 @@
 			<text class="form-tips full-width text-center">{{$t('address.formTips')}}</text>
 			<u-form :model="form" ref="myForm" class='full-width' :label-width="0" label-position="top" :error-type="errorType">
 				<u-form-item prop="address">
-					<u-input v-model="form.address" type="text" :class="rightClass" :border="true" class="my-input" :placeholder="addressTips"></u-input>
+					<u-input v-model="form.address" type="text" :class="rightClass" :border="true" class="my-input" :placeholder="addressTips" placeholder-style="font-family: 'cusFont','yahei'"></u-input>
 				</u-form-item>
 				<u-form-item prop="addressee">
-					<u-input v-model="form.addressee" type="text" :class="rightClass" :border="true" class="my-input" :placeholder="nameTips"></u-input>
+					<u-input v-model="form.addressee" type="text" :class="rightClass" :border="true" class="my-input" :placeholder="nameTips" placeholder-style="font-family: 'cusFont','yahei'"></u-input>
 				</u-form-item>
 				<u-form-item prop="mobile">
-					<u-input v-model="form.mobile" type="phone" :class="rightClass" :border="true" class="my-input" :placeholder="phoneTips"></u-input>
+					<u-input v-model="form.mobile" type="phone" :class="rightClass" :border="true" class="my-input" :placeholder="phoneTips" placeholder-style="font-family: 'cusFont','yahei'"></u-input>
 				</u-form-item>
 			</u-form>
 			<view class="full-width pa-md flex-row flex-jst-center flex-ali-center">

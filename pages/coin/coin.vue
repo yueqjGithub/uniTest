@@ -20,16 +20,16 @@
 				<view class="flex-column flex-jst-start flex-ali-center">
 					<view class="full-width flex-row flex-jst-center flex-ali-base">
 						<text class="text-12">￥</text>
-						<text class="text-18">{{personal.account_balance || 0}}</text>
+						<text class="text-18 text-center">{{personal.account_balance || 0}}</text>
 					</view>
-					<text class="text-grey-1 text-14">{{$t('pullPage.withdraw')}}</text>
+					<text class="text-grey-1 text-14 text-center">{{$t('pullPage.withdraw')}}</text>
 				</view>
 				<view class="flex-column flex-jst-start flex-ali-center">
 					<view class="full-width flex-row flex-jst-center flex-ali-base">
 						<text class="text-12">￥</text>
-						<text class="text-18">{{personal.withdraw_deposit || 0}}</text>
+						<text class="text-18 text-center">{{personal.withdraw_deposit || 0}}</text>
 					</view>
-					<text class="text-grey-1 text-14">{{$t('pullPage.deposit')}}</text>
+					<text class="text-grey-1 text-14 text-center">{{$t('pullPage.deposit')}}</text>
 				</view>
 			</view>
 			<view class="full-width pa-md flex-row flex-jst-center flex-ali-center border-box">

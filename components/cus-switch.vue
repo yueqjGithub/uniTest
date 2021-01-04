@@ -31,13 +31,22 @@ export default {
 			}
 		}
 	},
+	created () {
+		const vm = this
+		const lang = uni.getStorageSync('lang')
+		if (lang) {
+			vm.$store.dispatch('setLang', lang)
+		}
+	},
 	methods: {
 		changeLanguage () {
 			const vm = this
 			if (vm.lang === 'zh-CN') {
 				vm.$store.dispatch('setLang', 'en-US')
+				uni.setStorageSync('lang', 'en-US')
 			} else {
 				vm.$store.dispatch('setLang', 'zh-CN')
+				uni.setStorageSync('lang', 'zh-CN')
 			}
 		}
 	}

@@ -7,7 +7,9 @@
 				<text class="shop-price full-width text-grey-1 text-12" :class="langFlex">
 					{{ispName}}
 				</text>
-				<text class="text-14 text-grey-1">{{order.mobile}}</text>
+				<view :class="langFlex" class="full-width">
+					<text class="text-14 text-grey-1">{{order.mobile}}</text>
+				</view>
 				<view class="order-time flex-jst-btw full-width flex-ali-base" :class="langFlex">
 					<text class="total-price text-16 text-bold text-primary">￥{{type === 'traffic' ? order.order_total : order.recharge_amount}}</text>
 					<text class="time-show text-grey-1 text-12">{{order.createtime}}</text>

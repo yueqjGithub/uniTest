@@ -3,8 +3,8 @@
 		<view class="head-container flex-row flex-jst-center flex-ali-center">
 			<view class="phone-container">
 				<view class="text-white text-14 full-width text-right area-show">{{phoneArea}}</view>
-				<u-input v-model="phone" class="text-white my-text-right" :custom-style="{color: '#ffffff', fontSize: '22px'}"
-				 :placeholder="numberTip" type="text"></u-input>
+				<u-input v-model="phone" class="text-white my-text-right" :custom-style="{color: '#ffffff', fontSize: phone ? '28px' : '20px'}"
+				 :placeholder="numberTip" type="text" placeholder-style="font-family: 'cusFont','yahei'"></u-input>
 				<view class="bottom-gap"></view>
 			</view>
 		</view>
@@ -15,7 +15,7 @@
 			<view class="face-list flex-row flex-wrap flex-jst-start flex-ali-start full-width">
 				<view class="face-item flex-column flex-jst-center flex-ali-center" v-for="k in priceList" :key="k.id" :class="k.id === currentFace.id && 'cur-face'"
 				 @click="openCharge(k)">
-					<text class="text-18 text-bold">{{k.face_value}}M</text>
+					<text class="text-24 text-bold">{{k.face_value}}M</text>
 					<view class="flex-row flex-jst-center flex-ali-center ma-col-sm">
 						<text class="text-12 text-grey-1">￥{{k.regular_price}}</text>
 					</view>
@@ -373,7 +373,6 @@
 					box-sizing: border-box;
 					border: 1px solid #D0D0D0;
 					border-radius: 13.88rpx;
-
 					&.cur-face {
 						border-color: $uni-color-primary;
 						color: $uni-color-primary;

@@ -20,7 +20,7 @@
 		<u-popup v-model="show" mode="center" border-radius="13.88">
 			<view class="tips-content pa-md flex-column flex-jst-start flex-ali-center">
 				<text class="text-14">{{detailTitle}}</text>
-				<view class="text-12 pa-col-md">{{detailContent}}</view>
+				<view class="text-12 pa-col-md" :class="dirction">{{detailContent}}</view>
 			</view>
 		</u-popup>
 	</view>
@@ -43,6 +43,9 @@
 		},
 		computed: {
 			...mapState(['lang', 'initSuc']),
+			dirction () {
+				return this.lang === 'zh-CN' ? '' : 'rtl'
+			},
 			rowClass() {
 				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'
 			},
@@ -110,6 +113,9 @@
 </script>
 
 <style lang="scss" scoped>
+	.rtl{
+		direction: rtl;
+	}
 	.notice-container {
 		.notice-module {
 			padding: 8px 10px;
