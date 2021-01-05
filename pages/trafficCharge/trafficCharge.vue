@@ -4,7 +4,7 @@
 			<view class="phone-container">
 				<view class="text-white text-14 full-width text-right area-show">{{phoneArea}}</view>
 				<u-input v-model="phone" class="text-white my-text-right" :custom-style="{color: '#ffffff', fontSize: phone ? '28px' : '20px'}"
-				 :placeholder="numberTip" type="text" placeholder-style="font-family: 'cusFont','yahei'"></u-input>
+				 :placeholder="numberTip" type="text" placeholder-style="font-family: 'cusFont','yahei';color: #eeeeee"></u-input>
 				<view class="bottom-gap"></view>
 			</view>
 		</view>

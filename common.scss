@@ -147,7 +147,9 @@ text,view,input,textarea{
 		border: none;
 	}
 }
-
+.cus-rtl{
+	direction: rtl;
+}
 // ------input修正----
 .my-input{
 	.u-input{
