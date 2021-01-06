@@ -156,8 +156,18 @@
 				}
 			}
 		},
+		onShareAppMessage(res) {
+			const result = getCurrentPages().pop()
+			return {
+				title: 'kolay',
+				path: result.$page.fullPath
+			}
+		},
 		onShow() {
 			this.queryPrice()
+			uni.showShareMenu({
+				menus: ['shareAppMessage', 'shareTimeline']
+			})
 		},
 		methods: {
 			...mapActions(['checkLogin']),

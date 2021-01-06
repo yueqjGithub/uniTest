@@ -113,6 +113,18 @@
 				]
 			}
 		},
+		onShareAppMessage(res) {
+			const result = getCurrentPages().pop()
+			return {
+				title: 'kolay',
+				path: result.$page.fullPath
+			}
+		},
+		mounted () {
+			uni.showShareMenu({
+				menus: ['shareAppMessage', 'shareTimeline']
+			})
+		},
 		computed: {
 			...mapState(['lang']),
 			langFlex () {

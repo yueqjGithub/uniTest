@@ -59,6 +59,13 @@
 				}
 			}
 		},
+		onShareAppMessage(res) {
+			const result = getCurrentPages().pop()
+			return {
+				title: 'kolay',
+				path: result.$page.fullPath
+			}
+		},
 		computed: {
 			...mapState(['lang']),
 			langFlex () {
@@ -67,6 +74,9 @@
 		},
 		mounted() {
 			this.queryStore()
+			uni.showShareMenu({
+				menus: ['shareAppMessage', 'shareTimeline']
+			})
 		},
 		methods: {
 			queryStore() {

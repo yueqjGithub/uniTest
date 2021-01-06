@@ -61,6 +61,19 @@
 				}
 			}
 		},
+		onShow () {
+			uni.showShareMenu({
+				menus: ['shareAppMessage', 'shareTimeline']
+			})
+			this.queryList()
+		},
+		onShareAppMessage(res) {
+			const result = getCurrentPages().pop()
+			return {
+				title: 'kolay',
+				path: result.$page.fullPath
+			}
+		},
 		methods: {
 			...mapMutations(['setCurWz']),
 			...mapActions(['checkLogin']),

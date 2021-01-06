@@ -84,6 +84,16 @@
 		},
 		onShow() {
 			this.queryIndex()
+			uni.showShareMenu({
+				menus: ['shareAppMessage', 'shareTimeline']
+			})
+		},
+		onShareAppMessage(res) {
+			const result = getCurrentPages().pop()
+			return {
+				title: 'kolay',
+				path: result.$page.fullPath
+			}
 		},
 		methods: {
 			...mapActions(['checkLogin']),

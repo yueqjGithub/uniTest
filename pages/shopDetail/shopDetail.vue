@@ -110,7 +110,17 @@
 		onShow() {
 			this.carList = uni.getStorageSync('carList') || []
 			this.shopNumber = getCurrentPages()[getCurrentPages().length - 1].options.number
+			uni.showShareMenu({
+				menus: ['shareAppMessage', 'shareTimeline']
+			})
 			this.queryDetail()
+		},
+		onShareAppMessage(res) {
+			const result = getCurrentPages().pop()
+			return {
+				title: 'kolay',
+				path: result.$page.fullPath
+			}
 		},
 		methods: {
 			async queryDetail() {
@@ -123,6 +133,7 @@
 					obj.token = token
 				}
 				vm.$post(urls.queryShopDetail, obj).then(res => {
+					debugger
 					const pageName = vm.lang === 'zh-CN' ? res.data.shop_name_cn : res.data.shop_name
 					// 设置店名
 					uni.setNavigationBarTitle({

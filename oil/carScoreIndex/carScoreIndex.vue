@@ -79,7 +79,17 @@
 			}
 		},
 		onShow() {
+			uni.showShareMenu({
+				menus: ['shareAppMessage', 'shareTimeline']
+			})
 			this.queryMyLicense()
+		},
+		onShareAppMessage(res) {
+			const result = getCurrentPages().pop()
+			return {
+				title: 'kolay',
+				path: result.$page.fullPath
+			}
 		},
 		methods: {
 			...mapMutations(['setCurDrivingLicense']),

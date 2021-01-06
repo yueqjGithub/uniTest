@@ -35,7 +35,7 @@
 		<!-- 最新商品 -->
 		<news :info="newsList" v-if="newsList"></news>
 		<!-- tabbar-->
-		<view class='tab-add'></view> 
+		<view class='tab-add'></view>
 		<cus-tabbar></cus-tabbar>
 	</view>
 </template>
@@ -76,16 +76,30 @@
 		computed: {
 			...mapState(['lang', 'initSuc'])
 		},
-		onShow () {
+		onShow() {
+			const vm = this
 			this.showNotice = true
+			uni.setNavigationBarTitle({
+				title: 'kolay'
+			})
+			uni.showShareMenu({
+				menus: ['shareAppMessage', 'shareTimeline']
+			})
 		},
-		onHide () {
+		onHide() {
 			this.showNotice = false
+		},
+		onShareAppMessage(res) {
+			const result = getCurrentPages().pop()
+			return {
+				title: 'kolay',
+				path: result.$page.fullPath
+			}
 		},
 		watch: {
 			initSuc: {
 				immediate: true,
-				handler: function (val) {
+				handler: function(val) {
 					if (val === 'true') {
 						this.queryIndex()
 					}
@@ -121,24 +135,29 @@
 			height: 175rpx;
 			background: linear-gradient(45deg, #19C882, #23AF8C);
 			z-index: 10;
+
 			.status_null {
 				width: 100%;
 				height: 44px;
 			}
 		}
-		.cus-head{
+
+		.cus-head {
 			width: 100%;
 			background: linear-gradient(135deg, #19C882, #23AF8C);
 			position: relative;
+
 			.fix-add {
 				height: 175rpx;
 				width: 100vw;
 				background: #f3f3f3;
 			}
-			.banner-container{
+
+			.banner-container {
 				height: 277.77rpx;
 				width: 100%;
 				position: relative;
+
 				.circle-bottom {
 					width: 100%;
 					height: 10%;
@@ -150,20 +169,24 @@
 				}
 			}
 		}
-		.fix-add-swiper{
+
+		.fix-add-swiper {
 			width: 100%;
 			height: 55.55rpx;
 			background: #FFFFFF;
 		}
+
 		.menu-list {
 			// margin-top: 319.44rpx;
 			padding-top: 10px;
-			.menu-item-container{
+
+			.menu-item-container {
 				width: 33%;
 				margin-bottom: 38.88rpx;
 			}
 		}
-		.adv-img{
+
+		.adv-img {
 			width: 100%;
 			height: 138.88rpx;
 			border-radius: 13.88rpx;
