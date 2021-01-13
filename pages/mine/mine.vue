@@ -122,7 +122,7 @@
 			},
 			async queryMine () {
 				const vm = this
-				const token = await uni.getStorageSync('token')
+				const token = await this.checkLogin()
 				if (token) {
 					this.isLogin = true
 					const obj = {
@@ -130,6 +130,10 @@
 					}
 					vm.$post(urls.queryMineInfo, obj).then(res => {
 						this.person = res.data
+					})
+				} else {
+					uni.navigateTo({
+						url: '/pages/login/login'
 					})
 				}
 			},
