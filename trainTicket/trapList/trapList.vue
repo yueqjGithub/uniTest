@@ -49,6 +49,7 @@
 				<train-item v-if="searchType === 0" :train="item" :date="dateList[curDate]"></train-item>
 				<air-item v-if="searchType === 1" :train="item" :date="dateList[curDate]"></air-item>
 			</view>
+			<u-empty text=" " mode="list" v-if='resultList.length === 0'></u-empty>
 		</scroll-view>
 		<!-- LOADING -->
 		<u-popup v-model="showLoading" mode="center" :closeable="false" class="trans-popup" width="258.33" height="258.33">
@@ -183,6 +184,7 @@
 					}
 					obj.token = token
 					vm.showLoading = true
+					vm.resultList = []
 					vm.$post(vm.queryUrl, obj).then(res => {
 						if (res.success) {
 							vm.resultList = [...res.data]

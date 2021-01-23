@@ -83,6 +83,7 @@
 				}
 				vm.loading = true
 				vm.$post(vm.requestUrl, obj).then(res => {
+					debugger
 					const len = vm.type === 1 ? res.data.length : res.data.data.length
 					const dataList = vm.type === 1 ? res.data : res.data.data
 					if (len === vm.pageSize) { // 首次请求数量填满一页

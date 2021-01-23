@@ -53,30 +53,30 @@
 		</view>
 		<!-- 链接列表 -->
 		<view class="vip-feedback pa-col-sm ma-col-md">
-			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex">
+			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toPage('/pages/buyVip/buyVip')">
 				<view class="flex-jst-start flex-ali-center" :class="langFlex">
 					<u-icon name="weibiaoti--46" custom-prefix="iconfont" size="40" class="text-primary"></u-icon>
 					<text class="ma-row-sm text-12">{{$t('mobileCharge.vipGuide')}}</text>
 				</view>
-				<button type="default" class="plain-btn" @click="toPage('/pages/buyVip/buyVip')">
+				<button type="default" class="plain-btn">
 					<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
 				</button>
 			</view>
-			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex">
+			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toPage('/pages/coin/coin')">
 				<view class="flex-jst-start flex-ali-center" :class="langFlex">
 					<u-icon name="weibiaoti--50" custom-prefix="iconfont" size="40" class="text-primary"></u-icon>
 					<text class="ma-row-sm text-12">{{$t('mobileCharge.promoteGuide')}}</text>
 				</view>
-				<button type="default" class="plain-btn" @click="toPage('/pages/coin/coin')">
+				<button type="default" class="plain-btn">
 					<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
 				</button>
 			</view>
-			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex">
+			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toPage('/pages/help/help?type=fj_help')">
 				<view class="flex-jst-start flex-ali-center" :class="langFlex">
 					<u-icon name="bangzhu" custom-prefix="iconfont" size="40" class="text-primary"></u-icon>
 					<text class="ma-row-sm text-12">{{$t('mobileCharge.helpCenter')}}</text>
 				</view>
-				<button type="default" class="plain-btn" @click="toPage('/pages/help/help?type=fj_help')">
+				<button type="default" class="plain-btn">
 					<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
 				</button>
 			</view>

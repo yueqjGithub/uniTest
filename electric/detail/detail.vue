@@ -1,12 +1,13 @@
 <template>
 	<view class="page bg-grey">
 		<view class="head-bg"></view>
+		<u-top-tips ref="uTips"></u-top-tips>
 		<view class="content-container flex-column flex-jst-start flex-ali-center">
 			<view class="address-icon flex-row flex-jst-center flex-ali-center">
 				<u-icon name="shuidian" size="90" class="text-primary" custom-prefix="iconfont"></u-icon>
 			</view>
 			<!-- 余额显示 -->
-			<view class="balance full-width pa-lg border-box flex-column flex-jst-center flex-ali-center">
+			<view class="balance full-width border-box flex-column flex-jst-center flex-ali-center">
 				<view>
 					<text class="text-14 text-primary text-bold">￥</text>
 					<text class="text-32 text-primary text-bold">{{curElectric.account_balance}}</text>
@@ -14,32 +15,34 @@
 				<text class="text-grey-1 text-12">{{$t('electricIndex.balance')}}</text>
 			</view>
 			<!-- 详情显示 -->
-			<view class="full-width pa-col-md flex-column flex-jst-start flex-ali-center">
-				<view class="detail-item full-width flex-jst-start flex-ali-center" :class="langFlex">
-					<text class="flex-1 text-14 text-grey-1">{{$t('electricIndex.uName')}}</text>
-					<text class="flex-3 text-14 ma-row-sm" :class="rightClass">{{curElectric.user_name}}</text>
+			<view class="full-width detail-cont flex-column flex-jst-start flex-ali-center">
+				<view class="detail-item full-width flex-jst-start flex-ali-start" :class="langFlex">
+					<text class="flex-1 text-14 text-grey-1" :class="rightClass">{{$t('electricIndex.uName')}}</text>
+					<text class="flex-2 text-14 ma-row-sm" :class="rightClass">{{curElectric.user_name}}</text>
 				</view>
-				<view class="detail-item full-width flex-jst-start flex-ali-center" :class="langFlex">
-					<text class="flex-1 text-14 text-grey-1">{{$t('electricIndex.uNumber')}}</text>
-					<text class="flex-3 text-14 ma-row-sm" :class="rightClass">{{curElectric.number}}</text>
+				<view class="detail-item full-width flex-jst-start flex-ali-start" :class="langFlex">
+					<text class="flex-1 text-14 text-grey-1" :class="rightClass">{{$t('electricIndex.uNumber')}}</text>
+					<text class="flex-2 text-14 ma-row-sm" :class="rightClass">{{curElectric.number}}</text>
 				</view>
-				<view class="detail-item full-width flex-jst-start flex-ali-center" :class="langFlex">
-					<text class="flex-1 text-14 text-grey-1">{{$t('electricIndex.corporation')}}</text>
-					<text class="flex-3 text-14 ma-row-sm" :class="rightClass">{{curElectric.corporation}}</text>
+				<view class="detail-item full-width flex-jst-start flex-ali-start" :class="langFlex">
+					<text class="flex-1 text-14 text-grey-1" :class="rightClass">{{$t('electricIndex.corporation')}}</text>
+					<text class="flex-2 text-14 ma-row-sm" :class="rightClass">{{curElectric.corporation}}</text>
 				</view>
-				<view class="detail-item full-width flex-jst-start flex-ali-center" :class="langFlex">
-					<text class="flex-1 text-14 text-grey-1">{{$t('electricIndex.ads')}}</text>
-					<text class="flex-3 text-14 ma-row-sm" :class="rightClass">{{curElectric.address}}</text>
+				<view class="detail-item full-width flex-jst-start flex-ali-start" :class="langFlex">
+					<text class="flex-1 text-14 text-grey-1" :class="rightClass">{{$t('electricIndex.ads')}}</text>
+					<text class="flex-2 text-14 ma-row-sm" :class="rightClass">{{curElectric.address}}</text>
 				</view>
 			</view>
 			<!-- 面额列表 -->
-			<view class="price-list full-width pa-col-md flex-jst-start flex-ali-start" :class="langFlex">
+			<view class="price-list full-width flex-jst-start flex-ali-start" :class="langFlex">
 				<view class="price-item flex-row flex-jst-center flex-ali-center ma-sm" v-for="k in priceList"
 				 :key="k.id" :class="choose === k.id ? 'price-choose' : ''" @click="choosePrice(k)">{{k.face_value}}</view>
 			</view>
 			<!-- 输入面额 -->
 			<view class="full-width pa-col-sm">
-				<u-input v-model="cusPrice" type="number" :class="rightClass" :border="true" class="my-input" :placeholder="$t('electricIndex.inputTips')" :clearable="false"></u-input>
+				<u-input v-model="cusPrice" type="number" :class="rightClass" :border="true" class="my-input" :placeholder="$t('electricIndex.inputTips')" :clearable="false"
+				placeholder-style="font-family: 'cusFont','yahei';"
+				></u-input>
 			</view>
 			<!-- 提交按钮 -->
 			<view class="pa-row-lg ma-col-md border-box full-width flex-row flex-jst-center flex-ali-center">
@@ -134,8 +137,8 @@
 				const vm = this
 				// 验证金额合法性
 				if (vm.choose === '' && vm.cusPrice === '') {
-					uni.showToast({
-						icon: 'none',
+					vm.$refs.uTips.show({
+						type: 'error',
 						title: vm._i18n.messages[vm.lang].electricIndex.tip1
 					})
 					return false
@@ -143,13 +146,21 @@
 				if (vm.cusPrice !== '') {
 					const reg = /^[0-9.]{1,10}$/
 					if (!reg.test(vm.cusPrice)) {
-						uni.showToast({
-							icon: 'none',
+						vm.$refs.uTips.show({
+							type: 'error',
 							title: vm._i18n.messages[vm.lang].electricIndex.tip1
 						})
 						return false
 					}
 				}
+				if (vm.cusPrice < 10) {
+					vm.$refs.uTips.show({
+						type: 'error',
+						title: vm._i18n.messages[vm.lang].electricIndex.priceLimit
+					})
+					return false
+				}
+				
 				// 提交订单
 				const token = await vm.checkLogin()
 				const obj = {
@@ -258,6 +269,11 @@
 
 			.balance {
 				border-bottom: 1px solid #d5d5d5;
+				padding: 5px 28px 5px 28px;
+			}
+			
+			.detail-cont{
+				padding: 27.7rpx 0 0 0;
 			}
 
 			.detail-item {
@@ -265,6 +281,7 @@
 			}
 
 			.price-list {
+				padding: 0 0 27.7rpx 0;
 				.price-item {
 					width: 50px;
 					height: 50px;

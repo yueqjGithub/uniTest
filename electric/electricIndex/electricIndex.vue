@@ -1,6 +1,7 @@
 <template>
 	<view class="page bg-grey">
 		<view class="head-bg"></view>
+		<u-top-tips ref="uTips"></u-top-tips>
 		<view class="content-container flex-column flex-jst-start flex-ali-center">
 			<view class="address-icon flex-row flex-jst-center flex-ali-center">
 				<u-icon name="shuidian" size="90" class="text-primary" custom-prefix="iconfont"></u-icon>
@@ -23,7 +24,7 @@
 			<view class="pa-md"></view>
 			<view class="full-width input-item pa-col-sm border-box">
 				<u-input v-model="cardNumber" :class="inputClass" :custom-style="{color: '#aaaaaa', fontSize: '14px'}"
-				 placeholder-style="color: #aaaaaa" :placeholder="$t('electricIndex.numberTips')" type="text"></u-input>
+				 placeholder-style="font-family: 'cusFont','yahei';color: #aaaaaa" :placeholder="$t('electricIndex.numberTips')" type="text"></u-input>
 			</view>
 			<!-- 用户协议 -->
 			<view class="pa-sm"></view>
@@ -35,8 +36,7 @@
 			</view>
 			<!-- 提交按钮 -->
 			<view class="pa-lg border-box full-width flex-row flex-jst-center flex-ali-center">
-				<button type="normal" class="my-btn-primary text-white text-14"
-				 :disabled="!couldSubmit" @click="toDetail">{{$t('basic.ok')}}</button>
+				<button type="normal" class="my-btn-primary text-white text-14" @click="toDetail">{{$t('basic.ok')}}</button>
 			</view>
 		</view>
 		<!-- 选择器区域 -->
@@ -144,9 +144,6 @@
 					this.company = result[0]
 				}
 				return result
-			},
-			couldSubmit() {
-				return this.sure && this.pass
 			}
 		},
 		onShow() {
@@ -209,14 +206,14 @@
 					}
 					uni.showLoading()
 					vm.$post(urls.queryByCard, obj).then(res => {
-						console.log(res)
 						uni.hideLoading()
 						if (res.success) {
+							console.log(res)
 							vm.$store.commit('setCurElectricDetail', res.data)
 							vm.pass = true
 						} else {
-							uni.showToast({
-								icon: 'none',
+							this.$refs.uTips.show({
+								type: 'error',
 								title: res.message
 							})
 						}
@@ -230,6 +227,21 @@
 				}
 			},
 			toDetail() {
+				if (!this.sure) {
+					this.$refs.uTips.show({
+						type: 'error',
+						title: this._i18n.messages[this.lang].basic.aggrement
+					})
+					return false
+				}
+				if (!this.pass) {
+					this.$refs.uTips.show({
+						type: 'error',
+						title: this._i18n.messages[this.lang].electricIndex.numberTips
+					})
+					return false
+				}
+				
 				uni.navigateTo({
 					url: '/electric/detail/detail'
 				})

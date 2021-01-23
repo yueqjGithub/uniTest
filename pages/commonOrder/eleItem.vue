@@ -9,7 +9,7 @@
 				</text>
 				<text class="text-14 text-grey-1">{{order.card_number}}</text>
 				<view class="order-time flex-jst-btw full-width flex-ali-base" :class="langFlex">
-					<text class="total-price text-16 text-bold text-primary">￥{{order.payment_amount}}</text>
+					<text class="total-price text-16 text-bold text-primary">￥{{order.recharge_amount}}</text>
 					<text class="time-show text-grey-1 text-12">{{order.createtime}}</text>
 				</view>
 			</view>
@@ -60,7 +60,7 @@
 			}
 		},
 		mounted() {
-			console.log(this.order)
+			// console.log(this.order)
 		},
 		methods:{
 			toDetail () {

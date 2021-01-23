@@ -252,7 +252,8 @@ export default {
 		corporation: '缴费单位',
 		ads: '地址',
 		inputTips: '输入需要充值的金额',
-		tip1: '请设置充值金额'
+		tip1: '请设置充值金额',
+		priceLimit: '充值金额不能小于10元'
 	},
 	feedback: {
 		title: '反馈标题',
