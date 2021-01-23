@@ -163,7 +163,7 @@ export default {
 		noEnd: ' تاللاش مەنزىل بېكىتى',
 		noTime: 'تاللاش سەپەرگە چىقىش ۋاقتى',
 		calendar: 'كالىندار',
-		searchPlaceholder: 'كىرگۈزۈڭ ئورنى',
+		searchPlaceholder: 'ۋوگزال تاللاڭ',
 		many: 'بار',
 		no: 'يوق',
 		trapInfo: 'پويىز بېلىتى ئۇچۇرى',
@@ -179,7 +179,8 @@ export default {
 		buySuccess: 'سېتىۋېلىش تاماملاندى',
 		waitingSuc: 'بېلەت زاكاس قىلنىۋاتىدۇ',
 		waitingFail: 'ئورۇن زاكاس قىلىش مەغلۇپ بولدى',
-		refunding: 'بېلەت قايتۇرۇلىۋاتىدۇ'
+		refunding: 'بېلەت قايتۇرۇلىۋاتىدۇ',
+		topCity: 'ئاۋات شەھەرلەر'
 	},
 	air: {
 		pageName: 'ئايروپىلان بېلىتى',

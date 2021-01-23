@@ -83,6 +83,8 @@
 				}
 				vm.loading = true
 				vm.$post(vm.requestUrl, obj).then(res => {
+					const top = vm.type === 1 ? res.top : res.data.top 
+					vm.$emit('setTop', top)
 					const len = vm.type === 1 ? res.data.length : res.data.data.length
 					const dataList = vm.type === 1 ? res.data : res.data.data
 					if (len === vm.pageSize) { // 首次请求数量填满一页
@@ -134,7 +136,7 @@
 
 <style lang="scss" scoped>
 	.cus-scroll-content{
-		height: 50vh;
+		height: 40vh;
 		.address-item{
 			border-bottom: 1px solid #dddddd;
 		}

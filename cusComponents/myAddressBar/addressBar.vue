@@ -8,7 +8,7 @@
 		<!-- 搜索 -->
 		<view class="search-container flex-jst-btw flex-ali-center flex-row">
 			<u-field :class="lang === 'zh-CN' ? '' : 'my-text-right'" :border-bottom="false" @input="changeSearch" :clearable="false"
-			:placeholder="$t('train.searchPlaceholder')" :label-width="1"
+			:placeholder="$t('train.searchPlaceholder')" :label-width="1" placeholder-style="font-family: 'cusFont','yahei';"
 			 type="text"></u-field>
 			 <u-icon custom-prefix="iconfont" name="weibiaoti--4" class="text-grey" size="35"></u-icon>
 		</view>
@@ -20,9 +20,14 @@
 			</view>
 			<view class="text-14 text-grey-1">{{local}}</view>
 		</view>
+		<!-- 热门城市 -->
+		<!-- <hot-city :list='hotList' @confirm='setChoose'></hot-city> -->
+		<!-- 热门城市 -->
+		<view :class="langFlex" class="full-width text-12 text-grey ma-col-md">{{$t('train.topCity')}}</view>
+		<hot-list :hotList='topList' @chooseHandler="setChoose" :choose="current"></hot-list>
 		<!-- 地址列表 -->
 		<view :class="langFlex" class="full-width text-12 text-grey ma-col-md">{{$t('train.stationTit')}}</view>
-		<add-list @chooseHandler="setChoose" :choose="current" :search="search_key" :type="type"></add-list>
+		<add-list @chooseHandler="setChoose" :choose="current" :search="search_key" :type="type" @setTop='setTop'></add-list>
 		<view class="full-width flex-row flex-jst-center flex-ali-center">
 			<view class="width-80 flex-row flex-jst-center pa-col-md">
 				<button type="default" class="my-btn-primary text-white text-14" @click="subStation">{{$t('basic.ok')}}</button>
@@ -37,11 +42,13 @@
 		mapState
 	} from 'vuex'
 	import addList from './addressList.vue'
+	import hotList from './topCity.vue'
 	const amapFile = require('../../utils/amap-wx.js')
 	export default {
 		name: 'addressBar',
 		components: {
-			addList
+			addList,
+			hotList
 		},
 		props: ['target', 'type'], // 根据target决定是更新起始位置还是结束位置
 		data() {
@@ -52,7 +59,8 @@
 				search_key: '',
 				result: '',
 				current: '',
-				local: ''
+				local: '',
+				topList: []
 			}
 		},
 		computed: {
@@ -78,6 +86,9 @@
 			this.checkSysLocation()
 		},
 		methods: {
+			setTop (list) {
+				this.topList = list
+			},
 			changeSearch (val) {
 				const vm = this
 				vm.$u.debounce(() => {
