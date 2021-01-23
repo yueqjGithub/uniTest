@@ -172,8 +172,21 @@
 		created() {
 			this.trainDate = dayjs().format('YYYY-MM-DD') // 初始化出行日期
 		},
+		onShow () {
+			this.setLogin()
+		},
 		methods: {
 			...mapActions(['checkLogin']),
+			async setLogin () {
+				const token = await this.checkLogin()
+				if (token) {
+					
+				} else {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+				}
+			},
 			toPage (path) {
 				uni.navigateTo({
 					url: path

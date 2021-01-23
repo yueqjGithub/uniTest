@@ -2,6 +2,7 @@ const urls = {
 	// baseUrl: 'https://wechat.altunyaprak.cn', // 请求主域名
 	baseUrl: 'https://shopapi.apiself.com', // 请求主域名
 	// socket: 'wss://wechat.altunyaprak.cn:9527', // 火车订单socket地址
+	baseUrl: 'https://shopapi.apiself.com', // 请求主域名
 	socket: 'wss://wechat.shihuai.tech:9527', // 火车订单socket地址
 	authList: [], // 需要身份认证的接口
 	md5List: ['/v1/api/public/login', '/v1/api/shop/details', '/v1/api/shop/collect', '/v1/api/shop/buy', '/v1/api/driving/jszlist', '/v1/api/driving/del',
