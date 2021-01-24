@@ -41,7 +41,7 @@
 			<!-- 价格显示 -->
 			<view class="ticket-price pa-row-lg ma-col-md border-box flex-column flex-jst-center flex-ali-center">
 				<text class="text-24 text-primary text-bold">￥{{curSeat.price}}</text>
-				<text class="text-18 pa-col-sm text-bold">
+				<text class="text-14 pa-col-sm text-bold">
 					{{priceDetail}}
 				</text>
 			</view>
@@ -51,12 +51,14 @@
 			</view>
 		</view>
 		<!-- 联系人 -->
-		<view :class="langFlex" class="bg-white ticket-contact flex-jst-start flex-ali-center pa-md border-box" @click="toContact">
+		<view :class="langFlex" class="bg-white ticket-contact flex-jst-start flex-ali-base pa-md border-box" @click="toContact">
 			<u-icon custom-prefix="iconfont" name="weibiaoti--6" size="40" class="text-primary"></u-icon>
+			<text class="ma-row-sm">{{$t('contact.contactName')}}:</text>
 			<text>{{contact.name}}</text>
 		</view>
-		<view :class="langFlex" class="bg-white ticket-contact flex-jst-start flex-ali-center pa-md border-box" @click="toContact">
+		<view :class="langFlex" class="bg-white ticket-contact flex-jst-start flex-ali-base pa-md border-box" @click="toContact">
 			<u-icon custom-prefix="iconfont" name="shouji1" size="40" class="text-primary"></u-icon>
+			<text class="ma-row-sm">{{$t('contact.contactMobile')}}:</text>
 			<text>{{contact.mobile}}</text>
 		</view>
 		<!-- 提交按钮 -->
@@ -132,8 +134,8 @@
 				const airportTax = vm._i18n.messages[vm.lang].air.airportTax
 				const fuelPrice = vm.curSeat.fuelTax
 				const airportPrice = vm.curSeat.airportTax
-				const str = vm.lang === 'zh-CN' ? `${fuelTax}:￥${fuelPrice} ${airportTax}:￥${airportPrice}` :
-				`${airportPrice}￥:${airportTax} ${fuelTax}￥:${fuelTax}`
+				const str = vm.lang === 'zh-CN' ? `${fuelTax}:${fuelPrice} + ${airportTax}:${airportPrice}` :
+				`${airportPrice} ${airportTax}  ${fuelPrice} + ${fuelTax}`
 				return str
 			}
 		},

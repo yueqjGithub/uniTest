@@ -10,18 +10,23 @@
 			<text class="text-14 ma-col-sm text-grey-1 text-center">{{$t('contact.idCardTips')}}</text>
 			<u-form :border-bottom="false" :model="form" ref="myForm" class='full-width' :label-width="0" label-position="top" :error-type="errorType">
 				<u-form-item prop="pis_id_card">
-					<u-input v-model="form.pis_id_card" type="text" :class="rightClass" :border="true" class="my-input" :placeholder="numberTips"></u-input>
+					<u-input v-model="form.pis_id_card" type="text" :class="rightClass" :border="true" class="my-input" :placeholder="numberTips"
+					placeholder-style="font-family: 'cusFont','yahei';font-weight: bold;"
+					></u-input>
 				</u-form-item>
 				<u-form-item prop="pis_full_name">
-					<u-input v-model="form.pis_full_name" type="text" :class="rightClass" :border="true" class="my-input" :placeholder="nameTips"></u-input>
+					<u-input v-model="form.pis_full_name" type="text" :class="rightClass" :border="true" class="my-input" :placeholder="nameTips"
+					placeholder-style="font-family: 'cusFont','yahei';font-weight: bold;"></u-input>
 				</u-form-item>
 				<u-form-item prop="birthday">
 					<u-input :disabled="true" v-model="form.birthday" type="phone" :class="rightClass" :border="true" class="my-input"
-					 :placeholder="birthTips" @click="openTimePicker(0)"></u-input>
+					 :placeholder="birthTips" @click="openTimePicker(0)"
+					placeholder-style="font-family: 'cusFont','yahei';font-weight: bold;"></u-input>
 				</u-form-item>
 				<u-form-item prop="pis_expire_date">
 					<u-input :disabled="true" v-model="form.pis_expire_date" type="phone" :class="rightClass" :border="true" class="my-input"
-					 :placeholder="expireTip" @click="openTimePicker(1)"></u-input>
+					 :placeholder="expireTip" @click="openTimePicker(1)"
+					placeholder-style="font-family: 'cusFont','yahei';font-weight: bold;"></u-input>
 				</u-form-item>
 			</u-form>
 			<!-- 提交按钮 -->

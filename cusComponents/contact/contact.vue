@@ -8,7 +8,7 @@
 			<u-icon custom-prefix="iconfont" name="weibiaoti--12" size="45" class="text-primary" @click="toEditPage"></u-icon>
 		</view>
 		<view :class="langFlex" class="flex-jst-btw flex-ali-center c-cont" v-else>
-			<view class="flex-jst-center flex-column flex-ali-start flex-3 pa-col-md border-box" @click="toEditPage">
+			<view class="flex-jst-center flex-column flex-3 pa-col-md border-box" @click="toEditPage" :class="lang==='zh-CN' ? 'flex-ali-start' : 'flex-ali-end'">
 				<text class="text-14 ma-col-sm">{{form.pis_full_name}}</text>
 				<text class="text-14">{{form.pis_id_card}}</text>
 			</view>

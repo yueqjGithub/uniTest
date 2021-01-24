@@ -9,23 +9,23 @@
 				<view class="full-width head-detail flex-column flex-jst-start flex-ali-end">
 					<!-- ads第一排 -->
 					<view class="full-width flex-row flex-jst-btw flex-ali-end">
-						<text class="text-18 text-bold flex-1" :class="lang==='zh-CN' ? 'text-left' : 'text-right'">{{startTime}}</text>
-						<view class="flex-1 text-14 text-primary trap-num text-center pa-col-sm border-box flex-row flex-jst-center">
+						<text class="flex-3 text-18 text-bold text-right">{{startTime}}</text>
+						<view class="flex-2 ma-row-md text-14 text-primary trap-num text-center pa-col-sm border-box flex-row flex-jst-center">
 							<view class="throw-container width-80">
 								<view class="cus-icon" :class="lang==='zh-CN' ? 'throw-right' : 'throw-left'"></view>
 								<text>{{curTrap.trap.train_num}}</text>
 							</view>
 						</view>
-						<text class="text-18 text-bold flex-1" :class="lang==='zh-CN' ? 'text-right' : 'text-left'">{{endTime}}</text>
+						<text class="flex-3 text-18 text-bold text-left">{{endTime}}</text>
 						<!-- <text class="text-14">{{lang === 'zh-CN' ? train.start_station_name_cn : train.start_station_name}}</text> -->
 					</view>
 					<!-- ads第二排 -->
 					<view class="full-width flex-row flex-jst-btw flex-ali-start ma-top-5">
-						<text class="text-14 flex-1" :class="lang==='zh-CN' ? 'text-left' : 'text-right'">
+						<text class="flex-3 text-14 text-right">
 							{{lang==="zh-CN"?curTrap.trap.start_station_name_cn:curTrap.trap.start_station_name}}
 						</text>
-						<view class="flex-1"></view>
-						<text class="text-14 flex-1" :class="lang==='zh-CN' ? 'text-right' : 'text-left'">
+						<view class="flex-2 ma-row-md"></view>
+						<text class="flex-3 text-14 text-left">
 							{{lang==="zh-CN"?curTrap.trap.end_station_name_cn:curTrap.trap.end_station_name}}
 						</text>
 					</view>
@@ -183,7 +183,7 @@
 
 				.head-detail {
 					border-top: 1px solid #e5e5e5;
-					padding-top: 28rpx;
+					padding: 28rpx 28rpx 0 28rpx;
 
 					.trap-num {
 						.throw-container{

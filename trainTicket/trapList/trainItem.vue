@@ -5,14 +5,14 @@
 			<view class="ads flex-column flex-jst-start flex-ali-end flex-3">
 				<!-- ads第一排 -->
 				<view class="full-width flex-jst-btw flex-ali-end" :class="langFlex">
-					<text class="text-16 text-bold flex-1" :class="lang==='zh-CN' ? 'text-left' : 'text-right'">{{train.start_time}}</text>
+					<text class="text-18 text-bold flex-1" :class="lang==='zh-CN' ? 'text-left' : 'text-right'">{{train.start_time}}</text>
 					<view class="flex-1 text-14 text-primary trap-num text-center pa-col-sm border-box flex-row flex-jst-center">
 						<view class="throw-container width-80">
 							<view class="cus-icon" :class="lang==='zh-CN' ? 'throw-right' : 'throw-left'"></view>
 							<text>{{train.train_num}}</text>
 						</view>
 					</view>
-					<text class="text-16 text-bold flex-1" :class="lang==='zh-CN' ? 'text-right' : 'text-left'">{{endTime}}</text>
+					<text class="text-18 text-bold flex-1" :class="lang==='zh-CN' ? 'text-right' : 'text-left'">{{endTime}}</text>
 					<!-- <text class="text-14">{{lang === 'zh-CN' ? train.start_station_name_cn : train.start_station_name}}</text> -->
 				</view>
 				<!-- ads第二排 -->
@@ -27,7 +27,7 @@
 				</view>
 			</view>
 			<view class="price flex-1 flex-column">
-				<text class="full-width text-primary text-bold text-18" :class="lang==='zh-CN' ? 'text-right' : 'text-left'">
+				<text class="full-width text-primary text-bold text-18 flex-row flex-jst-end flex-ali-end" :class="lang==='zh-CN' ? 'text-right' : 'text-left'">
 					<text class="text-14">￥</text>
 					{{train.seats[0].price || 0}}
 				</text>
@@ -39,8 +39,8 @@
 		<view class="seat-container full-width">
 			<scroll-view scroll-x="true" class="seat-list">
 				<view class="seat-item pa-sm ma-row-sm text-12 flex-column flex-jst-center flex-ali-center" v-for="(item, idx) in train.seats" :key="idx">
-					<view v-if="item.inventory > 0 && item.inventory <= 50" class="text-primary text-center">{{item.inventory}}</view>
-					<view v-if="item.inventory > 50" class="text-center">{{$t('train.many')}}</view>
+					<view v-if="item.inventory > 0 && item.inventory <= 50" class="text-primary text-center text-bold">{{item.inventory}}</view>
+					<view v-if="item.inventory > 50" class="text-center text-primary text-bold">{{$t('train.many')}}</view>
 					<view v-if="item.inventory === 0" class="text-center">{{$t('train.no')}}</view>
 					<view class="text-grey text-center">{{lang==="zh-CN"?item.seatName.name_cn:item.seatName.name}}</view>
 				</view>
@@ -73,7 +73,7 @@
 		computed: {
 			...mapState(['lang']),
 			langFlex () {
-				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-reverse'
+				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'
 			},
 			trapTime () {
 				const vm = this

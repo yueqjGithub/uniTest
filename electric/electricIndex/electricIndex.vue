@@ -10,30 +10,30 @@
 			<view class="pa-md"></view>
 			<view class="full-width input-item flex-jst-btw flex-ali-center pa-col-md border-box" @click="showArea = true"
 			 :class="langFlex">
-				<view class="text-14 text-grey-1">{{address.label || $t('electricIndex.addressTips')}}</view>
+				<view class="text-14" :class="address.label?'text-blk text-bold' : 'text-grey-1'">{{address.label || $t('electricIndex.addressTips')}}</view>
 				<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey-1"></u-icon>
 			</view>
 			<!-- 机构选择 -->
 			<view class="pa-md"></view>
 			<view class="full-width input-item flex-jst-btw flex-ali-center pa-col-md border-box" @click="showCompany = true"
 			 :class="langFlex">
-				<view class="text-14 text-grey-1">{{company.label || $t('electricIndex.companyTips')}}</view>
+				<view class="text-14" :class="company.label?'text-blk text-bold' : 'text-grey-1'">{{company.label || $t('electricIndex.companyTips')}}</view>
 				<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey-1"></u-icon>
 			</view>
 			<!-- 电卡号输入 -->
 			<view class="pa-md"></view>
 			<view class="full-width input-item pa-col-sm border-box">
-				<u-input v-model="cardNumber" :class="inputClass" :custom-style="{color: '#aaaaaa', fontSize: '14px'}"
+				<u-input v-model="cardNumber" :class="inputClass" :custom-style="{fontWeight: 'bold', fontSize: '14px'}"
 				 placeholder-style="font-family: 'cusFont','yahei';color: #aaaaaa" :placeholder="$t('electricIndex.numberTips')" type="text"></u-input>
 			</view>
 			<!-- 用户协议 -->
-			<view class="pa-sm"></view>
+<!-- 			<view class="pa-sm"></view>
 			<view class="full-width flex-jst-start flex-ali-center pa-col-md no-ma-checkbox" :class="langFlex">
 				<u-checkbox-group active-color="#00BE88" shape="circle">
 					<u-checkbox v-model="sure" name="true"></u-checkbox>
 				</u-checkbox-group>
 				<text class="text-12 text-grey-1 ma-row-sm">{{$t('electricIndex.makeSure')}}</text>
-			</view>
+			</view> -->
 			<!-- 提交按钮 -->
 			<view class="pa-lg border-box full-width flex-row flex-jst-center flex-ali-center">
 				<button type="normal" class="my-btn-primary text-white text-14" @click="toDetail">{{$t('basic.ok')}}</button>
@@ -169,8 +169,14 @@
 					uni.hideLoading()
 				})
 			},
-			queryCompanyList() { // 请求缴费机构列表
+			async queryCompanyList() { // 请求缴费机构列表
 				const vm = this
+				const token = vm.checkLogin()
+				if (!token) {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+				}
 				uni.showLoading()
 				vm.$get(urls.electricCompanyList, {}).then(res => {
 					uni.hideLoading()
@@ -227,13 +233,13 @@
 				}
 			},
 			toDetail() {
-				if (!this.sure) {
-					this.$refs.uTips.show({
-						type: 'error',
-						title: this._i18n.messages[this.lang].basic.aggrement
-					})
-					return false
-				}
+				// if (!this.sure) {
+				// 	this.$refs.uTips.show({
+				// 		type: 'error',
+				// 		title: this._i18n.messages[this.lang].basic.aggrement
+				// 	})
+				// 	return false
+				// }
 				if (!this.pass) {
 					this.$refs.uTips.show({
 						type: 'error',

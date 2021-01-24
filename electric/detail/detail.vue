@@ -12,7 +12,7 @@
 					<text class="text-14 text-primary text-bold">￥</text>
 					<text class="text-32 text-primary text-bold">{{curElectric.account_balance}}</text>
 				</view>
-				<text class="text-grey-1 text-12">{{$t('electricIndex.balance')}}</text>
+				<text class="text-grey-1 text-12 text-bold">{{$t('electricIndex.balance')}}</text>
 			</view>
 			<!-- 详情显示 -->
 			<view class="full-width detail-cont flex-column flex-jst-start flex-ali-center">
@@ -41,7 +41,8 @@
 			<!-- 输入面额 -->
 			<view class="full-width pa-col-sm">
 				<u-input v-model="cusPrice" type="number" :class="rightClass" :border="true" class="my-input" :placeholder="$t('electricIndex.inputTips')" :clearable="false"
-				placeholder-style="font-family: 'cusFont','yahei';"
+				:custom-style="{fontWeight: 'bold', fontSize: '14px'}"
+				placeholder-style="font-family: 'cusFont','yahei';font-weight:bold;"
 				></u-input>
 			</view>
 			<!-- 提交按钮 -->
@@ -104,6 +105,8 @@
 		methods: {
 			...mapActions(['checkLogin']),
 			choosePrice (target) {
+				console.log(target)
+				this.curPrice = Number(target.face_value)
 				this.choose = target.id
 			},
 			async queryPrice() {
@@ -152,23 +155,24 @@
 						})
 						return false
 					}
+					if (vm.cusPrice < 10) {
+						vm.$refs.uTips.show({
+							type: 'error',
+							title: vm._i18n.messages[vm.lang].electricIndex.priceLimit
+						})
+						return false
+					}
 				}
-				if (vm.cusPrice < 10) {
-					vm.$refs.uTips.show({
-						type: 'error',
-						title: vm._i18n.messages[vm.lang].electricIndex.priceLimit
-					})
-					return false
-				}
-				
 				// 提交订单
 				const token = await vm.checkLogin()
 				const obj = {
 					token: token,
 					card_number: vm.curElectric.number,
-					recharge_amount: vm.cusPrice ? vm.cusPrice : vm.priceList.find(item => item.id === vm.choose).selling_price,
+					recharge_amount: vm.cusPrice ? vm.cusPrice : vm.priceList.find(item => item.id === vm.choose).face_value,
 					account_balance: vm.curElectric.account_balance,
-					address: vm.curElectric.corporation
+					address: vm.curElectric.corporation,
+					order_total: vm.cusPrice ? vm.cusPrice : vm.priceList.find(item => item.id === vm.choose).selling_price,
+					type: vm.cusPrice ? 1 : 0
 				}
 				uni.showLoading()
 				vm.$post(urls.subEleOrder, obj).then(res => {

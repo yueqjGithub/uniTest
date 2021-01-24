@@ -5,14 +5,14 @@
 			<view class="ads flex-column flex-jst-start flex-ali-end flex-3">
 				<!-- ads第一排 -->
 				<view class="full-width flex-jst-btw flex-ali-end" :class="langFlex">
-					<text class="text-16 text-bold flex-1" :class="lang==='zh-CN' ? 'text-left' : 'text-right'">{{startTime}}</text>
+					<text class="text-18 text-bold flex-1" :class="lang==='zh-CN' ? 'text-left' : 'text-right'">{{startTime}}</text>
 					<view class="flex-1 text-14 text-primary trap-num text-center pa-col-sm border-box  flex-row flex-jst-center">
 						<view class="throw-container width-80">
 							<view class="cus-icon" :class="lang==='zh-CN' ? 'throw-right' : 'throw-left'"></view>
 							<text>{{train.run_time}}</text>
 						</view>
 					</view>
-					<text class="text-16 text-bold flex-1" :class="lang==='zh-CN' ? 'text-right' : 'text-left'">{{endTime}}</text>
+					<text class="text-18 text-bold flex-1" :class="lang==='zh-CN' ? 'text-right' : 'text-left'">{{endTime}}</text>
 					<!-- <text class="text-14">{{lang === 'zh-CN' ? train.start_station_name_cn : train.start_station_name}}</text> -->
 				</view>
 				<!-- ads第二排 -->
@@ -36,7 +36,7 @@
 		<!-- gap -->
 		<!-- <view class="ma-col-md my-gap"></view> -->
 		<!-- bottom -->
-		<view class="seat-container full-width text-grey text-12 ma-top-5" :class="langFlex">
+		<view class="seat-container full-width text-grey text-12 ma-top-5 flex-jst-start flex-ali-base" :class="langFlex">
 			<text>{{train.train_num}}</text>
 			<text>/</text>
 			<text>{{train.plane_cn_name}}</text>
@@ -68,7 +68,7 @@
 		computed: {
 			...mapState(['lang']),
 			langFlex () {
-				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-reverse'
+				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'
 			},
 			trapTime () {
 				const vm = this

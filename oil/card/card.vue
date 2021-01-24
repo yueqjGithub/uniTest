@@ -27,11 +27,11 @@
 				 placeholder-style="color: #aaaaaa" :placeholder="$t('oilCard.mobileTips')" type="text"></u-input>
 			</view>
 			<view class="pa-md"></view>
-			<view class="full-width input-item pa-col-sm border-box flex-jst-btw flex-ali-center" :class="langFlex">
+<!-- 			<view class="full-width input-item pa-col-sm border-box flex-jst-btw flex-ali-center" :class="langFlex">
 				<u-input v-model="valiCode" :class="inputClass" :custom-style="{color: '#aaaaaa', fontSize: '14px'}"
 				 placeholder-style="color: #aaaaaa" :placeholder="$t('oilCard.codeTips')" type="text"></u-input>
 				<text class="text-primary text-12">{{codeShow}}</text>
-			</view>
+			</view> -->
 			<view class="pa-col-lg full-width flex-row flex-jst-center flex-ali-start">
 				<u-radio-group v-model="cardType" :wrap="false" class="full-width" width="50%" active-color="#23AF8C"
 				 :label-disabled="false">
@@ -119,7 +119,7 @@
 						name: vm.name,
 						id_card: vm.id_card,
 						oil_card: vm.oil_card,
-						code: vm.valiCode,
+						// code: vm.valiCode,
 						oil_card_number: vm.cardType,
 						mobile: vm.mobile
 					}

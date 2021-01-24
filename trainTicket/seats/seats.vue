@@ -9,21 +9,21 @@
 				<view class="full-width head-detail flex-column flex-jst-start flex-ali-end">
 					<!-- ads第一排 -->
 					<view class="full-width flex-row flex-jst-btw flex-ali-end">
-						<text class="text-18 text-bold flex-1" :class="lang==='zh-CN' ? 'text-left' : 'text-right'">{{curTrap.trap.start_time}}</text>
-						<view class="flex-1 text-14 text-primary trap-num text-center pa-col-sm border-box">
+						<text class="flex-3 text-18 text-bold text-left">{{curTrap.trap.start_time}}</text>
+						<view class="flex-2 text-14 text-primary trap-num text-center pa-col-sm border-box">
 							<view class="cus-icon" :class="lang==='zh-CN' ? 'throw-right' : 'throw-left'"></view>
 							<text>{{curTrap.trap.train_num}}</text>
 						</view>
-						<text class="text-18 text-bold flex-1" :class="lang==='zh-CN' ? 'text-right' : 'text-left'">{{curTrap.trap.end_time}}</text>
+						<text class="flex-3 text-18 text-bold text-right">{{curTrap.trap.end_time}}</text>
 						<!-- <text class="text-14">{{lang === 'zh-CN' ? train.start_station_name_cn : train.start_station_name}}</text> -->
 					</view>
 					<!-- ads第二排 -->
 					<view class="full-width flex-row flex-jst-btw flex-ali-start ma-top-5">
-						<text class="text-14 flex-1" :class="lang==='zh-CN' ? 'text-left' : 'text-right'">
+						<text class="flex-3 text-14 text-left">
 							{{lang==="zh-CN"?curTrap.trap.start_station_name_cn:curTrap.trap.start_station_name}}
 						</text>
-						<view class="flex-1 text-center text-grey">{{trapTime}}</view>
-						<text class="text-14 flex-1" :class="lang==='zh-CN' ? 'text-right' : 'text-left'">
+						<view class="flex-2 text-center text-grey">{{trapTime}}</view>
+						<text class="flex-3 text-14 text-right">
 							{{lang==="zh-CN"?curTrap.trap.end_station_name_cn:curTrap.trap.end_station_name}}
 						</text>
 					</view>
@@ -38,11 +38,11 @@
 			<!-- 列表 -->
 			<view v-for="(item, idx) in curTrap.trap.seats" :key="idx" class="seat-item pa-col-md flex-jst-btw flex-ali-center"
 			 :class="langFlex">
-				<text class="flex-1 text-14" :class="lang==='zh-CN'?'text-left':'text-right'">{{lang==='zh-CN'?item.seatName.name_cn:item.seatName.name}}</text>
+				<text class="flex-1 text-14 text-bold" :class="lang==='zh-CN'?'text-left':'text-right'">{{lang==='zh-CN'?item.seatName.name_cn:item.seatName.name}}</text>
 				<!-- <text class="flex-1 text-14 text-center" :class="item.inventory === 0 ? 'text-cus-error':'text-grey'">{{item.inventory === 0 ? $t('train.no'):$t('train.many')}}</text> -->
 				<view class="flex-1 text-14 text-center">
-					<view v-if="item.inventory > 0 && item.inventory <= 50" class="text-primary text-center">{{item.inventory}}</view>
-					<view v-if="item.inventory > 50" class="text-center text-grey">{{$t('train.many')}}</view> 
+					<view v-if="item.inventory > 0 && item.inventory <= 50" class="text-primary text-center text-bold">{{item.inventory}}</view>
+					<view v-if="item.inventory > 50" class="text-center text-grey text-primary text-bold">{{$t('train.many')}}</view> 
 					<view v-if="item.inventory === 0" class="text-center text-cus-error">{{$t('train.no')}}</view>
 				</view>
 				<text class="flex-1 text-16 text-bold text-primary text-center">￥{{item.price}}</text>
@@ -164,7 +164,7 @@
 
 				.head-detail {
 					border-top: 1px solid #e5e5e5;
-					padding-top: 28rpx;
+					    padding: 28rpx 28rpx 0 28rpx;
 
 					.trap-num {
 						position: relative;

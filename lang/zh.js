@@ -190,6 +190,8 @@ export default {
 		airportTax: '机建'
 	},
 	contact: { // 联系人模块
+		contactName: '联系人',
+		contactMobile: '手机',
 		titTip: '旅客信息',
 		idCardTips: '请上传身份证正面照',
 		uploadFail: '上传失败，请选择手动输入',
@@ -247,11 +249,11 @@ export default {
 		companyTips: '缴纳机构选择',
 		numberTips: '请输入电卡卡号',
 		makeSure: '勾选即代表同意《用户协议》中的内容',
-		balance: '余额',
-		uName: '户名',
-		uNumber: '户号',
+		balance: '当前电卡余额',
+		uName: '缴费户名',
+		uNumber: '缴费户号',
 		corporation: '缴费单位',
-		ads: '地址',
+		ads: '用户地址',
 		inputTips: '输入需要充值的金额',
 		tip1: '请设置充值金额',
 		priceLimit: '充值金额不能小于10元'
