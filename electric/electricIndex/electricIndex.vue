@@ -36,7 +36,7 @@
 			</view> -->
 			<!-- 提交按钮 -->
 			<view class="pa-lg border-box full-width flex-row flex-jst-center flex-ali-center">
-				<button type="normal" class="my-btn-primary text-white text-14" @click="toDetail">{{$t('basic.ok')}}</button>
+				<button type="normal" class="my-btn-primary text-white text-14" @click="queryInfoByCard">{{$t('basic.ok')}}</button>
 			</view>
 		</view>
 		<!-- 选择器区域 -->
@@ -80,18 +80,18 @@
 						})
 					}
 				}
-			},
-			cardNumber: {
-				immediate: false,
-				handler: function(val) {
-					const vm = this
-					setTimeout(function() {
-						if (vm.cardNumber === val && vm.cardNumber !== '') {
-							vm.queryInfoByCard()
-						}
-					}, 1200)
-				}
 			}
+			// cardNumber: {
+			// 	immediate: false,
+			// 	handler: function(val) {
+			// 		const vm = this
+			// 		setTimeout(function() {
+			// 			if (vm.cardNumber === val && vm.cardNumber !== '') {
+			// 				vm.queryInfoByCard()
+			// 			}
+			// 		}, 1200)
+			// 	}
+			// }
 		},
 		computed: {
 			...mapState(['lang']),
@@ -214,9 +214,9 @@
 					vm.$post(urls.queryByCard, obj).then(res => {
 						uni.hideLoading()
 						if (res.success) {
-							console.log(res)
 							vm.$store.commit('setCurElectricDetail', res.data)
 							vm.pass = true
+							vm.toDetail()
 						} else {
 							this.$refs.uTips.show({
 								type: 'error',

@@ -52,7 +52,7 @@
 		computed: {
 			...mapState(['lang']),
 			rightClass() {
-				return this.lang === 'zh-CN' ? '' : 'my-text-right'
+				return this.lang === 'zh-CN' ? '' : 'my-text-right rtl'
 			}
 		},
 		onShow () {
@@ -73,7 +73,6 @@
 					uni.hideLoading()
 					if (res.success) {
 						vm.typeList = [...res.data]
-						console.log(vm.typeList)
 						vm.$store.commit('setOilList', vm.typeList)
 					} else {
 						uni.showToast({

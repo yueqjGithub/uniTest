@@ -16,11 +16,11 @@
 			</view>
 		</view>
 		<!-- 说明 -->
-		<view class="contact-tip flex-column flex-jst-start flex-ali-start pa-col-md uni-border">
+<!-- 		<view class="contact-tip flex-column flex-jst-start flex-ali-start pa-col-md uni-border">
 			<view class="full-width tip-tit text-14 text-bold" :class="rightClass">{{$t('basic.tip')}}</view>
 			<view class="full-width text-12 text-grey-1 ma-col-sm" :class="rightClass">{{$t('oilIndex.tip1')}}</view>
 			<view class="full-width text-12 text-grey-1 ma-col-sm" :class="rightClass">{{$t('oilIndex.tip2')}}</view>
-		</view>
+		</view> -->
 		<!-- 弹出 -->
 		<u-modal v-model="delModal" :content="delTip" @confirm="delCard" :show-cancel-button="true" :confirm-text="$t('basic.ok')"
 		 :cancel-text="$t('basic.cancel')"></u-modal>
@@ -91,7 +91,7 @@
 					uni.showLoading()
 					vm.$post(urls.delOilCard, obj).then(res => {
 						if (res.success) {
-							vm.queryInfo()
+							vm.queryType()
 						} else {
 							uni.hideLoading()
 							uni.showToast({

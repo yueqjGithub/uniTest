@@ -63,6 +63,13 @@
 				const vm = this
 				const token = await vm.checkLogin()
 				if (token) {
+					if (vm.choose === '') {
+						uni.showToast({
+							icon: 'none',
+							title: vm._i18n.messages[vm.lang].oilIndex.addCardTips
+						})
+						return false
+					}
 					const obj = {
 						token: token,
 						card_number: vm.choose,
@@ -79,14 +86,14 @@
 				const vm = this
 				vm.$post(urls.commitOilOrder, options).then(res => {
 					console.log(res)
-					if (res.result_code === 'SUCCESS') {
+					if (res.success) {
 						uni.requestPayment({ // 调用支付
 						    provider: 'wxpay',
-						    timeStamp: res.timeStamp,
-						    nonceStr: res.nonceStr,
-						    package: res.package,
+						    timeStamp: res.data.timeStamp,
+						    nonceStr: res.data.nonceStr,
+						    package: res.data.package,
 						    signType: 'MD5',
-						    paySign: res.paySign,
+						    paySign: res.data.paySign,
 						    success: function (result) {
 									uni.hideLoading()
 									uni.showToast({

@@ -5,23 +5,23 @@
 			<view class="ads flex-column flex-jst-start flex-ali-end flex-3">
 				<!-- ads第一排 -->
 				<view class="full-width flex-jst-btw flex-ali-end" :class="langFlex">
-					<text class="text-18 text-bold flex-1" :class="lang==='zh-CN' ? 'text-left' : 'text-right'">{{startTime}}</text>
+					<text class="text-18 text-bold flex-1 text-center">{{startTime}}</text>
 					<view class="flex-1 text-14 text-primary trap-num text-center pa-col-sm border-box  flex-row flex-jst-center">
 						<view class="throw-container width-80">
 							<view class="cus-icon" :class="lang==='zh-CN' ? 'throw-right' : 'throw-left'"></view>
 							<text>{{train.run_time}}</text>
 						</view>
 					</view>
-					<text class="text-18 text-bold flex-1" :class="lang==='zh-CN' ? 'text-right' : 'text-left'">{{endTime}}</text>
+					<text class="text-18 text-bold flex-1 text-center">{{endTime}}</text>
 					<!-- <text class="text-14">{{lang === 'zh-CN' ? train.start_station_name_cn : train.start_station_name}}</text> -->
 				</view>
 				<!-- ads第二排 -->
 				<view class="full-width flex-jst-btw flex-ali-start ma-top-5" :class="langFlex">
-					<text class="text-12 flex-1" :class="lang==='zh-CN' ? 'text-left' : 'text-right'">
+					<text class="text-12 flex-1 text-center">
 						{{lang==="zh-CN"?train.start_station_name_cn:train.start_station_name}}
 					</text>
 					<view class="flex-1 text-center text-grey"></view>
-					<text class="text-12 flex-1" :class="lang==='zh-CN' ? 'text-right' : 'text-left'">
+					<text class="text-12 flex-1 text-center">
 						{{lang==="zh-CN"?train.end_station_name_cn:train.end_station_name}}
 					</text>
 				</view>

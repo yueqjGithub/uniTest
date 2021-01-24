@@ -20,14 +20,16 @@
 					<text class="text-14 flex-1" :class="lang==='zh-CN' ? 'text-left' : 'text-right'">
 						{{lang==="zh-CN"?train.start_station_name_cn:train.start_station_name}}
 					</text>
-					<view class="flex-1 text-center text-grey">{{trapTime}}</view>
+					<view class="flex-1 text-center text-grey flex-row flex-jst-center">
+						<text :class="lang==='zh-CN' ? '' : 'rtl'" class="width-80 text-wrap">{{trapTime}}</text>
+					</view>
 					<text class="text-14 flex-1" :class="lang==='zh-CN' ? 'text-right' : 'text-left'">
 						{{lang==="zh-CN"?train.end_station_name_cn:train.end_station_name}}
 					</text>
 				</view>
 			</view>
 			<view class="price flex-1 flex-column">
-				<text class="full-width text-primary text-bold text-18 flex-row flex-jst-end flex-ali-end" :class="lang==='zh-CN' ? 'text-right' : 'text-left'">
+				<text class="full-width text-primary text-bold text-18" :class="lang==='zh-CN' ? 'text-right' : 'text-left'">
 					<text class="text-14">￥</text>
 					{{train.seats[0].price || 0}}
 				</text>

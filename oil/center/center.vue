@@ -30,13 +30,13 @@
 				</view>
 			</view>
 			<!-- 用户协议 -->
-			<view class="pa-sm"></view>
+<!-- 			<view class="pa-sm"></view>
 			<view class="full-width flex-jst-start flex-ali-center pa-col-md no-ma-checkbox" :class="langFlex">
 				<u-checkbox-group active-color="#00BE88" shape="circle">
 					<u-checkbox v-model="sure" name="true"></u-checkbox>
 				</u-checkbox-group>
 				<text class="text-12 text-grey-1 ma-row-sm">{{$t('electricIndex.makeSure')}}</text>
-			</view>
+			</view> -->
 			<!-- 按钮 -->
 			<view class="pa-row-lg ma-col-md border-box full-width flex-row flex-jst-center flex-ali-center">
 				<button type="default" class="my-btn-primary text-white text-14" @click="doCharge">{{$t('basic.charge')}}</button>
@@ -137,14 +137,14 @@
 					})
 					return false
 				}
-				if (!vm.sure) {
-					this.$refs.uTips.show({
-						title: this._i18n.messages[this.lang].basic.aggrement,
-						type: 'error',
-						duration: '2300'
-					})
-					return false
-				}
+				// if (!vm.sure) {
+				// 	this.$refs.uTips.show({
+				// 		title: this._i18n.messages[this.lang].basic.aggrement,
+				// 		type: 'error',
+				// 		duration: '2300'
+				// 	})
+				// 	return false
+				// }
 				vm.showModal = true
 			},
 			menuClickHandler(target) {

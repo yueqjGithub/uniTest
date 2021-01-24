@@ -3,6 +3,12 @@
 :root{
 	font-family: 'yahei';
 }
+.rtl{
+	direction: rtl;
+}
+.text-wrap{
+	white-space: pre-wrap;
+}
 text,view,input,textarea{
 	font-family: 'cusFont','yahei';
 }

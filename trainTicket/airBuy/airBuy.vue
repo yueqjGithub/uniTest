@@ -53,12 +53,18 @@
 		<!-- 联系人 -->
 		<view :class="langFlex" class="bg-white ticket-contact flex-jst-start flex-ali-base pa-md border-box" @click="toContact">
 			<u-icon custom-prefix="iconfont" name="weibiaoti--6" size="40" class="text-primary"></u-icon>
-			<text class="ma-row-sm">{{$t('contact.contactName')}}:</text>
+			<view class="ma-row-sm flex-jst-center flex-ali-center" :class="langFlex">
+				<text>{{$t('contact.contactName')}}</text>
+				<text>:</text>
+			</view>
 			<text>{{contact.name}}</text>
 		</view>
 		<view :class="langFlex" class="bg-white ticket-contact flex-jst-start flex-ali-base pa-md border-box" @click="toContact">
 			<u-icon custom-prefix="iconfont" name="shouji1" size="40" class="text-primary"></u-icon>
-			<text class="ma-row-sm">{{$t('contact.contactMobile')}}:</text>
+			<view class="ma-row-sm flex-jst-center flex-ali-center" :class="langFlex">
+				<text>{{$t('contact.contactMobile')}}</text>
+				<text>:</text>
+			</view>
 			<text>{{contact.mobile}}</text>
 		</view>
 		<!-- 提交按钮 -->
