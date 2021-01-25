@@ -301,7 +301,7 @@ export default {
 		tips: 'پۇل سوممىسنى كىرگۈزۈڭ '
 	},
 	carCenter: {
-		pageName: 'ماشىنا ياردەمچىسى',
+		pageName: 'تىز سۈرئەتتە پۇل يۆتكەش',
 		licenseSearch: 'پىراۋا تەكشۈرۈش',
 		illegalSearch: 'جەرىمانە تەكشۈرۈش',
 		searchScore: ' پىراۋا نومۇرنى تەكشۈرۈش ',

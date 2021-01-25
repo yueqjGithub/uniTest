@@ -76,7 +76,7 @@
 				handler: function(val) {
 					if (val !== 'zh-CN') {
 						uni.setNavigationBarTitle({
-							title: this._i18n.messages[val].addCar.pageName
+							title: this._i18n.messages[val].credit.pageName
 						})
 					}
 				}
