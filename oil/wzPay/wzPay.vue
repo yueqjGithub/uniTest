@@ -12,10 +12,12 @@
 		</view>
 		<view class="cont-item pa-md flex-column flex-jst-center flex-ali-center">
 			<view class="full-width pa-col-md flex-row flex-jst-center flex-ali-center">
-				<u-input v-model="wz_number" size="small" type="text" :class="rightClass" :border="true" class="my-input-fill" :placeholder="tips" :clearable="false"></u-input>
+				<u-input v-model="wz_number" size="small" type="text" :class="rightClass" :border="true" class="my-input-fill" :placeholder="tips" :clearable="false"
+				placeholder-style="font-family:'cusFont'"  :custom-style="{'fontWight': 'bold', fontSize: '14px'}"
+				></u-input>
 			</view>
 			<view class="width-80 pa-md border-box flex-row flex-jst-center flex-ali-center">
-				<button type="default" class="my-btn-primary text-14 text-white" @click="searchInfo" :loading="loading" :disabled="loading">{{$t('basic.submit')}}</button>
+				<button type="default" class="my-btn-primary text-14 text-white" @click="searchInfo" :loading="loading" :disabled="loading">{{$t('carCenter.submit')}}</button>
 			</view>
 		</view>
 		<!-- 说明 -->
@@ -48,7 +50,7 @@
 				return this._i18n.messages[this.lang].carCenter.wzTips
 			},
 			rightClass() {
-				return this.lang === 'zh-CN' ? '' : 'my-text-right'
+				return this.lang === 'zh-CN' ? '' : 'my-text-right rtl'
 			}
 		},
 		watch: {
@@ -65,7 +67,6 @@
 			uni.showShareMenu({
 				menus: ['shareAppMessage', 'shareTimeline']
 			})
-			this.queryList()
 		},
 		onShareAppMessage(res) {
 			const result = getCurrentPages().pop()

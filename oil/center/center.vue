@@ -25,8 +25,8 @@
 						<text class="text-12 text-bold">￥</text>
 						<text class="text-18 text-bold">{{k.denomination}}</text>
 					</view>
-					<text class="discount text-12">{{$t('store.discount')}}</text>
-					<text class="discount text-12">{{k.price}}</text>
+					<text class="discount text-12 text-bold">{{$t('store.discount')}}</text>
+					<text class="discount text-12 text-bold">{{k.price}}</text>
 				</view>
 			</view>
 			<!-- 用户协议 -->

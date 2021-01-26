@@ -133,7 +133,6 @@
 					obj.token = token
 				}
 				vm.$post(urls.queryShopDetail, obj).then(res => {
-					debugger
 					const pageName = vm.lang === 'zh-CN' ? res.data.shop_name_cn : res.data.shop_name
 					// 设置店名
 					uni.setNavigationBarTitle({

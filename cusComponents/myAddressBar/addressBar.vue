@@ -8,7 +8,7 @@
 		<!-- 搜索 -->
 		<view class="search-container flex-jst-btw flex-ali-center flex-row">
 			<u-field :class="lang === 'zh-CN' ? '' : 'my-text-right'" :border-bottom="false" @input="changeSearch" :clearable="false"
-			:placeholder="$t('train.searchPlaceholder')" :label-width="1" placeholder-style="font-family: 'cusFont','yahei';"
+			:placeholder="placeHolder" :label-width="1" placeholder-style="font-family: 'cusFont','yahei';"
 			 type="text"></u-field>
 			 <u-icon custom-prefix="iconfont" name="weibiaoti--4" class="text-grey" size="35"></u-icon>
 		</view>
@@ -65,6 +65,10 @@
 		},
 		computed: {
 			...mapState(['lang', 'mapKey']),
+			placeHolder () {
+				const target = this.type === 1 ? 'searchPlaceholder' : 'trainSearchPlaceholder'
+				return this._i18n.messages[this.lang].train[target]
+			},
 			titName() {
 				return this._i18n.messages[this.lang].train.addressTit
 			},

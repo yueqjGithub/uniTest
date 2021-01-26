@@ -7,41 +7,41 @@
 				<u-icon name="qiche" size="90" class="text-primary" custom-prefix="iconfont"></u-icon>
 			</view>
 			<view class="pa-md"></view>
-			<view class="full-width flex-jst-btw flex-ali-end" :class="langFlex">
+			<view class="full-width flex-row flex-jst-btw flex-ali-end">
 				<view class="province-choose flex-row flex-jst-center flex-ali-center text-14 text-primary" @click="showModal = true">{{provinceChoose}}</view>
 				<view class="ma-row-sm"></view>
 				<view class="input-item pa-col-sm border-box flex-1">
-					<u-input v-model="carNum" :class="inputClass" :custom-style="{color: '#aaaaaa', fontSize: '14px'}" placeholder-style="color: #aaaaaa"
+					<u-input v-model="carNum" :custom-style="{fontWeight: 'bold', fontSize: '14px'}" placeholder-style="font-family: 'cusFont','yahei';"
 					 class="input-item" :placeholder="$t('addCar.carNumTips')" type="text"></u-input>
 				</view>
 			</view>
 			<!-- 车架号 -->
 			<view class="pa-md"></view>
 			<view class="full-width input-item pa-col-sm border-box">
-				<u-input v-model="vin" :class="inputClass" :custom-style="{color: '#aaaaaa', fontSize: '14px'}" placeholder-style="color: #aaaaaa"
+				<u-input v-model="vin" :custom-style="{fontWeight: 'bold', fontSize: '14px'}" placeholder-style="font-family: 'cusFont','yahei';"
 				 :placeholder="$t('addCar.vinTips')" type="text"></u-input>
 			</view>
 			<!-- 发动机号 -->
 			<view class="pa-md"></view>
 			<view class="full-width input-item pa-col-sm border-box">
-				<u-input v-model="engine_number" :class="inputClass" :custom-style="{color: '#aaaaaa', fontSize: '14px'}" placeholder-style="color: #aaaaaa"
+				<u-input v-model="engine_number" :custom-style="{fontWeight: 'bold', fontSize: '14px'}" placeholder-style="font-family: 'cusFont','yahei';"
 				 :placeholder="$t('addCar.engineTips')" type="text"></u-input>
 			</view>
 			<!-- 注册时间 -->
 			<view class="pa-md"></view>
 			<view class="full-width input-item pa-col-sm border-box">
-				<u-input v-model="reg_time" :class="inputClass" :custom-style="{color: '#aaaaaa', fontSize: '14px'}" disabled
-				 @click="showTimes=true" placeholder-style="color: #aaaaaa" :placeholder="$t('addCar.timeTips')" type="text"></u-input>
+				<u-input v-model="reg_time" :custom-style="{fontWeight: 'bold', fontSize: '14px'}" disabled
+				 @click="showTimes=true" placeholder-style="font-family: 'cusFont','yahei';" :placeholder="$t('addCar.timeTips')" type="text"></u-input>
 			</view>
 			<!-- 电话号码 -->
 			<view class="pa-md"></view>
 			<view class="full-width input-item pa-col-sm border-box">
-				<u-input v-model="mobile" :class="inputClass" :custom-style="{color: '#aaaaaa', fontSize: '14px'}"
-				 placeholder-style="color: #aaaaaa" :placeholder="$t('mobileCharge.numberTips')" type="text"></u-input>
+				<u-input v-model="mobile" :custom-style="{fontWeight: 'bold', fontSize: '14px'}"
+				 placeholder-style="font-family: 'cusFont','yahei';" :placeholder="$t('mobileCharge.numberTips')" type="text"></u-input>
 			</view>
 			<view class="pa-md"></view>
 			<view class="full-width pa-col-sm border-box">
-				<u-radio-group v-model="type" @change="radioGroupChange">
+				<u-radio-group v-model="type">
 					<u-radio v-for="(item, index) in carType" :key="item.label" :name="item.label" active-color="#23AF8C">
 						{{lang === 'zh-CN' ? item.label : item.label_en}}
 					</u-radio>
@@ -89,10 +89,10 @@
 				],
 				carType: [{
 					label: '小车',
-					label_en: 'كىچىك تىپتىكى ئاپتوموبىل'
+					label_en: 'كىچىك ماشىنا '
 				}, {
 					label: '大车',
-					lebel_en: 'چوڭ تىپتىكى ئاپتوموبىل'
+					label_en: 'چوڭ ماشىنا'
 				}],
 				provinceChoose: '',
 				carNum: '', // 车牌号

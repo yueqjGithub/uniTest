@@ -9,13 +9,13 @@
 			<!-- 驾驶证号 -->
 			<view class="pa-md"></view>
 			<view class="full-width input-item pa-col-sm border-box">
-				<u-input v-model="licenseNumber" :class="inputClass" :custom-style="{color: '#aaaaaa', fontSize: '14px'}" placeholder-style="color: #aaaaaa"
+				<u-input v-model="licenseNumber" :custom-style="{fontWeight: 'bold', fontSize: '14px'}" placeholder-style="color: #aaaaaa;font-family:'cusFont','yahei';"
 				 :placeholder="$t('addLicense.licenseNumberTips')" type="text"></u-input>
 			</view>
 			<!-- 档案编号 -->
 			<view class="pa-md"></view>
 			<view class="full-width input-item pa-col-sm border-box">
-				<u-input v-model="fileNumber" :class="inputClass" :custom-style="{color: '#aaaaaa', fontSize: '14px'}" placeholder-style="color: #aaaaaa"
+				<u-input v-model="fileNumber" :custom-style="{fontWeight: 'bold', fontSize: '14px'}" placeholder-style="color: #aaaaaa;font-family:'cusFont','yahei';"
 				 :placeholder="$t('addLicense.fileNumberTips')" type="text"></u-input>
 			</view>
 			<view class="pa-md"></view>
@@ -52,10 +52,10 @@
 				showModal: false,
 				carType: [{
 					label: '小车',
-					label_en: 'كىچىك تىپتىكى ئاپتوموبىل'
+					label_en: 'كىچىك ماشىنا '
 				}, {
 					label: '大车',
-					lebel_en: 'چوڭ تىپتىكى ئاپتوموبىل'
+					label_en: 'چوڭ ماشىنا'
 				}],
 				licenseNumber: '', // 车架号
 				fileNumber: '', // 档案编号
@@ -121,7 +121,8 @@
 						drivers_license_number: vm.fileNumber,
 						type: vm.type
 					}
-					if (vm.curDrivingLicense.id) {
+					debugger
+					if (vm.curDrivingLicense) {
 						obj.id = vm.curDrivingLicense.id
 					}
 					uni.showLoading({

@@ -8,22 +8,22 @@
 			</view>
 			<view class="pa-md"></view>
 			<view class="full-width input-item pa-col-sm border-box">
-				<u-input v-model="name" :class="inputClass" :custom-style="{fontWeight: 'bold', fontSize: '14px'}" placeholder-style="font-family: 'cusFont','yahei';color: #aaaaaa;font-weight:bold;"
+				<u-input v-model="name" :custom-style="{fontWeight: 'bold', fontSize: '14px'}" placeholder-style="font-family: 'cusFont','yahei';color: #aaaaaa;font-weight:bold;"
 				 :placeholder="$t('oilCard.nameTips')" type="text"></u-input>
 			</view>
 			<view class="pa-md"></view>
 			<view class="full-width input-item pa-col-sm border-box">
-				<u-input v-model="id_card" :class="inputClass" :custom-style="{fontWeight: 'bold', fontSize: '14px'}"
+				<u-input v-model="id_card" :custom-style="{fontWeight: 'bold', fontSize: '14px'}"
 				 placeholder-style="font-family: 'cusFont','yahei';color: #aaaaaa;font-weight:bold;" :placeholder="$t('oilCard.idcardTips')" type="text"></u-input>
 			</view>
 			<view class="pa-md"></view>
 			<view class="full-width input-item pa-col-sm border-box">
-				<u-input v-model="oil_card" :class="inputClass" :custom-style="{fontWeight: 'bold', fontSize: '14px'}"
+				<u-input v-model="oil_card" :custom-style="{fontWeight: 'bold', fontSize: '14px'}"
 				 placeholder-style="font-family: 'cusFont','yahei';color: #aaaaaa;font-weight:bold;" :placeholder="$t('oilCard.oilcardTips')" type="text"></u-input>
 			</view>
 			<view class="pa-md"></view>
 			<view class="full-width input-item pa-col-sm border-box">
-				<u-input v-model="mobile" :class="inputClass" :custom-style="{fontWeight: 'bold', fontSize: '14px'}"
+				<u-input v-model="mobile" :custom-style="{fontWeight: 'bold', fontSize: '14px'}"
 				 placeholder-style="font-family: 'cusFont','yahei';color: #aaaaaa;font-weight:bold;" :placeholder="$t('oilCard.mobileTips')" type="text"></u-input>
 			</view>
 			<view class="pa-md"></view>

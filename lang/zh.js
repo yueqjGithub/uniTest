@@ -164,6 +164,7 @@ export default {
 		noTime: '请选择出行时间',
 		calendar: '日历',
 		searchPlaceholder: '请输入地点',
+		trainSearchPlaceholder: '请输入地点',
 		many: '有',
 		no: '无',
 		trapInfo: '车票信息',
@@ -302,6 +303,7 @@ export default {
 		tips: '请输入金额'
 	},
 	carCenter: {
+		submit: '提交',
 		pageName: '汽车助手',
 		licenseSearch: '驾照查询',
 		illegalSearch: '违章查询',
@@ -352,7 +354,8 @@ export default {
 		wgRecord: '违章记录',
 		payForWg: '违章缴费',
 		wgTimes: '您的违章次数',
-		paieded: '已缴纳'
+		paieded: '已缴纳',
+		wzUpdate: '违章更新'
 	},
 	traffic: {
 		pageName: '流量充值'

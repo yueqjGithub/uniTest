@@ -34,7 +34,7 @@
 				</view>
 			</view>
 			<!-- 面额列表 -->
-			<view class="price-list full-width flex-jst-start flex-ali-start" :class="langFlex">
+			<view class="price-list full-width flex-jst-start flex-ali-start flex-row">
 				<view class="price-item flex-row flex-jst-center flex-ali-center ma-sm" v-for="k in priceList"
 				 :key="k.id" :class="choose === k.id ? 'price-choose' : ''" @click="choosePrice(k)">{{k.face_value}}</view>
 			</view>

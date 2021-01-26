@@ -40,22 +40,22 @@
  					</view>
 				</swiper-item>
 			</swiper>
+			<view class="full-width pa-row-md border-box flex-row flex-jst-center flex-ali-center ma-col-sm">
+				<view class="tab-control" v-for="k in tabLength" :key='k' :class="tabIdx === k ? 'tab-choose' : ''"></view>
+			</view>
 			<view class="flex-row flex-jst-btw flex-ali-center full-width pa-row-md border-box border-top">
 				<view class="flex-column flex-jst-start flex-ali-center pa-col-md border-box flex-1">
 					<u-icon name='icon_safety_fill' custom-prefix='iconfont' size='65' color='#f39c10'></u-icon>
 					<text class="text-12 text-center full-width line2">{{$t('wgIndex.buyBx')}}</text>
 				</view>
-				<view class="flex-column flex-jst-start flex-ali-center pa-col-md border-box flex-1">
+				<view class="flex-column flex-jst-start flex-ali-center pa-col-md border-box flex-1" @click="updateWg">
 					<u-icon name='honglvdengweizhang' custom-prefix='iconfont' size='65' color='#3598db'></u-icon>
-					<text class="text-12 text-center full-width line2">{{$t('wgIndex.wgRecord')}}</text>
+					<text class="text-12 text-center full-width line2">{{$t('wgIndex.wzUpdate')}}</text>
 				</view>
 				<view class="flex-column flex-jst-start flex-ali-center pa-col-md border-box flex-1"  @click="toPage('/oil/wzPay/wzPay')">
 					<u-icon name='qian' custom-prefix='iconfont' size='65' color='#ff4b4b'></u-icon>
 					<text class="text-12 text-center full-width line2">{{$t('wgIndex.payForWg')}}</text>
 				</view>
-			</view>
-			<view class="full-width pa-row-md border-box flex-row flex-jst-center flex-ali-center ma-col-sm">
-				<view class="tab-control" v-for="k in tabLength" :key='k' :class="tabIdx === k ? 'tab-choose' : ''"></view>
 			</view>
 		</view>
 		<!-- 拍照添加 -->
@@ -128,6 +128,14 @@
 		methods: {
 			...mapActions(['checkLogin']),
 			...mapMutations(['setCurCarLicense']),
+			updateWg () {
+				const vm = this
+				if (vm.carList.length < 1) {
+					return false
+				} else {
+					vm.queryWgTimes(vm.swiperCurrent)
+				}
+			},
 			toPage (path) {
 				uni.navigateTo({
 					url: path

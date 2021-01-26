@@ -24,10 +24,11 @@
 			<view class="pa-md"></view>
 			<view class="full-width input-item pa-col-sm border-box">
 				<u-input v-model="cardNumber" :class="inputClass" :custom-style="{fontWeight: 'bold', fontSize: '14px'}"
-				 placeholder-style="font-family: 'cusFont','yahei';color: #aaaaaa" :placeholder="$t('electricIndex.numberTips')" type="text"></u-input>
+				 placeholder-style="font-family: 'cusFont','yahei';color: #aaaaaa" :placeholder="$t('electricIndex.numberTips')"
+				 type="text"></u-input>
 			</view>
 			<!-- 用户协议 -->
-<!-- 			<view class="pa-sm"></view>
+			<!-- 			<view class="pa-sm"></view>
 			<view class="full-width flex-jst-start flex-ali-center pa-col-md no-ma-checkbox" :class="langFlex">
 				<u-checkbox-group active-color="#00BE88" shape="circle">
 					<u-checkbox v-model="sure" name="true"></u-checkbox>
@@ -40,6 +41,36 @@
 			</view>
 		</view>
 		<!-- 选择器区域 -->
+		<!-- 链接列表 -->
+		<view class="vip-feedback pa-col-sm ma-col-md">
+			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toPage('/pages/buyVip/buyVip')">
+				<view class="flex-jst-start flex-ali-center" :class="langFlex">
+					<u-icon name="weibiaoti--46" custom-prefix="iconfont" size="40" class="text-primary"></u-icon>
+					<text class="ma-row-sm text-12">{{$t('mobileCharge.vipGuide')}}</text>
+				</view>
+				<button type="default" class="plain-btn">
+					<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
+				</button>
+			</view>
+			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toPage('/pages/coin/coin')">
+				<view class="flex-jst-start flex-ali-center" :class="langFlex">
+					<u-icon name="weibiaoti--50" custom-prefix="iconfont" size="40" class="text-primary"></u-icon>
+					<text class="ma-row-sm text-12">{{$t('mobileCharge.promoteGuide')}}</text>
+				</view>
+				<button type="default" class="plain-btn">
+					<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
+				</button>
+			</view>
+			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toInfoPage('/pages/help/help?type=electric')">
+				<view class="flex-jst-start flex-ali-center" :class="langFlex">
+					<u-icon name="bangzhu" custom-prefix="iconfont" size="40" class="text-primary"></u-icon>
+					<text class="ma-row-sm text-12">{{$t('mobileCharge.helpCenter')}}</text>
+				</view>
+				<button type="default" class="plain-btn">
+					<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
+				</button>
+			</view>
+		</view>
 		<!-- 地区选择 -->
 		<u-select v-model="showArea" :list="areaPicker" :confirm-text="$t('basic.ok')" :cancel-text="$t('basic.cancel')"
 		 :default-value="[0]" confirm-color="#00BE88" @confirm="chooseArea"></u-select>
@@ -152,6 +183,25 @@
 		},
 		methods: {
 			...mapActions(['checkLogin']),
+			toPage(path) {
+				uni.navigateTo({
+					url: path
+				})
+			},
+			async toInfoPage(path) {
+				const vm = this
+				const url = vm.lang === 'zh-CN' ? `${path}_cn` : path
+				const result = await vm.checkLogin()
+				if (result) {
+					uni.navigateTo({
+						url: url
+					})
+				} else {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+				}
+			},
 			queryAreaList() { // 请求地址列表
 				const vm = this
 				uni.showLoading()
@@ -247,7 +297,7 @@
 					})
 					return false
 				}
-				
+
 				uni.navigateTo({
 					url: '/electric/detail/detail'
 				})
@@ -260,6 +310,28 @@
 	.page {
 		width: 100vw;
 		height: 100vh;
+
+		.vip-feedback {
+			width: 90%;
+			margin: 18px auto 20px auto;
+			background: #FFFFFF;
+			border-radius: 13.88rpx;
+
+			.fb-item {
+				&:not(:last-child) {
+					border-bottom: 1px solid #f3f3f3;
+				}
+
+				button {
+					margin: 0;
+					padding: 0;
+				}
+
+				.tran-icon {
+					transform: rotate(180deg);
+				}
+			}
+		}
 
 		.head-bg {
 			position: absolute;

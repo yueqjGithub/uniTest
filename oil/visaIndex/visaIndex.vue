@@ -26,7 +26,9 @@
 					</view>
 					<view class="flex-column flex-jst-center flex-ali-center pa-row-md border-box bg-white">
 						<view class="full-width pa-col-md flex-row flex-jst-center flex-ali-center">
-							<u-input v-model="amount" size="small" type="text" :class="rightClass" :border="true" class="my-input-fill" :placeholder="tips" :clearable="false"></u-input>
+							<u-input v-model="amount" size="small" type="text" :class="rightClass" :border="true" class="my-input-fill" :placeholder="tips" :clearable="false"
+							placeholder-style="color: #aaaaaa;font-family:'cusFont'" :custom-style="{'fontWight': 'bold', fontSize: '14px'}"
+							></u-input>
 						</view>
 						<view class="full-width pa-row-lg flex-row flex-jst-center flex-ali-center ma-col-sm">
 							<button type="default" class="my-btn-primary text-white text-14" @click='doSub'>{{modalTit}}</button>
@@ -118,7 +120,6 @@
 						title: ''
 					})
 					vm.$post(url, obj).then(res => {
-						debugger
 						if (vm.modalType === 1) {
 							if (res.data.result_code === 'SUCCESS') {
 								uni.requestPayment({ // 调用支付
@@ -135,10 +136,12 @@
 												title: vm._i18n.messages[vm.lang].basic.success,
 												duration: 2000
 											})
+											vm.show = false
 											vm.queryIndex()
 								    },
 								    fail: function (err) {
 											uni.hideLoading()
+											vm.show = false
 											vm.$refs.uTips.show({
 												type: 'error',
 												title: vm._i18n.messages[vm.lang].makeOrder.payFail,
@@ -160,6 +163,7 @@
 									title: res.message,
 									duration: 2000
 								})
+								vm.show = false
 								vm.queryIndex()
 							} else {
 								vm.$refs.uTips.show({

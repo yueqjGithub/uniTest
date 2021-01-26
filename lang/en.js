@@ -163,7 +163,8 @@ export default {
 		noEnd: ' تاللاش مەنزىل بېكىتى',
 		noTime: 'تاللاش سەپەرگە چىقىش ۋاقتى',
 		calendar: 'كالىندار',
-		searchPlaceholder: 'ۋوگزال تاللاڭ',
+		searchPlaceholder: 'ئىتىبار سومما تاللاش',
+		trainSearchPlaceholder: 'شەھەر ئىسمنى كىرگۇزۇپ ئىزدەڭ',
 		many: 'بار',
 		no: 'يوق',
 		trapInfo: 'پويىز بېلىتى ئۇچۇرى',
@@ -249,7 +250,7 @@ export default {
 		companyTips: 'تاپشۇرىدىغان ئورگاننى تاللاڭ',
 		numberTips: 'توك كارتىسى نۇمۇرىنى كىرگۈزۈڭ',
 		makeSure: 'ئىشلەتكۈچىلەر كېلىشىمىنى ئوقۇپ ۋە قوشۇلدۇم',
-		balance: 'قالدۇق سومما',
+		balance: 'توك كارتىڭىزدىكى قالدۇق سومما',
 		uName: 'ھېساب نامى',
 		uNumber: 'ھېساب نومۇرى',
 		corporation: 'توك ئىدارە',
@@ -285,7 +286,7 @@ export default {
 		addCard: 'ماي قاچىلاش كارتىسى',
 		cardList: 'ماي كارتام',
 		charge: 'ماي كارتىسى',
-		priceChoose: 'تاللاش سوممىسى'
+		priceChoose: 'ئىتىبار سومما تاللاش'
 	},
 	addCar: {
 		pageName: 'قاتناش جەرىمانىسى',
@@ -301,7 +302,8 @@ export default {
 		tips: 'پۇل سوممىسنى كىرگۈزۈڭ '
 	},
 	carCenter: {
-		pageName: 'تىز سۈرئەتتە پۇل يۆتكەش',
+		submit: 'تەكشۈرۈش',
+		pageName: 'ماشىنا ياردەمچىسى ',
 		licenseSearch: 'پىراۋا تەكشۈرۈش',
 		illegalSearch: 'جەرىمانە تەكشۈرۈش',
 		searchScore: ' پىراۋا نومۇرنى تەكشۈرۈش ',
@@ -351,7 +353,8 @@ export default {
 		wgRecord: 'قائىدىگە خىلاپ خاتىرە ',
 		payForWg: 'قائىدىگە خىلاپ ھەق تاپشۇرۇش ',
 		wgTimes: 'سىزنىڭ قائىدىگە خىلاپلىق قىلىش قېتىم سانىڭىز',
-		paieded: 'تاپشۇرۇلغان '
+		paieded: 'تاپشۇرۇلغان ',
+		wzUpdate: 'قائىدىگە خىلاپ يېڭىلاش '
 	},
 	traffic: {
 		pageName: 'ئېقىم قاچىلاش مەركىزى '
