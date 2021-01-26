@@ -9,13 +9,15 @@
 			<!-- 驾驶证号 -->
 			<view class="pa-md"></view>
 			<view class="full-width input-item pa-col-sm border-box">
-				<u-input v-model="licenseNumber" :custom-style="{fontWeight: 'bold', fontSize: '14px'}" placeholder-style="color: #aaaaaa;font-family:'cusFont','yahei';"
+				<u-input v-model="licenseNumber" :custom-style="{fontWeight: 'bold', fontSize: '14px'}"
+				:placeholder-style="placeholderStyle"
 				 :placeholder="$t('addLicense.licenseNumberTips')" type="text"></u-input>
 			</view>
 			<!-- 档案编号 -->
 			<view class="pa-md"></view>
 			<view class="full-width input-item pa-col-sm border-box">
-				<u-input v-model="fileNumber" :custom-style="{fontWeight: 'bold', fontSize: '14px'}" placeholder-style="color: #aaaaaa;font-family:'cusFont','yahei';"
+				<u-input v-model="fileNumber" :custom-style="{fontWeight: 'bold', fontSize: '14px'}"
+				:placeholder-style="placeholderStyle"
 				 :placeholder="$t('addLicense.fileNumberTips')" type="text"></u-input>
 			</view>
 			<view class="pa-md"></view>
@@ -66,6 +68,9 @@
 		},
 		computed: {
 			...mapState(['lang', 'curDrivingLicense']),
+			placeholderStyle () {
+				return `font-family:'cusFont','yahei';text-align:${this.lang==='zh-CN'?'' : 'right'}`
+			},
 			langFlex() {
 				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'
 			},
@@ -121,7 +126,6 @@
 						drivers_license_number: vm.fileNumber,
 						type: vm.type
 					}
-					debugger
 					if (vm.curDrivingLicense) {
 						obj.id = vm.curDrivingLicense.id
 					}

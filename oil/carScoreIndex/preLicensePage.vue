@@ -1,13 +1,13 @@
 <template>
 	<view class="pre-license full-width  ma-col-md">
 		<view class="pa-lg border-box scan-container flex-column flex-jst-center" :class="lang === 'zh-CN' ? 'flex-ali-start' : 'flex-ali-end'" v-if='licenseList[0]'>
-			<view class="flex-jst-start flex-ali-center ma-col-sm" :class="langFlex">
+			<view class="flex-jst-start flex-ali-start ma-col-sm" :class="langFlex">
 				<text class="labels text-12 text-grey-1 ma-rt-5" :class="rightClass">{{$t('carCenter.licenseNumber')}}</text>
-				<text class="text-12" :class="rightClass">{{licenseList[0].idcard}}</text>
+				<text class="text-12 text-bold" :class="rightClass">{{licenseList[0].idcard}}</text>
 			</view>
-			<view class="flex-jst-start flex-ali-center ma-col-sm" :class="langFlex">
+			<view class="flex-jst-start flex-ali-start ma-col-sm" :class="langFlex">
 				<text class="labels text-12 text-grey-1 ma-rt-5" :class="rightClass">{{$t('carCenter.fileNumber')}}</text>
-				<text class="text-12" :class="rightClass">{{licenseList[0].drivers_license_number}}</text>
+				<text class="text-12 text-bold" :class="rightClass">{{licenseList[0].drivers_license_number}}</text>
 			</view>
 			<view class="ma-col-md full-width my-split"></view>
 			<view class="pa-row-md border-box full-width flex-row flex-jst-center flex-ali-center">
@@ -20,13 +20,13 @@
 			</view>
 		</view>
 		<!-- 用户协议 -->
-		<view class="pa-sm"></view>
+<!-- 		<view class="pa-sm"></view>
 		<view class="full-width flex-jst-start flex-ali-center pa-col-md no-ma-checkbox" :class="langFlex" v-if='licenseList[0]'>
 			<u-checkbox-group active-color="#00BE88" shape="circle">
 				<u-checkbox v-model="sure" name="true"></u-checkbox>
 			</u-checkbox-group>
 			<text class="text-12 text-grey-1 ma-row-sm">{{$t('electricIndex.makeSure')}}</text>
-		</view>
+		</view> -->
 		<!-- 按钮 -->
 		<view class="pa-row-lg ma-col-md border-box full-width flex-row flex-jst-center flex-ali-center" v-if='licenseList[0]'>
 			<button type="default" class="my-btn-primary text-white text-14" @click="searchInfo">{{$t('basic.search')}}</button>
@@ -84,14 +84,14 @@
 					vm.$emit('showTip', content)
 					return false
 				}
-				if (!vm.sure) {
-					content = {
-						type: 'error',
-						title: vm._i18n.messages[vm.lang].basic.aggrement
-					}
-					vm.$emit('showTip', content)
-					return false
-				}
+				// if (!vm.sure) {
+				// 	content = {
+				// 		type: 'error',
+				// 		title: vm._i18n.messages[vm.lang].basic.aggrement
+				// 	}
+				// 	vm.$emit('showTip', content)
+				// 	return false
+				// }
 				const token = await vm.checkLogin()
 				if (token) {
 					const obj = {
@@ -123,7 +123,7 @@
 			border-radius: 10.41rpx;
 			border: 1px solid #efefef;
 			.labels{
-				width: 100rpx;
+				width: 150rpx;
 			}
 			.my-split{
 				height: 1px;

@@ -11,33 +11,33 @@
 				<view class="province-choose flex-row flex-jst-center flex-ali-center text-14 text-primary" @click="showModal = true">{{provinceChoose}}</view>
 				<view class="ma-row-sm"></view>
 				<view class="input-item pa-col-sm border-box flex-1">
-					<u-input v-model="carNum" :custom-style="{fontWeight: 'bold', fontSize: '14px'}" placeholder-style="font-family: 'cusFont','yahei';"
+					<u-input v-model="carNum" :custom-style="{fontWeight: 'bold', fontSize: '14px'}" :placeholder-style="placeholderStyle"
 					 class="input-item" :placeholder="$t('addCar.carNumTips')" type="text"></u-input>
 				</view>
 			</view>
 			<!-- 车架号 -->
 			<view class="pa-md"></view>
 			<view class="full-width input-item pa-col-sm border-box">
-				<u-input v-model="vin" :custom-style="{fontWeight: 'bold', fontSize: '14px'}" placeholder-style="font-family: 'cusFont','yahei';"
+				<u-input v-model="vin" :custom-style="{fontWeight: 'bold', fontSize: '14px'}" :placeholder-style="placeholderStyle"
 				 :placeholder="$t('addCar.vinTips')" type="text"></u-input>
 			</view>
 			<!-- 发动机号 -->
 			<view class="pa-md"></view>
 			<view class="full-width input-item pa-col-sm border-box">
-				<u-input v-model="engine_number" :custom-style="{fontWeight: 'bold', fontSize: '14px'}" placeholder-style="font-family: 'cusFont','yahei';"
+				<u-input v-model="engine_number" :custom-style="{fontWeight: 'bold', fontSize: '14px'}" :placeholder-style="placeholderStyle"
 				 :placeholder="$t('addCar.engineTips')" type="text"></u-input>
 			</view>
 			<!-- 注册时间 -->
 			<view class="pa-md"></view>
 			<view class="full-width input-item pa-col-sm border-box">
 				<u-input v-model="reg_time" :custom-style="{fontWeight: 'bold', fontSize: '14px'}" disabled
-				 @click="showTimes=true" placeholder-style="font-family: 'cusFont','yahei';" :placeholder="$t('addCar.timeTips')" type="text"></u-input>
+				 @click="showTimes=true" :placeholder-style="placeholderStyle" :placeholder="$t('addCar.timeTips')" type="text"></u-input>
 			</view>
 			<!-- 电话号码 -->
 			<view class="pa-md"></view>
 			<view class="full-width input-item pa-col-sm border-box">
 				<u-input v-model="mobile" :custom-style="{fontWeight: 'bold', fontSize: '14px'}"
-				 placeholder-style="font-family: 'cusFont','yahei';" :placeholder="$t('mobileCharge.numberTips')" type="text"></u-input>
+				  :placeholder-style="placeholderStyle" :placeholder="$t('mobileCharge.numberTips')" type="text"></u-input>
 			</view>
 			<view class="pa-md"></view>
 			<view class="full-width pa-col-sm border-box">
@@ -105,6 +105,9 @@
 		},
 		computed: {
 			...mapState(['lang', 'curCarLicense']),
+			placeholderStyle () {
+				return `font-family:'cusFont','yahei';text-align:${this.lang==='zh-CN'?'' : 'right'}`
+			},
 			langFlex() {
 				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'
 			},

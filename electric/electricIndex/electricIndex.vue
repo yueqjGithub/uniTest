@@ -23,8 +23,8 @@
 			<!-- 电卡号输入 -->
 			<view class="pa-md"></view>
 			<view class="full-width input-item pa-col-sm border-box">
-				<u-input v-model="cardNumber" :class="inputClass" :custom-style="{fontWeight: 'bold', fontSize: '14px'}"
-				 placeholder-style="font-family: 'cusFont','yahei';color: #aaaaaa" :placeholder="$t('electricIndex.numberTips')"
+				<u-input v-model="cardNumber" :custom-style="{fontWeight: 'bold', fontSize: '14px'}"
+				 :placeholder-style="placeholderStyle" :placeholder="$t('electricIndex.numberTips')"
 				 type="text"></u-input>
 			</view>
 			<!-- 用户协议 -->
@@ -126,6 +126,9 @@
 		},
 		computed: {
 			...mapState(['lang']),
+			placeholderStyle () {
+				return `font-family:'cusFont','yahei';color:#aaaaaa;text-align:${this.lang==='zh-CN'?'' : 'right'}`
+			},
 			langFlex() {
 				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'
 			},
