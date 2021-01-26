@@ -14,8 +14,8 @@
 		<!-- 说明 -->
 		<view class="contact-tip flex-column flex-jst-start flex-ali-start pa-col-md uni-border">
 			<view class="full-width tip-tit text-14 text-bold" :class="rightClass">{{$t('basic.tip')}}</view>
-			<view class="full-width text-12 text-grey-1 ma-col-sm" :class="rightClass">{{$t('oilIndex.tip1')}}</view>
-			<view class="full-width text-12 text-grey-1 ma-col-sm" :class="rightClass">{{$t('oilIndex.tip2')}}</view>
+			<view class="full-width text-12 text-grey-1" :class="rightClass">{{$t('oilIndex.tip1')}}</view>
+			<view class="full-width text-12 text-grey-1" :class="rightClass">{{$t('oilIndex.tip2')}}</view>
 		</view>
 	</view>
 </template>

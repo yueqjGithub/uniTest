@@ -70,10 +70,10 @@
 		},
 		watch: {
 			lang: {
-				immedaite: true,
+				immediate: true,
 				handler: function(val) {
 					uni.setNavigationBarTitle({
-						title: this._i18n.messages[this.lang].carCenter.myLicense
+						title: this._i18n.messages[val].carCenter.myLicense
 					})
 				}
 			}

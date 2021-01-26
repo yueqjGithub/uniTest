@@ -294,7 +294,9 @@ export default {
 		carNumTips: '请输入车牌号',
 		vinTips: '请输入车架号',
 		engineTips: '请输入发动机号',
-		timeTips: '请选择注册时间'
+		timeTips: '请选择注册时间',
+		mobileTips: '请输入电话号码',
+		chooseProvince: '选择车牌号',
 	},
 	credit: {
 		pageName: '信用借还',

@@ -26,7 +26,7 @@
 					</view>
 					<view class="flex-column flex-jst-center flex-ali-center pa-row-md border-box bg-white">
 						<view class="full-width pa-col-md flex-row flex-jst-center flex-ali-center">
-							<u-input v-model="amount" size="small" type="text" :class="rightClass" :border="true" class="my-input-fill" :placeholder="tips" :clearable="false"
+							<u-input v-model="amount" size="small" type="number" :class="rightClass" :border="true" class="my-input-fill" :placeholder="tips" :clearable="false"
 							placeholder-style="color: #aaaaaa;font-family:'cusFont'" :custom-style="{'fontWight': 'bold', fontSize: '14px'}"
 							></u-input>
 						</view>

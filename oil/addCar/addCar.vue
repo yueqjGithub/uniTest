@@ -37,7 +37,7 @@
 			<view class="pa-md"></view>
 			<view class="full-width input-item pa-col-sm border-box">
 				<u-input v-model="mobile" :custom-style="{fontWeight: 'bold', fontSize: '14px'}"
-				  :placeholder-style="placeholderStyle" :placeholder="$t('mobileCharge.numberTips')" type="text"></u-input>
+				  :placeholder-style="placeholderStyle" :placeholder="$t('addCar.mobileTips')" type="text"></u-input>
 			</view>
 			<view class="pa-md"></view>
 			<view class="full-width pa-col-sm border-box">
