@@ -51,7 +51,8 @@
 				uni.showLoading({
 					title: ''
 				})
-				vm.$get(urls.queryHelp, obj).then(res => {
+				vm.$get(urls.helpList, obj).then(res => {
+					console.log(res)
 					uni.hideLoading()
 					vm.cont = res.data
 				})

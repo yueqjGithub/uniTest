@@ -21,6 +21,7 @@ const urls = {
 	init: '/v1/api/public/init', // 初始化
 	// help
 	queryHelp: '/v1/api/public/help', // 帮助中心
+	helpList: '/v1/api/public/helplist', // 帮助中心列表
 	// index
 	queryIndex: '/v1/api/index/index', // 首页
 	queryNotice: '/v1/api/index/notify', // 首页消息
