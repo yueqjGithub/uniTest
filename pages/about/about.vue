@@ -1,22 +1,9 @@
 <template>
 	<view class="page bg-grey">
+		<u-top-tips ref="uTips"></u-top-tips>
 		<view class="head-bg"></view>
 		<!-- body -->
-		<view class="content-container pa-lg border-box flex-column flex-jst-center flex-ali-center">
-			<u-icon name='bangzhu' color='#00BE88' custom-prefix='iconfont' size='108'></u-icon>
-			<text class="text-12 text-bold" :class="myTextRight">{{$t('help.welcome')}}</text>
-			<text class="text-12 text-grey-1" :class="myTextRight">{{$t('help.serviceMobile')}}</text>
-			<view class="full-width flex-row flex-jst-center flex-ali-center">
-				<u-icon color='#AAAAAA' custom-prefix='iconfont' name='-hour' size='40'></u-icon>
-				<text class="text-grey-1 text-12 text-bold ma-row-sm">17799370072</text>
-			</view>
-		</view>
-		<view class="content-container content-container-serv pa-md border-box" v-for="(k, idx) in contList" :key='idx'>
-			<view class="flex-jst-start flex-ali-center tit" :class="langFlex">
-				<u-icon color='#00BE88' custom-prefix='iconfont' name='renwuzhongxin-huodepinglun' size='40'></u-icon>
-				<text class="text-14 text-bold ma-row-sm" :class="myTextRight">{{lang==='zh-CN' ? k.title_cn : k.title}}</text>
-			</view>
-			<view :class="myTextRight" class="text-14 ma-col-sm" v-html="lang==='zh-CN' ? k.content_en : k.content"></view>
+		<view class="content-container pa-md border-box" v-html="cont">
 		</view>
 	</view>
 </template>
@@ -29,7 +16,7 @@
 		data() {
 			return {
 				type: '',
-				contList: []
+				cont: ''
 			};
 		},
 		computed: {
@@ -70,10 +57,10 @@
 				uni.showLoading({
 					title: ''
 				})
-				vm.$get(urls.helpList, obj).then(res => {
+				vm.$get(urls.queryHelp, obj).then(res => {
 					uni.hideLoading()
 					if (res.success) {
-						vm.contList = [res.data]
+						vm.cont = res.data
 					} else {
 						vm.$refs.uTips.show({
 							type: 'error',
@@ -106,6 +93,7 @@
 	}
 	.content-container{
     width: 90%;
+		height: 94vh;
     margin-top: 28rpx;
     margin-left: auto;
     margin-right: auto;
@@ -114,12 +102,6 @@
     overflow-y: scroll;
     position: relative;
     z-index: 2;
-		&.content-container-serv{
-			padding: 40rpx 27.7rpx;
-			.tit{
-				margin-bottom: 15rpx;
-			}
-		}
 	}
 }
 </style>

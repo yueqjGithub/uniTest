@@ -242,7 +242,9 @@ export default {
 	help: {
 		pageName: 'ياردەم مەركىزى',
 		aboutPageName: 'بىز توغرىسىدا',
-		noticePageName: 'خېرىدارلار كېلىشىمسى'
+		noticePageName: 'خېرىدارلار كېلىشىمسى',
+		welcome: 'ياردەم مەركىزىگە خۇش كەپسىز',
+		serviceMobile: 'مۇلازىمەت تېلىفۇنى:'
 	},
 	electricIndex: {
 		pageName: 'توك ھەققى قاچىلاش',

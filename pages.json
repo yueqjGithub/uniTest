@@ -129,6 +129,13 @@
 				"backgroundColor": "#23AF8C"
 			}
 
+		}, {
+			"path": "pages/about/about",
+			"style": {
+				"navigationBarTitleText": "关于我们",
+				"backgroundColor": "#23AF8C"
+			}
+
 		}
 	],
 	"subPackages": [{

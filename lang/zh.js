@@ -242,7 +242,9 @@ export default {
 	help: {
 		pageName: '帮助中心',
 		aboutPageName: '关于我们',
-		noticePageName: '用户协议'
+		noticePageName: '用户协议',
+		welcome: '欢迎来到帮助中心',
+		serviceMobile: '服务号码'
 	},
 	electricIndex: {
 		pageName: '电费充值',

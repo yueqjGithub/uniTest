@@ -61,7 +61,7 @@
 					<u-icon name="weibiaoti--11" custom-prefix="iconfont" size="30" :class="transIcon" class="text-grey"></u-icon>
 				</button>
 			</view>
-			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toInfoPage('/pages/help/help?type=electric')">
+			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toInfoPage('/pages/help/help?type=df_help')">
 				<view class="flex-jst-start flex-ali-center" :class="langFlex">
 					<u-icon name="bangzhu" custom-prefix="iconfont" size="40" class="text-primary"></u-icon>
 					<text class="ma-row-sm text-12">{{$t('mobileCharge.helpCenter')}}</text>
@@ -193,11 +193,10 @@
 			},
 			async toInfoPage(path) {
 				const vm = this
-				const url = vm.lang === 'zh-CN' ? `${path}_cn` : path
 				const result = await vm.checkLogin()
 				if (result) {
 					uni.navigateTo({
-						url: url
+						url: path
 					})
 				} else {
 					uni.navigateTo({
