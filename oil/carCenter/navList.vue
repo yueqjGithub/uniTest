@@ -4,7 +4,7 @@
 			<view class="nav-circle" :style="{background: k.bgColor, boxShadow: k.boxShadow}">
 				<u-icon :name="k.icon" color="#ffffff" size="50" custom-prefix="iconfont"></u-icon>
 			</view>
-			<text class="nav-name">{{k.name}}</text>
+			<text class="nav-name text-center">{{k.name}}</text>
 		</view>
 	</view>
 </template>
@@ -73,6 +73,7 @@ export default {
 			}
 			.nav-name{
 				font-size: 12px;
+				width: 68px;
 			}
 		}
 	}

@@ -4,7 +4,7 @@
 		<view class="cus-head pa-row-md">
 			<view class="head-container bg-white">
 				<view class="banner-container">
-					<u-swiper :list="bannerList" :image-mode="'scaleToFill'"></u-swiper>
+					<u-swiper :list="bannerList" :image-mode="'scaleToFill'" border-radius='15'></u-swiper>
 				</view>
 				<!-- 分类入口 -->
 				<nav-list></nav-list>
@@ -103,6 +103,9 @@
 	.page {
 		width: 100%;
 		height: 100vh;
+		.price-item + .price-item{
+			border-top: 1px solid #CCCCCC;
+		}
 		.cus-head {
 			width: 100%;
 			background: linear-gradient(0deg, #19C882, #23AF8C);
