@@ -315,6 +315,7 @@ export default {
 		illegalPay: '违章缴费',
 		oilTitle: '今日油价',
 		gasoline: '汽油',
+		toOil: '我要加油',
 		diesel: '柴油',
 		scanTips: '扫描违章罚单可快速获取罚单编号',
 		wzTips: '请输入违章编号',

@@ -23,6 +23,11 @@
 						<text class="text-primary text-18 text-bold">{{k.price}}</text>
 					</view>
 				</view>
+				<view class="full-width flex-row flex-jst-center flex-ali-center pa-row-md border-box">
+					<view class="width-80 flex-row flex-jst-center flex-ali-center pa-md border-box">
+						<button type="default" class="my-btn-primary text-white text-14" @click="toPage('/oil/index/index')">{{$t('carCenter.toOil')}}</button>
+					</view>
+				</view>
 			</view>
 		</view>
 	</view>
@@ -83,6 +88,11 @@
 				const vm = this
 				vm.$get(urls.queryCurrentOilPrice, {}).then(res => {
 					this.priceList = [...res]
+				})
+			},
+			toPage (path) {
+				uni.navigateTo({
+					url: path
 				})
 			}
 		}
