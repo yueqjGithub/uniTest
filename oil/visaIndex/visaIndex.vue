@@ -4,8 +4,12 @@
 		<u-top-tips ref="uTips"></u-top-tips>
 		<view class='card-container flex-row flex-jst-start flex-ali-center'>
 			<view class="card-num">{{credit_card}}</view>
+			<view class="full-width flex-row flex-jst-end flex-ali-center pa-md border-box show-time">
+				<text class="text-white text-16 text-bold ma-row-md">KOLAY BAZAR</text>
+				<text class="text-white text-16 text-bold">{{showTime}}</text>
+			</view>
 		</view>
-		<view class="balance-container flex-column flex-jst-center flex-ali-center pa-lg border-box">
+<!-- 		<view class="balance-container flex-column flex-jst-center flex-ali-center pa-lg border-box">
 			<view class="flex-row flex-jst-center flex-ali-base full-width ma-top-5">
 				<text class="text-bold text-14 text-primary">￥</text>
 				<text class="text-bold text-32 text-primary">{{credit_line}}</text>
@@ -13,6 +17,7 @@
 			<view class="full-width flex-row flex-jst-center flex-ali-center text-grey-1 text-12">
 				{{$t('pullPage.balance')}}
 			</view>
+			<view class="pa-md full-width"></view>
 			<view class="full-width flex-row flex-jst-center flex-ali-center pa-row-lg ma-col-md">
 				<button type="default" class="my-btn-primary text-white text-14" @click="openModal(1)">{{$t('credit.charge')}}</button>
 			</view>
@@ -36,6 +41,10 @@
 					</view>
 				</view>
 			</u-popup>
+		</view> -->
+		<view class="contact-tip flex-column flex-jst-start flex-ali-start pa-col-md uni-border">
+			<view class="full-width tip-tit text-14 text-bold" :class="rightClass">{{$t('basic.tip')}}</view>
+			<view class="full-width text-12 text-grey-1 ma-col-sm" style='line-height: 38rpx;' :class="rightClass">{{$t('credit.tips1')}}</view>
 		</view>
 	</view>
 </template>
@@ -46,6 +55,7 @@
 		mapActions
 	} from 'vuex'
 	import urls from '@/service/urls.js'
+	import dayjs from 'dayjs'
 	export default {
 		data() {
 			return {
@@ -58,6 +68,12 @@
 		},
 		computed: {
 			...mapState(['lang']),
+			showTime () {
+				return dayjs().format('MM/DD')
+			},
+			rightClass() {
+				return this.lang === 'zh-CN' ? '' : 'my-text-right rtl'
+			},
 			langFlex() {
 				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'
 			},
@@ -244,6 +260,11 @@
 			background-size: 100%;
 			border-radius: 20.83rpx;
 			height: 50vw;
+			.show-time{
+				position: absolute;
+				bottom: 0;
+				right: 0;
+			}
 			.card-num{
 				font-size: 22px;
 				font-weight: bold;
@@ -265,5 +286,9 @@
 		.modal-container{
 			width: 80vw;
 		}
+	}
+	.contact-tip{
+		width: 90%;
+		margin: 0 auto;
 	}
 </style>

@@ -304,7 +304,8 @@ export default {
 		pageName: '信用借还',
 		charge: '充值',
 		withdraw: '提现',
-		tips: '请输入金额'
+		tips: '请输入金额',
+		tips1: '信用卡在线办理功能研发中， 上线以后快速办理银行信用卡。'
 	},
 	carCenter: {
 		submit: '提交',
@@ -364,5 +365,15 @@ export default {
 	},
 	traffic: {
 		pageName: '流量充值'
+	},
+	myDrivingLicense: {
+		pageName: '驾驶证信息',
+		title: '查询成功',
+		result1: '您的驾驶证计分为',
+		score: '分',
+		result2: '剩余',
+		result3: '请遵守交通规则',
+		tips1: '驾驶证计分累计满12分的，应当在15日内到驾驶证核发地或者违法行为地公安机关交通管理部门参加为期7日的道路交通安全法律、法规和相关知识学习并参加考试',
+		searchAgain: '重新查询'
 	}
 }

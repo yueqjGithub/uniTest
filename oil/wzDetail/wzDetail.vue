@@ -20,11 +20,11 @@
 			<!-- detail -->
 			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
 				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.fdbh')}}</text>
-				<text class="text-blk text-14">{{curWz.jdsbh}}</text>
+				<text class="text-blk text-14">{{curWz.number}}</text>
 			</view>
 			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
 				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.wzPerson')}}</text>
-				<text class="text-blk text-14">{{curWz.dsr}}</text>
+				<text class="text-blk text-14">{{curWz.realname}}</text>
 			</view>
 			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
 				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.carNumber')}}</text>
@@ -32,7 +32,7 @@
 			</view>
 			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
 				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.wzTime')}}</text>
-				<text class="text-blk text-14">{{curWz.wfsj}}</text>
+				<text class="text-blk text-14">{{curWz.lsnum}}</text>
 			</view>
 			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
 				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.wfdz')}}</text>
@@ -40,11 +40,11 @@
 			</view>
 			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
 				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.fkje')}}</text>
-				<text class="text-blk text-14">{{curWz.fkje}}</text>
+				<text class="text-blk text-14">{{curWz.address}}</text>
 			</view>
 			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
 				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.znj')}}</text>
-				<text class="text-blk text-14">{{curWz.znj}}</text>
+				<text class="text-blk text-14">{{curWz.delaymoney}}</text>
 			</view>
 			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
 				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.servicePrice')}}</text>
@@ -84,7 +84,7 @@
 				return this.lang === 'zh-CN' ? '' : 'my-text-right'
 			},
 			fkTotal () {
-				const result = Number(this.curWz.fkje) + Number(this.curWz.znj)
+				const result = Number(this.curWz.money) + Number(this.curWz.delaymoney)
 				return Math.floor(result)
 			}
 		},
@@ -135,14 +135,14 @@
 				if (token) {
 					const obj = {
 						token: token,
-						license: vm.curWz.hphm,
-						peccancy_number: vm.curWz.jdsbh,
-						peccancy_time: vm.curWz.wfsj,
-						peccancy_info: vm.curWz.wfdz,
-						fkje: vm.curWz.fkje,
-						znj: vm.curWz.znj,
-						type: vm.curWz.hpzlStr,
-						name: vm.curWz.dsr
+						license: vm.curWz.lsnum,
+						peccancy_number: vm.curWz.number,
+						peccancy_time: vm.curWz.time,
+						peccancy_info: vm.curWz.address,
+						fkje: vm.curWz.money,
+						znj: vm.curWz.delaymoney,
+						type: vm.curWz.lstype,
+						name: vm.curWz.realname
 					}
 					uni.showLoading({
 						title: ''

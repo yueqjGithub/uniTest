@@ -157,7 +157,7 @@
 						vm.$set(vm.carList[idx], 'wgTimes', res.data.result.illegalnum)
 					} else {
 						vm.$refs.uTips.show({
-							title: res.msg,
+							title: res.data.msg,
 							duration: 2300,
 							type: 'error'
 						})

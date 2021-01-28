@@ -131,7 +131,7 @@
 			box-shadow: 0px 6.94rpx 20.83rpx 0px rgba(152, 152, 152, 0.15);
 			border-radius: 20.83rpx;
 			.price-item{
-				padding: 0 37.7rpx;
+				padding: 27.7rpx 37.7rpx;
 			}
 			.oil-name{
 				font-weight: '700';
