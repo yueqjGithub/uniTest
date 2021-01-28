@@ -4,7 +4,7 @@
 		<view class="cus-head pa-row-md">
 			<view class="head-container bg-white">
 				<view class="banner-container">
-					<u-swiper :list="bannerList" :image-mode="'scaleToFill'"></u-swiper>
+					<u-swiper :list="bannerList" :image-mode="'scaleToFill'" border-radius='15'></u-swiper>
 				</view>
 				<!-- 分类入口 -->
 				<nav-list></nav-list>
@@ -21,6 +21,11 @@
 					</view>
 					<view class="flex-row flex-jst-center flex-ali-base">
 						<text class="text-primary text-18 text-bold">{{k.price}}</text>
+					</view>
+				</view>
+				<view class="full-width flex-row flex-jst-center flex-ali-center pa-row-md border-box">
+					<view class="width-80 flex-row flex-jst-center flex-ali-center pa-md border-box">
+						<button type="default" class="my-btn-primary text-white text-14" @click="toPage('/oil/index/index')">{{$t('carCenter.toOil')}}</button>
 					</view>
 				</view>
 			</view>
@@ -84,6 +89,11 @@
 				vm.$get(urls.queryCurrentOilPrice, {}).then(res => {
 					this.priceList = [...res]
 				})
+			},
+			toPage (path) {
+				uni.navigateTo({
+					url: path
+				})
 			}
 		}
 	}
@@ -93,6 +103,9 @@
 	.page {
 		width: 100%;
 		height: 100vh;
+		.price-item + .price-item{
+			border-top: 1px solid #CCCCCC;
+		}
 		.cus-head {
 			width: 100%;
 			background: linear-gradient(0deg, #19C882, #23AF8C);

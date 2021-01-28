@@ -41,7 +41,7 @@
 		</view>
 		<!-- list栏 -->
 		<view class="vip-feedback pa-col-sm">
-			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toInfoPage('/pages/help/help?type=user_xy')">
+			<view class="fb-item flex-jst-btw flex-ali-center pa-row-md" :class="langFlex" @click="toInfoPage('/pages/about/about?type=user_xy')">
 				<view class="flex-jst-start flex-ali-center" :class="langFlex">
 					<u-icon name="renwuzhongxin-huodepinglun" custom-prefix="iconfont" size="40" class="text-gold"></u-icon>
 					<text class="ma-row-sm text-12">{{$t('vip.agreement')}}</text>

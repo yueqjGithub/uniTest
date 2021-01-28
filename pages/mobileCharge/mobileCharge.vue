@@ -187,11 +187,10 @@
 			},
 			async toInfoPage (path) {
 				const vm = this
-				const url = vm.lang === 'zh-CN' ? `${path}_cn` : path
 				const result = await vm.checkLogin()
 				if (result) {
 					uni.navigateTo({
-						url: url
+						url: path
 					})
 				} else {
 					uni.navigateTo({

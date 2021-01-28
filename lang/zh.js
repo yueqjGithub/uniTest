@@ -242,7 +242,9 @@ export default {
 	help: {
 		pageName: '帮助中心',
 		aboutPageName: '关于我们',
-		noticePageName: '用户协议'
+		noticePageName: '用户协议',
+		welcome: '欢迎来到帮助中心',
+		serviceMobile: '服务号码'
 	},
 	electricIndex: {
 		pageName: '电费充值',
@@ -313,6 +315,7 @@ export default {
 		illegalPay: '违章缴费',
 		oilTitle: '今日油价',
 		gasoline: '汽油',
+		toOil: '我要加油',
 		diesel: '柴油',
 		scanTips: '扫描违章罚单可快速获取罚单编号',
 		wzTips: '请输入违章编号',

@@ -242,7 +242,9 @@ export default {
 	help: {
 		pageName: 'ياردەم مەركىزى',
 		aboutPageName: 'بىز توغرىسىدا',
-		noticePageName: 'خېرىدارلار كېلىشىمسى'
+		noticePageName: 'خېرىدارلار كېلىشىمسى',
+		welcome: 'ياردەم مەركىزىگە خۇش كەپسىز',
+		serviceMobile: 'مۇلازىمەت تېلىفۇنى:'
 	},
 	electricIndex: {
 		pageName: 'توك ھەققى قاچىلاش',
@@ -312,6 +314,7 @@ export default {
 		illegalPay: 'جەرىمانە تاپشۇرۇش',
 		oilTitle: 'بۈگۈنكى ماي باھاسى',
 		gasoline: 'بېىنزىن',
+		toOil: 'ماي پۇلى قاچىلاي',
 		diesel: 'دېزىل',
 		scanTips: 'قائىدىگە خىلاپ قىلمىش جەرىمانە تالونىنى سىكاننىرلاپ تەكشۈرۈڭ',
 		wzTips: 'جەرىمانە تالۇنى نۇمۇرىنى كىرگۈزۈڭ',
