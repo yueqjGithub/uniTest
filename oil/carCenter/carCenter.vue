@@ -14,7 +14,7 @@
 		<view class="full-width pa-md border-box flex-row flex-jst-center flex-ali-center oil-container">
 			<view class="cont-item pa-md full-width border-box">
 				<view class="full-width flex-row flex-jst-center flex-ali-center pa-col-sm border-box text-bold tex-14">{{$t('carCenter.oilTitle')}}</view>
-				<view v-for="k in priceList" :key='k.name' :class="langFlex" class="flex-jst-btw flex-ali-center price-item pa-col-md">
+				<view v-for="k in priceList" :key='k.name' :class="langFlex" class="flex-jst-btw flex-ali-center price-item">
 					<view class="flex-row flex-jst-start flex-ali-center">
 						<text class="oil-name text-16">{{lang === 'zh-CN' ? k.type.name_cn : k.type.name}}</text>
 						<text class="oil-name ma-row-sm text-16">{{k.name}}</text>
@@ -117,6 +117,9 @@
 			background: #FFFFFF;
 			box-shadow: 0px 6.94rpx 20.83rpx 0px rgba(152, 152, 152, 0.15);
 			border-radius: 20.83rpx;
+			.price-item{
+				padding: 0 37.7rpx;
+			}
 			.oil-name{
 				font-weight: '700';
 			}

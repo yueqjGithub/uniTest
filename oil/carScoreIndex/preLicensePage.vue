@@ -100,7 +100,7 @@
 						licensenumber: vm.licenseList[0].drivers_license_number
 					}
 					uni.showLoading()
-					vm.$post(urls.searchLicenseInfo, obj).then(res => {
+					vm.$post(urls.kfSearch, obj).then(res => {
 						uni.hideLoading()
 						console.log(res)
 					}, err => {
