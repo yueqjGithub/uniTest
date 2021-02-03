@@ -13,7 +13,7 @@
 		<view class="cont-item pa-md flex-column flex-jst-center flex-ali-center">
 			<view class="full-width pa-col-md flex-row flex-jst-center flex-ali-center">
 				<u-input v-model="wz_number" size="small" type="number" :border="true" class="my-input-fill" :placeholder="tips" :clearable="false"
-				:placeholder-style="placeholderStyle"  :custom-style="{'fontWight': 'bold', fontSize: '14px'}"
+				:placeholder-style="placeholderStyle"  :custom-style="{'fontWeight': 'bold', fontSize: '16px'}"
 				></u-input>
 			</view>
 			<view class="width-80 pa-md border-box flex-row flex-jst-center flex-ali-center">
@@ -115,6 +115,7 @@
 					vm.loading = true
 					vm.$post(urls.searchWzInfo, obj).then(res => {
 						vm.loading = false
+						console.log(res)
 						if (res.success) {
 							vm.setCurWz(res.data)
 							uni.navigateTo({

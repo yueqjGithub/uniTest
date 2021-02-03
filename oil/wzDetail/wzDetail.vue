@@ -20,35 +20,35 @@
 			<!-- detail -->
 			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
 				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.fdbh')}}</text>
-				<text class="text-blk text-14">{{curWz.number}}</text>
+				<text class="text-blk text-14 text-bold">{{curWz.number}}</text>
 			</view>
 			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
 				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.wzPerson')}}</text>
-				<text class="text-blk text-14">{{curWz.realname}}</text>
+				<text class="text-blk text-14 text-bold">{{curWz.realname}}</text>
 			</view>
 			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
 				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.carNumber')}}</text>
-				<text class="text-blk text-14">{{curWz.hphm}}</text>
+				<text class="text-blk text-14 text-bold">{{carNum}}</text>
 			</view>
 			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
 				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.wzTime')}}</text>
-				<text class="text-blk text-14">{{curWz.lsnum}}</text>
+				<text class="text-blk text-14 text-bold">{{curWz.handletime}}</text>
 			</view>
 			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
 				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.wfdz')}}</text>
-				<text class="text-blk text-14 flex-1">{{curWz.wfdz}}</text>
+				<text class="text-blk text-14 flex-1 text-bold">{{curWz.address}}</text>
 			</view>
 			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
 				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.fkje')}}</text>
-				<text class="text-blk text-14">{{curWz.address}}</text>
+				<text class="text-blk text-14 text-bold">{{curWz.money}}</text>
 			</view>
 			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
 				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.znj')}}</text>
-				<text class="text-blk text-14">{{curWz.delaymoney}}</text>
+				<text class="text-blk text-14 text-bold">{{curWz.delaymoney}}</text>
 			</view>
 			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
 				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.servicePrice')}}</text>
-				<text class="text-blk text-14">{{curWz.fee}}</text>
+				<text class="text-blk text-14 text-bold">{{curWz.fee}}</text>
 			</view>
 			<view class="pa-md full-width"></view>
 			<view class="full-width text-grey-1 text-14" :class="rightClass">{{$t('carCenter.wzDetailTips')}}</view>
@@ -86,6 +86,9 @@
 			fkTotal () {
 				const result = Number(this.curWz.money) + Number(this.curWz.delaymoney)
 				return Math.floor(result)
+			},
+			carNum () {
+				return `${this.curWz.lsprefix}${this.curWz.lsnum}`
 			}
 		},
 		watch: {

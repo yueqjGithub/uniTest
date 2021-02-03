@@ -106,7 +106,7 @@
 					vm.$post(urls.kfSearch, obj).then(res => {
 						uni.hideLoading()
 						console.log(res)
-						if (res.data.score) {
+						if (res.data && res.data.score !== undefined) {
 							obj.score = res.data.score
 							vm.$u.route({
 								url: '/oil/myDrivingLicense/myDrivingLicense',
