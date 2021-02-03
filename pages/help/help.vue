@@ -5,7 +5,7 @@
 		<view class="content-container pa-lg border-box flex-column flex-jst-center flex-ali-center">
 			<u-icon name='bangzhu' color='#00BE88' custom-prefix='iconfont' size='108'></u-icon>
 			<text class="text-12 text-bold" :class="myTextRight">{{$t('help.welcome')}}</text>
-			<text class="text-12 text-grey-1" :class="myTextRight">{{$t('help.serviceMobile')}}</text>
+			<text class="text-12 text-grey-1 ma-col-sm" :class="myTextRight">{{$t('help.serviceMobile')}}</text>
 			<view class="full-width flex-row flex-jst-center flex-ali-center">
 				<u-icon color='#AAAAAA' custom-prefix='iconfont' name='-hour' size='40'></u-icon>
 				<text class="text-grey-1 text-12 text-bold ma-row-sm">17799370072</text>

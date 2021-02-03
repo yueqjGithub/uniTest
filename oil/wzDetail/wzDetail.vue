@@ -20,35 +20,35 @@
 			<!-- detail -->
 			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
 				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.fdbh')}}</text>
-				<text class="text-blk text-14 text-bold">{{curWz.number}}</text>
+				<text class="text-blk text-14 text-bold ma-row-sm">{{curWz.number}}</text>
 			</view>
 			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
 				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.wzPerson')}}</text>
-				<text class="text-blk text-14 text-bold">{{curWz.realname}}</text>
+				<text class="text-blk text-14 text-bold ma-row-sm">{{curWz.realname}}</text>
 			</view>
 			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
 				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.carNumber')}}</text>
-				<text class="text-blk text-14 text-bold">{{carNum}}</text>
+				<text class="text-blk text-14 text-bold ma-row-sm">{{carNum}}</text>
 			</view>
 			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
 				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.wzTime')}}</text>
-				<text class="text-blk text-14 text-bold">{{curWz.handletime}}</text>
+				<text class="text-blk text-14 text-bold ma-row-sm">{{curWz.handletime}}</text>
 			</view>
 			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
 				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.wfdz')}}</text>
-				<text class="text-blk text-14 flex-1 text-bold">{{curWz.address}}</text>
+				<text class="text-blk text-14 flex-1 text-bold ma-row-sm" :class="rightClass">{{curWz.address}}</text>
 			</view>
 			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
 				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.fkje')}}</text>
-				<text class="text-blk text-14 text-bold">{{curWz.money}}</text>
+				<text class="text-blk text-14 text-bold ma-row-sm">{{curWz.money}}</text>
 			</view>
 			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
 				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.znj')}}</text>
-				<text class="text-blk text-14 text-bold">{{curWz.delaymoney}}</text>
+				<text class="text-blk text-14 text-bold ma-row-sm">{{curWz.delaymoney}}</text>
 			</view>
 			<view class="pa-col-sm border-box full-width flex-jst-start flex-ali-start" :class="langFlex">
 				<text class="d-labels text-grey-1 text-14" :class="rightClass">{{$t('carCenter.servicePrice')}}</text>
-				<text class="text-blk text-14 text-bold">{{curWz.fee}}</text>
+				<text class="text-blk text-14 text-bold ma-row-sm">{{curWz.fee}}</text>
 			</view>
 			<view class="pa-md full-width"></view>
 			<view class="full-width text-grey-1 text-14" :class="rightClass">{{$t('carCenter.wzDetailTips')}}</view>
@@ -138,9 +138,9 @@
 				if (token) {
 					const obj = {
 						token: token,
-						license: vm.curWz.lsnum,
+						license: vm.carNum,
 						peccancy_number: vm.curWz.number,
-						peccancy_time: vm.curWz.time,
+						peccancy_time: vm.curWz.handletime,
 						peccancy_info: vm.curWz.address,
 						fkje: vm.curWz.money,
 						znj: vm.curWz.delaymoney,
