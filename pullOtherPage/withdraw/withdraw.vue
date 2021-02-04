@@ -9,9 +9,10 @@
 				</view>
 				<text class="text-grey-1 text-12">{{$t('pullPage.balance')}}</text>
 			</view>
+			<view class="full-width pa-md border-box"></view>
 			<view class="amount full-width flex-jst-start flex-ali-center" :class="langFlex">
 				<u-input v-model="amount" :class="inputClass" :custom-style="{color: '#aaaaaa', fontSize: '16px'}" :clearable="false"
-				 placeholder-style="color: #aaaaaa" :placeholder="$t('pullPage.amountTips')" type="number"></u-input>
+				 placeholder-style="color: #aaaaaa;font-family:'cus-font','yahei'" :placeholder="$t('pullPage.amountTips')" type="number"></u-input>
 			</view>
 			<view class="full-width pa-md flex-row flex-jst-center flex-ali-center border-box">
 				<button type="normal" class="my-btn-primary text-white text-14" @click="doWithdraw">{{$t('pullPage.withdrawBtn')}}</button>
@@ -141,7 +142,7 @@
 			border-radius: 20.83rpx;
 			width: 90%;
 			box-sizing: border-box;
-			padding: 55.55rpx 55.55rpx 0 55.55rpx;
+			padding: 55.55rpx;
 			.amount{
 				border-bottom: 1px solid #d5d5d5;
 			}

@@ -38,7 +38,7 @@
 				<button type="normal" class="my-btn-primary text-white text-14" @click="toPath(`/pullOtherPage/withdraw/withdraw?balance=${personal.account_balance}`)">{{$t('pullPage.withdrawBtn')}}</button>
 			</view>
 		</view>
-		<view class="content-item border-box flex-jst-btw flex-ali-center pa-md" :class="langFlex">
+		<view class="content-item border-box flex-jst-btw flex-ali-center pa-md" :class="langFlex" v-if="personal.inviter">
 			<view class="flex-jst-start flex-ali-center" :class="langFlex">
 				<u-icon custom-prefix="iconfont" name="weibiaoti--7" class="text-primary ma-row-md" size="40"></u-icon>
 				<text class="font-12 text-bold">{{$t('pullPage.inviter')}}</text>

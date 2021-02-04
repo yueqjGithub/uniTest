@@ -5,7 +5,7 @@
 			<view class="pa-col-md full-width">
 				<view class="flex-jst-start flex-ali-center text-grey-1 text-12 ma-col-sm" :class="langFlex">{{$t('feedback.title')}}</view>
 				<u-input v-model="title" :class="inputClass" :custom-style="{fontSize: '14px'}" border :maxlength="60"
-				 placeholder-style="color: #aaaaaa;font-family: 'cus-font', 'yahei'" :placeholder="$t('feedback.titTips')" type="text"
+				 placeholder-style="color: #aaaaaa;font-family:'cus-font','yahei';" :placeholder="$t('feedback.titTips')" type="text"
 				 ></u-input>
 			</view>
 			<view class="pa-col-md full-width">
