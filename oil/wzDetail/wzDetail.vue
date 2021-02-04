@@ -145,7 +145,8 @@
 						fkje: vm.curWz.money,
 						znj: vm.curWz.delaymoney,
 						type: vm.curWz.lstype,
-						name: vm.curWz.realname
+						name: vm.curWz.realname,
+						total: (vm.fkTotal + Number(vm.curWz.fee)).toFixed(2)
 					}
 					uni.showLoading({
 						title: ''

@@ -16,22 +16,24 @@
 				</view>
 				<text class="text-grey-1 text-12">{{$t('pullPage.balance')}}</text>
 			</view>
+			<view class="pa-md border-box"></view>
 			<view class="full-width pa-row-lg flex-jst-ard flex-ali-center" :class="langFlex">
 				<view class="flex-column flex-jst-start flex-ali-center">
 					<view class="full-width flex-row flex-jst-center flex-ali-base">
 						<text class="text-12">￥</text>
-						<text class="text-18 text-center">{{personal.account_balance || 0}}</text>
+						<text class="text-18 text-center text-bold">{{personal.account_balance || 0}}</text>
 					</view>
 					<text class="text-grey-1 text-14 text-center">{{$t('pullPage.withdraw')}}</text>
 				</view>
 				<view class="flex-column flex-jst-start flex-ali-center">
 					<view class="full-width flex-row flex-jst-center flex-ali-base">
 						<text class="text-12">￥</text>
-						<text class="text-18 text-center">{{personal.withdraw_deposit || 0}}</text>
+						<text class="text-18 text-center text-bold">{{personal.withdraw_deposit || 0}}</text>
 					</view>
 					<text class="text-grey-1 text-14 text-center">{{$t('pullPage.deposit')}}</text>
 				</view>
 			</view>
+			<view class="pa-md border-box"></view>
 			<view class="full-width pa-md flex-row flex-jst-center flex-ali-center border-box">
 				<button type="normal" class="my-btn-primary text-white text-14" @click="toPath(`/pullOtherPage/withdraw/withdraw?balance=${personal.account_balance}`)">{{$t('pullPage.withdrawBtn')}}</button>
 			</view>
@@ -39,7 +41,7 @@
 		<view class="content-item border-box flex-jst-btw flex-ali-center pa-md" :class="langFlex">
 			<view class="flex-jst-start flex-ali-center" :class="langFlex">
 				<u-icon custom-prefix="iconfont" name="weibiaoti--7" class="text-primary ma-row-md" size="40"></u-icon>
-				<text class="font-12">{{$t('pullPage.inviter')}}</text>
+				<text class="font-12 text-bold">{{$t('pullPage.inviter')}}</text>
 			</view>
 			<view :class="langFlex" class="flex-jst-start flex-ali-center">
 				<text class="text-12 text-grey-1 ma-row-sm">{{personal.inviter.nickname}}</text>
@@ -48,9 +50,9 @@
 		</view>
 		<!-- 成员 -->
 		<view class="content-item border-box flex-jst-btw flex-ali-center pa-md" :class="langFlex" @click="toPath('/pages/junior/junior')">
-			<view class="flex-jst-start flex-ali-center" :class="langFlex">
+			<view class="flex-jst-start flex-ali-center" :class="langFlex" style="min-height: 45px;">
 				<u-icon custom-prefix="iconfont" name="weibiaoti--9" class="text-primary ma-row-md" size="40"></u-icon>
-				<text class="font-12">{{$t('junior.pageName')}}</text>
+				<text class="font-12 text-bold">{{$t('junior.pageName')}}</text>
 			</view>
 			<view class="flex-row flex-jst-start flex-ali-center junior-container">
 				<view v-for="(k,idx) in personal.subordinate.data" :key="idx" class="junior-item flex-row flex-jst-center flex-ali-center">
@@ -201,7 +203,8 @@
 			}
 			.menu-item{
 				width: 33%;
-				margin-bottom: 27rpx;
+				margin-top: 17rpx;
+				margin-bottom: 17rpx;
 			}
 			.junior-container{
 				position: relative;
