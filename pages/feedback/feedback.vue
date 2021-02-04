@@ -10,7 +10,7 @@
 			<view class="pa-col-md full-width">
 				<view class="flex-jst-start flex-ali-center text-grey-1 text-12 ma-col-sm" :class="langFlex">{{$t('feedback.content')}}</view>
 				<u-input v-model="content" type="textarea" :custom-style="{fontSize: '14px', textAlign: lang==='zh-CN' ? 'left' : 'right'}"
-				 border :maxlength="200" placeholder-style="color: #aaaaaa" :placeholder="$t('feedback.contTips')" height="100"
+				 border :maxlength="200" placeholder-style="color: #aaaaaa" :placeholder="$t('feedback.contTips')" height="300"
 				 auto-height></u-input>
 			</view>
 			<view class="full-width pa-lg border-box flex-row flex-jst-center flex-ali-center">

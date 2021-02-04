@@ -9,7 +9,7 @@
 		<view class="cont-item ma-col-md pa-md border-box flex-jst-btw flex-ali-center flex-row">
 			<view class="flex-row flex-jst-start flex-ali-center flex-2">
 				<text class="ma-row-sm text-12 cont-label">APPID</text>
-				<text class="text-grey-1 text-14 cont-cont">{{info.tg_appid}}</text>
+				<text class="text-14 cont-cont text-blk">{{info.tg_appid}}</text>
 			</view>
 			<view class="flex-1 flex-row flex-jst-end flex-ali-center">
 				<button type="default" class="my-btn-primary text-white text-12" @click="copyToBoard(info.tg_appid)">{{$t('basic.copy')}}</button>
@@ -19,7 +19,7 @@
 		<view class="cont-item ma-col-md pa-md border-box flex-jst-btw flex-ali-center flex-row">
 			<view class="flex-row flex-jst-start flex-ali-center flex-2">
 				<text class="ma-row-sm text-12 cont-label">路径</text>
-				<text class="text-grey-1 text-14 cont-cont">{{tgPath}}</text>
+				<text class="text-14 cont-cont text-blk">{{tgPath}}</text>
 			</view>
 			<view class="flex-1 flex-row flex-jst-end flex-ali-center">
 				<button type="default" class="my-btn-primary text-white text-12" @click="copyToBoard(tgPath)">{{$t('basic.copy')}}</button>
@@ -29,7 +29,7 @@
 		<view class="cont-item ma-col-md pa-md border-box flex-jst-btw flex-ali-center flex-row">
 			<view class="flex-row flex-jst-start flex-ali-center flex-2">
 				<text class="ma-row-sm text-12 cont-label">备用网址</text>
-				<text class="text-grey-1 text-14 cont-cont">{{info.tg_byurl}}</text>
+				<text class="text-14 cont-cont text-blk">{{info.tg_byurl}}</text>
 			</view>
 			<view class="flex-1 flex-row flex-jst-end flex-ali-center">
 				<button type="default" class="my-btn-primary text-white text-12" @click="copyToBoard(info.tg_byurl)">{{$t('basic.copy')}}</button>

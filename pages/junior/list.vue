@@ -5,7 +5,7 @@
 				<view :class="langFlex" class="flex-jst-btw flex-ali-center full-width">
 					<view class="junior-left flex-jst-btw flex-ali-center" :class="langFlex">
 						<text class="text-14 text-grey-1">{{idx+1}}</text>
-						<u-avatar :src="k.profile_photo" class="ma-row-md"></u-avatar>
+						<u-avatar :src="k.profile_photo" class="ma-row-md my-avatar"></u-avatar>
 						<text class="text-14">{{k.nickname}}</text>
 					</view>
 					<view class="junior-right text-14 text-grey-1">{{k.createtime}}</view>

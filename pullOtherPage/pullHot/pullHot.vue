@@ -17,7 +17,7 @@
 		</view>
 		<view class="cont-container mine-info pa-md border-box flex-jst-btw flex-ali-center" :class="langFlex">
 			<view class="flex-row flex-jst-center flex-ali-center">
-				<u-avatar :src="my_data.profile_photo" class="ma-rt-5"></u-avatar>
+				<u-avatar :src="my_data.profile_photo" class="ma-rt-5 my-avatar"></u-avatar>
 				<text class="font-12">{{my_data.nickname}}</text>
 			</view>
 			<view class="flex-column self-stretch flex-jst-ard flex-ali-center">
@@ -40,7 +40,7 @@
 									<text class="font-12 text-white rank-idx">{{idx+1}}</text>
 								</view>
 								<text class="text-14 text-grey-1" v-else>{{idx+1}}</text>
-								<u-avatar :src="k.profile_photo" class="ma-row-md"></u-avatar>
+								<u-avatar :src="k.profile_photo" class="ma-row-md my-avatar"></u-avatar>
 								<text class="text-14">{{k.nickname.substring(0, 2)}}***</text>
 							</view>
 							<view class="text-24 text-primary text-bold flex-row flex-jst-center flex-ali-base">

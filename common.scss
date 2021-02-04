@@ -210,7 +210,11 @@ text,view,input,textarea{
 		text-align: right !important;
 	}
 }
-
+// .my-menu-grid{
+// 	.u-grid-item{
+// 		padding:10rpx 0;
+// 	}
+// }
 // ----透明popup--
 .trans-popup{
 	.u-mode-center-box{
@@ -222,6 +226,7 @@ text,view,input,textarea{
 .my-avatar{
 	.u-avatar{
 		display: block !important;
+		box-shadow: 1px 1px 3px rgba(0,0,0,.3);
 	}
 }
 

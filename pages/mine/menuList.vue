@@ -1,5 +1,5 @@
 <template>
-	<view class="full-width">
+	<view class="full-width my-menu-grid">
 		<u-grid :col="3" :border="false">
 			<u-grid-item v-for="k in showList" :key="k.id" @click="toPage(k)">
 				<u-icon :name="k.icon" custom-prefix="iconfont" :size="50" :style="{color: k.color}"></u-icon>

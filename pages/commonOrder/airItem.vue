@@ -17,7 +17,7 @@
 		<!-- 下 -->
 		<view class="flex-jst-btw flex-ali-center order-bottom" :class="langFlex">
 			<view class="flex-jst-start flex-ali-center" :class="langFlex">
-				<text class="text-12 text-grey-1">{{$t('myOrder.orderNumber')}}</text>
+				<text class="text-12 text-grey-1" :class="rtlClass">{{$t('myOrder.orderNumber')}}</text>
 				<text class="text-12 text-grey-1 ma-row-sm">{{order.order_number}}</text>
 			</view>
 			<text class="text-12" :style="{color: statusColor}">{{statusName}}</text>
@@ -39,6 +39,9 @@
 			...mapState(['lang']),
 			langFlex() {
 				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'
+			},
+			rtlClass () {
+				return this.lang === 'zh-CN' ? '' : 'rtl'
 			},
 			statusName() {
 				return this.lang === 'zh-CN' ? this.order.status.name_cn : this.order.status.name

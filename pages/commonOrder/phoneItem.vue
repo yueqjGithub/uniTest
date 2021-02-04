@@ -19,7 +19,7 @@
 		<!-- 下 -->
 		<view class="flex-jst-btw flex-ali-center order-bottom" :class="langFlex">
 			<view class="flex-jst-start flex-ali-center" :class="langFlex">
-				<text class="text-12 text-grey-1" :class="lang==='zh-CN' ? '' : 'cus-rtl'">{{$t('myOrder.orderNumber')}}</text>
+				<text class="text-12 text-grey-1" :class="rtlClass">{{$t('myOrder.orderNumber')}}</text>
 				<text class="text-12 text-grey-1 ma-row-sm">{{order.order_number}}</text>
 			</view>
 			<text class="text-12" :style="{color: statusColor}">{{statusName}}</text>
@@ -37,6 +37,9 @@
 		},
 		computed: {
 			...mapState(['lang']),
+			rtlClass () {
+				return this.lang === 'zh-CN' ? '' : 'rtl'
+			},
 			titleName () {
 				return this.type === 'phone' ? this._i18n.messages[this.lang].commonOrder.phoneMoneyCharge : this._i18n.messages[this.lang].commonOrder.trafficPage
 			},

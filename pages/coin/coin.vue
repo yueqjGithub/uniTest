@@ -45,11 +45,11 @@
 			</view>
 			<view :class="langFlex" class="flex-jst-start flex-ali-center">
 				<text class="text-12 text-grey-1 ma-row-sm">{{personal.inviter.nickname}}</text>
-				<u-avatar :src="personal.inviter.profile_photo"></u-avatar>
+				<u-avatar :src="personal.inviter.profile_photo" class='my-avatar'></u-avatar>
 			</view>
 		</view>
 		<!-- 成员 -->
-		<view class="content-item border-box flex-jst-btw flex-ali-center pa-md" :class="langFlex" @click="toPath('/pages/junior/junior')">
+		<view class="content-item border-box flex-jst-btw flex-ali-center pa-md" :class="langFlex" @click="toPath('/pages/junior/junior')" v-if='personal.subordinate.data.length > 0'>
 			<view class="flex-jst-start flex-ali-center" :class="langFlex" style="min-height: 45px;">
 				<u-icon custom-prefix="iconfont" name="weibiaoti--9" class="text-primary ma-row-md" size="40"></u-icon>
 				<text class="font-12 text-bold">{{$t('junior.pageName')}}</text>
@@ -203,8 +203,8 @@
 			}
 			.menu-item{
 				width: 33%;
-				margin-top: 17rpx;
-				margin-bottom: 17rpx;
+				margin-top: 24rpx;
+				margin-bottom: 24rpx;
 			}
 			.junior-container{
 				position: relative;

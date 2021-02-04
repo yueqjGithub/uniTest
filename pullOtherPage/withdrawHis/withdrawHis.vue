@@ -10,7 +10,7 @@
 							<text class="text-32 text-bold text-primary">{{k.amount}}</text>
 						</view>
 						<view class="flex-column flex-jst-btw" :class="lang==='zh-CN' ? 'flex-ali-end' : 'flex-ali-start'">
-							<text class="text-14" :style='{color: statusColor(k.status)}'>{{k.status}}</text>
+							<text class="text-14" :style='{color: statusColor(k.status)}'>{{statusShow(k.status)}}</text>
 							<text class="text-grey text-12">{{k.createtime}}</text>
 						</view>
 					</view>
@@ -87,6 +87,21 @@
 					color = '#FF4B4B'
 				}
 				return color
+			},
+			statusShow (target) {
+				const vm = this
+				let result = ''
+				switch (target) {
+					case '已完成':
+					result = vm._i18n.messages[vm.lang].withdraw.suc
+					break
+					case '申请中':
+					result = vm._i18n.messages[vm.lang].withdraw.loading
+					break
+					default:
+					result = '申请中'
+				}
+				return result
 			},
 			async queryIndex() { // 请求首页
 				const vm = this
