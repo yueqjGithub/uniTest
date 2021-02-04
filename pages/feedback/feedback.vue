@@ -5,12 +5,14 @@
 			<view class="pa-col-md full-width">
 				<view class="flex-jst-start flex-ali-center text-grey-1 text-12 ma-col-sm" :class="langFlex">{{$t('feedback.title')}}</view>
 				<u-input v-model="title" :class="inputClass" :custom-style="{fontSize: '14px'}" border :maxlength="60"
-				 placeholder-style="color: #aaaaaa" :placeholder="$t('feedback.titTips')" type="text"></u-input>
+				 placeholder-style="color: #aaaaaa;font-family: 'cus-font', 'yahei'" :placeholder="$t('feedback.titTips')" type="text"
+				 ></u-input>
 			</view>
 			<view class="pa-col-md full-width">
 				<view class="flex-jst-start flex-ali-center text-grey-1 text-12 ma-col-sm" :class="langFlex">{{$t('feedback.content')}}</view>
 				<u-input v-model="content" type="textarea" :custom-style="{fontSize: '14px', textAlign: lang==='zh-CN' ? 'left' : 'right'}"
-				 border :maxlength="200" placeholder-style="color: #aaaaaa" :placeholder="$t('feedback.contTips')" height="300"
+				 border :maxlength="200" :placeholder="$t('feedback.contTips')" height="300"
+				 placeholder-style="color: #aaaaaa;font-family: 'cus-font', 'yahei'"
 				 auto-height></u-input>
 			</view>
 			<view class="full-width pa-lg border-box flex-row flex-jst-center flex-ali-center">

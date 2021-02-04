@@ -7,7 +7,7 @@
 				<text class="shop-price full-width text-grey-1" :class="langFlex">
 					{{order.peccancy_number}}
 				</text>
-				<text class="text-14 text-grey-1">{{order.peccancy_info}}</text>
+				<text class="text-14 text-grey-1" :class="myTextRight">{{order.peccancy_info}}</text>
 				<view class="order-time flex-jst-btw full-width flex-ali-base" :class="langFlex">
 					<text class="total-price text-16 text-bold text-primary">￥{{order.payment_amount}}</text>
 					<text class="time-show text-grey-1 text-12">{{order.peccancy_time}}</text>
@@ -37,6 +37,9 @@
 			...mapState(['lang']),
 			rtlClass () {
 				return this.lang === 'zh-CN' ? '' : 'rtl'
+			},
+			myTextRight () {
+				return this.lang === 'zh-CN' ? '' : 'my-text-right'
 			},
 			langFlex () {
 				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'

@@ -161,7 +161,9 @@
 				width: 60px;
 			}
 			.cont-cont{
-				flex: 1
+				width: 37vw;
+				white-space: nowrap;
+				overflow: hidden;
 			}
 		}
 	}
