@@ -11,8 +11,8 @@
 			</view>
 			<view class="full-width pa-md border-box"></view>
 			<view class="amount full-width flex-jst-start flex-ali-center" :class="langFlex">
-				<u-input v-model="amount" :class="inputClass" :custom-style="{color: '#aaaaaa', fontSize: '16px'}" :clearable="false"
-				 placeholder-style="color: #aaaaaa;font-family:'cus-font','yahei'" :placeholder="$t('pullPage.amountTips')" type="number"></u-input>
+				<input v-model="amount" :class="inputClass" :custom-style="{color: '#aaaaaa', fontSize: '16px'}" :clearable="false"
+				 placeholder-style="font-family:'cusFont','yahei';color: #aaaaaa" :placeholder="$t('pullPage.amountTips')" type="number"></input>
 			</view>
 			<view class="full-width pa-md flex-row flex-jst-center flex-ali-center border-box">
 				<button type="normal" class="my-btn-primary text-white text-14" @click="doWithdraw">{{$t('pullPage.withdrawBtn')}}</button>

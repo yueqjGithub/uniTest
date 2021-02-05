@@ -71,9 +71,6 @@
 			showTime () {
 				return dayjs().format('MM/DD')
 			},
-			rightClass() {
-				return this.lang === 'zh-CN' ? '' : 'my-text-right rtl'
-			},
 			langFlex() {
 				return this.lang === 'zh-CN' ? 'flex-row' : 'flex-row-reverse'
 			},
@@ -85,7 +82,7 @@
 				return this._i18n.messages[this.lang].credit.tips
 			},
 			rightClass() {
-				return this.lang === 'zh-CN' ? '' : 'my-text-right'
+				return this.lang === 'zh-CN' ? '' : 'rtl'
 			}
 		},
 		watch: {
