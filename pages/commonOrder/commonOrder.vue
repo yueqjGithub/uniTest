@@ -51,6 +51,16 @@
 				vm.queryTypeList(target.typeUrl)
 			}
 		},
+		watch: {
+			lang: {
+				immediate: true,
+				handler: function (val) {
+					uni.setNavigationBarTitle({
+						title: this._i18n.messages[val].myOrder.orderCenter
+					})
+				}
+			}
+		},
 		computed: {
 			...mapState(['lang']),
 			langType() {

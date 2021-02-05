@@ -3,15 +3,27 @@
 		<view class="head-bg"></view>
 		<view class="content-container flex-column flex-jst-start flex-ali-center">
 			<view class="pa-col-md full-width">
-				<view class="flex-jst-start flex-ali-center text-grey-1 text-12 ma-col-sm" :class="langFlex">{{$t('feedback.title')}}</view>
-				<u-input v-model="title" :class="inputClass" :custom-style="{fontSize: '14px'}" border :maxlength="60"
-				 placeholder-style="color: #aaaaaa;font-family:'cus-font','yahei';" :placeholder="$t('feedback.titTips')" type="text"
+				<!-- <view class="flex-jst-start flex-ali-center text-grey-1 text-12 ma-col-sm" :class="langFlex">{{$t('feedback.title')}}</view> -->
+				<u-input
+				v-model="title"
+				:custom-style="{fontSize: '14px', borderBottom: '1px solid #dcdfe6', textAlign: lang==='zh-CN' ? 'left' : 'right'}"
+				:maxlength="40"
+				height='50'
+				:clearable='false'
+				placeholder-style="color: #aaaaaa;font-family:'cus-font'"
+				:placeholder="$t('feedback.titTips')"
+				type='textarea'
 				 ></u-input>
 			</view>
 			<view class="pa-col-md full-width">
-				<view class="flex-jst-start flex-ali-center text-grey-1 text-12 ma-col-sm" :class="langFlex">{{$t('feedback.content')}}</view>
-				<u-input v-model="content" type="textarea" :custom-style="{fontSize: '14px', textAlign: lang==='zh-CN' ? 'left' : 'right'}"
-				 border :maxlength="200" :placeholder="$t('feedback.contTips')" height="300"
+				<!-- <view class="flex-jst-start flex-ali-center text-grey-1 text-12 ma-col-sm" :class="langFlex">{{$t('feedback.content')}}</view> -->
+				<u-input
+				v-model="content"
+				type="textarea"
+				:custom-style="{fontSize: '14px', textAlign: lang==='zh-CN' ? 'left' : 'right'}"
+				 :maxlength="200"
+				 :placeholder="$t('feedback.contTips')"
+				 height="300"
 				 placeholder-style="color: #aaaaaa;font-family: 'cus-font', 'yahei'"
 				 auto-height></u-input>
 			</view>

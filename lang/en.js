@@ -73,6 +73,7 @@ export default {
 		btn: 'يوللاش'
 	},
 	myOrder: {
+		orderCenter: 'قاتناش جەرىمانە زاكاسلىرى',
 		pageName: 'مال سېتىۋېلىش زاكاسلىرى',
 		orderNumber: 'زاكاس نۇمۇرى:'
 	},

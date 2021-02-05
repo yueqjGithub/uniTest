@@ -38,14 +38,14 @@
 				<button type="normal" class="my-btn-primary text-white text-14" @click="toPath(`/pullOtherPage/withdraw/withdraw?balance=${personal.account_balance}`)">{{$t('pullPage.withdrawBtn')}}</button>
 			</view>
 		</view>
-		<view class="content-item border-box flex-jst-btw flex-ali-center pa-md" :class="langFlex" v-if="personal.inviter">
+		<view class="content-item border-box flex-jst-btw flex-ali-center pa-md" :class="langFlex">
 			<view class="flex-jst-start flex-ali-center" :class="langFlex">
 				<u-icon custom-prefix="iconfont" name="weibiaoti--7" class="text-primary ma-row-md" size="40"></u-icon>
 				<text class="font-12 text-bold">{{$t('pullPage.inviter')}}</text>
 			</view>
 			<view :class="langFlex" class="flex-jst-start flex-ali-center">
-				<text class="text-12 text-grey-1 ma-row-sm">{{personal.inviter.nickname}}</text>
-				<u-avatar :src="personal.inviter.profile_photo" class='my-avatar'></u-avatar>
+				<text class="text-12 text-grey-1 ma-row-sm">{{personal.inviter.nickname || 'KOLAY'}}</text>
+				<u-avatar :src="personal.inviter.profile_photo ? personal.inviter.profile_photo : '/static/images/logo-g.png'" class='my-avatar'></u-avatar>
 			</view>
 		</view>
 		<!-- 成员 -->

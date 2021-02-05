@@ -13,7 +13,7 @@
 		<view class="cont-item pa-md flex-column flex-jst-center flex-ali-center">
 			<view class="full-width pa-col-md flex-row flex-jst-center flex-ali-center">
 				<u-input v-model="wz_number" size="small" type="number" :border="true" class="my-input-fill" :placeholder="tips" :clearable="false"
-				:placeholder-style="placeholderStyle"  :custom-style="{'fontWeight': 'bold', fontSize: '16px'}"
+				:placeholder-style="placeholderStyle"  :custom-style="{fontSize: '16px', fontWeight: wz_number==='' ? '' : 'bold'}"
 				></u-input>
 			</view>
 			<view class="width-80 pa-md border-box flex-row flex-jst-center flex-ali-center">
@@ -47,7 +47,7 @@
 		computed: {
 			...mapState(['lang']),
 			placeholderStyle () {
-				return `font-family: 'cusFont','yahei';font-weight:bold;text-align:${this.lang==='zh-CN'?'' : 'right'}`
+				return `font-family: 'cusFont','yahei';text-align:${this.lang==='zh-CN'?'' : 'right'}`
 			},
 			tips () {
 				return this._i18n.messages[this.lang].carCenter.wzTips

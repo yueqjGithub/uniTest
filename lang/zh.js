@@ -73,6 +73,7 @@ export default {
 		btn: '提交'
 	},
 	myOrder: {
+		orderCenter: '订单中心',
 		pageName: '我的订单',
 		orderNumber: '订单号'
 	},
