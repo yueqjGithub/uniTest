@@ -219,7 +219,7 @@ export default {
 		top: 'بايۋەتچىلەر  تىزىملىكى',
 		withdrawBtn: 'نەقلەشتۈرىمەن',
 		withdrawTips: 'نەقلەشتۈرۈش سوممسى يېتىشمىدى',
-		amountTips: 'نەقلەشتۈرۈش سوممسىنى كىرگۈزۈڭ',
+		amountTips: 'نەقلەشتۈرۇش سوممسنى كىرگۇزۇڭ',
 		withdrawTip2: 'ئىناۋەتسىز سومما'
 	},
 	pullHot: {

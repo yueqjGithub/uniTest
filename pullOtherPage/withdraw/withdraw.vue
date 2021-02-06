@@ -11,7 +11,7 @@
 			</view>
 			<view class="full-width pa-md border-box"></view>
 			<view class="amount full-width flex-jst-center flex-ali-center" :class="langFlex">
-				<u-input v-model="amount" :custom-style="{fontSize: '16px', textAlign: 'center'}" :clearable="false"
+				<u-input v-model="amount" :custom-style="{fontSize: '16px', textAlign: 'center'}" :clearable="false" class='full-width'
 				 placeholder-style="font-family:'cusFont','yahei';color: #aaaaaa;padding: 0 5px;" :placeholder="$t('pullPage.amountTips')" type="number"></u-input>
 			</view>
 			<view class="full-width pa-md flex-row flex-jst-center flex-ali-center border-box">
