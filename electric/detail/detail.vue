@@ -213,7 +213,7 @@
 							title: ''
 						})
 						uni.requestSubscribeMessage({ // 订阅消息 
-						  tmplIds: ['9UTQnyosblyWEn16aJ5GT9DbjClzWU6yljBWXncAPIk'],
+						  tmplIds: ['tg1WuvZVHoMsAFvY6-HTzwg8vY7EXp7LYvn_x8grIVg'],
 						  success (result) {
 							},
 							fail (err) {

@@ -282,7 +282,7 @@
 							title: ''
 						})
 						uni.requestSubscribeMessage({ // 订阅消息 
-						  tmplIds: ['9UTQnyosblyWEn16aJ5GT9DbjClzWU6yljBWXncAPIk'],
+						  tmplIds: ['CsV-qQHFDwlRh3QZHMlRxZYAOH3qVO2rt8Lna8KVd0I', 'WvyaLys_ngd-4a4VglZLdfiZY7arw58WuYCbnFPEV6M', 'Mm-BUMsu46nK5D8EQvxOcmKOPyRS8ep8GSS0hs-QndY'],
 						  success (result) {
 							},
 							fail (err) {

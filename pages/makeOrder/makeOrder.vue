@@ -157,7 +157,7 @@
 							    paySign: res.data.paySign,
 							    success: function (result) {
 										uni.requestSubscribeMessage({ // 订阅消息
-										  tmplIds: ['En-7bas-r4mg27-294HfVqTfAAWUw1ZFEYnkVBshK64'],
+										  tmplIds: ['En-7bas-r4mg27-294HfVlowAEAiEKevtMDjN6iqBlQ', 'coOc-anFykZ0v5TEHHObHATvTc0g9kyylsSQUWuT55Y', 'OD2vTAHKUUUSeLsLqFukzNiDNLMcnFpHbDrMMoEQAC4'],
 										  success (result) {
 												uni.redirectTo({
 													url: '/pages/myOrder/myOrder'
