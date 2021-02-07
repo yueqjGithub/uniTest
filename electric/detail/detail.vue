@@ -196,6 +196,16 @@
 					}
 				})
 			},
+			subcrib () {
+				uni.requestSubscribeMessage({ // 订阅消息
+				  tmplIds: ['tg1WuvZVHoMsAFvY6-HTzwg8vY7EXp7LYvn_x8grIVg'],
+				  success (result) {
+					},
+					fail (err) {
+						console.log(err)
+					}
+				})
+			},
 			toPay (info) {
 				const vm = this
 				uni.requestPayment({ // 调用支付
@@ -212,13 +222,7 @@
 							icon: 'success',
 							title: ''
 						})
-						uni.requestSubscribeMessage({ // 订阅消息 
-						  tmplIds: ['tg1WuvZVHoMsAFvY6-HTzwg8vY7EXp7LYvn_x8grIVg'],
-						  success (result) {
-							},
-							fail (err) {
-							}
-						})
+						vm.subcrib()
 					},
 					fail: function (err) {
 						uni.hideLoading()
