@@ -26,7 +26,8 @@
 				inviter: '',
 				sharePath: '',
 				from: '',
-				filePath: ''
+				filePath: '',
+				resultPath: ''
 			}
 		},
 		computed: {
@@ -87,7 +88,7 @@
 					}
 					vm.$post(urls.pullSetting, obj).then(res => {
 						if (res.success) {
-							vm.sharePath = res.data.tg_path
+							vm.sharePath = res.data.tg_qr_code
 							vm.drawHandler()
 						} else {
 							uni.hideLoading()
@@ -116,12 +117,15 @@
 						const w = res.screenWidth * 0.9 - 50
 						const h = w / 0.57
 						uni.getImageInfo({
-							src: '/static/images/pull-bg.png',
+							src: vm.sharePath,
 							success(info) {
+								console.log(info)
+								uni.hideLoading()
 								setTimeout(() => {
-									ctx.drawImage('/static/images/pull-bg.png', 0, 0, w, h)
-									// ctx.draw()
-									vm.make(ctx, w, h)
+									ctx.drawImage(info.path, 0, 0, w, h)
+									ctx.draw()
+									vm.resultPath = info.path
+									// vm.make(ctx, w, h)
 								}, 0)
 							},
 							fail(err) {
@@ -137,7 +141,7 @@
 			},
 			test() { // 保存图片
 				const vm = this
-				if (vm.filePath === '') {
+				if (vm.resultPath === '') {
 					vm.$refs.uTips.show({
 						title: '图片未生成成功',
 						type: 'error'
@@ -145,7 +149,7 @@
 					return false
 				}
 				uni.saveImageToPhotosAlbum({
-					filePath: vm.filePath,
+					filePath: vm.resultPath,
 					success: function() {
 						vm.$refs.uTips.show({
 							type: 'success',
