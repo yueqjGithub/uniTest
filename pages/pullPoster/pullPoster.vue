@@ -18,6 +18,7 @@
 		mapActions
 	} from 'vuex'
 	import qrcode from '@/utils/uqrcode.js'
+	import bToP from '@/utils/base642path.js'
 	import urls from '@/service/urls.js'
 	export default {
 		data() {
@@ -34,7 +35,7 @@
 		onShow() {
 			// this.loginCheck()
 		},
-		onReady () {
+		onReady() {
 			this.queryInfo()
 		},
 		watch: {
@@ -75,7 +76,7 @@
 					vm.from = options.mode
 				}
 			},
-			async queryInfo () {
+			async queryInfo() {
 				const vm = this
 				const token = await vm.checkLogin()
 				if (token) {
@@ -103,7 +104,7 @@
 					})
 				}
 			},
-			drawHandler () { // 绘制
+			drawHandler() { // 绘制
 				const vm = this
 				const ctx = uni.createCanvasContext('myCav', this)
 				// const img = new Image()
@@ -164,7 +165,6 @@
 			async make(ctx, w, h) { // 二维码生成
 				const vm = this
 				const shareUrl = `${vm.sharePath}?inviter=${vm.inviter}`
-				debugger
 				qrcode.make({
 					canvasId: 'hide',
 					componentInstance: this,
@@ -174,22 +174,32 @@
 					backgroundColor: '#ffffff',
 					foregroundColor: '#000000',
 					fileType: 'jpg',
-					errorCorrectLevel: qrcode.errorCorrectLevel.H
-				}).then(res => {
-					ctx.drawImage(res, (w / 2) - (w * 0.19) , h - (w * 0.49), w * 0.38, w * 0.38)
-					ctx.draw()
-					setTimeout(() => {
-						uni.canvasToTempFilePath({
-							canvasId: 'myCav',
-							success(file) {
-								uni.hideLoading()
-								vm.filePath = file.tempFilePath
-							},
-							fail (err) {
-								console.log(err)
-							}
-						}, vm)
-					}, 1000)
+					errorCorrectLevel: qrcode.errorCorrectLevel.H,
+					success: res => {
+						bToP(res, suc => {
+							ctx.drawImage(suc, (w / 2) - (w * 0.19), h - (w * 0.49), w * 0.38, w * 0.38)
+							ctx.draw()
+							setTimeout(() => {
+								uni.canvasToTempFilePath({
+									canvasId: 'myCav',
+									success(file) {
+										uni.hideLoading()
+										uni.getImageInfo({
+											src: file.tempFilePath,
+											success(pic) {
+												console.log(pic)
+												uni.hideLoading()
+												vm.filePath = file.tempFilePath
+											}
+										})
+									},
+									fail(err) {
+										console.log(err)
+									}
+								}, vm)
+							}, 1000)
+						})
+					}
 				})
 			}
 		}
@@ -198,13 +208,14 @@
 
 <style lang="scss" scoped>
 	.page {
-		#hide{
+		#hide {
 			position: fixed;
 			bottom: 100vw;
 			right: 100vh;
 			z-index: -999;
 			opacity: 0;
 		}
+
 		width: 100vw;
 		height: 100vh;
 		padding-top: 17px;
