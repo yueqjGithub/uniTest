@@ -3,7 +3,8 @@
 		<view class="head-bg"></view>
 		<u-top-tips ref="uTips"></u-top-tips>
 		<view class="content-container">
-			<u-image mode="aspectFill" width="100%" height="70vh" src='/static/images/123.png'></u-image>
+			<canvas id='myCav' canvas-id="myCav" style="width: 100%;height: calc((90vw - 50px) / 0.57)"></canvas>
+			<canvas id='hide' canvas-id="hide" style="width: 38vw;height:38vw;"></canvas>
 			<view class="full-width pa-lg flex-row flex-jst-center flex-ali-center border-box">
 				<button type="normal" class="my-btn-primary text-white text-12" @click="test">{{$t('basic.saveShare')}}</button>
 			</view>
@@ -16,18 +17,25 @@
 		mapState,
 		mapActions
 	} from 'vuex'
+	import qrcode from '@/utils/uqrcode.js'
+	import urls from '@/service/urls.js'
 	export default {
 		data() {
 			return {
 				inviter: '',
-				from: ''
+				sharePath: '',
+				from: '',
+				filePath: ''
 			}
 		},
 		computed: {
 			...mapState(['lang'])
 		},
 		onShow() {
-			this.loginCheck()
+			// this.loginCheck()
+		},
+		onReady () {
+			this.queryInfo()
 		},
 		watch: {
 			lang: {
@@ -67,10 +75,76 @@
 					vm.from = options.mode
 				}
 			},
-			test() {
+			async queryInfo () {
 				const vm = this
+				const token = await vm.checkLogin()
+				if (token) {
+					vm.inviter = uni.getStorageSync('myInviterCode')
+					uni.showLoading()
+					const obj = {
+						token: token
+					}
+					vm.$post(urls.pullSetting, obj).then(res => {
+						if (res.success) {
+							vm.sharePath = res.data.tg_path
+							vm.drawHandler()
+						} else {
+							uni.hideLoading()
+							uni.showToast({
+								title: res.message,
+								icon: 'none'
+							})
+						}
+					})
+				} else {
+					uni.hideLoading()
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+				}
+			},
+			drawHandler () { // 绘制
+				const vm = this
+				const ctx = uni.createCanvasContext('myCav', this)
+				// const img = new Image()
+				// img.onload = function () {
+				// 	ctx.drawImage(img, )
+				// }
+				uni.getSystemInfo({
+					success(res) {
+						const w = res.screenWidth * 0.9 - 50
+						const h = w / 0.57
+						uni.getImageInfo({
+							src: '/static/images/pull-bg.png',
+							success(info) {
+								setTimeout(() => {
+									ctx.drawImage('/static/images/pull-bg.png', 0, 0, w, h)
+									// ctx.draw()
+									vm.make(ctx, w, h)
+								}, 0)
+							},
+							fail(err) {
+								uni.hideLoading()
+								vm.$refs.uTips.show({
+									title: err.errMsg,
+									type: 'error'
+								})
+							}
+						})
+					}
+				})
+			},
+			test() { // 保存图片
+				const vm = this
+				if (vm.filePath === '') {
+					vm.$refs.uTips.show({
+						title: '图片未生成成功',
+						type: 'error'
+					})
+					return false
+				}
 				uni.saveImageToPhotosAlbum({
-					filePath: '/static/images/123.png',
+					filePath: vm.filePath,
 					success: function() {
 						vm.$refs.uTips.show({
 							type: 'success',
@@ -86,6 +160,37 @@
 						})
 					}
 				});
+			},
+			async make(ctx, w, h) { // 二维码生成
+				const vm = this
+				const shareUrl = `${vm.sharePath}?inviter=${vm.inviter}`
+				debugger
+				qrcode.make({
+					canvasId: 'hide',
+					componentInstance: this,
+					text: shareUrl,
+					size: w * 0.38,
+					margin: 10,
+					backgroundColor: '#ffffff',
+					foregroundColor: '#000000',
+					fileType: 'jpg',
+					errorCorrectLevel: qrcode.errorCorrectLevel.H
+				}).then(res => {
+					ctx.drawImage(res, (w / 2) - (w * 0.19) , h - (w * 0.49), w * 0.38, w * 0.38)
+					ctx.draw()
+					setTimeout(() => {
+						uni.canvasToTempFilePath({
+							canvasId: 'myCav',
+							success(file) {
+								uni.hideLoading()
+								vm.filePath = file.tempFilePath
+							},
+							fail (err) {
+								console.log(err)
+							}
+						}, vm)
+					}, 1000)
+				})
 			}
 		}
 	}
@@ -93,6 +198,13 @@
 
 <style lang="scss" scoped>
 	.page {
+		#hide{
+			position: fixed;
+			bottom: 100vw;
+			right: 100vh;
+			z-index: -999;
+			opacity: 0;
+		}
 		width: 100vw;
 		height: 100vh;
 		padding-top: 17px;
@@ -121,7 +233,7 @@
 			border-radius: 20.83rpx;
 			width: 90%;
 			box-sizing: border-box;
-			padding: 55.55rpx 55.55rpx 0 55.55rpx;
+			padding: 25px 25px 0 25px;
 		}
 	}
 </style>

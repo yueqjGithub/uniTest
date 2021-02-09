@@ -76,7 +76,6 @@
 			}
 		},
 		onShow () {
-			this.inviter = uni.getStorageSync('myInviterCode')
 			this.queryInfo()
 		},
 		methods: {
@@ -85,6 +84,7 @@
 				const vm = this
 				const token = await vm.checkLogin()
 				if (token) {
+					vm.inviter = uni.getStorageSync('myInviterCode')
 					const obj = {
 						token: token
 					}
