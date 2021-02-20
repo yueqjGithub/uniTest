@@ -6,7 +6,7 @@
 			<u-icon name='bangzhu' color='#00BE88' custom-prefix='iconfont' size='108'></u-icon>
 			<text class="text-12 text-bold" :class="myTextRight">{{$t('help.welcome')}}</text>
 			<text class="text-12 text-grey-1 ma-col-sm" :class="myTextRight">{{$t('help.serviceMobile')}}</text>
-			<view class="full-width flex-row flex-jst-center flex-ali-center">
+			<view class="full-width flex-row flex-jst-center flex-ali-center" @click="makePhone">
 				<u-icon color='#AAAAAA' custom-prefix='iconfont' name='-hour' size='40'></u-icon>
 				<text class="text-grey-1 text-12 text-bold ma-row-sm">(0903) 617 5555</text>
 			</view>
@@ -45,6 +45,11 @@
 			this.init()
 		},
 		methods: {
+			makePhone () {
+				uni.makePhoneCall({
+				    phoneNumber: '09036175555' //仅为示例
+				});
+			},
 			init () {
 				const vm = this
 				vm.type = getCurrentPages()[getCurrentPages().length - 1].options.type
