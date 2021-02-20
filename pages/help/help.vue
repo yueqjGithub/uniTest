@@ -8,7 +8,7 @@
 			<text class="text-12 text-grey-1 ma-col-sm" :class="myTextRight">{{$t('help.serviceMobile')}}</text>
 			<view class="full-width flex-row flex-jst-center flex-ali-center">
 				<u-icon color='#AAAAAA' custom-prefix='iconfont' name='-hour' size='40'></u-icon>
-				<text class="text-grey-1 text-12 text-bold ma-row-sm">17799370072</text>
+				<text class="text-grey-1 text-12 text-bold ma-row-sm">(0903) 617 5555</text>
 			</view>
 		</view>
 		<view class="content-container content-container-serv pa-md border-box" v-for="(k, idx) in contList" :key='idx'>
