@@ -198,7 +198,8 @@
 			},
 			subcrib () {
 				uni.requestSubscribeMessage({ // 订阅消息
-				  tmplIds: ['tg1WuvZVHoMsAFvY6-HTzwg8vY7EXp7LYvn_x8grIVg'],
+				  tmplIds: ['hHQ35yIbe7sBoFuAgEjQlDo535oifx9xSrLYHLk_Dho', 'hqIPeCBZFzikumR_dtquNS-t1skRUwyHK1Hry53SZcA',
+				  'rijw9_lPb0x_-2V3hEfYhfROMLMNHKPCnD6BX_pEgcg'],
 				  success (result) {
 					},
 					fail (err) {

@@ -142,7 +142,8 @@
 									vm.setSharePhone(false)
 									uni.hideLoading()
 									uni.requestSubscribeMessage({ // 订阅消息 
-									  tmplIds: ['9UTQnyosblyWEn16aJ5GT9DbjClzWU6yljBWXncAPIk'],
+									  tmplIds: ['hHQ35yIbe7sBoFuAgEjQlDo535oifx9xSrLYHLk_Dho', 'hqIPeCBZFzikumR_dtquNS-t1skRUwyHK1Hry53SZcA',
+									  'rijw9_lPb0x_-2V3hEfYhfROMLMNHKPCnD6BX_pEgcg'],
 									  success (result) {
 											uni.showToast({
 												title: vm._i18n.messages[vm.lang].basic.chargeSuc,

@@ -151,49 +151,62 @@
 				})
 				vm.$post(urls.chargeMobile, obj).then(res => {
 					// console.log(res)
-					if (res.data.payment_amount === 0) {
-						uni.showToast({
-							title: vm._i18n.messages[vm.lang].basic.chargeSuc,
-							icon: 'success'
-						})
-						vm.$emit('close')
+					if (res.success) {
+						if (res.data.payment_amount) {
+							uni.requestPayment({ // 调用支付
+							    provider: 'wxpay',
+							    timeStamp: res.data.timeStamp,
+							    nonceStr: res.data.nonceStr,
+							    package: res.data.package,
+							    signType: 'MD5',
+							    paySign: res.data.paySign,
+							    success: function (result) {
+										vm.setSharePhone(false)
+										uni.hideLoading()
+										uni.requestSubscribeMessage({ // 订阅消息 
+										  tmplIds: ['hHQ35yIbe7sBoFuAgEjQlDo535oifx9xSrLYHLk_Dho', 'hqIPeCBZFzikumR_dtquNS-t1skRUwyHK1Hry53SZcA',
+										  'rijw9_lPb0x_-2V3hEfYhfROMLMNHKPCnD6BX_pEgcg'],
+										  success (result) {
+												uni.showToast({
+													title: vm._i18n.messages[vm.lang].basic.paySuc,
+													icon: 'success'
+												})
+												vm.$emit('close')
+											},
+											fail (err) {
+												uni.showToast({
+													title: vm._i18n.messages[vm.lang].basic.paySuc,
+													icon: 'success'
+												})
+												vm.$emit('close')
+											}
+										})
+							    },
+							    fail: function (err) {
+										uni.hideLoading()
+										uni.showToast({
+											icon: 'none',
+											title: vm._i18n.messages[vm.lang].makeOrder.payFail
+										})
+							    }
+							});
+						} else if (res.data.payment_amount === 0) {
+							uni.showToast({
+								title: vm._i18n.message[vm.lang].basic.chargeSuc,
+								icon: 'success'
+							})
+							vm.$emit('close')
+						} else {
+							uni.showToast({
+								title: vm._i18n.messages[vm.lang].basic.faild,
+								icon: 'none'
+							})
+						}
 					} else {
-						uni.requestPayment({ // 调用支付
-						    provider: 'wxpay',
-						    timeStamp: res.data.timeStamp,
-						    nonceStr: res.data.nonceStr,
-						    package: res.data.package,
-						    signType: 'MD5',
-						    paySign: res.data.paySign,
-						    success: function (result) {
-									vm.setSharePhone(false)
-									uni.hideLoading()
-									uni.requestSubscribeMessage({ // 订阅消息 
-									  tmplIds: ['9UTQnyosblyWEn16aJ5GT9DbjClzWU6yljBWXncAPIk', 'rijw9_lPb0x_-2V3hEfYhfROMLMNHKPCnD6BX_pEgcg'],
-									  success (result) {
-											uni.showToast({
-												title: vm._i18n.messages[vm.lang].basic.paySuc,
-												icon: 'success'
-											})
-											vm.$emit('close')
-										},
-										fail (err) {
-											uni.showToast({
-												title: vm._i18n.messages[vm.lang].basic.paySuc,
-												icon: 'success'
-											})
-											vm.$emit('close')
-										}
-									})
-						    },
-						    fail: function (err) {
-									uni.hideLoading()
-									uni.showToast({
-										icon: 'none',
-										title: vm._i18n.messages[vm.lang].makeOrder.payFail
-									})
-						    }
-						});
+						uni.showToast({
+							title: res.message,
+							icon: 'none'
+						})
 					}
 				}, () => {
 					uni.hideLoading()
