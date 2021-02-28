@@ -70,7 +70,7 @@
 					path: '/pages/commonOrder/commonOrder?type=oil',
 					icon: 'ditujiayouzhan',
 					name_cn: '油卡',
-					name: "تېلېفۇن ھەققى"
+					name: 'ماي قاچىلاش'
 				},{
 					id: 'A1604643763',
 					color: '#3498DB',
