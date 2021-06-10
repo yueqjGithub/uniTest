@@ -3,8 +3,10 @@ export default {
 	inviter: null,
 	initSuc: false,
 	lang: 'zh-CN',
-	initKey: 'e80a239fde8c8feb',
-	initSecret: '220504f3dbb93ce02fd87ef123a74feb',
+	// initKey: 'e80a239fde8c8feb',
+	initKey: '7d1fa48719c2024e',
+	// initSecret: '220504f3dbb93ce02fd87ef123a74feb',
+	initSecret: 'ebe3a07a6065dce1164cdb8a886603a6',
 	curAddress: '', // 当前处于编辑状态的收货地址
 	curOrderNumber: '', // 当前查看物流信息的订单号
 	trapSetting: '', // 查询火车票或机票时的参数存放

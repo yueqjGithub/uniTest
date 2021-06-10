@@ -89,22 +89,15 @@ fly.interceptors.response.use(response => {
 })
 
 const initFunc = async () => {
-	const now = dayjs().unix()
-	const target = dayjs('2021-03-20').unix()
-	if (now > target) {
-		wx.clearStorage('access_token')
-		wx.clearStorage('refresh_token')
-	} else {
-		const obj = {
-			key: Store.state.initKey,
-			secret: Store.state.initSecret
-		}
-		const res = await fly.request(urls.init,obj, {
-			method: 'get'
-		})
-		uni.setStorageSync('access_token', res.data.access_token)
-		uni.setStorageSync('refresh_token', res.data.refresh_token)
+	const obj = {
+		key: Store.state.initKey,
+		secret: Store.state.initSecret
 	}
+	const res = await fly.request(urls.init,obj, {
+		method: 'get'
+	})
+	uni.setStorageSync('access_token', res.data.access_token)
+	uni.setStorageSync('refresh_token', res.data.refresh_token)
 }
 
 const httpPost = (url, data) => {

@@ -14,15 +14,8 @@
 			}
 			this.$get(urls.init, obj).then(res => {
 				this.$store.commit('changeInitStatus', 'true')
-				const now = dayjs().unix()
-				const target = dayjs('2021-03-20').unix()
-				if (now > target) {
-					wx.clearStorage('access_token')
-					wx.clearStorage('refresh_token')
-				} else {
-					wx.setStorageSync('access_token', res.data.access_token)
-					wx.setStorageSync('refresh_token', res.data.refresh_token)
-				}
+				wx.setStorageSync('access_token', res.data.access_token)
+				wx.setStorageSync('refresh_token', res.data.refresh_token)
 			})
 		},
 		onShow: function(config) {

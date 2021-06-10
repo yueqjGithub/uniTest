@@ -46,7 +46,7 @@
         "setting" : {
             "urlCheck" : true,
             "es6" : false,
-            "minified" : true
+            "minified" : false
         },
         "permission" : {
             "scope.userLocation" : {
