@@ -5,8 +5,8 @@ export default {
 	lang: 'zh-CN',
 	// initKey: 'e80a239fde8c8feb',
 	initKey: '7d1fa48719c2024e',
-	// initSecret: '220504f3dbb93ce02fd87ef123a74feb',
-	initSecret: 'ebe3a07a6065dce1164cdb8a886603a6',
+	// initSecret: '2418f2d10889071847ba5c57c9e302da',
+	initSecret: 'b080efca6612a145f157155446685175',
 	curAddress: '', // 当前处于编辑状态的收货地址
 	curOrderNumber: '', // 当前查看物流信息的订单号
 	trapSetting: '', // 查询火车票或机票时的参数存放
@@ -18,7 +18,7 @@ export default {
 	shareForPhoneCharge: false, // 话费充值分享
 	oilList: '', // 油卡类型存放
 	curOilType: '', // 当前选择的油卡类型
-	curOilCard: '', // 存放编辑的油卡
+	curOilCard: '', // 存放编辑的油卡 
 	curWz: '', // 当前的违章信息
 	curDrivingLicense: '', // 存放当前处于编辑状态的驾驶证
 	curCarLicense: '', // 存放当前处于编辑状态的行驶证
