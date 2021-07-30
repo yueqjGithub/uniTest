@@ -6,7 +6,7 @@ export default {
 	// initKey: 'e80a239fde8c8feb',
 	initKey: '7d1fa48719c2024e',
 	// initSecret: '2418f2d10889071847ba5c57c9e302da',
-	initSecret: 'b080efca6612a145f157155446685175',
+	initSecret: 'ebe3a07a6065dce1164cdb8a886603a6',
 	curAddress: '', // 当前处于编辑状态的收货地址
 	curOrderNumber: '', // 当前查看物流信息的订单号
 	trapSetting: '', // 查询火车票或机票时的参数存放
